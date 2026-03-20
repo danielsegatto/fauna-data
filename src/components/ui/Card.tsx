@@ -7,20 +7,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   padding?: "none" | "sm" | "md" | "lg";
 }
 
-const paddingClasses = {
-  none: "",
-  sm: "p-3",
-  md: "p-4",
-  lg: "p-5",
-};
+const paddingClasses = { none: "", sm: "p-3", md: "p-4", lg: "p-5" };
 
-export function Card({
-  children,
-  pressable = false,
-  padding = "md",
-  className,
-  ...props
-}: CardProps) {
+export function Card({ children, pressable = false, padding = "md", className, ...props }: CardProps) {
   return (
     <div
       className={cn(

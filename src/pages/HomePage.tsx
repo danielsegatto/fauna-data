@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { Bird, Footprints, Lizard, BarChart2, List } from "lucide-react";
+import { Bird, Footprints, Squirrel, BarChart2, List } from "lucide-react";
 import { Page, Card, Button, Badge } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
-import { GROUP_LABELS, type FaunaGroup } from "@/lib/types";
+import { type FaunaGroup } from "@/lib/types";
 import { theme } from "@/lib/theme";
 
 // ─── Group card data ──────────────────────────────────────────────────────────
@@ -29,7 +29,7 @@ const GROUPS: Array<{
     id: "herpetofauna",
     label: "Herpetofauna",
     description: "Répteis e anfíbios",
-    Icon: ({ size, color }) => <Lizard size={size} color={color} />,
+    Icon: ({ size, color }) => <Squirrel size={size} color={color} />,
   },
 ];
 
