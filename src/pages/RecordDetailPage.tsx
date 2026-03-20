@@ -67,7 +67,6 @@ function validate(form: EditForm): FormErrors {
 
 export default function RecordDetailPage() {
   const { recordId } = useParams<{ recordId: string }>();
-  const navigate = useNavigate();
 
   const { records, updateRecord } = useRecords();
   const { getCollectionPointById } = useCollectionPoints();
@@ -174,7 +173,7 @@ export default function RecordDetailPage() {
     );
   }
 
-  const { color, bg } = theme.groups[record.group] ?? theme.groups.birds;
+  const { color } = theme.groups[record.group] ?? theme.groups.birds;
 
   // ─── Render ─────────────────────────────────────────────────────────────────
 

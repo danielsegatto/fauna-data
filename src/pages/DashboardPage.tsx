@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   BarChart,
+
   Bar,
   XAxis,
   YAxis,
@@ -10,7 +11,6 @@ import {
   PieChart,
   Pie,
   Cell,
-  Legend,
 } from "recharts";
 import { BarChart2 } from "lucide-react";
 import { Page, Card, EmptyState } from "@/components/ui";
@@ -91,7 +91,6 @@ function HBar({
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function DashboardPage() {
-  const navigate = useNavigate();
   const [range, setRange] = useState<TimeRange>("all");
   const stats = useStatistics(range);
 
