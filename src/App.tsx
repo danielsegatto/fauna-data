@@ -6,6 +6,7 @@ import CollectionPointPage from "@/pages/CollectionPointPage";
 import DataEntryPage from "@/pages/DataEntryPage";
 import RecordsListPage from "@/pages/RecordsListPage";
 import RecordDetailPage from "@/pages/RecordDetailPage";
+import DashboardPage from "@/pages/DashboardPage";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/data-entry/:group/:methodology/:pointId" element={<DataEntryPage />} />
         <Route path="/records" element={<RecordsListPage />} />
         <Route path="/records/:recordId" element={<RecordDetailPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
 
         {/* Remaining pages — registered as we build them */}
         <Route path="*" element={<Navigate to="/" replace />} />
