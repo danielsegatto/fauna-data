@@ -7,6 +7,7 @@ import DataEntryPage from "@/pages/DataEntryPage";
 import RecordsListPage from "@/pages/RecordsListPage";
 import RecordDetailPage from "@/pages/RecordDetailPage";
 import DashboardPage from "@/pages/DashboardPage";
+import ExportPage from "@/pages/ExportPage";
 
 export default function App() {
   return (
@@ -20,8 +21,7 @@ export default function App() {
         <Route path="/records" element={<RecordsListPage />} />
         <Route path="/records/:recordId" element={<RecordDetailPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-
-        {/* Remaining pages — registered as we build them */}
+        <Route path="/export" element={<ExportPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
