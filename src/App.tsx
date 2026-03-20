@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { ToastContainer } from "@/components/ui/Toast";
+import HomePage from "@/pages/HomePage";
 
 /**
  * App shell.
@@ -7,22 +9,12 @@ import { Routes, Route } from "react-router-dom";
 export default function App() {
   return (
     <div className="min-h-dvh bg-white flex flex-col">
+      <ToastContainer />
       <Routes>
-        {/* Pages are registered here as we build them */}
-        <Route
-          path="*"
-          element={
-            <div className="flex-1 flex flex-col items-center justify-center gap-3 p-6">
-              <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-white text-3xl">
-                🦜
-              </div>
-              <h1 className="text-2xl font-bold text-gray-900">Fauna Data</h1>
-              <p className="text-gray-500 text-center text-sm">
-                Fundação pronta. Construindo peça por peça...
-              </p>
-            </div>
-          }
-        />
+        <Route path="/" element={<HomePage />} />
+
+        {/* Remaining pages — registered as we build them */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
