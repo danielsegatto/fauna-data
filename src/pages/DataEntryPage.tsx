@@ -53,8 +53,6 @@ function validate(form: FormState): FormErrors {
   if (!form.species.trim()) errors.species = "Espécie é obrigatória";
   if (!form.identification) errors.identification = "Identificação é obrigatória";
   if (!form.environment) errors.environment = "Ambiente é obrigatório";
-  if (!form.stratum) errors.stratum = "Estrato é obrigatório";
-  if (!form.activity) errors.activity = "Atividade é obrigatória";
 
   if (!form.quantity) {
     errors.quantity = "Quantidade é obrigatória";
@@ -62,13 +60,9 @@ function validate(form: FormState): FormErrors {
     errors.quantity = "Deve ser um número positivo";
   }
 
-  if (!form.distance) {
-    errors.distance = "Distância é obrigatória";
-  } else if (isNaN(Number(form.distance)) || Number(form.distance) < 0) {
+  if (form.distance && (isNaN(Number(form.distance)) || Number(form.distance) < 0)) {
     errors.distance = "Deve ser um número ≥ 0";
   }
-
-  if (!form.side) errors.side = "Lado é obrigatório";
 
   return errors;
 }
@@ -230,7 +224,7 @@ export default function DataEntryPage() {
 
             {/* Estrato */}
             <Select
-              label="Estrato *"
+              label="Estrato"
               options={STRATUM_OPTIONS}
               value={form.stratum}
               onChange={(v) => set("stratum", v as StratumType)}
@@ -239,7 +233,7 @@ export default function DataEntryPage() {
 
             {/* Atividade */}
             <Select
-              label="Atividade *"
+              label="Atividade"
               options={ACTIVITY_OPTIONS}
               value={form.activity}
               onChange={(v) => set("activity", v as ActivityType)}
@@ -257,7 +251,7 @@ export default function DataEntryPage() {
                 error={errors.quantity}
               />
               <Input
-                label="Distância (m) *"
+                label="Distância (m)"
                 placeholder="Ex: 15"
                 value={form.distance}
                 onChange={(e) => set("distance", e.target.value)}
@@ -268,7 +262,7 @@ export default function DataEntryPage() {
 
             {/* Lado */}
             <Select
-              label="Lado *"
+              label="Lado"
               options={SIDE_OPTIONS}
               value={form.side}
               onChange={(v) => set("side", v as SideType)}
