@@ -8,11 +8,13 @@ import RecordsListPage from "@/pages/RecordsListPage";
 import RecordDetailPage from "@/pages/RecordDetailPage";
 import DashboardPage from "@/pages/DashboardPage";
 import ExportPage from "@/pages/ExportPage";
+import { InstallPrompt } from "@/components/ui/InstallPrompt";
 
 export default function App() {
   return (
     <div className="min-h-dvh bg-white flex flex-col">
       <ToastContainer />
+      <InstallPrompt />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/methodologies/:group" element={<MethodologiesPage />} />
