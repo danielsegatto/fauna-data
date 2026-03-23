@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Bird, Footprints, Squirrel, BarChart2, List } from "lucide-react";
+import { Bird, Footprints, Squirrel, BarChart2, List, MapPin } from "lucide-react";
 import { Page, Card, Button, Badge } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
 import { type FaunaGroup } from "@/lib/types";
@@ -62,6 +62,15 @@ export default function HomePage() {
             onClick={() => navigate("/dashboard")}
           >
             Painel de Análise
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            className="w-full"
+            icon={<MapPin size={20} />}
+            onClick={() => navigate("/collection-points")}
+          >
+            Meus Pontos de Coleta
           </Button>
           <Button
             variant="secondary"

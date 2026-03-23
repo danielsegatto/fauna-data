@@ -156,7 +156,13 @@ export default function DataEntryPage() {
             variant="secondary"
             size="md"
             className="w-full"
-            onClick={() => navigate(-1)}
+            onClick={() => {
+              if (pointId) {
+                navigate(`/collection-point/${pointId}`);
+                return;
+              }
+              navigate(-1);
+            }}
           >
             Voltar ao Ponto de Coleta
           </Button>
