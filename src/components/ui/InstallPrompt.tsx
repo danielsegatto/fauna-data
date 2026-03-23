@@ -70,7 +70,7 @@ export function InstallPrompt() {
             
             <Button 
               onClick={() => setShowIosInstructions(false)}
-              variant="outline"
+              variant="secondary"
               className="w-full mt-6"
             >
               Close
