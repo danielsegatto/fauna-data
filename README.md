@@ -93,13 +93,13 @@ Home
 ## Progresso de Desenvolvimento
 
 - [x] Step 1 — Scaffold, design system, tipos
-- [ ] Step 2 — Banco de dados (Dexie/IndexedDB)
-- [ ] Step 3 — Componentes base de UI
-- [ ] Step 4 — Home screen
-- [ ] Step 5 — Metodologias
-- [ ] Step 6 — Ponto de Coleta + GPS
-- [ ] Step 7 — Entrada de Dados
-- [ ] Step 8 — Registros Salvos
-- [ ] Step 9 — Detalhe do Registro
-- [ ] Step 10 — Painel de Análise
-- [ ] Step 11 — Exportação de Dados
+- [x] Step 2 — Banco de dados (Dexie/IndexedDB)
+- [x] Step 3 — Componentes base de UI
+- [x] Step 4 — Home screen
+- [x] Step 5 — Metodologias
+- [x] Step 6 — Ponto de Coleta + GPS
+- [x] Step 7 — Entrada de Dados
+- [x] Step 8 — Registros Salvos
+- [x] Step 9 — Detalhe do Registro
+- [x] Step 10 — Painel de Análise
+- [x] Step 11 — Exportação de Dados
