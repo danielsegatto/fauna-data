@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 import { useRecords } from "./useRecords";
-import type { FaunaRecord } from "@/lib/types";
+import {
+  GROUP_LABELS,
+  METHODOLOGY_LABELS,
+  type FaunaRecord,
+} from "@/lib/types";
 
 export type TimeRange = "all" | "7days" | "30days";
 
@@ -28,26 +32,6 @@ export interface Statistics {
   topSpecies: SpeciesStat[];
   byDate: LabelValue[];
 }
-
-const GROUP_LABELS: Record<string, string> = {
-  birds: "Aves",
-  mammals: "Mamíferos",
-  herpetofauna: "Herpetofauna",
-};
-
-const METHODOLOGY_LABELS: Record<string, string> = {
-  "point-count": "Ponto de Escuta",
-  transect: "Transecto",
-  "mist-net": "Redes de Neblina",
-  mackinnon: "Lista de Mackinnon",
-  "free-observation": "Obs. Livre",
-  "camera-trap": "Arm. Fotográfica",
-  "track-station": "Est. Pegadas",
-  "live-trap": "Arm. Gaiola",
-  "visual-search": "Busca Visual",
-  pitfall: "Arm. Queda",
-  acoustic: "Acústico",
-};
 
 const ID_LABELS: Record<string, string> = {
   A: "Auditivo",

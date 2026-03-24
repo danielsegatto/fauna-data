@@ -1,6 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
-import { generateId } from "@/lib/theme";
+import { generateId } from "@/lib/id";
+import { filterRecordsByOptions } from "@/lib/recordFilters";
 import type { FaunaRecord, FaunaGroup } from "@/lib/types";
 
 /**
@@ -84,17 +85,7 @@ export function useRecords() {
     endDate?: number;
     collectionPointId?: string;
   }): FaunaRecord[] {
-    return (records ?? []).filter((r) => {
-      if (options.group && options.group !== "all" && r.group !== options.group)
-        return false;
-      if (options.collectionPointId && r.collectionPointId !== options.collectionPointId)
-        return false;
-      if (options.startDate && r.timestamp < options.startDate)
-        return false;
-      if (options.endDate && r.timestamp > options.endDate)
-        return false;
-      return true;
-    });
+    return filterRecordsByOptions(records ?? [], options);
   }
 
   return {

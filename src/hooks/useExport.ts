@@ -1,32 +1,11 @@
 import { useCallback, useState } from "react";
-import type { FaunaRecord } from "@/lib/types";
-
-const GROUP_LABELS: Record<string, string> = {
-  birds: "Aves",
-  mammals: "Mamíferos",
-  herpetofauna: "Herpetofauna",
-};
-
-const METHODOLOGY_LABELS: Record<string, string> = {
-  "point-count": "Ponto de Escuta",
-  transect: "Transecto",
-  "mist-net": "Redes de Neblina",
-  mackinnon: "Lista de Mackinnon",
-  "free-observation": "Observação Livre",
-  "camera-trap": "Armadilha Fotográfica",
-  "track-station": "Estação de Pegadas",
-  "live-trap": "Armadilha de Gaiola",
-  "visual-search": "Busca Visual",
-  pitfall: "Armadilha de Queda",
-  acoustic: "Monitoramento Acústico",
-};
-
-export interface ExportFilters {
-  group: string;           // "" = all
-  collectionPointId: string; // "" = all
-  startDate: string;       // ISO date string or ""
-  endDate: string;         // ISO date string or ""
-}
+import { formatDate, formatTime } from "@/lib/format";
+import {
+  exportFiltersToRecordFilters,
+  filterRecordsByOptions,
+  type ExportFilters,
+} from "@/lib/recordFilters";
+import { GROUP_LABELS, METHODOLOGY_LABELS, type FaunaRecord } from "@/lib/types";
 
 function escapeCsv(value: string | number): string {
   const str = String(value);
@@ -60,13 +39,8 @@ function buildCSV(
   ];
 
   const rows = records.map((r) => {
-    const dt = new Date(r.timestamp);
-    const date = dt.toLocaleDateString("pt-BR");
-    const time = dt.toLocaleTimeString("pt-BR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
+    const date = formatDate(r.timestamp);
+    const time = formatTime(r.timestamp, { includeSeconds: true });
     return [
       r.id,
       GROUP_LABELS[r.group] ?? r.group,
@@ -106,22 +80,7 @@ export function useExport() {
 
   const filterRecords = useCallback(
     (records: FaunaRecord[], filters: ExportFilters): FaunaRecord[] => {
-      return records.filter((r) => {
-        if (filters.group && r.group !== filters.group) return false;
-        if (filters.collectionPointId && r.collectionPointId !== filters.collectionPointId)
-          return false;
-        if (filters.startDate) {
-          const start = new Date(filters.startDate);
-          start.setHours(0, 0, 0, 0);
-          if (r.timestamp < start.getTime()) return false;
-        }
-        if (filters.endDate) {
-          const end = new Date(filters.endDate);
-          end.setHours(23, 59, 59, 999);
-          if (r.timestamp > end.getTime()) return false;
-        }
-        return true;
-      });
+      return filterRecordsByOptions(records, exportFiltersToRecordFilters(filters));
     },
     []
   );

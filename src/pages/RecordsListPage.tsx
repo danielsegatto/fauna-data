@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Trash2, ChevronRight, FileDown, ClipboardList } from "lucide-react";
+import { DataChip } from "@/components/records/DataChip";
+import { FilterTabs } from "@/components/shared/FilterTabs";
 import {
   Page,
   Card,
@@ -17,7 +19,7 @@ import {
   METHODOLOGY_LABELS,
   type FaunaGroup,
 } from "@/lib/types";
-import { formatDate, formatTime } from "@/lib/theme";
+import { formatDate, formatTime } from "@/lib/format";
 
 // ─── Filter tabs ──────────────────────────────────────────────────────────────
 
@@ -78,42 +80,16 @@ export default function RecordsListPage() {
         <div className="px-4 pt-4 pb-4 flex flex-col gap-4">
 
           {/* Filter tabs */}
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-            {FILTER_TABS.map((tab) => {
-              const isActive = activeFilter === tab.id;
-              const count =
-                tab.id === "all"
-                  ? records.length
-                  : records.filter((r) => r.group === tab.id).length;
-
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveFilter(tab.id)}
-                  className={`
-                    flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold
-                    whitespace-nowrap transition-all duration-150 active:scale-95 shrink-0
-                    ${
-                      isActive
-                        ? "bg-primary text-white"
-                        : "bg-white border border-gray-200 text-gray-600"
-                    }
-                  `}
-                >
-                  {tab.label}
-                  {count > 0 && (
-                    <span
-                      className={`text-xs rounded-full px-1.5 py-0.5 font-bold ${
-                        isActive ? "bg-white/25 text-white" : "bg-gray-100 text-gray-500"
-                      }`}
-                    >
-                      {count}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
+          <FilterTabs
+            tabs={FILTER_TABS}
+            activeTab={activeFilter}
+            onChange={setActiveFilter}
+            getCount={(tabId) =>
+              tabId === "all"
+                ? records.length
+                : records.filter((record) => record.group === tabId).length
+            }
+          />
 
           {/* Content */}
           {isLoading ? (
@@ -251,18 +227,5 @@ export default function RecordsListPage() {
         onCancel={() => setDeleteTarget(null)}
       />
     </>
-  );
-}
-
-// ─── Small helper component ───────────────────────────────────────────────────
-
-function DataChip({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="bg-gray-50 rounded-lg px-2 py-1.5">
-      <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wide leading-none mb-0.5">
-        {label}
-      </p>
-      <p className="text-xs font-semibold text-gray-700 truncate">{value}</p>
-    </div>
   );
 }

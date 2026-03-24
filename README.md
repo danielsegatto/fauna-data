@@ -1,12 +1,3 @@
-# 🦜 Fauna Data
-
-**Fauna Data** is a Progressive Web Application (PWA) designed for field biologists, ecologists, and environmental consultants to record and manage wildlife (fauna) observation data while working in the field in Brazil. The application is built as a **mobile-first, offline-first, client-only** single-page application — there is no backend server or cloud database. All data is persisted locally on the user's device using IndexedDB, meaning the app works fully offline after the first load and keeps data across browser sessions.
-
-The app covers the complete field data workflow: selecting a fauna group (Birds, Mammals, or Herpetofauna), choosing a standardized survey methodology, creating a GPS-tagged collection point, recording observation data through a structured form, reviewing and editing saved records, visualizing statistics on an analytics dashboard, and exporting filtered data as CSV files for sharing with the team.
-
-All UI text is in **Brazilian Portuguese (pt-BR)**, as the target users are field researchers working in Brazil.
-
----
 # Fauna Data
 
 Fauna Data is a mobile-first Progressive Web App for field collection, organization, review, analysis, and export of wildlife monitoring data.
@@ -22,6 +13,16 @@ The project is designed for real fieldwork conditions:
 - installable experience on Android, iOS, and desktop-compatible browsers
 
 This README is intended to be the complete project reference for both humans and AI systems. It explains what the application does, why each part exists, where each concern lives in the codebase, how data moves through the app, what has already been delivered, and what the current implementation state is.
+
+## Where To Start
+
+For a fast architectural read, start here:
+
+1. `src/App.tsx` for routes and top-level composition
+2. `src/lib/types.ts` for the domain model
+3. `src/lib/db.ts` for persistence shape
+4. `src/hooks/useCollectionPoints.ts` and `src/hooks/useRecords.ts` for reactive data access
+5. `docs/architecture.md` for the current module map and refactor boundaries
 
 ## 1. Project Purpose
 

@@ -28,36 +28,14 @@ import {
   type ActivityType,
   type SideType,
 } from "@/lib/types";
-import { formatDateTime, theme } from "@/lib/theme";
-
-// ─── Validation (same rules as DataEntryPage) ─────────────────────────────────
-
-type EditForm = {
-  species: string;
-  identification: string;
-  environment: string;
-  stratum: string;
-  activity: string;
-  quantity: string;
-  distance: string;
-  side: string;
-  observations: string;
-};
-
-type FormErrors = Partial<Record<keyof EditForm, string>>;
-
-function validate(form: EditForm): FormErrors {
-  const errors: FormErrors = {};
-  if (!form.species.trim()) errors.species = "Espécie é obrigatória";
-  if (!form.identification) errors.identification = "Identificação é obrigatória";
-  if (!form.environment) errors.environment = "Ambiente é obrigatório";
-  if (!form.quantity) errors.quantity = "Quantidade é obrigatória";
-  else if (isNaN(Number(form.quantity)) || Number(form.quantity) <= 0)
-    errors.quantity = "Deve ser um número positivo";
-  if (form.distance && (isNaN(Number(form.distance)) || Number(form.distance) < 0))
-    errors.distance = "Deve ser ≥ 0";
-  return errors;
-}
+import { formatDateTime } from "@/lib/format";
+import {
+  hasRecordFormChanges,
+  validateRecordForm,
+  type RecordFormErrors,
+  type RecordFormState,
+} from "@/lib/recordForm";
+import { theme } from "@/lib/theme";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -70,8 +48,8 @@ export default function RecordDetailPage() {
   const record = records.find((r) => r.id === recordId);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState<EditForm | null>(null);
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [form, setForm] = useState<RecordFormState | null>(null);
+  const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
   const [pointName, setPointName] = useState<string | null>(null);
   const [discardOpen, setDiscardOpen] = useState(false);
@@ -102,14 +80,14 @@ export default function RecordDetailPage() {
     }
   }, [isEditing, record]);
 
-  const set = <K extends keyof EditForm>(field: K, value: string) => {
+  const set = <K extends keyof RecordFormState>(field: K, value: string) => {
     setForm((prev) => prev ? { ...prev, [field]: value } : prev);
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
   const handleSave = async () => {
     if (!form || !record) return;
-    const errs = validate(form);
+    const errs = validateRecordForm(form);
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       showToast("error", "Preencha todos os campos obrigatórios");
@@ -142,16 +120,17 @@ export default function RecordDetailPage() {
   const handleCancelEdit = () => {
     // If form was touched, ask for confirmation
     if (form && record) {
-      const dirty =
-        form.species !== record.data.species ||
-        form.identification !== record.data.identification ||
-        form.environment !== record.data.environment ||
-        form.stratum !== record.data.stratum ||
-        form.activity !== record.data.activity ||
-        form.quantity !== String(record.data.quantity) ||
-        form.distance !== String(record.data.distance) ||
-        form.side !== record.data.side ||
-        form.observations !== record.data.observations;
+      const dirty = hasRecordFormChanges(form, {
+        species: record.data.species,
+        identification: record.data.identification,
+        environment: record.data.environment,
+        stratum: record.data.stratum,
+        activity: record.data.activity,
+        quantity: String(record.data.quantity),
+        distance: String(record.data.distance),
+        side: record.data.side,
+        observations: record.data.observations,
+      });
       if (dirty) { setDiscardOpen(true); return; }
     }
     setIsEditing(false);

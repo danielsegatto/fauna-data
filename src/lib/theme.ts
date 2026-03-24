@@ -52,26 +52,3 @@ export const theme = {
 export function cn(...classes: (string | undefined | false | null)[]): string {
   return classes.filter(Boolean).join(" ");
 }
-
-/** Format a timestamp to a Brazilian locale date string */
-export function formatDate(timestamp: number): string {
-  return new Date(timestamp).toLocaleDateString("pt-BR");
-}
-
-/** Format a timestamp to a Brazilian locale time string */
-export function formatTime(timestamp: number): string {
-  return new Date(timestamp).toLocaleTimeString("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
-/** Format a timestamp to date + time */
-export function formatDateTime(timestamp: number): string {
-  return `${formatDate(timestamp)} às ${formatTime(timestamp)}`;
-}
-
-/** Generate a unique ID */
-export function generateId(): string {
-  return `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
-}
