@@ -59,7 +59,6 @@ export default function RecordDetailPage() {
   const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
-  const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
 
   // Populate form when entering edit mode
   useEffect(() => {
@@ -134,7 +133,7 @@ export default function RecordDetailPage() {
         excludeRecordId: record.id,
       })
     ) {
-      setDuplicateDialogOpen(true);
+      showToast("warning", "Espécie já registrada. Não é possível repetir na Lista de Mackinnon.");
       return;
     }
 
@@ -370,19 +369,6 @@ export default function RecordDetailPage() {
         variant="danger"
         onConfirm={() => { setDiscardOpen(false); setIsEditing(false); }}
         onCancel={() => setDiscardOpen(false)}
-      />
-      <ConfirmDialog
-        isOpen={duplicateDialogOpen}
-        title="Espécie já registrada"
-        message="Esta espécie já foi registrada neste ponto de coleta. Deseja salvar assim mesmo?"
-        confirmLabel="Salvar assim mesmo"
-        cancelLabel="Não salvar"
-        variant="primary"
-        onConfirm={() => {
-          setDuplicateDialogOpen(false);
-          void persistRecordUpdate();
-        }}
-        onCancel={() => setDuplicateDialogOpen(false)}
       />
     </>
   );

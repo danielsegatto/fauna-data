@@ -8,12 +8,11 @@ import {
   Select,
   Button,
   Card,
-  ConfirmDialog,
   showToast,
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
-import { isMackinnonMethodology } from "@/lib/mackinnon";
+import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
@@ -55,7 +54,7 @@ export default function DataEntryPage() {
   const pointName = (location.state as { pointName?: string } | null)?.pointName;
 
   const { collectionPoints, isLoading: isLoadingPoints } = useCollectionPoints();
-  const { saveRecord, hasSpeciesRecordedAtPoint } = useRecords();
+  const { saveRecord, hasSpeciesRecordedAtPoint, filterRecords } = useRecords();
   const collectionPoint = collectionPoints.find((item) => item.id === pointId);
   const isMackinnonPoint = isMackinnonMethodology(collectionPoint?.methodology ?? methodology);
 
@@ -63,7 +62,6 @@ export default function DataEntryPage() {
   const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
-  const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
 
   // Generic field updater
   const set = <K extends keyof RecordFormState>(field: K, value: RecordFormState[K]) => {
@@ -131,6 +129,14 @@ export default function DataEntryPage() {
       return;
     }
 
+    if (isMackinnonPoint) {
+      const pointRecords = filterRecords({ collectionPointId: collectionPoint.id });
+      if (hasMackinnonPointReachedLimit(pointRecords.length, collectionPoint.limit)) {
+        showToast("warning", `Limite de ${collectionPoint.limit} espécies atingido. Crie um novo ponto de coleta para continuar.`);
+        return;
+      }
+    }
+
     if (
       isMackinnonPoint
       && hasSpeciesRecordedAtPoint({
@@ -138,7 +144,7 @@ export default function DataEntryPage() {
         species: form.species,
       })
     ) {
-      setDuplicateDialogOpen(true);
+      showToast("warning", "Espécie já registrada. Não é possível repetir na Lista de Mackinnon.");
       return;
     }
 
@@ -296,19 +302,6 @@ export default function DataEntryPage() {
           </div>
         </Card>
       </div>
-      <ConfirmDialog
-        isOpen={duplicateDialogOpen}
-        title="Espécie já registrada"
-        message="Esta espécie já foi registrada neste ponto de coleta. Deseja registrar assim mesmo?"
-        confirmLabel="Registrar assim mesmo"
-        cancelLabel="Não registrar"
-        variant="primary"
-        onConfirm={() => {
-          setDuplicateDialogOpen(false);
-          void persistRecord();
-        }}
-        onCancel={() => setDuplicateDialogOpen(false)}
-      />
     </Page>
   );
 }
