@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { HBar } from "@/components/dashboard/HBar";
+import { SectionTitle } from "@/components/dashboard/SectionTitle";
+import { StatCard } from "@/components/dashboard/StatCard";
+import { FilterTabs } from "@/components/shared/FilterTabs";
 
 import {
   BarChart,
@@ -21,73 +25,6 @@ import { theme } from "@/lib/theme";
 
 const COLORS = theme.colors.chart;
 
-// ─── Reusable section title ───────────────────────────────────────────────────
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-sm font-bold text-gray-500 uppercase tracking-wide px-1 mt-2">
-      {children}
-    </p>
-  );
-}
-
-// ─── Stat card ────────────────────────────────────────────────────────────────
-
-function StatCard({
-  label,
-  value,
-  sub,
-}: {
-  label: string;
-  value: string | number;
-  sub?: string;
-}) {
-  return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-card p-4 flex-1">
-      <p className="text-xs text-gray-400 font-medium mb-1">{label}</p>
-      <p className="text-2xl font-bold text-gray-900">{value}</p>
-      {sub && <p className="text-xs text-gray-400 mt-0.5">{sub}</p>}
-    </div>
-  );
-}
-
-// ─── Simple horizontal bar ────────────────────────────────────────────────────
-
-function HBar({
-  label,
-  value,
-  max,
-  color,
-  rank,
-}: {
-  label: string;
-  value: number;
-  max: number;
-  color: string;
-  rank?: number;
-}) {
-  const pct = max > 0 ? (value / max) * 100 : 0;
-  return (
-    <div className="flex items-center gap-2">
-      {rank !== undefined && (
-        <span className="text-xs text-gray-400 w-4 text-right shrink-0">{rank}.</span>
-      )}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center justify-between mb-0.5">
-          <span className="text-xs font-medium text-gray-700 truncate pr-2">{label}</span>
-          <span className="text-xs font-bold text-gray-900 shrink-0">{value}</span>
-        </div>
-        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-          <div
-            className="h-full rounded-full transition-all duration-500"
-            style={{ width: `${pct}%`, backgroundColor: color }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function DashboardPage() {
@@ -105,22 +42,13 @@ export default function DashboardPage() {
       <div className="px-4 pt-4 pb-6 flex flex-col gap-4">
 
         {/* Time range filter */}
-        <div className="flex gap-2">
-          {RANGE_TABS.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setRange(tab.id)}
-              className={`
-                flex-1 py-2 rounded-xl text-sm font-semibold transition-all duration-150 active:scale-95
-                ${range === tab.id
-                  ? "bg-primary text-white"
-                  : "bg-white border border-gray-200 text-gray-600"}
-              `}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <FilterTabs
+          tabs={RANGE_TABS}
+          activeTab={range}
+          onChange={setRange}
+          getCount={() => 0}
+          fullWidth
+        />
 
         {/* Empty state */}
         {stats.totalRecords === 0 ? (

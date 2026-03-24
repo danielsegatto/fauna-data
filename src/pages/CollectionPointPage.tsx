@@ -5,7 +5,8 @@ import { Page, Input, Textarea, Button, Card, showToast } from "@/components/ui"
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { GROUP_LABELS, METHODOLOGY_LABELS, type FaunaGroup } from "@/lib/types";
-import { theme, formatDateTime } from "@/lib/theme";
+import { formatDateTime } from "@/lib/format";
+import { theme } from "@/lib/theme";
 
 export default function CollectionPointPage() {
   const { group, methodology } = useParams<{ group: string; methodology: string }>();

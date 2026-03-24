@@ -26,46 +26,13 @@ import {
   type ActivityType,
   type SideType,
 } from "@/lib/types";
+import {
+  emptyRecordForm,
+  validateRecordForm,
+  type RecordFormErrors,
+  type RecordFormState,
+} from "@/lib/recordForm";
 import { theme } from "@/lib/theme";
-
-// ─── Empty form state ─────────────────────────────────────────────────────────
-
-const emptyForm = {
-  species: "",
-  identification: "" as IdentificationType | "",
-  environment: "" as EnvironmentType | "",
-  stratum: "" as StratumType | "",
-  activity: "" as ActivityType | "",
-  quantity: "",
-  distance: "",
-  side: "" as SideType | "",
-  observations: "",
-};
-
-type FormState = typeof emptyForm;
-type FormErrors = Partial<Record<keyof FormState, string>>;
-
-// ─── Validation ───────────────────────────────────────────────────────────────
-
-function validate(form: FormState): FormErrors {
-  const errors: FormErrors = {};
-
-  if (!form.species.trim()) errors.species = "Espécie é obrigatória";
-  if (!form.identification) errors.identification = "Identificação é obrigatória";
-  if (!form.environment) errors.environment = "Ambiente é obrigatório";
-
-  if (!form.quantity) {
-    errors.quantity = "Quantidade é obrigatória";
-  } else if (isNaN(Number(form.quantity)) || Number(form.quantity) <= 0) {
-    errors.quantity = "Deve ser um número positivo";
-  }
-
-  if (form.distance && (isNaN(Number(form.distance)) || Number(form.distance) < 0)) {
-    errors.distance = "Deve ser um número ≥ 0";
-  }
-
-  return errors;
-}
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -86,19 +53,19 @@ export default function DataEntryPage() {
 
   const { saveRecord } = useRecords();
 
-  const [form, setForm] = useState<FormState>(emptyForm);
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [form, setForm] = useState<RecordFormState>(emptyRecordForm);
+  const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
 
   // Generic field updater
-  const set = <K extends keyof FormState>(field: K, value: FormState[K]) => {
+  const set = <K extends keyof RecordFormState>(field: K, value: RecordFormState[K]) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
   const handleSave = async () => {
-    const errs = validate(form);
+    const errs = validateRecordForm(form);
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       showToast("error", "Preencha todos os campos obrigatórios");
@@ -125,7 +92,7 @@ export default function DataEntryPage() {
       });
 
       setSavedCount((n) => n + 1);
-      setForm(emptyForm);
+  setForm(emptyRecordForm);
       setErrors({});
       showToast("success", "Registro salvo! Pronto para novo registro.");
     } catch {

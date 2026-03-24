@@ -1,6 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
-import { generateId } from "@/lib/theme";
+import { generateId } from "@/lib/id";
 import type { CollectionPoint, FaunaGroup } from "@/lib/types";
 
 /**

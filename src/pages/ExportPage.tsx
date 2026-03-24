@@ -4,7 +4,8 @@ import { FileDown, Filter } from "lucide-react";
 import { Page, Card, Button, Select, showToast } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
-import { useExport, type ExportFilters } from "@/hooks/useExport";
+import { useExport } from "@/hooks/useExport";
+import { type ExportFilters } from "@/lib/recordFilters";
 import { GROUP_LABELS } from "@/lib/types";
 
 // ─── Date input component (native HTML) ──────────────────────────────────────

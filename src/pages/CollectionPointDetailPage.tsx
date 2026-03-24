@@ -21,7 +21,7 @@ import {
   type FaunaGroup,
   type SelectOption,
 } from "@/lib/types";
-import { formatDateTime } from "@/lib/theme";
+import { formatDateTime } from "@/lib/format";
 
 type FormState = {
   name: string;
