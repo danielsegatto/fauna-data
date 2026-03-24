@@ -23,6 +23,11 @@ class FaunaDB extends Dexie {
       records: "id, group, methodology, collectionPointId, timestamp",
       collectionPoints: "id, group, methodology, createdAt",
     });
+
+    this.version(2).stores({
+      records: "id, group, methodology, collectionPointId, timestamp",
+      collectionPoints: "id, group, methodology, createdAt",
+    });
   }
 }
 

@@ -15,6 +15,11 @@ import {
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
 import {
+  MACKINNON_LIMIT_OPTIONS,
+  isMackinnonMethodology,
+  parseMackinnonLimit,
+} from "@/lib/mackinnon";
+import {
   GROUP_LABELS,
   METHODOLOGIES,
   METHODOLOGY_LABELS,
@@ -29,6 +34,7 @@ type FormState = {
   latitude: string;
   longitude: string;
   accuracy: string;
+  limit: string;
   group: FaunaGroup;
   methodology: string;
 };
@@ -61,6 +67,7 @@ export default function CollectionPointDetailPage() {
   const [form, setForm] = useState<FormState | null>(null);
   const [nameError, setNameError] = useState("");
   const [methodologyError, setMethodologyError] = useState("");
+  const [limitError, setLimitError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -70,6 +77,7 @@ export default function CollectionPointDetailPage() {
     latitude: targetPoint.latitude !== undefined ? String(targetPoint.latitude) : "",
     longitude: targetPoint.longitude !== undefined ? String(targetPoint.longitude) : "",
     accuracy: targetPoint.accuracy !== undefined ? String(targetPoint.accuracy) : "",
+    limit: targetPoint.limit !== undefined ? String(targetPoint.limit) : "",
     group: targetPoint.group,
     methodology: targetPoint.methodology,
   });
@@ -79,6 +87,7 @@ export default function CollectionPointDetailPage() {
     setForm(buildFormFromPoint(point));
     setNameError("");
     setMethodologyError("");
+    setLimitError("");
   }, [point]);
 
   const methodologyOptions = useMemo(() => {
@@ -107,6 +116,7 @@ export default function CollectionPointDetailPage() {
     setForm((prev) => (prev ? { ...prev, [field]: value } : prev));
     if (field === "name") setNameError("");
     if (field === "methodology") setMethodologyError("");
+    if (field === "limit") setLimitError("");
   };
 
   const handleSave = async () => {
@@ -122,6 +132,12 @@ export default function CollectionPointDetailPage() {
       return;
     }
 
+    const parsedLimit = parseMackinnonLimit(form.limit);
+    if (isMackinnonMethodology(form.methodology) && parsedLimit === undefined) {
+      setLimitError("Informe um limite inteiro maior que zero");
+      return;
+    }
+
     setIsSaving(true);
     try {
       await updateCollectionPoint(point.id, {
@@ -130,6 +146,7 @@ export default function CollectionPointDetailPage() {
         latitude: parseOptionalNumber(form.latitude),
         longitude: parseOptionalNumber(form.longitude),
         accuracy: parseOptionalNumber(form.accuracy),
+        limit: isMackinnonMethodology(form.methodology) ? parsedLimit : undefined,
         group: form.group,
         methodology: form.methodology,
       });
@@ -145,6 +162,14 @@ export default function CollectionPointDetailPage() {
 
   const handleAddRecord = () => {
     if (!point) return;
+    if (isMackinnonMethodology(point.methodology) && point.limit === undefined) {
+      showToast("error", "Defina o limite da Lista de Mackinnon antes de adicionar registros.");
+      setForm(buildFormFromPoint(point));
+      setLimitError("Defina um limite antes de continuar");
+      setIsEditing(true);
+      return;
+    }
+
     navigate(`/data-entry/${point.group}/${point.methodology}/${point.id}`, {
       state: { pointName: point.name },
     });
@@ -155,6 +180,7 @@ export default function CollectionPointDetailPage() {
     setForm(buildFormFromPoint(point));
     setNameError("");
     setMethodologyError("");
+    setLimitError("");
     setIsEditing(false);
   };
 
@@ -283,6 +309,44 @@ export default function CollectionPointDetailPage() {
                     error={methodologyError}
                   />
 
+                  {isMackinnonMethodology(form.methodology) && (
+                    <div className="flex flex-col gap-3">
+                      <div className="flex flex-wrap gap-2">
+                        {MACKINNON_LIMIT_OPTIONS.map((option) => {
+                          const isSelected = form.limit.trim() === String(option);
+                          return (
+                            <button
+                              key={option}
+                              type="button"
+                              onClick={() => {
+                                set("limit", String(option));
+                                setLimitError("");
+                              }}
+                              className={[
+                                "px-3 py-2 rounded-xl text-sm font-semibold border transition-all active:scale-95",
+                                isSelected
+                                  ? "border-primary bg-primary/10 text-primary"
+                                  : "border-gray-200 bg-gray-50 text-gray-600",
+                              ].join(" ")}
+                            >
+                              {option}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <Input
+                        label="Limite da Lista de Mackinnon *"
+                        value={form.limit}
+                        onChange={(e) => set("limit", e.target.value)}
+                        inputMode="numeric"
+                        placeholder="Ex: 10"
+                        hint="Sugestões rápidas: 10, 15 ou 20. Você também pode informar outro número inteiro."
+                        error={limitError}
+                      />
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-2 gap-3">
                     <Input
                       label="Latitude"
@@ -322,6 +386,14 @@ export default function CollectionPointDetailPage() {
                       {METHODOLOGY_LABELS[point.methodology] ?? point.methodology}
                     </p>
                   </div>
+                  {isMackinnonMethodology(point.methodology) && (
+                    <div>
+                      <p className="text-xs text-gray-400 font-medium">Limite Mackinnon</p>
+                      <p className="text-sm text-gray-700">
+                        {point.limit !== undefined ? `${pointRecords.length}/${point.limit} registros` : "Não definido"}
+                      </p>
+                    </div>
+                  )}
                   {point.notes && (
                     <div>
                       <p className="text-xs text-gray-400 font-medium">Observações</p>
@@ -335,7 +407,12 @@ export default function CollectionPointDetailPage() {
             <Card padding="md">
               <div className="flex items-center gap-2 mb-3">
                 <ClipboardList size={18} className="text-gray-500" />
-                <p className="text-sm font-semibold text-gray-700">Registros deste ponto</p>
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Registros deste ponto</p>
+                  {isMackinnonMethodology(point.methodology) && point.limit !== undefined && (
+                    <p className="text-xs text-gray-400">Progresso atual: {pointRecords.length}/{point.limit}</p>
+                  )}
+                </div>
               </div>
 
               {pointRecords.length === 0 ? (

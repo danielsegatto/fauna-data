@@ -15,6 +15,10 @@ import {
 import { useRecords } from "@/hooks/useRecords";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import {
+  isMackinnonMethodology,
+  normalizeSpeciesName,
+} from "@/lib/mackinnon";
+import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
   IDENTIFICATION_OPTIONS,
@@ -42,25 +46,20 @@ import { theme } from "@/lib/theme";
 export default function RecordDetailPage() {
   const { recordId } = useParams<{ recordId: string }>();
 
-  const { records, updateRecord } = useRecords();
-  const { getCollectionPointById } = useCollectionPoints();
+  const { records, updateRecord, hasSpeciesRecordedAtPoint } = useRecords();
+  const { collectionPoints } = useCollectionPoints();
 
   const record = records.find((r) => r.id === recordId);
+  const collectionPoint = record
+    ? collectionPoints.find((point) => point.id === record.collectionPointId)
+    : undefined;
 
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState<RecordFormState | null>(null);
   const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
-  const [pointName, setPointName] = useState<string | null>(null);
   const [discardOpen, setDiscardOpen] = useState(false);
-
-  // Load collection point name
-  useEffect(() => {
-    if (!record) return;
-    getCollectionPointById(record.collectionPointId).then((pt) => {
-      if (pt) setPointName(pt.name);
-    });
-  }, [record, getCollectionPointById]);
+  const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
 
   // Populate form when entering edit mode
   useEffect(() => {
@@ -85,14 +84,9 @@ export default function RecordDetailPage() {
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const handleSave = async () => {
+  const persistRecordUpdate = async () => {
     if (!form || !record) return;
-    const errs = validateRecordForm(form);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      showToast("error", "Preencha todos os campos obrigatórios");
-      return;
-    }
+
     setIsSaving(true);
     try {
       await updateRecord(record.id, {
@@ -115,6 +109,36 @@ export default function RecordDetailPage() {
     } finally {
       setIsSaving(false);
     }
+  };
+
+  const handleSave = async () => {
+    if (!form || !record) return;
+
+    const errs = validateRecordForm(form);
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      showToast("error", "Preencha todos os campos obrigatórios");
+      return;
+    }
+
+    const hasSpeciesChanged = normalizeSpeciesName(form.species)
+      !== normalizeSpeciesName(record.data.species);
+
+    if (
+      hasSpeciesChanged
+      && collectionPoint
+      && isMackinnonMethodology(collectionPoint.methodology)
+      && hasSpeciesRecordedAtPoint({
+        collectionPointId: collectionPoint.id,
+        species: form.species,
+        excludeRecordId: record.id,
+      })
+    ) {
+      setDuplicateDialogOpen(true);
+      return;
+    }
+
+    await persistRecordUpdate();
   };
 
   const handleCancelEdit = () => {
@@ -203,11 +227,11 @@ export default function RecordDetailPage() {
                   {formatDateTime(record.timestamp)}
                 </p>
               </div>
-              {pointName && (
+              {collectionPoint?.name && (
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-gray-400 font-medium">Ponto de Coleta</p>
                   <p className="text-xs font-semibold text-gray-700 truncate max-w-[60%] text-right">
-                    {pointName}
+                    {collectionPoint.name}
                   </p>
                 </div>
               )}
@@ -346,6 +370,19 @@ export default function RecordDetailPage() {
         variant="danger"
         onConfirm={() => { setDiscardOpen(false); setIsEditing(false); }}
         onCancel={() => setDiscardOpen(false)}
+      />
+      <ConfirmDialog
+        isOpen={duplicateDialogOpen}
+        title="Espécie já registrada"
+        message="Esta espécie já foi registrada neste ponto de coleta. Deseja salvar assim mesmo?"
+        confirmLabel="Salvar assim mesmo"
+        cancelLabel="Não salvar"
+        variant="primary"
+        onConfirm={() => {
+          setDuplicateDialogOpen(false);
+          void persistRecordUpdate();
+        }}
+        onCancel={() => setDuplicateDialogOpen(false)}
       />
     </>
   );

@@ -1,6 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { Badge, Card } from "@/components/ui";
 import { formatDateTime } from "@/lib/format";
+import { isMackinnonMethodology } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
@@ -33,8 +34,9 @@ export function CollectionPointCard({
           </p>
           <p className="text-xs text-gray-400 mt-1">{formatDateTime(point.createdAt)}</p>
           <p className="text-xs text-gray-500 mt-2">
-            {recordsCount} registro{recordsCount !== 1 ? "s" : ""} associado
-            {recordsCount !== 1 ? "s" : ""}
+            {isMackinnonMethodology(point.methodology) && point.limit !== undefined
+              ? `${recordsCount}/${point.limit} registros`
+              : `${recordsCount} registro${recordsCount !== 1 ? "s" : ""} associado${recordsCount !== 1 ? "s" : ""}`}
           </p>
         </div>
         <ChevronRight size={18} className="text-gray-300 shrink-0 mt-1" />
