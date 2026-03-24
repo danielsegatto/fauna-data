@@ -18,3 +18,7 @@ export function parseMackinnonLimit(value: string): number | undefined {
 export function normalizeSpeciesName(value: string): string {
   return value.trim().toLocaleLowerCase("pt-BR");
 }
+
+export function hasMackinnonPointReachedLimit(recordCount: number, limit?: number): boolean {
+  return limit !== undefined && recordCount >= limit;
+}

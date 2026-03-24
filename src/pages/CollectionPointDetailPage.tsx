@@ -18,6 +18,7 @@ import {
   MACKINNON_LIMIT_OPTIONS,
   isMackinnonMethodology,
   parseMackinnonLimit,
+  hasMackinnonPointReachedLimit,
 } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
@@ -112,6 +113,10 @@ export default function CollectionPointDetailPage() {
     ? filterRecords({ collectionPointId: point.id })
     : [];
 
+  const isAtLimit = !isEditing
+    && isMackinnonMethodology(point?.methodology)
+    && hasMackinnonPointReachedLimit(pointRecords.length, point?.limit);
+
   const set = <K extends keyof FormState>(field: K, value: FormState[K]) => {
     setForm((prev) => (prev ? { ...prev, [field]: value } : prev));
     if (field === "name") setNameError("");
@@ -170,6 +175,11 @@ export default function CollectionPointDetailPage() {
       return;
     }
 
+    if (isAtLimit) {
+      showToast("warning", "Limite alcançado. Inicie um novo ponto de coleta.");
+      return;
+    }
+
     navigate(`/data-entry/${point.group}/${point.methodology}/${point.id}`, {
       state: { pointName: point.name },
     });
@@ -224,16 +234,29 @@ export default function CollectionPointDetailPage() {
               </Button>
             </>
           ) : (
-            <Button
-              variant="primary"
-              size="lg"
-              className="w-full"
-              icon={<PlusCircle size={20} />}
-              onClick={handleAddRecord}
-              disabled={!point}
-            >
-              Adicionar Registro
-            </Button>
+            <>
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full"
+                icon={<PlusCircle size={20} />}
+                onClick={handleAddRecord}
+                disabled={!point}
+              >
+                Adicionar Registro
+              </Button>
+              {isAtLimit && point && (
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="w-full"
+                  icon={<PlusCircle size={18} />}
+                  onClick={() => navigate(`/collection-point/${point.group}/${point.methodology}`)}
+                >
+                  Criar Novo Ponto de Coleta
+                </Button>
+              )}
+            </>
           )}
         </div>
       }
