@@ -19,6 +19,7 @@ export interface CollectionPoint {
   latitude?: number;
   longitude?: number;
   accuracy?: number;
+  limit?: number;
   createdAt: number;
   group: FaunaGroup;
   methodology: string;

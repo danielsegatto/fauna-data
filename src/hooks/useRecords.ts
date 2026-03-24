@@ -1,6 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/lib/db";
 import { generateId } from "@/lib/id";
+import { normalizeSpeciesName } from "@/lib/mackinnon";
 import { filterRecordsByOptions } from "@/lib/recordFilters";
 import type { FaunaRecord, FaunaGroup } from "@/lib/types";
 
@@ -88,6 +89,21 @@ export function useRecords() {
     return filterRecordsByOptions(records ?? [], options);
   }
 
+  function hasSpeciesRecordedAtPoint(options: {
+    collectionPointId: string;
+    species: string;
+    excludeRecordId?: string;
+  }): boolean {
+    const normalizedSpecies = normalizeSpeciesName(options.species);
+    if (!normalizedSpecies) return false;
+
+    return (records ?? []).some((record) => {
+      if (record.collectionPointId !== options.collectionPointId) return false;
+      if (options.excludeRecordId && record.id === options.excludeRecordId) return false;
+      return normalizeSpeciesName(record.data.species) === normalizedSpecies;
+    });
+  }
+
   return {
     records: records ?? [],
     isLoading,
@@ -97,5 +113,6 @@ export function useRecords() {
     clearAllRecords,
     getRecordById,
     filterRecords,
+    hasSpeciesRecordedAtPoint,
   };
 }

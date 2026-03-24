@@ -8,9 +8,12 @@ import {
   Select,
   Button,
   Card,
+  ConfirmDialog,
   showToast,
 } from "@/components/ui";
+import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
+import { isMackinnonMethodology } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
@@ -51,12 +54,16 @@ export default function DataEntryPage() {
   const methodologyLabel = METHODOLOGY_LABELS[methodology ?? ""] ?? methodology;
   const pointName = (location.state as { pointName?: string } | null)?.pointName;
 
-  const { saveRecord } = useRecords();
+  const { collectionPoints, isLoading: isLoadingPoints } = useCollectionPoints();
+  const { saveRecord, hasSpeciesRecordedAtPoint } = useRecords();
+  const collectionPoint = collectionPoints.find((item) => item.id === pointId);
+  const isMackinnonPoint = isMackinnonMethodology(collectionPoint?.methodology ?? methodology);
 
   const [form, setForm] = useState<RecordFormState>(emptyRecordForm);
   const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
+  const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
 
   // Generic field updater
   const set = <K extends keyof RecordFormState>(field: K, value: RecordFormState[K]) => {
@@ -64,14 +71,7 @@ export default function DataEntryPage() {
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const handleSave = async () => {
-    const errs = validateRecordForm(form);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      showToast("error", "Preencha todos os campos obrigatórios");
-      return;
-    }
-
+  const persistRecord = async () => {
     setIsSaving(true);
     try {
       await saveRecord({
@@ -92,7 +92,7 @@ export default function DataEntryPage() {
       });
 
       setSavedCount((n) => n + 1);
-  setForm(emptyRecordForm);
+      setForm(emptyRecordForm);
       setErrors({});
       showToast("success", "Registro salvo! Pronto para novo registro.");
     } catch {
@@ -100,6 +100,49 @@ export default function DataEntryPage() {
     } finally {
       setIsSaving(false);
     }
+  };
+
+  const handleSave = async () => {
+    const errs = validateRecordForm(form);
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      showToast("error", "Preencha todos os campos obrigatórios");
+      return;
+    }
+
+    if (!pointId) {
+      showToast("error", "Ponto de coleta inválido.");
+      return;
+    }
+
+    if (isLoadingPoints) {
+      showToast("error", "Aguarde o carregamento do ponto de coleta.");
+      return;
+    }
+
+    if (!collectionPoint) {
+      showToast("error", "Ponto de coleta não encontrado.");
+      return;
+    }
+
+    if (isMackinnonPoint && collectionPoint.limit === undefined) {
+      showToast("error", "Defina o limite da Lista de Mackinnon antes de adicionar registros.");
+      navigate(`/collection-point/${collectionPoint.id}`);
+      return;
+    }
+
+    if (
+      isMackinnonPoint
+      && hasSpeciesRecordedAtPoint({
+        collectionPointId: collectionPoint.id,
+        species: form.species,
+      })
+    ) {
+      setDuplicateDialogOpen(true);
+      return;
+    }
+
+    await persistRecord();
   };
 
   return (
@@ -150,7 +193,7 @@ export default function DataEntryPage() {
             <div className="flex-1 min-w-0">
               <p className="text-xs text-gray-400 font-medium">Ponto de Coleta</p>
               <p className="text-sm font-semibold text-gray-900 truncate">
-                {pointName ?? pointId}
+                {pointName ?? collectionPoint?.name ?? pointId}
               </p>
             </div>
             {savedCount > 0 && (
@@ -253,6 +296,19 @@ export default function DataEntryPage() {
           </div>
         </Card>
       </div>
+      <ConfirmDialog
+        isOpen={duplicateDialogOpen}
+        title="Espécie já registrada"
+        message="Esta espécie já foi registrada neste ponto de coleta. Deseja registrar assim mesmo?"
+        confirmLabel="Registrar assim mesmo"
+        cancelLabel="Não registrar"
+        variant="primary"
+        onConfirm={() => {
+          setDuplicateDialogOpen(false);
+          void persistRecord();
+        }}
+        onCancel={() => setDuplicateDialogOpen(false)}
+      />
     </Page>
   );
 }
