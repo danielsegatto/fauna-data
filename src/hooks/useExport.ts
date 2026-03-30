@@ -5,7 +5,17 @@ import {
   filterRecordsByOptions,
   type ExportFilters,
 } from "@/lib/recordFilters";
+import {
+  normalizeSpeciesSearch,
+  parseSpeciesCatalog,
+  type SpeciesCatalogItem,
+} from "@/lib/speciesCatalog";
 import { GROUP_LABELS, METHODOLOGY_LABELS, type FaunaRecord } from "@/lib/types";
+
+const SPECIES_CSV_PATH = "/data/species-catalog.csv";
+
+let speciesCatalogCache: SpeciesCatalogItem[] | null = null;
+let speciesCatalogPromise: Promise<SpeciesCatalogItem[]> | null = null;
 
 function escapeCsv(value: string | number): string {
   const str = String(value);
@@ -16,9 +26,70 @@ function escapeCsv(value: string | number): string {
   return str;
 }
 
+async function loadSpeciesCatalog(): Promise<SpeciesCatalogItem[]> {
+  if (speciesCatalogCache) return speciesCatalogCache;
+  if (speciesCatalogPromise) return speciesCatalogPromise;
+
+  speciesCatalogPromise = fetch(SPECIES_CSV_PATH)
+    .then(async (response) => {
+      if (!response.ok) return [];
+      const csv = await response.text();
+      const parsed = parseSpeciesCatalog(csv);
+      speciesCatalogCache = parsed;
+      return parsed;
+    })
+    .catch(() => [])
+    .finally(() => {
+      speciesCatalogPromise = null;
+    });
+
+  return speciesCatalogPromise;
+}
+
+function buildSpeciesLookup(items: SpeciesCatalogItem[]): Map<string, SpeciesCatalogItem> {
+  const lookup = new Map<string, SpeciesCatalogItem>();
+
+  for (const item of items) {
+    const keys = [item.canonicalName, item.taxonName, item.portugueseName]
+      .map((value) => normalizeSpeciesSearch(value))
+      .filter(Boolean);
+
+    keys.forEach((key) => {
+      if (!lookup.has(key)) {
+        lookup.set(key, item);
+      }
+    });
+  }
+
+  return lookup;
+}
+
+function resolveSpeciesColumns(
+  species: string,
+  lookup: Map<string, SpeciesCatalogItem>
+): { colB: string; colC: string; colD: string } {
+  const normalized = normalizeSpeciesSearch(species);
+  const matched = lookup.get(normalized);
+
+  if (!matched) {
+    return {
+      colB: "",
+      colC: species,
+      colD: "",
+    };
+  }
+
+  return {
+    colB: matched.canonicalName,
+    colC: matched.taxonName || matched.canonicalName,
+    colD: matched.portugueseName,
+  };
+}
+
 function buildCSV(
   records: FaunaRecord[],
-  pointMap: Record<string, string>
+  pointMap: Record<string, string>,
+  speciesLookup: Map<string, SpeciesCatalogItem>
 ): string {
   const headers = [
     "ID",
@@ -26,7 +97,10 @@ function buildCSV(
     "Metodologia",
     "Data",
     "Hora",
-    "Espécie",
+    "Nome do táxon (com autoria)",
+    "Nome do táxon",
+    "Nome em Português",
+    "Espécie (registro)",
     "Identificação",
     "Ambiente",
     "Estrato",
@@ -41,12 +115,17 @@ function buildCSV(
   const rows = records.map((r) => {
     const date = formatDate(r.timestamp);
     const time = formatTime(r.timestamp, { includeSeconds: true });
+    const speciesColumns = resolveSpeciesColumns(r.data.species, speciesLookup);
+
     return [
       r.id,
       GROUP_LABELS[r.group] ?? r.group,
       METHODOLOGY_LABELS[r.methodology] ?? r.methodology,
       date,
       time,
+      speciesColumns.colB,
+      speciesColumns.colC,
+      speciesColumns.colD,
       r.data.species,
       r.data.identification,
       r.data.environment,
@@ -96,7 +175,9 @@ export function useExport() {
         const filtered = filterRecords(records, filters);
         if (filtered.length === 0) return 0;
 
-        const csv = buildCSV(filtered, pointMap);
+        const speciesCatalog = await loadSpeciesCatalog();
+        const speciesLookup = buildSpeciesLookup(speciesCatalog);
+        const csv = buildCSV(filtered, pointMap, speciesLookup);
         const timestamp = new Date()
           .toISOString()
           .slice(0, 16)

@@ -63,7 +63,7 @@ Behavior:
 - suggestions are shown while typing in the species field
 - matching is case-insensitive and accent-insensitive
 - matching works by substring in any position of columns B, C, or D
-- selecting a suggestion fills the field with column B (`Nome do táxon (com autoria)`)
+- selecting a suggestion fills the field with column C (`Nome do táxon`)
 
 The app is intentionally local-first. There is no remote API, no authentication layer, and no cloud synchronization in the current version.
 

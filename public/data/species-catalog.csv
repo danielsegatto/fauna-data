@@ -1,14 +1,1972 @@
-N,Nome do táxon (com autoria),Nome do táxon,Nome em Português
-3,"Rhea americana (Linnaeus, 1758)",Rhea americana,ema
-9,"Tinamus tao Temminck, 1815",Tinamus tao,azulona
-12,"Tinamus solitarius (Vieillot, 1819)",Tinamus solitarius,macuco
-13,"Tinamus major (Gmelin, 1789)",Tinamus major,inhambu-serra
-18,"Tinamus guttatus Pelen, 1863",Tinamus guttatus,inhambu-galinha
-19,"Crypturellus cinereus (Gmelin, 1789)",Crypturellus cinereus,inhambu-pixuna
-20,"Crypturellus soui (Hermann, 1783)",Crypturellus soui,tururim
-24,"Crypturellus obsoletus (Temminck, 1815)",Crypturellus obsoletus,inhambuguacu
-29,"Crypturellus undulatus (Temminck, 1815)",Crypturellus undulatus,jao
-35,"Crypturellus strigulosus (Temminck, 1815)",Crypturellus strigulosus,inhambu-relogio
-36,"Crypturellus duidae Zimmer, 1938",Crypturellus duidae,inhambu-de-pe-cinza
-37,"Crypturellus erythropus (Pelzeln, 1863)",Crypturellus erythropus,inhambu-de-perna-vermelha
-39,"Crypturellus zabele (Spix, 1825)",Crypturellus zabele,zabele
+N;Nome do táxon (com autoria);Nome do táxon;Nome em Português
+3;Rhea americana (Linnaeus, 1758);Rhea americana;ema
+9;Tinamus tao Temminck, 1815;Tinamus tao;azulona
+12;Tinamus solitarius (Vieillot, 1819);Tinamus solitarius;macuco
+13;Tinamus major (Gmelin, 1789);Tinamus major;inhambu-serra
+18;Tinamus guttatus Pelzeln, 1863;Tinamus guttatus;inhambu-galinha
+19;Crypturellus cinereus (Gmelin, 1789);Crypturellus cinereus;inhambu-pixuna
+20;Crypturellus soui (Hermann, 1783);Crypturellus soui;tururim
+24;Crypturellus obsoletus (Temminck, 1815);Crypturellus obsoletus;inhambuguaçu
+29;Crypturellus undulatus (Temminck, 1815);Crypturellus undulatus;jaó
+35;Crypturellus strigulosus (Temminck, 1815);Crypturellus strigulosus;inhambu-relógio
+36;Crypturellus duidae Zimmer, 1938;Crypturellus duidae;inhambu-de-pé-cinza
+37;Crypturellus erythropus (Pelzeln, 1863);Crypturellus erythropus;inhambu-de-perna-vermelha
+39;Crypturellus zabele (Spix, 1825);Crypturellus zabele;zabelê
+40;Crypturellus noctivagus (Wied, 1820);Crypturellus noctivagus;jaó-do-sul
+41;Crypturellus atrocapillus (Tschudi, 1844);Crypturellus atrocapillus;inhambu-de-coroa-preta
+44;Crypturellus variegatus (Gmelin, 1789);Crypturellus variegatus;inhambu-anhangá
+45;Crypturellus brevirostris (Pelzeln, 1863);Crypturellus brevirostris;inhambu-carijó
+46;Crypturellus bartletti (Sclater & Salvin, 1873);Crypturellus bartletti;inhambu-anhangaí
+47;Crypturellus parvirostris (Wagler, 1827);Crypturellus parvirostris;inhambu-chororó
+48;Crypturellus tataupa (Temminck, 1815);Crypturellus tataupa;inhambu-chintã
+51;Rhynchotus rufescens (Temminck, 1815);Rhynchotus rufescens;perdiz
+54;Nothura boraquira (Spix, 1825);Nothura boraquira;codorna-do-nordeste
+55;Nothura minor (Spix, 1825);Nothura minor;codorna-mineira
+56;Nothura maculosa (Temminck, 1815);Nothura maculosa;codorna-amarela
+60;Taoniscus nanus (Temminck, 1815);Taoniscus nanus;codorna-carapé
+63;Anhima cornuta (Linnaeus, 1766);Anhima cornuta;anhuma
+64;Chauna torquata (Oken, 1816);Chauna torquata;tachã
+66;Dendrocygna bicolor (Vieillot, 1816);Dendrocygna bicolor;marreca-caneleira
+67;Dendrocygna viduata (Linnaeus, 1766);Dendrocygna viduata;irerê
+68;Dendrocygna autumnalis (Linnaeus, 1758);Dendrocygna autumnalis;marreca-cabocla
+70;Cygnus melancoryphus (Molina, 1782);Cygnus melancoryphus;cisne-de-pescoço-preto
+71;Coscoroba coscoroba (Molina, 1782);Coscoroba coscoroba;capororoca
+72;Neochen jubata (Spix, 1825);Neochen jubata;pato-corredor
+73;Chloephaga picta (Gmelin, 1789);Chloephaga picta;ganso-de-magalhães
+75;Cairina moschata (Linnaeus, 1758);Cairina moschata;pato-do-mato
+76;Sarkidiornis sylvicola Ihering & Ihering, 1907;Sarkidiornis sylvicola;pato-de-crista
+77;Callonetta leucophrys (Vieillot, 1816);Callonetta leucophrys;marreca-de-coleira
+78;Amazonetta brasiliensis (Gmelin, 1789);Amazonetta brasiliensis;marreca-ananaí
+81;Spatula versicolor (Vieillot, 1816);Spatula versicolor;marreca-cricri
+83;Spatula platalea (Vieillot, 1816);Spatula platalea;marreca-colhereira
+84;Spatula discors (Linnaeus, 1766);Spatula discors;marreca-de-asa-azul
+85;Spatula cyanoptera (Vieillot, 1816);Spatula cyanoptera;marreca-colorada
+87;Mareca sibilatrix (Poeppig, 1829);Mareca sibilatrix;marreca-oveira
+88;Anas bahamensis Linnaeus, 1758;Anas bahamensis;marreca-toicinho
+91;Anas acuta Linnaeus, 1758;Anas acuta;arrabio
+92;Anas georgica Gmelin, 1789;Anas georgica;marreca-parda
+94;Anas flavirostris Vieillot, 1816;Anas flavirostris;marreca-pardinha
+96;Netta erythrophthalma (Wied, 1833);Netta erythrophthalma;paturi-preta
+98;Netta peposaca (Vieillot, 1816);Netta peposaca;marrecão
+99;Mergus octosetaceus Vieillot, 1817;Mergus octosetaceus;pato-mergulhão
+100;Heteronetta atricapilla (Merrem, 1841);Heteronetta atricapilla;marreca-de-cabeça-preta
+101;Nomonyx dominicus (Linnaeus, 1766);Nomonyx dominicus;marreca-caucau
+102;Oxyura vittata (Philippi, 1860);Oxyura vittata;marreca-rabo-de-espinho
+105;Penelope marail (Statius Muller, 1776);Penelope marail;jacumirim
+108;Penelope superciliaris Temminck, 1815;Penelope superciliaris;jacupemba
+115;Penelope jacquacu Spix, 1825;Penelope jacquacu;jacu-de-spix
+119;Penelope obscura Temminck, 1815;Penelope obscura;jacuguaçu
+120;Penelope pileata Wagler, 1830;Penelope pileata;jacupiranga
+121;Penelope ochrogaster Pelzeln, 1870;Penelope ochrogaster;jacu-de-barriga-castanha
+122;Penelope jacucaca Spix, 1825;Penelope jacucaca;jacucaca
+123;Aburria cumanensis (Jacquin, 1784);Aburria cumanensis;jacutinga-de-garganta-azul
+126;Aburria cujubi (Pelzeln, 1858);Aburria cujubi;cujubi
+129;Aburria jacutinga (Spix, 1825);Aburria jacutinga;jacutinga
+130;Ortalis canicollis (Wagler, 1830);Ortalis canicollis;aracuã-do-pantanal
+132;Ortalis guttata (Spix, 1825);Ortalis guttata;aracuã-pintado
+134;Ortalis remota Pinto, 1960;Ortalis remota;aracuã-guarda-faca
+135;Ortalis araucuan (Spix, 1825);Ortalis araucuan;aracuã-de-barriga-branca
+136;Ortalis squamata (Lesson, 1829);Ortalis squamata;aracuã-escamoso
+137;Ortalis motmot (Linnaeus, 1766);Ortalis motmot;aracuã-pequeno
+138;Ortalis ruficeps (Wagler, 1830);Ortalis ruficeps;aracuãzinho
+139;Ortalis superciliaris (Gray, 1867);Ortalis superciliaris;aracuã-de-sobrancelhas
+140;Nothocrax urumutum (Spix, 1825);Nothocrax urumutum;urumutum
+141;Crax alector Linnaeus, 1766;Crax alector;mutum-poranga
+144;Crax globulosa Spix, 1825;Crax globulosa;mutum-de-fava
+145;Crax fasciolata Spix, 1825;Crax fasciolata;mutum-de-penacho
+149;Crax blumenbachii Spix, 1825;Crax blumenbachii;mutum-de-bico-vermelho
+150;Pauxi tomentosa (Spix, 1825);Pauxi tomentosa;mutum-do-norte
+151;Pauxi tuberosa (Spix, 1825);Pauxi tuberosa;mutum-cavalo
+152;Pauxi mitu (Linnaeus, 1766);Pauxi mitu;mutum-do-nordeste
+154;Colinus cristatus (Linnaeus, 1766);Colinus cristatus;uru-do-campo
+156;Odontophorus gujanensis (Gmelin, 1789);Odontophorus gujanensis;uru-corcovado
+160;Odontophorus capueira (Spix, 1825);Odontophorus capueira;uru
+163;Odontophorus stellatus (Gould, 1843);Odontophorus stellatus;uru-de-topete
+166;Phoenicopterus chilensis Molina, 1782;Phoenicopterus chilensis;flamingo-chileno
+167;Phoenicopterus ruber Linnaeus, 1758;Phoenicopterus ruber;flamingo
+168;Phoenicoparrus andinus (Philippi, 1854);Phoenicoparrus andinus;flamingo-dos-andes
+169;Phoenicoparrus jamesi (Sclater, 1886);Phoenicoparrus jamesi;flamingo-da-puna
+172;Rollandia rolland (Quoy & Gaimard, 1824);Rollandia rolland;mergulhão-de-orelha-branca
+174;Tachybaptus dominicus (Linnaeus, 1766);Tachybaptus dominicus;mergulhão-pequeno
+176;Podilymbus podiceps (Linnaeus, 1758);Podilymbus podiceps;mergulhão-caçador
+178;Podicephorus major (Boddaert, 1783);Podicephorus major;mergulhão-grande
+180;Podiceps occipitalis Garnot, 1826;Podiceps occipitalis;mergulhão-de-orelha-amarela
+184;Columba livia Gmelin, 1789;Columba livia;pombo-doméstico
+186;Patagioenas speciosa (Gmelin, 1789);Patagioenas speciosa;pomba-trocal
+187;Patagioenas picazuro (Temminck, 1813);Patagioenas picazuro;pomba-asa-branca
+190;Patagioenas maculosa (Temminck, 1813);Patagioenas maculosa;pomba-do-orvalho
+192;Patagioenas fasciata (Say, 1823);Patagioenas fasciata;pomba-de-coleira
+194;Patagioenas cayennensis (Bonnaterre, 1792);Patagioenas cayennensis;pomba-galega
+198;Patagioenas plumbea (Vieillot, 1818);Patagioenas plumbea;pomba-amargosa
+203;Patagioenas subvinacea (Lawrence, 1868);Patagioenas subvinacea;pomba-botafogo
+207;Geotrygon saphirina Bonaparte, 1855;Geotrygon saphirina;juriti-safira
+209;Geotrygon montana (Linnaeus, 1758);Geotrygon montana;pariri
+211;Geotrygon violacea (Temminck, 1809);Geotrygon violacea;juriti-vermelha
+213;Leptotila verreauxi Bonaparte, 1855;Leptotila verreauxi;juriti-pupu
+218;Leptotila rufaxilla (Richard & Bernard, 1792);Leptotila rufaxilla;juriti-de-testa-branca
+223;Zenaida auriculata (Des Murs, 1847);Zenaida auriculata;avoante
+229;Claravis pretiosa (Ferrari-Perez, 1886);Claravis pretiosa;pararu-azul
+230;Uropelia campestris (Spix, 1825);Uropelia campestris;rolinha-vaqueira
+233;Paraclaravis geoffroyi (Temminck, 1811);Paraclaravis geoffroyi;pararu-espelho
+234;Columbina passerina (Linnaeus, 1758);Columbina passerina;rolinha-cinzenta
+236;Columbina minuta (Linnaeus, 1766);Columbina minuta;rolinha-de-asa-canela
+238;Columbina talpacoti (Temminck, 1811);Columbina talpacoti;rolinha-roxa
+241;Columbina squammata (Lesson, 1831);Columbina squammata;rolinha-fogo-apagou
+243;Columbina picui (Temminck, 1813);Columbina picui;rolinha-picuí
+246;Columbina cyanopis (Pelzeln, 1870);Columbina cyanopis;rolinha-do-planalto
+249;Guira guira (Gmelin, 1788);Guira guira;anu-branco
+250;Crotophaga major Gmelin, 1788;Crotophaga major;anu-coroca
+251;Crotophaga ani Linnaeus, 1758;Crotophaga ani;anu-preto
+252;Tapera naevia (Linnaeus, 1766);Tapera naevia;saci
+254;Dromococcyx phasianellus (Spix, 1824);Dromococcyx phasianellus;peixe-frito
+255;Dromococcyx pavoninus Pelzeln, 1870;Dromococcyx pavoninus;peixe-frito-pavonino
+256;Neomorphus geoffroyi (Temminck, 1820);Neomorphus geoffroyi;jacu-estalo
+261;Neomorphus squamiger Todd, 1925;Neomorphus squamiger;jacu-estalo-escamoso
+262;Neomorphus rufipennis (Gray, 1849);Neomorphus rufipennis;jacu-estalo-de-asa-vermelha
+263;Neomorphus pucheranii (Deville, 1851);Neomorphus pucheranii;jacu-estalo-de-bico-vermelho
+266;Coccycua minuta (Vieillot, 1817);Coccycua minuta;chincoã-pequeno
+268;Micrococcyx cinereus (Vieillot, 1817);Micrococcyx cinereus;papa-lagarta-cinzento
+269;Piaya cayana (Linnaeus, 1766);Piaya cayana;alma-de-gato
+276;Piaya melanogaster (Vieillot, 1817);Piaya melanogaster;chincoã-de-bico-vermelho
+277;Coccyzus melacoryphus Vieillot, 1817;Coccyzus melacoryphus;papa-lagarta-acanelado
+278;Coccyzus americanus (Linnaeus, 1758);Coccyzus americanus;papa-lagarta-de-asa-vermelha
+280;Coccyzus euleri Cabanis, 1873;Coccyzus euleri;papa-lagarta-de-euler
+281;Coccyzus minor (Gmelin, 1788);Coccyzus minor;papa-lagarta-do-mangue
+282;Coccyzus erythropthalmus (Wilson, 1811);Coccyzus erythropthalmus;papa-lagarta-de-bico-preto
+283;Cuculus canorus Linnaeus, 1758;Cuculus canorus;cuco-canoro
+287;Steatornis caripensis Humboldt, 1817;Steatornis caripensis;guácharo
+290;Phyllaemulor bracteatus (Gould, 1846);Phyllaemulor bracteatus;urutau-ferrugem
+291;Nyctibius grandis (Gmelin, 1789);Nyctibius grandis;urutau-grande
+293;Nyctibius aethereus (Wied, 1820);Nyctibius aethereus;urutau-pardo
+296;Nyctibius griseus (Gmelin, 1789);Nyctibius griseus;urutau
+298;Nyctibius leucopterus (Wied, 1821);Nyctibius leucopterus;urutau-de-asa-branca
+301;Nyctiphrynus ocellatus (Tschudi, 1844);Nyctiphrynus ocellatus;bacurau-ocelado
+304;Antrostomus rufus (Boddaert, 1783);Antrostomus rufus;joão-corta-pau
+307;Antrostomus sericocaudatus Cassin, 1849;Antrostomus sericocaudatus;bacurau-rabo-de-seda
+310;Lurocalis semitorquatus (Gmelin, 1789);Lurocalis semitorquatus;tuju
+313;Nyctiprogne leucopyga (Spix, 1825);Nyctiprogne leucopyga;bacurau-de-cauda-barrada
+318;Nyctiprogne vielliardi (Lencioni-Neto, 1994);Nyctiprogne vielliardi;bacurau-do-são-francisco
+319;Nyctidromus nigrescens (Cabanis, 1849);Nyctidromus nigrescens;bacurau-de-lajeado
+320;Nyctidromus albicollis (Gmelin, 1789);Nyctidromus albicollis;bacurau
+323;Nyctidromus hirundinaceus (Spix, 1825);Nyctidromus hirundinaceus;bacurauzinho-da-caatinga
+327;Hydropsalis heterura (Todd, 1915);Hydropsalis heterura;bacurau-chintã-do-norte
+328;Hydropsalis parvula (Gould, 1837);Hydropsalis parvula;bacurau-chintã
+329;Hydropsalis whitelyi (Salvin, 1885);Hydropsalis whitelyi;bacurau-dos-tepuis
+330;Hydropsalis anomala (Gould, 1838);Hydropsalis anomala;curiango-do-banhado
+331;Hydropsalis candicans (Pelzeln, 1867);Hydropsalis candicans;bacurau-de-rabo-branco
+332;Hydropsalis roraimae (Chapman, 1929);Hydropsalis roraimae;bacurau-de-roraima
+333;Hydropsalis longirostris (Bonaparte, 1825);Hydropsalis longirostris;bacurau-da-telha
+336;Hydropsalis maculicaudus (Lawrence, 1862);Hydropsalis maculicaudus;bacurau-de-rabo-maculado
+337;Hydropsalis cayennensis (Gmelin, 1789);Hydropsalis cayennensis;bacurau-de-cauda-branca
+339;Hydropsalis climacocerca (Tschudi, 1844);Hydropsalis climacocerca;acurana
+345;Hydropsalis torquata (Gmelin, 1789);Hydropsalis torquata;bacurau-tesoura
+348;Hydropsalis forcipata (Nitzsch, 1840);Hydropsalis forcipata;bacurau-tesourão
+349;Nannochordeiles pusillus (Gould, 1861);Nannochordeiles pusillus;bacurauzinho
+356;Podager nacunda (Vieillot, 1817);Podager nacunda;corucão
+359;Chordeiles minor (Forster, 1771);Chordeiles minor;bacurau-norte-americano
+362;Chordeiles gundlachii Lawrence, 1856;Chordeiles gundlachii;bacurau-das-antilhas
+364;Chordeiles rupestris (Spix, 1825);Chordeiles rupestris;bacurau-da-praia
+366;Chordeiles acutipennis (Hermann, 1783);Chordeiles acutipennis;bacurau-de-asa-fina
+370;Cypseloides cryptus Zimmer, 1945;Cypseloides cryptus;taperuçu-de-mento-branco
+371;Cypseloides niger (Gmelin, 1789);Cypseloides niger;taperuçu-escuro
+373;Cypseloides fumigatus (Streubel, 1848);Cypseloides fumigatus;taperuçu-preto
+374;Cypseloides senex (Temminck, 1826);Cypseloides senex;taperuçu-velho
+375;Streptoprocne phelpsi (Collins, 1972);Streptoprocne phelpsi;taperuçu-dos-tepuis
+376;Streptoprocne zonaris (Shaw, 1796);Streptoprocne zonaris;taperuçu-de-coleira-branca
+379;Streptoprocne biscutata (Sclater, 1866);Streptoprocne biscutata;taperuçu-de-coleira-falha
+382;Chaetura cinereiventris Sclater, 1862;Chaetura cinereiventris;andorinhão-de-sobre-cinzento
+385;Chaetura spinicaudus (Temminck, 1839);Chaetura spinicaudus;andorinhão-de-sobre-branco
+388;Chaetura egregia Todd, 1916;Chaetura egregia;taperá-de-garganta-branca
+389;Chaetura pelagica (Linnaeus, 1758);Chaetura pelagica;andorinhão-peregrino
+390;Chaetura chapmani Hellmayr, 1907;Chaetura chapmani;andorinhão-de-chapman
+393;Chaetura meridionalis Hellmayr, 1907;Chaetura meridionalis;andorinhão-do-temporal
+394;Chaetura brachyura (Jardine, 1846);Chaetura brachyura;andorinhão-de-rabo-curto
+397;Aeronautes montivagus (d'Orbigny & Lafresnaye, 1837);Aeronautes montivagus;andorinhão-serrano
+399;Tachornis squamata (Cassin, 1853);Tachornis squamata;andorinhão-do-buriti
+402;Panyptila cayennensis (Gmelin, 1789);Panyptila cayennensis;andorinhão-estofador
+405;Topaza pella (Linnaeus, 1758);Topaza pella;beija-flor-brilho-de-fogo
+409;Topaza pyra (Gould, 1846);Topaza pyra;topázio-de-fogo
+411;Florisuga mellivora (Linnaeus, 1758);Florisuga mellivora;beija-flor-azul-de-rabo-branco
+413;Florisuga fusca (Vieillot, 1817);Florisuga fusca;beija-flor-preto
+414;Ramphodon naevius (Dumont, 1818);Ramphodon naevius;beija-flor-rajado
+415;Glaucis dohrnii (Bourcier & Mulsant, 1852);Glaucis dohrnii;balança-rabo-canela
+416;Glaucis hirsutus (Gmelin, 1788);Glaucis hirsutus;balança-rabo-de-bico-torto
+418;Threnetes leucurus (Linnaeus, 1766);Threnetes leucurus;balança-rabo-de-garganta-preta
+422;Threnetes niger (Linnaeus, 1758);Threnetes niger;balança-rabo-escuro
+424;Anopetia gounellei (Boucard, 1891);Anopetia gounellei;rabo-branco-de-cauda-larga
+425;Phaethornis squalidus (Temminck, 1822);Phaethornis squalidus;rabo-branco-pequeno
+426;Phaethornis rupurumii Boucard, 1892;Phaethornis rupurumii;rabo-branco-do-rupununi
+429;Phaethornis maranhaoensis Grantsau, 1968;Phaethornis maranhaoensis;rabo-branco-do-maranhão
+430;Phaethornis aethopygus Zimmer, 1950;Phaethornis aethopygus;rabo-branco-do-tapajós
+431;Phaethornis idaliae (Bourcier & Mulsant, 1856);Phaethornis idaliae;rabo-branco-mirim
+432;Phaethornis nattereri Berlepsch, 1887;Phaethornis nattereri;rabo-branco-de-sobre-amarelo
+433;Phaethornis griseogularis Gould, 1851;Phaethornis griseogularis;rabo-branco-de-garganta-cinza
+435;Phaethornis ruber (Linnaeus, 1758);Phaethornis ruber;rabo-branco-rubro
+440;Phaethornis subochraceus Todd, 1915;Phaethornis subochraceus;rabo-branco-de-barriga-fulva
+441;Phaethornis augusti (Bourcier, 1847);Phaethornis augusti;rabo-branco-cinza-claro
+443;Phaethornis pretrei (Lesson & Delattre, 1839);Phaethornis pretrei;rabo-branco-acanelado
+444;Phaethornis eurynome (Lesson, 1832);Phaethornis eurynome;rabo-branco-de-garganta-rajada
+447;Phaethornis hispidus (Gould, 1846);Phaethornis hispidus;rabo-branco-cinza
+448;Phaethornis philippii (Bourcier, 1847);Phaethornis philippii;rabo-branco-amarelo
+449;Phaethornis major Hinkelmann, 1989;Phaethornis major;rabo-branco-de-barriga-cinza
+450;Phaethornis bourcieri (Lesson, 1832);Phaethornis bourcieri;rabo-branco-de-bico-reto
+451;Phaethornis superciliosus (Linnaeus, 1766);Phaethornis superciliosus;rabo-branco-de-bigodes
+458;Phaethornis malaris (Nordmann, 1835);Phaethornis malaris;rabo-branco-de-bico-grande
+459;Phaethornis margarettae Ruschi, 1972;Phaethornis margarettae;rabo-branco-de-margarette
+462;Doryfera johannae (Bourcier, 1847);Doryfera johannae;bico-de-lança
+464;Augastes scutatus (Temminck, 1824);Augastes scutatus;beija-flor-de-gravata-verde
+468;Augastes lumachella (Lesson, 1838);Augastes lumachella;beija-flor-de-gravata-vermelha
+469;Colibri delphinae (Lesson, 1839);Colibri delphinae;beija-flor-marrom
+472;Colibri coruscans (Gould, 1846);Colibri coruscans;beija-flor-violeta
+474;Colibri serrirostris (Vieillot, 1816);Colibri serrirostris;beija-flor-de-orelha-violeta
+475;Heliactin bilophus (Temminck, 1820);Heliactin bilophus;chifre-de-ouro
+476;Heliothryx auritus (Gmelin, 1788);Heliothryx auritus;beija-flor-de-bochecha-azul
+480;Polytmus guainumbi (Pallas, 1764);Polytmus guainumbi;beija-flor-de-bico-curvo
+483;Polytmus theresiae (Da Silva Maia, 1843);Polytmus theresiae;beija-flor-verde
+486;Avocettula recurvirostris (Swainson, 1822);Avocettula recurvirostris;beija-flor-de-bico-virado
+487;Chrysolampis mosquitus (Linnaeus, 1758);Chrysolampis mosquitus;beija-flor-vermelho
+488;Anthracothorax viridigula (Boddaert, 1783);Anthracothorax viridigula;beija-flor-de-veste-verde
+489;Anthracothorax nigricollis (Vieillot, 1817);Anthracothorax nigricollis;beija-flor-de-veste-preta
+490;Discosura langsdorffi (Temminck, 1821);Discosura langsdorffi;rabo-de-espinho
+493;Discosura longicaudus (Gmelin, 1788);Discosura longicaudus;bandeirinha
+494;Lophornis ornatus (Boddaert, 1783);Lophornis ornatus;beija-flor-de-leque-canela
+495;Lophornis gouldii (Lesson, 1832);Lophornis gouldii;topetinho-do-brasil-central
+496;Lophornis magnificus (Vieillot, 1817);Lophornis magnificus;topetinho-vermelho
+497;Lophornis cf. delattrei Lesson, 1839;Lophornis cf. delattrei;topetinho-ruivo
+499;Lophornis chalybeus (Temminck, 1821);Lophornis chalybeus;topetinho-verde
+502;Lophornis pavoninus Salvin & Godman, 1882;Lophornis pavoninus;topetinho-pavão
+504;Heliodoxa xanthogonys Salvin & Godman, 1882;Heliodoxa xanthogonys;brilhante-veludo
+506;Heliodoxa schreibersii (Bourcier, 1847);Heliodoxa schreibersii;brilhante-de-garganta-preta
+508;Heliodoxa aurescens (Gould, 1846);Heliodoxa aurescens;beija-flor-estrela
+509;Heliodoxa rubricauda (Boddaert, 1783);Heliodoxa rubricauda;beija-flor-rubi
+510;Heliomaster longirostris (Audebert & Vieillot, 1801);Heliomaster longirostris;bico-reto-cinzento
+512;Heliomaster squamosus (Temminck, 1823);Heliomaster squamosus;bico-reto-de-banda-branca
+513;Heliomaster furcifer (Shaw, 1812);Heliomaster furcifer;bico-reto-azul
+514;Calliphlox amethystina (Boddaert, 1783);Calliphlox amethystina;estrelinha-ametista
+515;Chlorostilbon mellisugus (Linnaeus, 1758);Chlorostilbon mellisugus;esmeralda-de-cauda-azul
+519;Chlorostilbon lucidus (Shaw, 1812);Chlorostilbon lucidus;besourinho-de-bico-vermelho
+523;Stephanoxis lalandi (Vieillot, 1818);Stephanoxis lalandi;beija-flor-de-topete-verde
+524;Stephanoxis loddigesii (Gould, 1831);Stephanoxis loddigesii;beija-flor-de-topete-azul
+525;Campylopterus largipennis (Boddaert, 1783);Campylopterus largipennis;asa-de-sabre-da-guiana
+526;Campylopterus obscurus Gould, 1848;Campylopterus obscurus;asa-de-sabre-de-cauda-escura
+527;Campylopterus calcirupicola Lopes, Vasconcelos & Gonzaga, 2017;Campylopterus calcirupicola;asa-de-sabre-da-mata-seca
+528;Campylopterus diamantinensis Ruschi, 1963;Campylopterus diamantinensis;asa-de-sabre-do-espinhaço
+529;Campylopterus hyperythrus Cabanis, 1848;Campylopterus hyperythrus;asa-de-sabre-canela
+530;Campylopterus duidae Chapman, 1929;Campylopterus duidae;asa-de-sabre-de-peito-camurça
+532;Thalurania furcata (Gmelin, 1788);Thalurania furcata;beija-flor-tesoura-verde
+545;Thalurania watertonii (Bourcier, 1847);Thalurania watertonii;beija-flor-de-costas-violeta
+546;Thalurania glaucopis (Gmelin, 1788);Thalurania glaucopis;beija-flor-de-fronte-violeta
+547;Eupetomena macroura (Gmelin, 1788);Eupetomena macroura;beija-flor-tesoura
+551;Aphantochroa cirrochloris (Vieillot, 1818);Aphantochroa cirrochloris;beija-flor-cinza
+552;Thalaphorus chlorocercus (Gould, 1866);Thalaphorus chlorocercus;beija-flor-pintado
+553;Saucerottia viridigaster (Bourcier, 1843);Saucerottia viridigaster;beija-flor-de-barriga-verde
+556;Chrysuronia versicolor (Vieillot, 1818);Chrysuronia versicolor;beija-flor-de-banda-branca
+561;Chrysuronia rondoniae (Ruschi, 1982);Chrysuronia rondoniae;beija-flor-de-cabeça-azul
+562;Chrysuronia oenone (Lesson, 1832);Chrysuronia oenone;beija-flor-de-cauda-dourada
+565;Chrysuronia brevirostris (Lesson, 1829);Chrysuronia brevirostris;beija-flor-de-bico-preto
+567;Chrysuronia leucogaster (Gmelin, 1788);Chrysuronia leucogaster;beija-flor-de-barriga-branca
+570;Leucochloris albicollis (Vieillot, 1818);Leucochloris albicollis;beija-flor-de-papo-branco
+571;Chionomesa fimbriata (Gmelin, 1788);Chionomesa fimbriata;beija-flor-de-garganta-verde
+577;Chionomesa lactea (Lesson, 1832);Chionomesa lactea;beija-flor-de-peito-azul
+580;Hylocharis sapphirina (Gmelin, 1788);Hylocharis sapphirina;beija-flor-safira
+581;Hylocharis chrysura (Shaw, 1812);Hylocharis chrysura;beija-flor-dourado
+582;Elliotomyia chionogaster (Tschudi, 1845);Elliotomyia chionogaster;beija-flor-verde-e-branco
+584;Chlorestes cyanus (Vieillot, 1818);Chlorestes cyanus;beija-flor-roxo
+590;Chlorestes notata (Reich, 1793);Chlorestes notata;beija-flor-de-garganta-azul
+595;Opisthocomus hoazin (Statius Muller, 1776);Opisthocomus hoazin;cigana
+598;Aramus guarauna (Linnaeus, 1766);Aramus guarauna;carão
+601;Psophia napensis Sclater & Salvin, 1873;Psophia napensis;jacamim-do-napo
+602;Psophia crepitans Linnaeus, 1758;Psophia crepitans;jacamim-de-costas-cinzentas
+603;Psophia ochroptera Pelzeln, 1857;Psophia ochroptera;jacamim-de-costas-amarelas
+604;Psophia leucoptera Spix, 1825;Psophia leucoptera;jacamim-de-costas-brancas
+605;Psophia viridis Spix, 1825;Psophia viridis;jacamim-de-costas-verdes
+606;Psophia dextralis Conover, 1934;Psophia dextralis;jacamim-de-costas-marrons
+607;Psophia interjecta Griscom & Greenway, 1937;Psophia interjecta;jacamim-do-xingu
+608;Psophia obscura Pelzeln, 1857;Psophia obscura;jacamim-de-costas-escuras
+610;Crex crex (Linnaeus, 1758);Crex crex;codornizão
+611;Rallus longirostris Boddaert, 1783;Rallus longirostris;saracura-matraca
+613;Porphyrio martinica (Linnaeus, 1766);Porphyrio martinica;frango-d'água-azul
+614;Porphyrio alleni Thomson, 1842;Porphyrio alleni;frango-d'água-africano
+615;Porphyrio flavirostris (Gmelin, 1789);Porphyrio flavirostris;frango-d'água-pequeno
+616;Anurolimnas castaneiceps (Sclater & Salvin, 1869);Anurolimnas castaneiceps;sanã-de-cabeça-castanha
+618;Rufirallus viridis (Statius Muller, 1776);Rufirallus viridis;sanã-castanha
+620;Laterallus fasciatus (Sclater & Salvin, 1868);Laterallus fasciatus;sanã-zebrada
+621;Laterallus flaviventer (Boddaert, 1783);Laterallus flaviventer;sanã-amarela
+623;Laterallus melanophaius (Vieillot, 1819);Laterallus melanophaius;sanã-parda
+626;Laterallus exilis (Temminck, 1831);Laterallus exilis;sanã-do-capim
+627;Laterallus jamaicensis (Gmelin, 1789);Laterallus jamaicensis;sanã-preta
+629;Laterallus spilopterus (Durnford, 1877);Laterallus spilopterus;sanã-cinza
+630;Laterallus leucopyrrhus (Vieillot, 1819);Laterallus leucopyrrhus;sanã-vermelha
+631;Laterallus xenopterus Conover, 1934;Laterallus xenopterus;sanã-de-cara-ruiva
+632;Coturnicops notatus (Gould, 1841);Coturnicops notatus;pinto-d'água-carijó
+633;Micropygia schomburgkii (Schomburgk, 1848);Micropygia schomburgkii;maxalalagá
+636;Mustelirallus albicollis (Vieillot, 1819);Mustelirallus albicollis;sanã-carijó
+639;Neocrex erythrops (Sclater, 1867);Neocrex erythrops;turu-turu
+641;Pardirallus maculatus (Boddaert, 1783);Pardirallus maculatus;saracura-carijó
+643;Pardirallus nigricans (Vieillot, 1819);Pardirallus nigricans;saracura-sanã
+645;Pardirallus sanguinolentus (Swainson, 1838);Pardirallus sanguinolentus;saracura-do-banhado
+648;Amaurolimnas concolor (Gosse, 1847);Amaurolimnas concolor;saracura-lisa
+650;Aramides ypecaha (Vieillot, 1819);Aramides ypecaha;saracuruçu
+651;Aramides mangle (Spix, 1825);Aramides mangle;saracura-do-mangue
+652;Aramides cajaneus (Statius Muller, 1776);Aramides cajaneus;saracura-três-potes
+655;Aramides calopterus Sclater & Salvin, 1878;Aramides calopterus;saracura-de-asa-vermelha
+656;Aramides saracura (Spix, 1825);Aramides saracura;saracura-do-mato
+657;Porphyriops melanops (Vieillot, 1819);Porphyriops melanops;galinha-d'água-carijó
+659;Porzana carolina (Linnaeus, 1758);Porzana carolina;sora
+660;Paragallinula angulata (Sundevall, 1850);Paragallinula angulata;galinha-d'água-pequena
+661;Gallinula galeata (Lichtenstein, 1818);Gallinula galeata;galinha-d'água
+663;Fulica rufifrons Philippi & Landbeck, 1861;Fulica rufifrons;carqueja-de-escudo-vermelho
+664;Fulica armillata Vieillot, 1817;Fulica armillata;carqueja-de-bico-manchado
+665;Fulica leucoptera Vieillot, 1817;Fulica leucoptera;carqueja-de-bico-amarelo
+667;Heliornis fulica (Boddaert, 1783);Heliornis fulica;picaparra
+670;Pluvialis dominica (Statius Muller, 1776);Pluvialis dominica;batuiruçu
+671;Pluvialis squatarola (Linnaeus, 1758);Pluvialis squatarola;batuiruçu-de-axila-preta
+673;Oreopholus ruficollis (Wagler, 1829);Oreopholus ruficollis;batuíra-de-papo-ferrugíneo
+675;Vanellus cayanus (Latham, 1790);Vanellus cayanus;mexeriqueira
+676;Vanellus chilensis (Molina, 1782);Vanellus chilensis;quero-quero
+679;Charadrius modestus Lichtenstein, 1823;Charadrius modestus;batuíra-de-peito-tijolo
+680;Charadrius sp.;Charadrius sp.;batuíra-mascarada
+681;Charadrius semipalmatus Bonaparte, 1825;Charadrius semipalmatus;batuíra-de-bando
+682;Charadrius wilsonia Ord, 1814;Charadrius wilsonia;batuíra-bicuda
+686;Charadrius collaris Vieillot, 1818;Charadrius collaris;batuíra-de-coleira
+687;Charadrius falklandicus Latham, 1790;Charadrius falklandicus;batuíra-de-coleira-dupla
+689;Haematopus palliatus Temminck, 1820;Haematopus palliatus;piru-piru
+692;Himantopus mexicanus (Statius Muller, 1776);Himantopus mexicanus;pernilongo-de-costas-negras
+693;Himantopus melanurus Vieillot, 1817;Himantopus melanurus;pernilongo-de-costas-brancas
+695;Burhinus bistriatus (Wagler, 1829);Burhinus bistriatus;téu-téu-da-savana
+698;Chionis albus (Gmelin, 1789);Chionis albus;pomba-antártica
+700;Bartramia longicauda (Bechstein, 1812);Bartramia longicauda;maçarico-do-campo
+701;Numenius borealis (Forster, 1772);Numenius borealis;maçarico-esquimó
+702;Numenius hudsonicus Latham, 1790;Numenius hudsonicus;maçarico-de-bico-torto
+703;Numenius phaeopus (Linnaeus, 1758);Numenius phaeopus;maçarico-galego
+705;Limosa lapponica (Linnaeus, 1758);Limosa lapponica;fuselo
+707;Limosa haemastica (Linnaeus, 1758);Limosa haemastica;maçarico-de-bico-virado
+708;Limosa fedoa (Linnaeus, 1758);Limosa fedoa;maçarico-marmóreo
+709;Arenaria interpres (Linnaeus, 1758);Arenaria interpres;vira-pedras
+711;Calidris canutus (Linnaeus, 1758);Calidris canutus;maçarico-de-papo-vermelho
+713;Calidris pugnax (Linnaeus, 1758);Calidris pugnax;combatente
+714;Calidris himantopus (Bonaparte, 1826);Calidris himantopus;maçarico-pernilongo
+715;Calidris ferruginea (Pontoppidan, 1763);Calidris ferruginea;maçarico-de-bico-curvo
+716;Calidris alba (Pallas, 1764);Calidris alba;maçarico-branco
+718;Calidris bairdii (Coues, 1861);Calidris bairdii;maçarico-de-bico-fino
+719;Calidris minuta (Leisler, 1812);Calidris minuta;maçarico-pequeno
+720;Calidris minutilla (Vieillot, 1819);Calidris minutilla;maçariquinho
+721;Calidris fuscicollis (Vieillot, 1819);Calidris fuscicollis;maçarico-de-sobre-branco
+722;Calidris subruficollis (Vieillot, 1819);Calidris subruficollis;maçarico-acanelado
+723;Calidris melanotos (Vieillot, 1819);Calidris melanotos;maçarico-de-colete
+724;Calidris pusilla (Linnaeus, 1766);Calidris pusilla;maçarico-rasteirinho
+725;Calidris mauri (Cabanis, 1857);Calidris mauri;maçarico-do-alasca
+726;Limnodromus griseus (Gmelin, 1789);Limnodromus griseus;maçarico-de-costas-brancas
+729;Gallinago undulata (Boddaert, 1783);Gallinago undulata;narcejão
+732;Gallinago paraguaiae (Vieillot, 1816);Gallinago paraguaiae;narceja
+733;Phalaropus tricolor (Vieillot, 1819);Phalaropus tricolor;pisa-n'água
+734;Phalaropus lobatus (Linnaeus, 1758);Phalaropus lobatus;pisa-n'água-de-pescoço-vermelho
+735;Phalaropus fulicarius (Linnaeus, 1758);Phalaropus fulicarius;pisa-n'água-de-bico-grosso
+736;Xenus cinereus (Guldenstadt, 1774);Xenus cinereus;maçarico-tereque
+737;Actitis macularius (Linnaeus, 1766);Actitis macularius;maçarico-pintado
+738;Tringa solitaria Wilson, 1813;Tringa solitaria;maçarico-solitário
+741;Tringa melanoleuca (Gmelin, 1789);Tringa melanoleuca;maçarico-grande-de-perna-amarela
+742;Tringa inornata (Brewster, 1887);Tringa inornata;maçarico-grande-de-asa-branca
+743;Tringa semipalmata (Gmelin, 1789);Tringa semipalmata;maçarico-de-asa-branca
+744;Tringa flavipes (Gmelin, 1789);Tringa flavipes;maçarico-de-perna-amarela
+745;Tringa totanus (Linnaeus, 1758);Tringa totanus;maçarico-de-perna-vermelha
+747;Tringa glareola Linnaeus, 1758;Tringa glareola;maçarico-de-bico-curto
+749;Thinocorus rumicivorus Eschscholtz, 1829;Thinocorus rumicivorus;agachadeira-mirim
+752;Jacana jacana (Linnaeus, 1766);Jacana jacana;jaçanã
+756;Nycticryphes semicollaris (Vieillot, 1816);Nycticryphes semicollaris;narceja-de-bico-torto
+758;Glareola pratincola (Linnaeus, 1766);Glareola pratincola;perdiz-do-mar
+761;Stercorarius skua (Brünnich, 1764);Stercorarius skua;mandrião-grande
+762;Stercorarius chilensis Bonaparte, 1857;Stercorarius chilensis;mandrião-chileno
+763;Stercorarius maccormicki Saunders, 1893;Stercorarius maccormicki;mandrião-do-sul
+764;Stercorarius antarcticus (Lesson, 1831);Stercorarius antarcticus;mandrião-antártico
+768;Stercorarius pomarinus (Temminck, 1815);Stercorarius pomarinus;mandrião-pomarino
+769;Stercorarius parasiticus (Linnaeus, 1758);Stercorarius parasiticus;mandrião-parasítico
+770;Stercorarius longicaudus Vieillot, 1819;Stercorarius longicaudus;mandrião-de-cauda-comprida
+773;Xema sabini (Sabine, 1819);Xema sabini;gaivota-de-sabine
+774;Chroicocephalus maculipennis (Lichtenstein, 1823);Chroicocephalus maculipennis;gaivota-maria-velha
+775;Chroicocephalus cirrocephalus (Vieillot, 1818);Chroicocephalus cirrocephalus;gaivota-de-cabeça-cinza
+777;Chroicocephalus ridibundus (Linnaeus, 1766);Chroicocephalus ridibundus;gaivota-de-capuz-escuro
+778;Leucophaeus modestus (Tschudi, 1843);Leucophaeus modestus;gaivota-cinzenta
+779;Leucophaeus atricilla (Linnaeus, 1758);Leucophaeus atricilla;gaivota-alegre
+781;Leucophaeus pipixcan (Wagler, 1831);Leucophaeus pipixcan;gaivota-de-franklin
+782;Larus atlanticus Olrog, 1958;Larus atlanticus;gaivota-de-rabo-preto
+783;Larus dominicanus Lichtenstein, 1823;Larus dominicanus;gaivotão
+785;Larus fuscus Linnaeus, 1758;Larus fuscus;gaivota-da-asa-escura
+787;Anous stolidus (Linnaeus, 1758);Anous stolidus;trinta-réis-escuro
+789;Anous minutus Boie, 1844;Anous minutus;trinta-réis-preto
+791;Gygis alba (Sparrman, 1786);Gygis alba;grazina
+792;Rynchops niger Linnaeus, 1758;Rynchops niger;talha-mar
+795;Onychoprion fuscatus (Linnaeus, 1766);Onychoprion fuscatus;trinta-réis-das-rocas
+797;Sternula antillarum Lesson, 1847;Sternula antillarum;trinta-réis-miúdo
+800;Sternula superciliaris (Vieillot, 1819);Sternula superciliaris;trinta-réis-pequeno
+801;Phaetusa simplex (Gmelin, 1789);Phaetusa simplex;trinta-réis-grande
+804;Gelochelidon nilotica (Gmelin, 1789);Gelochelidon nilotica;trinta-réis-de-bico-preto
+807;Chlidonias niger (Linnaeus, 1758);Chlidonias niger;trinta-réis-negro
+810;Chlidonias leucopterus (Temminck, 1815);Chlidonias leucopterus;trinta-réis-negro-de-asa-branca
+811;Sterna hirundo Linnaeus, 1758;Sterna hirundo;trinta-réis-boreal
+813;Sterna dougallii Montagu, 1813;Sterna dougallii;trinta-réis-róseo
+815;Sterna paradisaea Pontoppidan, 1763;Sterna paradisaea;trinta-réis-ártico
+816;Sterna hirundinacea Lesson, 1831;Sterna hirundinacea;trinta-réis-de-bico-vermelho
+817;Sterna vittata Gmelin, 1789;Sterna vittata;trinta-réis-antártico
+819;Sterna trudeaui Audubon, 1838;Sterna trudeaui;trinta-réis-de-coroa-branca
+820;Thalasseus acuflavidus (Cabot, 1847);Thalasseus acuflavidus;trinta-réis-de-bando
+823;Thalasseus maximus (Boddaert, 1783);Thalasseus maximus;trinta-réis-real
+826;Eurypyga helias (Pallas, 1781);Eurypyga helias;pavãozinho-do-pará
+830;Phaethon aethereus Linnaeus, 1758;Phaethon aethereus;rabo-de-palha-de-bico-vermelho
+833;Phaethon rubricauda Boddaert, 1783;Phaethon rubricauda;rabo-de-palha-de-cauda-vermelha
+835;Phaethon lepturus Daudin, 1802;Phaethon lepturus;rabo-de-palha-de-bico-laranja
+839;Aptenodytes patagonicus Miller, 1778;Aptenodytes patagonicus;pinguim-rei
+840;Spheniscus magellanicus (Forster, 1781);Spheniscus magellanicus;pinguim-de-magalhães
+841;Eudyptes chrysolophus (Brandt, 1837);Eudyptes chrysolophus;pinguim-macaroni
+842;Eudyptes chrysocome (Forster, 1781);Eudyptes chrysocome;pinguim-de-penacho-amarelo
+845;Diomedea epomophora Lesson, 1825;Diomedea epomophora;albatroz-real
+846;Diomedea sanfordi Murphy, 1917;Diomedea sanfordi;albatroz-real-do-norte
+847;Diomedea exulans Linnaeus, 1758;Diomedea exulans;albatroz-errante
+848;Diomedea dabbenena Mathews, 1929;Diomedea dabbenena;albatroz-de-tristão
+849;Phoebetria fusca (Hilsenberg, 1822);Phoebetria fusca;piau-preto
+850;Phoebetria palpebrata (Forster, 1785);Phoebetria palpebrata;piau-de-costas-claras
+851;Thalassarche chlororhynchos (Gmelin, 1789);Thalassarche chlororhynchos;albatroz-de-nariz-amarelo
+852;Thalassarche melanophris (Temminck, 1828);Thalassarche melanophris;albatroz-de-sobrancelha
+853;Thalassarche chrysostoma (Forster, 1785);Thalassarche chrysostoma;albatroz-de-cabeça-cinza
+854;Thalassarche cauta (Gould, 1841);Thalassarche cauta;albatroz-de-coroa-branca
+857;Fregetta grallaria (Vieillot, 1818);Fregetta grallaria;painho-de-barriga-branca
+859;Fregetta tropica (Gould, 1844);Fregetta tropica;painho-de-barriga-preta
+861;Oceanites oceanicus (Kuhl, 1820);Oceanites oceanicus;alma-de-mestre
+865;Pelagodroma marina (Latham, 1790);Pelagodroma marina;calcamar
+868;Hydrobates leucorhous (Vieillot, 1818);Hydrobates leucorhous;painho-de-cauda-furcada
+871;Macronectes giganteus (Gmelin, 1789);Macronectes giganteus;petrel-grande
+872;Macronectes halli Mathews, 1912;Macronectes halli;petrel-grande-do-norte
+873;Fulmarus glacialoides (Smith, 1840);Fulmarus glacialoides;pardelão-prateado
+874;Daption capense (Linnaeus, 1758);Daption capense;pomba-do-cabo
+876;Lugensa brevirostris (Lesson, 1831);Lugensa brevirostris;grazina-de-bico-curto
+877;Pterodroma madeira Mathews, 1934;Pterodroma madeira;grazina-da-madeira
+878;Pterodroma deserta Mathews, 1934;Pterodroma deserta;grazina-de-desertas
+879;Pterodroma mollis (Gould, 1844);Pterodroma mollis;grazina-delicada
+880;Pterodroma incerta (Schlegel, 1863);Pterodroma incerta;grazina-de-barriga-branca
+881;Pterodroma lessonii (Garnot, 1826);Pterodroma lessonii;grazina-de-cabeça-branca
+882;Pterodroma macroptera (Smith, 1840);Pterodroma macroptera;fura-bucho-de-cara-cinza
+883;Pterodroma arminjoniana (Giglioli & Salvadori, 1869);Pterodroma arminjoniana;grazina-de-trindade
+884;Halobaena caerulea (Gmelin, 1789);Halobaena caerulea;petrel-azul
+885;Pachyptila vittata (Forster, 1777);Pachyptila vittata;faigão-de-bico-largo
+886;Pachyptila desolata (Gmelin, 1789);Pachyptila desolata;faigão-rola
+887;Pachyptila belcheri (Mathews, 1912);Pachyptila belcheri;faigão-de-bico-fino
+888;Bulweria bulwerii (Jardine & Selby, 1828);Bulweria bulwerii;alma-negra
+889;Procellaria cinerea Gmelin, 1789;Procellaria cinerea;pardela-cinza
+890;Procellaria aequinoctialis Linnaeus, 1758;Procellaria aequinoctialis;pardela-preta
+891;Procellaria conspicillata Gould, 1844;Procellaria conspicillata;pardela-de-óculos
+892;Calonectris diomedea (Scopoli, 1769);Calonectris diomedea;cagarra-do-mediterrâneo
+893;Calonectris borealis (Cory, 1881);Calonectris borealis;cagarra-grande
+894;Calonectris edwardsii (Oustalet, 1883);Calonectris edwardsii;cagarra-de-cabo-verde
+895;Ardenna tenuirostris (Temminck, 1836);Ardenna tenuirostris;pardela-de-cauda-curta
+896;Ardenna grisea (Gmelin, 1789);Ardenna grisea;pardela-escura
+897;Ardenna gravis (O'Reilly, 1818);Ardenna gravis;pardela-de-barrete
+898;Puffinus puffinus (Brünnich, 1764);Puffinus puffinus;pardela-sombria
+900;Puffinus boydi Mathews, 1912;Puffinus boydi;pardela-de-cabo-verde
+901;Puffinus lherminieri Lesson, 1839;Puffinus lherminieri;pardela-de-asa-larga
+903;Pelecanoides magellani (Mathews, 1912);Pelecanoides magellani;petrel-mergulhador
+906;Ciconia maguari (Gmelin, 1789);Ciconia maguari;maguari
+907;Jabiru mycteria (Lichtenstein, 1819);Jabiru mycteria;tuiuiú
+908;Mycteria americana Linnaeus, 1758;Mycteria americana;cabeça-seca
+911;Fregata trinitatis Miranda-Ribeiro, 1919;Fregata trinitatis;fragata-pequena
+912;Fregata aquila (Linnaeus, 1758);Fregata aquila;fragata-de-ascenção
+913;Fregata magnificens Mathews, 1914;Fregata magnificens;fragata
+914;Fregata minor (Gmelin, 1789);Fregata minor;fragata-grande
+917;Morus bassanus (Linnaeus, 1758);Morus bassanus;atobá-boreal
+918;Morus capensis (Lichtenstein, 1823);Morus capensis;atobá-do-cabo
+919;Morus serrator (Gray, 1843);Morus serrator;atobá-australiano
+920;Sula dactylatra Lesson, 1831;Sula dactylatra;atobá-grande
+922;Sula sula (Linnaeus, 1766);Sula sula;atobá-de-pé-vermelho
+924;Sula leucogaster (Boddaert, 1783);Sula leucogaster;atobá-pardo
+927;Anhinga anhinga (Linnaeus, 1766);Anhinga anhinga;biguatinga
+930;Nannopterum brasilianum (Gmelin, 1789);Nannopterum brasilianum;biguá
+934;Pelecanus occidentalis Linnaeus, 1766;Pelecanus occidentalis;pelicano
+938;Tigrisoma lineatum (Boddaert, 1783);Tigrisoma lineatum;socó-boi
+941;Tigrisoma fasciatum (Such, 1825);Tigrisoma fasciatum;socó-jararaca
+943;Agamia agami (Gmelin, 1789);Agamia agami;garça-da-mata
+944;Cochlearius cochlearius (Linnaeus, 1766);Cochlearius cochlearius;arapapá
+946;Zebrilus undulatus (Gmelin, 1789);Zebrilus undulatus;socoí-zigue-zague
+947;Botaurus pinnatus (Wagler, 1829);Botaurus pinnatus;socó-boi-baio
+949;Ixobrychus exilis (Gmelin, 1789);Ixobrychus exilis;socoí-vermelho
+951;Ixobrychus involucris (Vieillot, 1823);Ixobrychus involucris;socoí-amarelo
+952;Nycticorax nycticorax (Linnaeus, 1758);Nycticorax nycticorax;socó-dorminhoco
+955;Nyctanassa violacea (Linnaeus, 1758);Nyctanassa violacea;savacu-de-coroa
+957;Butorides striata (Linnaeus, 1758);Butorides striata;socozinho
+959;Ardeola ralloides (Scopoli, 1769);Ardeola ralloides;garça-caranguejeira
+961;Bubulcus ibis (Linnaeus, 1758);Bubulcus ibis;garça-vaqueira
+963;Ardea cinerea Linnaeus, 1758;Ardea cinerea;garça-moura-europeia
+965;Ardea cocoi Linnaeus, 1766;Ardea cocoi;garça-moura
+966;Ardea purpurea Linnaeus, 1766;Ardea purpurea;garça-roxa
+968;Ardea alba Linnaeus, 1758;Ardea alba;garça-branca-grande
+970;Syrigma sibilatrix (Temminck, 1824);Syrigma sibilatrix;maria-faceira
+972;Pilherodius pileatus (Boddaert, 1783);Pilherodius pileatus;garça-real
+973;Egretta tricolor (Statius Muller, 1776);Egretta tricolor;garça-tricolor
+975;Egretta gularis (Bosc, 1792);Egretta gularis;garça-negra
+977;Egretta garzetta (Linnaeus, 1766);Egretta garzetta;garça-pequena-europeia
+979;Egretta thula (Molina, 1782);Egretta thula;garça-branca-pequena
+981;Egretta caerulea (Linnaeus, 1758);Egretta caerulea;garça-azul
+983;Eudocimus ruber (Linnaeus, 1758);Eudocimus ruber;guará
+984;Plegadis chihi (Vieillot, 1817);Plegadis chihi;caraúna
+985;Cercibis oxycerca (Spix, 1825);Cercibis oxycerca;trombeteiro
+986;Mesembrinibis cayennensis (Gmelin, 1789);Mesembrinibis cayennensis;coró-coró
+987;Phimosus infuscatus (Lichtenstein, 1823);Phimosus infuscatus;tapicuru
+991;Theristicus caerulescens (Vieillot, 1817);Theristicus caerulescens;curicaca-real
+992;Theristicus caudatus (Boddaert, 1783);Theristicus caudatus;curicaca
+995;Platalea leucorodia Linnaeus, 1758;Platalea leucorodia;colhereiro-europeu
+997;Platalea ajaja Linnaeus, 1758;Platalea ajaja;colhereiro
+1000;Sarcoramphus papa (Linnaeus, 1758);Sarcoramphus papa;urubu-rei
+1001;Coragyps atratus (Bechstein, 1793);Coragyps atratus;urubu-preto
+1004;Cathartes aura (Linnaeus, 1758);Cathartes aura;urubu-de-cabeça-vermelha
+1007;Cathartes burrovianus Cassin, 1845;Cathartes burrovianus;urubu-de-cabeça-amarela
+1009;Cathartes melambrotus Wetmore, 1964;Cathartes melambrotus;urubu-da-mata
+1012;Pandion haliaetus (Linnaeus, 1758);Pandion haliaetus;águia-pescadora
+1015;Gampsonyx swainsonii Vigors, 1825;Gampsonyx swainsonii;gaviãozinho
+1018;Elanus leucurus (Vieillot, 1818);Elanus leucurus;gavião-peneira
+1020;Chondrohierax uncinatus (Temminck, 1822);Chondrohierax uncinatus;gavião-caracoleiro
+1022;Leptodon cayanensis (Latham, 1790);Leptodon cayanensis;gavião-gato
+1023;Leptodon forbesi (Swann, 1922);Leptodon forbesi;gavião-gato-do-nordeste
+1024;Elanoides forficatus (Linnaeus, 1758);Elanoides forficatus;gavião-tesoura
+1027;Morphnus guianensis (Daudin, 1800);Morphnus guianensis;uiraçu
+1028;Harpia harpyja (Linnaeus, 1758);Harpia harpyja;gavião-real
+1029;Spizaetus tyrannus (Wied, 1820);Spizaetus tyrannus;gavião-pega-macaco
+1032;Spizaetus melanoleucus (Vieillot, 1816);Spizaetus melanoleucus;gavião-pato
+1033;Spizaetus ornatus (Daudin, 1800);Spizaetus ornatus;gavião-de-penacho
+1035;Busarellus nigricollis (Latham, 1790);Busarellus nigricollis;gavião-belo
+1038;Rostrhamus sociabilis (Vieillot, 1817);Rostrhamus sociabilis;gavião-caramujeiro
+1040;Helicolestes hamatus (Temminck, 1821);Helicolestes hamatus;gavião-do-igapó
+1041;Harpagus bidentatus (Latham, 1790);Harpagus bidentatus;gavião-ripina
+1043;Harpagus diodon (Temminck, 1823);Harpagus diodon;gavião-bombachinha
+1044;Ictinia mississippiensis (Wilson, 1811);Ictinia mississippiensis;sovi-do-norte
+1045;Ictinia plumbea (Gmelin, 1788);Ictinia plumbea;sovi
+1046;Circus cinereus Vieillot, 1816;Circus cinereus;gavião-cinza
+1047;Circus buffoni (Gmelin, 1788);Circus buffoni;gavião-do-banhado
+1048;Hieraspiza superciliosa (Linnaeus, 1766);Hieraspiza superciliosa;tauató-passarinho
+1050;Accipiter poliogaster (Temminck, 1824);Accipiter poliogaster;tauató-pintado
+1051;Accipiter striatus Vieillot, 1808;Accipiter striatus;tauató-miúdo
+1053;Accipiter bicolor (Vieillot, 1817);Accipiter bicolor;gavião-bombachinha-grande
+1057;Milvus migrans (Boddaert, 1783);Milvus migrans;milhafre-preto
+1059;Geranospiza caerulescens (Vieillot, 1817);Geranospiza caerulescens;gavião-pernilongo
+1063;Buteogallus schistaceus (Sundevall, 1850);Buteogallus schistaceus;gavião-azul
+1064;Buteogallus aequinoctialis (Gmelin, 1788);Buteogallus aequinoctialis;gavião-caranguejeiro
+1065;Heterospizias meridionalis (Latham, 1790);Heterospizias meridionalis;gavião-caboclo
+1066;Amadonastur lacernulatus (Temminck, 1827);Amadonastur lacernulatus;gavião-pombo-pequeno
+1067;Urubitinga urubitinga (Gmelin, 1788);Urubitinga urubitinga;gavião-preto
+1069;Urubitinga solitaria (Vieillot, 1817);Urubitinga solitaria;águia-solitária
+1071;Urubitinga coronata (Vieillot, 1817);Urubitinga coronata;águia-cinzenta
+1072;Rupornis magnirostris (Gmelin, 1788);Rupornis magnirostris;gavião-carijó
+1079;Parabuteo unicinctus (Temminck, 1824);Parabuteo unicinctus;gavião-asa-de-telha
+1081;Parabuteo leucorrhous (Quoy & Gaimard, 1824);Parabuteo leucorrhous;gavião-de-sobre-branco
+1082;Geranoaetus albicaudatus (Vieillot, 1816);Geranoaetus albicaudatus;gavião-de-rabo-branco
+1085;Geranoaetus melanoleucus (Vieillot, 1819);Geranoaetus melanoleucus;águia-serrana
+1087;Pseudastur albicollis (Latham, 1790);Pseudastur albicollis;gavião-branco
+1089;Pseudastur polionotus (Kaup, 1847);Pseudastur polionotus;gavião-pombo-grande
+1090;Leucopternis melanops (Latham, 1790);Leucopternis melanops;gavião-de-cara-preta
+1091;Leucopternis kuhli Bonaparte, 1850;Leucopternis kuhli;gavião-vaqueiro
+1092;Buteo nitidus (Latham, 1790);Buteo nitidus;gavião-pedrês
+1095;Buteo platypterus (Vieillot, 1823);Buteo platypterus;gavião-de-asa-larga
+1097;Buteo brachyurus Vieillot, 1816;Buteo brachyurus;gavião-de-cauda-curta
+1099;Buteo swainsoni Bonaparte, 1838;Buteo swainsoni;gavião-papa-gafanhoto
+1100;Buteo albonotatus Kaup, 1847;Buteo albonotatus;gavião-urubu
+1103;Tyto furcata (Temminck, 1827);Tyto furcata;suindara
+1107;Megascops choliba (Vieillot, 1817);Megascops choliba;corujinha-do-mato
+1113;Megascops roraimae (Salvin, 1897);Megascops roraimae;corujinha-de-roraima
+1115;Megascops sanctaecatarinae (Salvin, 1897);Megascops sanctaecatarinae;corujinha-do-sul
+1116;Megascops watsonii (Cassin, 1849);Megascops watsonii;corujinha-das-guianas
+1117;Megascops usta (Sclater, 1858);Megascops usta;corujinha-relógio
+1118;Megascops stangiae Dantas, Weckstein, Bates, Oliveira, Catanach & Aleixo, 2021;Megascops stangiae;corujinha-do-xingu
+1119;Megascops ater (Hekstra, 1982);Megascops ater;corujinha-de-belém
+1120;Megascops alagoensis Dantas, Weckstein, Bates, Oliveira, Catanach & Aleixo, 2021;Megascops alagoensis;corujinha-de-alagoas
+1121;Megascops atricapilla (Temminck, 1822);Megascops atricapilla;corujinha-sapo
+1122;Lophostrix cristata (Daudin, 1800);Lophostrix cristata;coruja-de-crista
+1124;Pulsatrix perspicillata (Latham, 1790);Pulsatrix perspicillata;murucututu
+1127;Pulsatrix koeniswaldiana (Bertoni & Bertoni, 1901);Pulsatrix koeniswaldiana;murucututu-de-barriga-amarela
+1128;Bubo virginianus (Gmelin, 1788);Bubo virginianus;jacurutu
+1131;Strix hylophila Temminck, 1825;Strix hylophila;coruja-listrada
+1132;Strix virgata (Cassin, 1849);Strix virgata;coruja-do-mato
+1135;Strix huhula Daudin, 1800;Strix huhula;coruja-preta
+1138;Glaucidium hardyi Vielliard, 1990;Glaucidium hardyi;caburé-da-amazônia
+1139;Glaucidium mooreorum Silva, Coelho & Gonzaga, 2002;Glaucidium mooreorum;caburé-de-pernambuco
+1140;Glaucidium minutissimum (Wied, 1830);Glaucidium minutissimum;caburé-miudinho
+1141;Glaucidium brasilianum (Gmelin, 1788);Glaucidium brasilianum;caburé
+1145;Athene cunicularia (Molina, 1782);Athene cunicularia;coruja-buraqueira
+1149;Aegolius harrisii (Cassin, 1849);Aegolius harrisii;caburé-acanelado
+1151;Asio clamator (Vieillot, 1808);Asio clamator;coruja-orelhuda
+1154;Asio stygius (Wagler, 1832);Asio stygius;mocho-diabo
+1156;Asio flammeus (Pontoppidan, 1763);Asio flammeus;mocho-dos-banhados
+1160;Pharomachrus pavoninus (Spix, 1824);Pharomachrus pavoninus;quetzal-pavão
+1161;Trogon melanurus Swainson, 1838;Trogon melanurus;surucuá-de-cauda-preta
+1164;Trogon viridis Linnaeus, 1766;Trogon viridis;surucuá-de-barriga-amarela
+1167;Trogon ramonianus Deville & Des Murs, 1849;Trogon ramonianus;surucuá-pequeno
+1170;Trogon surrucura Vieillot, 1817;Trogon surrucura;surucuá-variado
+1173;Trogon violaceus Gmelin, 1788;Trogon violaceus;surucuá-violáceo
+1174;Trogon curucui Linnaeus, 1766;Trogon curucui;surucuá-de-barriga-vermelha
+1178;Trogon rufus Gmelin, 1788;Trogon rufus;surucuá-dourado-da-amazônia
+1182;Trogon muriciensis Dickens, Bitton, Bravo & Silveira, 2021;Trogon muriciensis;surucuá-de-murici
+1183;Trogon chrysochloros Pelzeln, 1856;Trogon chrysochloros;surucuá-dourado
+1184;Trogon collaris Vieillot, 1817;Trogon collaris;surucuá-de-coleira
+1188;Trogon personatus Gould, 1842;Trogon personatus;surucuá-mascarado
+1193;Electron platyrhynchum (Leadbeater, 1829);Electron platyrhynchum;udu-de-bico-largo
+1196;Baryphthengus martii (Spix, 1824);Baryphthengus martii;juruva-ruiva
+1198;Baryphthengus ruficapillus (Vieillot, 1818);Baryphthengus ruficapillus;juruva
+1199;Momotus momota (Linnaeus, 1766);Momotus momota;udu-de-coroa-azul
+1209;Megaceryle torquata (Linnaeus, 1766);Megaceryle torquata;martim-pescador-grande
+1211;Chloroceryle amazona (Latham, 1790);Chloroceryle amazona;martim-pescador-verde
+1212;Chloroceryle aenea (Pallas, 1764);Chloroceryle aenea;martim-pescador-miúdo
+1214;Chloroceryle americana (Gmelin, 1788);Chloroceryle americana;martim-pescador-pequeno
+1217;Chloroceryle inda (Linnaeus, 1766);Chloroceryle inda;martim-pescador-da-mata
+1221;Galbalcyrhynchus leucotis Des Murs, 1845;Galbalcyrhynchus leucotis;ariramba-vermelha
+1222;Galbalcyrhynchus purusianus Goeldi, 1904;Galbalcyrhynchus purusianus;ariramba-castanha
+1223;Brachygalba albogularis (Spix, 1824);Brachygalba albogularis;agulha-de-garganta-branca
+1224;Brachygalba lugubris (Swainson, 1838);Brachygalba lugubris;ariramba-preta
+1230;Jacamaralcyon tridactyla (Vieillot, 1817);Jacamaralcyon tridactyla;cuitelão
+1231;Galbula albirostris Latham, 1790;Galbula albirostris;ariramba-de-bico-amarelo
+1234;Galbula cyanicollis Cassin, 1851;Galbula cyanicollis;ariramba-da-mata
+1235;Galbula ruficauda Cuvier, 1816;Galbula ruficauda;ariramba-de-cauda-ruiva
+1239;Galbula galbula (Linnaeus, 1766);Galbula galbula;ariramba-de-cauda-verde
+1240;Galbula tombacea Spix, 1824;Galbula tombacea;ariramba-de-barba-branca
+1243;Galbula cyanescens Deville, 1849;Galbula cyanescens;ariramba-da-capoeira
+1244;Galbula chalcothorax Sclater, 1855;Galbula chalcothorax;ariramba-violácea
+1245;Galbula leucogastra Vieillot, 1817;Galbula leucogastra;ariramba-bronzeada
+1246;Galbula dea (Linnaeus, 1758);Galbula dea;ariramba-do-paraíso
+1251;Jacamerops aureus (Statius Muller, 1776);Jacamerops aureus;jacamaraçu
+1256;Chelidoptera tenebrosa (Pallas, 1782);Chelidoptera tenebrosa;urubuzinho
+1259;Monasa atra (Boddaert, 1783);Monasa atra;chora-chuva-de-asa-branca
+1260;Monasa morphoeus (Hahn & Küster, 1823);Monasa morphoeus;chora-chuva-de-cara-branca
+1264;Monasa nigrifrons (Spix, 1824);Monasa nigrifrons;chora-chuva-preto
+1266;Monasa flavirostris Strickland, 1850;Monasa flavirostris;chora-chuva-de-bico-amarelo
+1267;Nonnula ruficapilla (Tschudi, 1844);Nonnula ruficapilla;freirinha-de-coroa-castanha
+1271;Nonnula amaurocephala Chapman, 1921;Nonnula amaurocephala;freirinha-de-cabeça-castanha
+1272;Nonnula sclateri Hellmayr, 1907;Nonnula sclateri;freirinha-amarelada
+1273;Nonnula rubecula (Spix, 1824);Nonnula rubecula;macuru
+1280;Malacoptila fusca (Gmelin, 1788);Malacoptila fusca;barbudo-pardo
+1282;Malacoptila semicincta Todd, 1925;Malacoptila semicincta;barbudo-de-coleira
+1283;Malacoptila minor Sassi, 1911;Malacoptila minor;barbudo-rajado-pequeno
+1284;Malacoptila striata (Spix, 1824);Malacoptila striata;barbudo-rajado
+1285;Malacoptila rufa (Spix, 1824);Malacoptila rufa;barbudo-de-pescoço-ferrugem
+1288;Micromonacha lanceolata (Deville, 1849);Micromonacha lanceolata;macuru-papa-mosca
+1289;Notharchus tectus (Boddaert, 1783);Notharchus tectus;macuru-pintado
+1292;Notharchus hyperrhynchus (Sclater, 1856);Notharchus hyperrhynchus;macuru-de-testa-branca
+1295;Notharchus swainsoni (Gray, 1846);Notharchus swainsoni;macuru-de-barriga-castanha
+1296;Notharchus macrorhynchos (Gmelin, 1788);Notharchus macrorhynchos;macuru-de-pescoço-branco
+1297;Notharchus ordii (Cassin, 1851);Notharchus ordii;macuru-de-peito-marrom
+1298;Cyphos macrodactylus Spix, 1824;Cyphos macrodactylus;rapazinho-de-boné-vermelho
+1300;Tamatia tamatia (Gmelin, 1788);Tamatia tamatia;rapazinho-carijó
+1304;Bucco capensis Linnaeus, 1766;Bucco capensis;rapazinho-de-colar
+1305;Nystalus maculatus (Gmelin, 1788);Nystalus maculatus;rapazinho-dos-velhos
+1306;Nystalus striatipectus (Sclater, 1854);Nystalus striatipectus;rapazinho-do-chaco
+1307;Nystalus obamai Whitney, Piacentini, Schunck, Aleixo, Sousa, Silveira & Rêgo, 2013;Nystalus obamai;rapazinho-estriado-do-oeste
+1308;Nystalus striolatus (Pelzeln, 1856);Nystalus striolatus;rapazinho-estriado-de-rondônia
+1309;Nystalus torridus Bond & Meyer de Schauensee, 1940;Nystalus torridus;rapazinho-estriado-do-leste
+1310;Nystalus chacuru (Vieillot, 1816);Nystalus chacuru;joão-bobo
+1315;Capito aurovirens (Cuvier, 1829);Capito aurovirens;capitão-de-coroa
+1316;Capito dayi Cherrie, 1916;Capito dayi;capitão-de-cinta
+1317;Capito brunneipectus Chapman, 1921;Capito brunneipectus;capitão-de-peito-marrom
+1318;Capito niger (Statius Muller, 1776);Capito niger;capitão-de-bigode-carijó
+1319;Capito auratus (Dumont, 1816);Capito auratus;capitão-de-fronte-dourada
+1327;Eubucco richardsoni (Gray, 1846);Eubucco richardsoni;capitão-de-bigode-limão
+1331;Eubucco tucinkae (Seilern, 1913);Eubucco tucinkae;capitão-de-colar-amarelo
+1333;Ramphastos toco Statius Muller, 1776;Ramphastos toco;tucanuçu
+1336;Ramphastos tucanus Linnaeus, 1758;Ramphastos tucanus;tucano-de-papo-branco
+1339;Ramphastos vitellinus Lichtenstein, 1823;Ramphastos vitellinus;tucano-de-bico-preto
+1343;Ramphastos dicolorus Linnaeus, 1766;Ramphastos dicolorus;tucano-de-bico-verde
+1344;Aulacorhynchus atrogularis (Sturm & Sturm, 1841);Aulacorhynchus atrogularis;tucaninho-de-nariz-amarelo
+1346;Aulacorhynchus whitelianus (Salvin & Godman, 1882);Aulacorhynchus whitelianus;tucaninho-verde
+1349;Selenidera piperivora (Linnaeus, 1758);Selenidera piperivora;araçari-negro
+1350;Selenidera reinwardtii (Wagler, 1827);Selenidera reinwardtii;saripoca-de-coleira
+1353;Selenidera nattereri (Gould, 1836);Selenidera nattereri;saripoca-de-bico-castanho
+1354;Selenidera gouldii (Natterer, 1837);Selenidera gouldii;saripoca-de-gould
+1355;Selenidera maculirostris (Lichtenstein, 1823);Selenidera maculirostris;araçari-poca
+1356;Pteroglossus bailloni (Vieillot, 1819);Pteroglossus bailloni;araçari-banana
+1357;Pteroglossus viridis (Linnaeus, 1766);Pteroglossus viridis;araçari-miudinho
+1358;Pteroglossus inscriptus Swainson, 1822;Pteroglossus inscriptus;araçari-de-bico-riscado
+1361;Pteroglossus aracari (Linnaeus, 1758);Pteroglossus aracari;araçari-de-bico-branco
+1365;Pteroglossus castanotis Gould, 1834;Pteroglossus castanotis;araçari-castanho
+1368;Pteroglossus pluricinctus Gould, 1835;Pteroglossus pluricinctus;araçari-de-cinta-dupla
+1369;Pteroglossus azara (Vieillot, 1819);Pteroglossus azara;araçari-de-bico-de-marfim
+1370;Pteroglossus flavirostris Fraser, 1841;Pteroglossus flavirostris;araçari-de-bico-amarelo
+1371;Pteroglossus mariae Gould, 1854;Pteroglossus mariae;araçari-de-bico-marrom
+1372;Pteroglossus beauharnaisii Wagler, 1831;Pteroglossus beauharnaisii;araçari-mulato
+1373;Pteroglossus bitorquatus Vigors, 1826;Pteroglossus bitorquatus;araçari-de-pescoço-vermelho
+1378;Picumnus aurifrons Pelzeln, 1870;Picumnus aurifrons;picapauzinho-dourado
+1386;Picumnus pumilus Cabanis & Heine, 1863;Picumnus pumilus;picapauzinho-do-orinoco
+1387;Picumnus lafresnayi Malherbe, 1862;Picumnus lafresnayi;picapauzinho-do-amazonas
+1389;Picumnus undulatus Hargitt, 1889;Picumnus undulatus;picapauzinho-ondulado
+1390;Picumnus buffonii Lafresnaye, 1845;Picumnus buffonii;picapauzinho-de-costas-pintadas
+1391;Picumnus pernambucensis Zimmer, 1947;Picumnus pernambucensis;picapauzinho-de-pernambuco
+1392;Picumnus exilis (Lichtenstein, 1823);Picumnus exilis;picapauzinho-de-pintas-amarelas
+1393;Picumnus spilogaster Sundevall, 1866;Picumnus spilogaster;picapauzinho-de-pescoço-branco
+1396;Picumnus limae Snethlage, 1924;Picumnus limae;picapauzinho-da-caatinga
+1397;Picumnus pygmaeus (Lichtenstein, 1823);Picumnus pygmaeus;picapauzinho-pintado
+1398;Picumnus varzeae Snethlage, 1912;Picumnus varzeae;picapauzinho-da-várzea
+1399;Picumnus cirratus Temminck, 1825;Picumnus cirratus;picapauzinho-barrado
+1404;Picumnus temminckii Lafresnaye, 1845;Picumnus temminckii;picapauzinho-de-coleira
+1405;Picumnus albosquamatus d'Orbigny, 1840;Picumnus albosquamatus;picapauzinho-escamoso
+1409;Picumnus fuscus Pelzeln, 1870;Picumnus fuscus;picapauzinho-fusco
+1410;Picumnus rufiventris Bonaparte, 1838;Picumnus rufiventris;picapauzinho-vermelho
+1413;Picumnus nebulosus Sundevall, 1866;Picumnus nebulosus;picapauzinho-carijó
+1414;Picumnus castelnau Malherbe, 1862;Picumnus castelnau;picapauzinho-creme
+1415;Picumnus subtilis Stager, 1968;Picumnus subtilis;picapauzinho-de-barras-finas
+1416;Melanerpes candidus (Otto, 1796);Melanerpes candidus;pica-pau-branco
+1417;Melanerpes cruentatus (Boddaert, 1783);Melanerpes cruentatus;benedito-de-testa-vermelha
+1418;Melanerpes flavifrons (Vieillot, 1818);Melanerpes flavifrons;benedito-de-testa-amarela
+1419;Melanerpes cactorum (d'Orbigny, 1839);Melanerpes cactorum;pica-pau-de-testa-branca
+1420;Veniliornis kirkii (Malherbe, 1845);Veniliornis kirkii;pica-pau-de-sobre-vermelho
+1422;Veniliornis cassini (Malherbe, 1862);Veniliornis cassini;pica-pau-de-colar-dourado
+1423;Veniliornis affinis (Swainson, 1821);Veniliornis affinis;pica-pau-avermelhado
+1428;Veniliornis maculifrons (Spix, 1824);Veniliornis maculifrons;pica-pau-de-testa-pintada
+1429;Veniliornis passerinus (Linnaeus, 1766);Veniliornis passerinus;pica-pau-pequeno
+1437;Veniliornis spilogaster (Wagler, 1827);Veniliornis spilogaster;pica-pau-verde-carijó
+1438;Veniliornis mixtus (Boddaert, 1783);Veniliornis mixtus;pica-pau-chorão
+1441;Campephilus rubricollis (Boddaert, 1783);Campephilus rubricollis;pica-pau-de-barriga-vermelha
+1445;Campephilus robustus (Lichtenstein, 1818);Campephilus robustus;pica-pau-rei
+1446;Campephilus melanoleucos (Gmelin, 1788);Campephilus melanoleucos;pica-pau-de-topete-vermelho
+1449;Campephilus leucopogon (Valenciennes, 1826);Campephilus leucopogon;pica-pau-de-barriga-preta
+1450;Dryocopus lineatus (Linnaeus, 1766);Dryocopus lineatus;pica-pau-de-banda-branca
+1453;Celeus torquatus (Boddaert, 1783);Celeus torquatus;pica-pau-de-coleira
+1458;Celeus galeatus (Temminck, 1822);Celeus galeatus;pica-pau-de-cara-canela
+1459;Celeus undatus (Linnaeus, 1766);Celeus undatus;pica-pau-barrado
+1460;Celeus flavus (Statius Muller, 1776);Celeus flavus;pica-pau-amarelo
+1465;Celeus spectabilis Sclater & Salvin, 1880;Celeus spectabilis;pica-pau-lindo
+1467;Celeus obrieni Short, 1973;Celeus obrieni;pica-pau-da-taboca
+1468;Celeus ochraceus (Spix, 1824);Celeus ochraceus;pica-pau-ocráceo
+1469;Celeus elegans (Statius Muller, 1776);Celeus elegans;pica-pau-chocolate
+1473;Celeus lugubris (Malherbe, 1851);Celeus lugubris;pica-pau-louro
+1476;Celeus flavescens (Gmelin, 1788);Celeus flavescens;pica-pau-de-cabeça-amarela
+1479;Piculus leucolaemus (Natterer & Malherbe, 1845);Piculus leucolaemus;pica-pau-de-garganta-branca
+1480;Piculus flavigula (Boddaert, 1783);Piculus flavigula;pica-pau-bufador
+1484;Piculus capistratus (Malherbe, 1862);Piculus capistratus;pica-pau-de-garganta-barrada
+1485;Piculus laemostictus Todd, 1937;Piculus laemostictus;pica-pau-de-garganta-pintada
+1486;Piculus paraensis (Snethlage, 1907);Piculus paraensis;pica-pau-dourado-de-belém
+1487;Piculus chrysochloros (Vieillot, 1818);Piculus chrysochloros;pica-pau-dourado-escuro
+1488;Piculus polyzonus (Valenciennes, 1826);Piculus polyzonus;pica-pau-dourado-grande
+1489;Piculus aurulentus (Temminck, 1821);Piculus aurulentus;pica-pau-dourado
+1490;Colaptes rubiginosus (Swainson, 1820);Colaptes rubiginosus;pica-pau-oliváceo
+1493;Colaptes punctigula (Boddaert, 1783);Colaptes punctigula;pica-pau-de-peito-pontilhado
+1496;Colaptes melanochloros (Gmelin, 1788);Colaptes melanochloros;pica-pau-verde-barrado
+1500;Colaptes campestris (Vieillot, 1818);Colaptes campestris;pica-pau-do-campo
+1505;Cariama cristata (Linnaeus, 1766);Cariama cristata;seriema
+1508;Herpetotheres cachinnans (Linnaeus, 1758);Herpetotheres cachinnans;acauã
+1510;Micrastur ruficollis (Vieillot, 1817);Micrastur ruficollis;falcão-caburé
+1514;Micrastur gilvicollis (Vieillot, 1817);Micrastur gilvicollis;falcão-mateiro
+1515;Micrastur mintoni Whittaker, 2003;Micrastur mintoni;falcão-críptico
+1516;Micrastur mirandollei (Schlegel, 1862);Micrastur mirandollei;tanatau
+1517;Micrastur semitorquatus (Vieillot, 1817);Micrastur semitorquatus;falcão-relógio
+1519;Micrastur buckleyi Swann, 1919;Micrastur buckleyi;falcão-de-buckley
+1520;Caracara plancus (Miller, 1777);Caracara plancus;carcará
+1523;Ibycter americanus (Boddaert, 1783);Ibycter americanus;cancão
+1524;Daptrius ater Vieillot, 1816;Daptrius ater;gavião-de-anta
+1525;Milvago chimachima (Vieillot, 1816);Milvago chimachima;carrapateiro
+1528;Milvago chimango (Vieillot, 1816);Milvago chimango;chimango
+1530;Falco tinnunculus Linnaeus, 1758;Falco tinnunculus;peneireiro-de-dorso-malhado
+1532;Falco sparverius Linnaeus, 1758;Falco sparverius;quiriquiri
+1536;Falco columbarius Linnaeus, 1758;Falco columbarius;esmerilhão
+1538;Falco aesalon Tunstall, 1771;Falco aesalon;esmerilhão-europeu
+1540;Falco rufigularis Daudin, 1800;Falco rufigularis;cauré
+1543;Falco deiroleucus Temminck, 1825;Falco deiroleucus;falcão-de-peito-laranja
+1544;Falco femoralis Temminck, 1822;Falco femoralis;falcão-de-coleira
+1546;Falco peregrinus Tunstall, 1771;Falco peregrinus;falcão-peregrino
+1551;Touit huetii (Temminck, 1830);Touit huetii;apuim-de-asa-vermelha
+1552;Touit purpuratus (Gmelin, 1788);Touit purpuratus;apuim-de-costas-azuis
+1555;Touit melanonotus (Wied, 1820);Touit melanonotus;apuim-de-costas-pretas
+1556;Touit surdus (Kuhl, 1820);Touit surdus;apuim-de-cauda-amarela
+1557;Nannopsittaca panychlora (Salvin & Godman, 1883);Nannopsittaca panychlora;periquito-dos-tepuis
+1558;Nannopsittaca dachilleae O'Neill, Munn & Franke, 1991;Nannopsittaca dachilleae;periquito-da-amazônia
+1559;Myiopsitta monachus (Boddaert, 1783);Myiopsitta monachus;caturrita
+1562;Brotogeris sanctithomae (Statius Muller, 1776);Brotogeris sanctithomae;periquito-testinha
+1565;Brotogeris tirica (Gmelin, 1788);Brotogeris tirica;periquito-rico
+1566;Brotogeris versicolurus (Statius Muller, 1776);Brotogeris versicolurus;periquito-da-campina
+1567;Brotogeris chiriri (Vieillot, 1818);Brotogeris chiriri;periquito-de-encontro-amarelo
+1569;Brotogeris cyanoptera (Pelzeln, 1870);Brotogeris cyanoptera;periquito-de-asa-azul
+1572;Brotogeris chrysoptera (Linnaeus, 1766);Brotogeris chrysoptera;periquito-de-asa-dourada
+1578;Pionopsitta pileata (Scopoli, 1769);Pionopsitta pileata;cuiú-cuiú
+1579;Triclaria malachitacea (Spix, 1824);Triclaria malachitacea;sabiá-cica
+1580;Pyrilia barrabandi (Kuhl, 1820);Pyrilia barrabandi;curica-de-bochecha-laranja
+1583;Pyrilia caica (Latham, 1790);Pyrilia caica;curica-de-chapéu-preto
+1584;Pyrilia aurantiocephala (Gaban-Lima, Raposo & Höfling, 2002);Pyrilia aurantiocephala;papagaio-de-cabeça-laranja
+1585;Pyrilia vulturina (Kuhl, 1820);Pyrilia vulturina;curica-urubu
+1586;Pionus fuscus (Statius Muller, 1776);Pionus fuscus;maitaca-roxa
+1587;Pionus maximiliani (Kuhl, 1820);Pionus maximiliani;maitaca-verde
+1591;Pionus menstruus (Linnaeus, 1766);Pionus menstruus;maitaca-de-cabeça-azul
+1592;Pionus reichenowi Heine, 1884;Pionus reichenowi;maitaca-de-barriga-azul
+1593;Graydidascalus brachyurus (Kuhl, 1820);Graydidascalus brachyurus;curica-verde
+1594;Alipiopsitta xanthops (Spix, 1824);Alipiopsitta xanthops;papagaio-galego
+1595;Amazona festiva (Linnaeus, 1758);Amazona festiva;papagaio-da-várzea
+1597;Amazona vinacea (Kuhl, 1820);Amazona vinacea;papagaio-de-peito-roxo
+1598;Amazona pretrei (Temminck, 1830);Amazona pretrei;papagaio-charão
+1599;Amazona autumnalis (Linnaeus, 1758);Amazona autumnalis;papagaio-diadema
+1601;Amazona dufresniana (Shaw, 1812);Amazona dufresniana;papagaio-de-bochecha-azul
+1602;Amazona rhodocorytha (Salvadori, 1890);Amazona rhodocorytha;chauá
+1603;Amazona ochrocephala (Gmelin, 1788);Amazona ochrocephala;papagaio-campeiro
+1607;Amazona aestiva (Linnaeus, 1758);Amazona aestiva;papagaio-verdadeiro
+1610;Amazona farinosa (Boddaert, 1783);Amazona farinosa;papagaio-moleiro
+1611;Amazona kawalli Grantsau & Camargo, 1989;Amazona kawalli;papagaio-dos-garbes
+1612;Amazona brasiliensis (Linnaeus, 1758);Amazona brasiliensis;papagaio-de-cara-roxa
+1613;Amazona amazonica (Linnaeus, 1766);Amazona amazonica;curica
+1614;Forpus modestus (Cabanis, 1848);Forpus modestus;periquito-santo-do-norte
+1615;Forpus sclateri (Gray, 1859);Forpus sclateri;periquito-santo-de-bico-escuro
+1616;Forpus xanthopterygius (Spix, 1824);Forpus xanthopterygius;tuim
+1620;Forpus passerinus (Linnaeus, 1758);Forpus passerinus;periquito-santo
+1624;Pionites melanocephalus (Linnaeus, 1758);Pionites melanocephalus;marianinha-de-cabeça-preta
+1627;Pionites leucogaster (Kuhl, 1820);Pionites leucogaster;marianinha-de-cabeça-amarela
+1631;Deroptyus accipitrinus (Linnaeus, 1758);Deroptyus accipitrinus;anacã
+1634;Pyrrhura cruentata (Wied, 1820);Pyrrhura cruentata;tiriba-grande
+1635;Pyrrhura devillei (Massena & Souancé, 1854);Pyrrhura devillei;tiriba-fogo
+1636;Pyrrhura frontalis (Vieillot, 1817);Pyrrhura frontalis;tiriba-de-testa-vermelha
+1639;Pyrrhura anerythra Neumann, 1927;Pyrrhura anerythra;tiriba-do-xingu
+1640;Pyrrhura coerulescens Neumann, 1927;Pyrrhura coerulescens;tiriba-pérola
+1641;Pyrrhura perlata (Spix, 1824);Pyrrhura perlata;tiriba-de-barriga-vermelha
+1642;Pyrrhura molinae (Massena & Souancé, 1854);Pyrrhura molinae;cara-suja-do-pantanal
+1645;Pyrrhura griseipectus Salvadori, 1900;Pyrrhura griseipectus;cara-suja
+1646;Pyrrhura leucotis (Kuhl, 1820);Pyrrhura leucotis;tiriba-de-orelha-branca
+1647;Pyrrhura pfrimeri Miranda-Ribeiro, 1920;Pyrrhura pfrimeri;tiriba-do-paranã
+1648;Pyrrhura picta (Statius Muller, 1776);Pyrrhura picta;tiriba-de-testa-azul
+1650;Pyrrhura amazonum Hellmayr, 1906;Pyrrhura amazonum;tiriba-de-hellmayr
+1653;Pyrrhura pallescens Miranda-Ribeiro, 1926;Pyrrhura pallescens;tiriba-do-madeira
+1656;Pyrrhura lucianii (Deville, 1851);Pyrrhura lucianii;tiriba-de-deville
+1657;Pyrrhura roseifrons (Gray, 1859);Pyrrhura roseifrons;tiriba-de-cabeça-vermelha
+1659;Pyrrhura egregia (Sclater, 1881);Pyrrhura egregia;tiriba-de-cauda-roxa
+1661;Pyrrhura melanura (Spix, 1824);Pyrrhura melanura;tiriba-fura-mata
+1663;Pyrrhura rupicola (Tschudi, 1844);Pyrrhura rupicola;tiriba-rupestre
+1665;Anodorhynchus hyacinthinus (Latham, 1790);Anodorhynchus hyacinthinus;arara-azul
+1666;Anodorhynchus glaucus (Vieillot, 1816);Anodorhynchus glaucus;arara-azul-pequena
+1667;Anodorhynchus leari Bonaparte, 1856;Anodorhynchus leari;arara-azul-de-lear
+1668;Eupsittula aurea (Gmelin, 1788);Eupsittula aurea;periquito-rei
+1669;Eupsittula pertinax (Linnaeus, 1758);Eupsittula pertinax;periquito-de-bochecha-parda
+1673;Eupsittula cactorum (Kuhl, 1820);Eupsittula cactorum;periquito-da-caatinga
+1676;Aratinga weddellii (Deville, 1851);Aratinga weddellii;periquito-de-cabeça-suja
+1677;Aratinga nenday (Vieillot, 1823);Aratinga nenday;periquito-de-cabeça-preta
+1678;Aratinga solstitialis (Linnaeus, 1766);Aratinga solstitialis;jandaia-amarela
+1679;Aratinga maculata (Statius Muller, 1776);Aratinga maculata;cacaué
+1680;Aratinga jandaya (Gmelin, 1788);Aratinga jandaya;jandaia-verdadeira
+1681;Aratinga auricapillus (Kuhl, 1820);Aratinga auricapillus;jandaia-de-testa-vermelha
+1682;Cyanopsitta spixii (Wagler, 1832);Cyanopsitta spixii;ararinha-azul
+1683;Orthopsittaca manilatus (Boddaert, 1783);Orthopsittaca manilatus;maracanã-do-buriti
+1684;Primolius maracana (Vieillot, 1816);Primolius maracana;maracanã
+1685;Primolius couloni (Sclater, 1876);Primolius couloni;maracanã-de-cabeça-azul
+1686;Primolius auricollis (Cassin, 1853);Primolius auricollis;maracanã-de-colar
+1687;Ara ararauna (Linnaeus, 1758);Ara ararauna;arara-canindé
+1688;Ara severus (Linnaeus, 1758);Ara severus;maracanã-guaçu
+1689;Ara macao (Linnaeus, 1758);Ara macao;araracanga
+1691;Ara chloropterus Gray, 1859;Ara chloropterus;arara-vermelha
+1692;Guaruba guarouba (Gmelin, 1788);Guaruba guarouba;ararajuba
+1693;Thectocercus acuticaudatus (Vieillot, 1818);Thectocercus acuticaudatus;aratinga-de-testa-azul
+1696;Diopsittaca nobilis (Linnaeus, 1758);Diopsittaca nobilis;maracanã-pequena
+1700;Psittacara leucophthalmus (Statius Muller, 1776);Psittacara leucophthalmus;periquitão
+1705;Euchrepomis humeralis (Sclater & Salvin, 1880);Euchrepomis humeralis;zidedê-de-encontro
+1708;Euchrepomis spodioptila (Sclater & Salvin, 1881);Euchrepomis spodioptila;zidedê-de-asa-cinza
+1712;Myrmornis torquata (Boddaert, 1783);Myrmornis torquata;pinto-do-mato-carijó
+1714;Pygiptila stellaris (Spix, 1825);Pygiptila stellaris;choca-cantadora
+1718;Microrhopias quixensis (Cornalia, 1849);Microrhopias quixensis;papa-formiga-de-bando
+1723;Myrmorchilus strigilatus (Wied, 1831);Myrmorchilus strigilatus;tem-farinha-aí
+1726;Neoctantes niger (Pelzeln, 1859);Neoctantes niger;choca-preta
+1727;Clytoctantes atrogularis Lanyon, Stotz & Willard, 1991;Clytoctantes atrogularis;choca-de-garganta-preta
+1728;Epinecrophylla gutturalis (Sclater & Salvin, 1881);Epinecrophylla gutturalis;choquinha-de-barriga-parda
+1729;Epinecrophylla leucophthalma (Pelzeln, 1868);Epinecrophylla leucophthalma;choquinha-de-olho-branco
+1733;Epinecrophylla haematonota (Sclater, 1857);Epinecrophylla haematonota;choquinha-de-garganta-carijó
+1734;Epinecrophylla pyrrhonota (Sclater & Salvin, 1873);Epinecrophylla pyrrhonota;choquinha-do-rio-negro
+1735;Epinecrophylla amazonica (Ihering, 1905);Epinecrophylla amazonica;choquinha-do-madeira
+1736;Epinecrophylla dentei Whitney, Isler, Bravo, Aristizábal, Schunck, Silveira & Piacentini, 2013;Epinecrophylla dentei;choquinha-do-rio-roosevelt
+1737;Epinecrophylla ornata (Sclater, 1853);Epinecrophylla ornata;choquinha-ornada
+1741;Epinecrophylla erythrura (Sclater, 1890);Epinecrophylla erythrura;choquinha-de-cauda-ruiva
+1744;Aprositornis disjuncta (Friedmann, 1945);Aprositornis disjuncta;formigueiro-de-yapacana
+1745;Ammonastes pelzelni (Sclater, 1890);Ammonastes pelzelni;formigueiro-de-barriga-cinza
+1746;Myrmophylax atrothorax (Boddaert, 1783);Myrmophylax atrothorax;formigueiro-de-peito-preto
+1751;Myrmochanes hemileucus (Sclater & Salvin, 1866);Myrmochanes hemileucus;formigueiro-preto-e-branco
+1752;Terenura sicki Teixeira & Gonzaga, 1983;Terenura sicki;zidedê-do-nordeste
+1753;Terenura maculata (Wied, 1831);Terenura maculata;zidedê
+1754;Myrmotherula brachyura (Hermann, 1783);Myrmotherula brachyura;choquinha-miúda
+1755;Myrmotherula obscura Zimmer, 1932;Myrmotherula obscura;choquinha-de-bico-curto
+1756;Myrmotherula ambigua Zimmer, 1932;Myrmotherula ambigua;choquinha-de-coroa-listrada
+1757;Myrmotherula sclateri Snethlage, 1912;Myrmotherula sclateri;choquinha-de-garganta-amarela
+1758;Myrmotherula surinamensis (Gmelin, 1788);Myrmotherula surinamensis;choquinha-estriada
+1759;Myrmotherula multostriata Sclater, 1858;Myrmotherula multostriata;choquinha-estriada-da-amazônia
+1760;Myrmotherula cherriei Berlepsch & Hartert, 1902;Myrmotherula cherriei;choquinha-de-peito-riscado
+1761;Myrmotherula klagesi Todd, 1927;Myrmotherula klagesi;choquinha-do-tapajós
+1762;Myrmotherula axillaris (Vieillot, 1817);Myrmotherula axillaris;choquinha-de-flanco-branco
+1767;Myrmotherula sunensis Chapman, 1925;Myrmotherula sunensis;choquinha-do-oeste
+1769;Myrmotherula minor Salvadori, 1864;Myrmotherula minor;choquinha-pequena
+1770;Myrmotherula longipennis Pelzeln, 1868;Myrmotherula longipennis;choquinha-de-asa-comprida
+1776;Myrmotherula urosticta (Sclater, 1857);Myrmotherula urosticta;choquinha-de-rabo-cintado
+1777;Myrmotherula iheringi Snethlage, 1914;Myrmotherula iheringi;choquinha-de-ihering
+1778;Myrmotherula oreni Miranda, Aleixo, Whitney, Silveira, Guilherme, Santos & Schneider, 2013;Myrmotherula oreni;choquinha-do-bambu
+1779;Myrmotherula heteroptera Todd, 1927;Myrmotherula heteroptera;choquinha-do-purus
+1780;Myrmotherula fluminensis Gonzaga, 1988;Myrmotherula fluminensis;choquinha-fluminense
+1781;Myrmotherula unicolor (Ménétries, 1835);Myrmotherula unicolor;choquinha-cinzenta
+1782;Myrmotherula snowi Teixeira & Gonzaga, 1985;Myrmotherula snowi;choquinha-de-alagoas
+1783;Myrmotherula behni Berlepsch & Leverkühn, 1890;Myrmotherula behni;choquinha-de-asa-lisa
+1786;Myrmotherula menetriesii (d'Orbigny, 1837);Myrmotherula menetriesii;choquinha-de-garganta-cinza
+1792;Myrmotherula assimilis Pelzeln, 1868;Myrmotherula assimilis;choquinha-da-várzea
+1795;Formicivora iheringi Hellmayr, 1909;Formicivora iheringi;formigueiro-do-nordeste
+1796;Formicivora erythronotos Hartlaub, 1852;Formicivora erythronotos;formigueiro-de-cabeça-negra
+1797;Formicivora grisea (Boddaert, 1783);Formicivora grisea;papa-formiga-pardo
+1800;Formicivora serrana Hellmayr, 1929;Formicivora serrana;formigueiro-da-serra
+1803;Formicivora littoralis Gonzaga & Pacheco, 1990;Formicivora littoralis;formigueiro-do-litoral
+1804;Formicivora melanogaster Pelzeln, 1868;Formicivora melanogaster;formigueiro-de-barriga-preta
+1807;Formicivora rufa (Wied, 1831);Formicivora rufa;papa-formiga-vermelho
+1811;Formicivora grantsaui Gonzaga, Carvalhaes & Buzzetti, 2007;Formicivora grantsaui;papa-formiga-do-sincorá
+1812;Formicivora paludicola Buzzetti, Belmonte-Lopes, Reinert, Silveira & Bornschein, 2014;Formicivora paludicola;bicudinho-do-brejo-paulista
+1813;Formicivora acutirostris (Bornschein, Reinert & Teixeira, 1995);Formicivora acutirostris;bicudinho-do-brejo
+1814;Isleria hauxwelli (Sclater, 1857);Isleria hauxwelli;choquinha-de-garganta-clara
+1819;Isleria guttata (Vieillot, 1825);Isleria guttata;choquinha-de-barriga-ruiva
+1820;Thamnomanes ardesiacus (Sclater & Salvin, 1867);Thamnomanes ardesiacus;uirapuru-de-garganta-preta
+1823;Thamnomanes saturninus (Pelzeln, 1868);Thamnomanes saturninus;uirapuru-selado
+1826;Thamnomanes caesius (Temminck, 1820);Thamnomanes caesius;ipecuá
+1832;Thamnomanes schistogynus Hellmayr, 1911;Thamnomanes schistogynus;uirapuru-azul
+1834;Dichrozona cincta (Pelzeln, 1868);Dichrozona cincta;tovaquinha
+1838;Rhopias gularis (Spix, 1825);Rhopias gularis;choquinha-de-garganta-pintada
+1839;Megastictus margaritatus (Sclater, 1855);Megastictus margaritatus;choca-pintada
+1840;Sakesphoroides cristatus (Wied, 1831);Sakesphoroides cristatus;choca-do-nordeste
+1841;Dysithamnus stictothorax (Temminck, 1823);Dysithamnus stictothorax;choquinha-de-peito-pintado
+1842;Dysithamnus mentalis (Temminck, 1823);Dysithamnus mentalis;choquinha-lisa
+1847;Dysithamnus xanthopterus Burmeister, 1856;Dysithamnus xanthopterus;choquinha-de-asa-ferrugem
+1848;Dysithamnus plumbeus (Wied, 1831);Dysithamnus plumbeus;choquinha-chumbo
+1849;Herpsilochmus pectoralis Sclater, 1857;Herpsilochmus pectoralis;chorozinho-de-papo-preto
+1850;Herpsilochmus roraimae Hellmayr, 1903;Herpsilochmus roraimae;chorozinho-de-roraima
+1853;Herpsilochmus longirostris Pelzeln, 1868;Herpsilochmus longirostris;chorozinho-de-bico-comprido
+1854;Herpsilochmus sticturus Salvin, 1885;Herpsilochmus sticturus;chorozinho-de-cauda-pintada
+1855;Herpsilochmus frater Sclater & Salvin, 1880;Herpsilochmus frater;chorozinho-de-asa-vermelha-do-norte
+1857;Herpsilochmus rufimarginatus (Temminck, 1822);Herpsilochmus rufimarginatus;chorozinho-de-asa-vermelha
+1860;Herpsilochmus stictocephalus Todd, 1927;Herpsilochmus stictocephalus;chorozinho-de-cabeça-pintada
+1861;Herpsilochmus dorsimaculatus Pelzeln, 1868;Herpsilochmus dorsimaculatus;chorozinho-de-costas-manchadas
+1862;Herpsilochmus praedictus Cohn-Haft & Bravo, 2013;Herpsilochmus praedictus;chorozinho-esperado
+1863;Herpsilochmus stotzi Whitney, Cohn-Haft, Bravo, Schunck & Silveira, 2013;Herpsilochmus stotzi;chorozinho-do-aripuanã
+1864;Herpsilochmus atricapillus Pelzeln, 1868;Herpsilochmus atricapillus;chorozinho-de-chapéu-preto
+1865;Herpsilochmus pileatus (Lichtenstein, 1823);Herpsilochmus pileatus;chorozinho-de-boné
+1866;Sakesphorus canadensis (Linnaeus, 1766);Sakesphorus canadensis;choca-de-crista-preta
+1869;Sakesphorus luctuosus (Lichtenstein, 1823);Sakesphorus luctuosus;choca-d'água
+1870;Thamnophilus doliatus (Linnaeus, 1764);Thamnophilus doliatus;choca-barrada
+1876;Thamnophilus capistratus Lesson, 1840;Thamnophilus capistratus;choca-barrada-do-nordeste
+1877;Thamnophilus ruficapillus Vieillot, 1816;Thamnophilus ruficapillus;choca-de-chapéu-vermelho
+1879;Thamnophilus torquatus Swainson, 1825;Thamnophilus torquatus;choca-de-asa-vermelha
+1880;Thamnophilus palliatus (Lichtenstein, 1823);Thamnophilus palliatus;choca-listrada
+1884;Thamnophilus schistaceus d'Orbigny, 1835;Thamnophilus schistaceus;choca-de-olho-vermelho
+1889;Thamnophilus murinus Sclater & Salvin, 1868;Thamnophilus murinus;choca-murina
+1893;Thamnophilus cryptoleucus (Ménégaux & Hellmayr, 1906);Thamnophilus cryptoleucus;choca-selada
+1894;Thamnophilus nigrocinereus Sclater, 1855;Thamnophilus nigrocinereus;choca-preta-e-cinza
+1900;Thamnophilus punctatus (Shaw, 1809);Thamnophilus punctatus;choca-bate-cabo
+1902;Thamnophilus stictocephalus Pelzeln, 1868;Thamnophilus stictocephalus;choca-de-natterer
+1904;Thamnophilus sticturus Pelzeln, 1868;Thamnophilus sticturus;choca-da-bolívia
+1905;Thamnophilus pelzelni Hellmayr, 1924;Thamnophilus pelzelni;choca-do-planalto
+1906;Thamnophilus ambiguus Swainson, 1825;Thamnophilus ambiguus;choca-de-sooretama
+1907;Thamnophilus caerulescens Vieillot, 1816;Thamnophilus caerulescens;choca-da-mata
+1915;Thamnophilus aethiops Sclater, 1858;Thamnophilus aethiops;choca-lisa
+1924;Thamnophilus melanothorax Sclater, 1857;Thamnophilus melanothorax;choca-de-cauda-pintada
+1925;Thamnophilus amazonicus Sclater, 1858;Thamnophilus amazonicus;choca-canela
+1931;Thamnophilus insignis Salvin & Godman, 1884;Thamnophilus insignis;choca-de-roraima
+1933;Thamnophilus divisorius Whitney, Oren & Brumfield, 2004;Thamnophilus divisorius;choca-do-acre
+1934;Cymbilaimus lineatus (Leach, 1814);Cymbilaimus lineatus;papa-formiga-barrado
+1937;Cymbilaimus sanctaemariae Gyldenstolpe, 1941;Cymbilaimus sanctaemariae;choca-do-bambu
+1938;Taraba major (Vieillot, 1816);Taraba major;choró-boi
+1944;Hypoedaleus guttatus (Vieillot, 1816);Hypoedaleus guttatus;chocão-carijó
+1947;Batara cinerea (Vieillot, 1819);Batara cinerea;matracão
+1949;Mackenziaena leachii (Such, 1825);Mackenziaena leachii;borralhara-assobiadora
+1950;Mackenziaena severa (Lichtenstein, 1823);Mackenziaena severa;borralhara
+1951;Frederickena viridis (Vieillot, 1816);Frederickena viridis;borralhara-do-norte
+1952;Frederickena unduliger (Pelzeln, 1868);Frederickena unduliger;borralhara-ondulada
+1956;Radinopsyche sellowi (Whitney & Pacheco, 2000);Radinopsyche sellowi;chorozinho-da-caatinga
+1957;Biatas nigropectus (Lafresnaye, 1850);Biatas nigropectus;papo-branco
+1958;Myrmoderus ferrugineus (Statius Muller, 1776);Myrmoderus ferrugineus;formigueiro-ferrugem
+1961;Myrmoderus ruficauda (Wied, 1831);Myrmoderus ruficauda;formigueiro-de-cauda-ruiva
+1964;Myrmoderus loricatus (Lichtenstein, 1823);Myrmoderus loricatus;formigueiro-assobiador
+1965;Myrmoderus squamosus (Pelzeln, 1868);Myrmoderus squamosus;papa-formiga-de-grota
+1966;Hypocnemoides maculicauda (Pelzeln, 1868);Hypocnemoides maculicauda;solta-asa
+1969;Hypocnemoides melanopogon (Sclater, 1857);Hypocnemoides melanopogon;solta-asa-do-norte
+1973;Hylophylax naevius (Gmelin, 1789);Hylophylax naevius;guarda-floresta
+1980;Hylophylax punctulatus (Des Murs, 1856);Hylophylax punctulatus;guarda-várzea
+1983;Sclateria naevia (Gmelin, 1788);Sclateria naevia;papa-formiga-do-igarapé
+1987;Myrmelastes saturatus (Salvin, 1885);Myrmelastes saturatus;formigueiro-de-roraima
+1989;Myrmelastes schistaceus (Sclater, 1858);Myrmelastes schistaceus;formigueiro-cinza
+1990;Myrmelastes hyperythrus (Sclater, 1855);Myrmelastes hyperythrus;formigueiro-chumbo
+1991;Myrmelastes rufifacies (Hellmayr, 1929);Myrmelastes rufifacies;formigueiro-de-cara-ruiva
+1992;Myrmelastes leucostigma (Pelzeln, 1868);Myrmelastes leucostigma;formigueiro-de-asa-pintada
+1996;Myrmelastes humaythae (Hellmayr, 1907);Myrmelastes humaythae;formigueiro-de-cauda-curta
+1997;Myrmelastes caurensis (Hellmayr, 1906);Myrmelastes caurensis;formigueiro-do-caura
+1999;Myrmeciza longipes (Swainson, 1825);Myrmeciza longipes;formigueiro-de-barriga-branca
+2001;Myrmoborus melanurus (Sclater & Salvin, 1866);Myrmoborus melanurus;formigueiro-de-cauda-preta
+2002;Myrmoborus lophotes (Hellmayr & Seilern, 1914);Myrmoborus lophotes;formigueiro-do-bambu
+2003;Myrmoborus myotherinus (Spix, 1825);Myrmoborus myotherinus;formigueiro-de-cara-preta
+2011;Myrmoborus leucophrys (Tschudi, 1844);Myrmoborus leucophrys;papa-formiga-de-sobrancelha
+2015;Myrmoborus berlepschi (Hellmayr, 1910);Myrmoborus berlepschi;formigueiro-liso-do-solimões
+2016;Myrmoborus stictopterus Todd, 1927;Myrmoborus stictopterus;formigueiro-liso-do-rio-negro
+2017;Myrmoborus lugubris (Cabanis, 1847);Myrmoborus lugubris;formigueiro-liso-do-pará
+2020;Pyriglena maura (Ménétries, 1835);Pyriglena maura;papa-taoca-do-pantanal
+2022;Pyriglena similis Zimmer, 1931;Pyriglena similis;papa-taoca-do-tapajós
+2023;Pyriglena leuconota (Spix, 1824);Pyriglena leuconota;papa-taoca-de-belém
+2026;Pyriglena pernambucensis Zimmer, 1931;Pyriglena pernambucensis;papa-taoca-de-pernambuco
+2027;Pyriglena atra (Swainson, 1825);Pyriglena atra;papa-taoca-da-bahia
+2028;Pyriglena leucoptera (Vieillot, 1818);Pyriglena leucoptera;papa-taoca-do-sul
+2029;Rhopornis ardesiacus (Wied, 1831);Rhopornis ardesiacus;gravatazeiro
+2030;Percnostola rufifrons (Gmelin, 1789);Percnostola rufifrons;formigueiro-de-cabeça-preta
+2031;Percnostola subcristata Hellmayr, 1908;Percnostola subcristata;formigueiro-de-hellmayr
+2032;Percnostola minor Pelzeln, 1868;Percnostola minor;formigueiro-de-pelzeln
+2033;Akletos melanoceps (Spix, 1825);Akletos melanoceps;formigueiro-grande
+2034;Akletos goeldii (Snethlage, 1908);Akletos goeldii;formigueiro-de-goeldi
+2035;Hafferia fortis (Sclater & Salvin, 1868);Hafferia fortis;formigueiro-de-taoca
+2038;Sciaphylax hemimelaena (Sclater, 1857);Sciaphylax hemimelaena;formigueiro-de-cauda-castanha
+2039;Sciaphylax pallens (Berlepsch & Hellmayr, 1905);Sciaphylax pallens;formigueiro-de-cauda-baia
+2040;Cercomacra manu Fitzpatrick & Willard, 1990;Cercomacra manu;chororó-de-manu
+2041;Cercomacra brasiliana Hellmayr, 1905;Cercomacra brasiliana;chororó-cinzento
+2042;Cercomacra cinerascens (Sclater, 1857);Cercomacra cinerascens;chororó-pocuá
+2047;Cercomacra melanaria (Ménétries, 1835);Cercomacra melanaria;chororó-do-pantanal
+2048;Cercomacra ferdinandi Snethlage, 1928;Cercomacra ferdinandi;chororó-de-goiás
+2049;Cercomacra carbonaria Sclater & Salvin, 1873;Cercomacra carbonaria;chororó-do-rio-branco
+2050;Cercomacroides nigrescens (Cabanis & Heine, 1859);Cercomacroides nigrescens;chororó-negro
+2053;Cercomacroides fuscicauda (Zimmer, 1931);Cercomacroides fuscicauda;chororó-negro-do-acre
+2054;Cercomacroides laeta (Todd, 1920);Cercomacroides laeta;chororó-didi
+2058;Cercomacroides tyrannina (Sclater, 1855);Cercomacroides tyrannina;chororó-escuro
+2061;Cercomacroides serva (Sclater, 1858);Cercomacroides serva;chororó-preto
+2063;Drymophila ferruginea (Temminck, 1822);Drymophila ferruginea;dituí
+2064;Drymophila rubricollis (Bertoni, 1901);Drymophila rubricollis;choquinha-dublê
+2065;Drymophila genei (Filippi, 1847);Drymophila genei;choquinha-da-serra
+2066;Drymophila ochropyga (Hellmayr, 1906);Drymophila ochropyga;choquinha-de-dorso-vermelho
+2067;Drymophila malura (Temminck, 1825);Drymophila malura;choquinha-carijó
+2068;Drymophila squamata (Lichtenstein, 1823);Drymophila squamata;pintadinho
+2071;Drymophila devillei (Ménégaux & Hellmayr, 1906);Drymophila devillei;choquinha-listrada
+2074;Hypocnemis hypoxantha Sclater, 1869;Hypocnemis hypoxantha;cantador-amarelo
+2077;Hypocnemis subflava Cabanis, 1873;Hypocnemis subflava;cantador-galego
+2079;Hypocnemis cantator (Boddaert, 1783);Hypocnemis cantator;cantador-da-guiana
+2082;Hypocnemis flavescens Sclater, 1865;Hypocnemis flavescens;cantador-sulfúreo
+2085;Hypocnemis peruviana Taczanowski, 1884;Hypocnemis peruviana;cantador-sinaleiro
+2088;Hypocnemis ochrogyna Zimmer, 1932;Hypocnemis ochrogyna;cantador-ocráceo
+2089;Hypocnemis rondoni Whitney, Isler, Bravo, Aristizábal, Schunck, Silveira, Piacentini, Cohn-Haft & Rêgo, 2013;Hypocnemis rondoni;cantador-de-rondon
+2090;Hypocnemis striata (Spix, 1825);Hypocnemis striata;cantador-estriado
+2094;Pithys albifrons (Linnaeus, 1766);Pithys albifrons;papa-formiga-de-topete
+2098;Willisornis poecilinotus (Cabanis, 1847);Willisornis poecilinotus;rendadinho
+2103;Willisornis vidua (Hellmayr, 1905);Willisornis vidua;rendadinho-do-xingu
+2106;Phlegopsis nigromaculata (d'Orbigny & Lafresnaye, 1837);Phlegopsis nigromaculata;mãe-de-taoca
+2111;Phlegopsis borbae Hellmayr, 1907;Phlegopsis borbae;mãe-de-taoca-dourada
+2112;Phlegopsis erythroptera (Gould, 1855);Phlegopsis erythroptera;mãe-de-taoca-avermelhada
+2115;Gymnopithys leucaspis (Sclater, 1855);Gymnopithys leucaspis;mãe-de-taoca-bochechuda
+2117;Gymnopithys rufigula (Boddaert, 1783);Gymnopithys rufigula;mãe-de-taoca-de-garganta-vermelha
+2121;Oneillornis salvini (Berlepsch, 1901);Oneillornis salvini;mãe-de-taoca-de-cauda-barrada
+2124;Rhegmatorhina gymnops Ridgway, 1888;Rhegmatorhina gymnops;mãe-de-taoca-de-cara-branca
+2125;Rhegmatorhina berlepschi (Snethlage, 1907);Rhegmatorhina berlepschi;mãe-de-taoca-arlequim
+2126;Rhegmatorhina hoffmannsi (Hellmayr, 1907);Rhegmatorhina hoffmannsi;mãe-de-taoca-papuda
+2127;Rhegmatorhina cristata (Pelzeln, 1868);Rhegmatorhina cristata;mãe-de-taoca-cristada
+2128;Rhegmatorhina melanosticta (Sclater & Salvin, 1880);Rhegmatorhina melanosticta;mãe-de-taoca-cabeçuda
+2132;Melanopareia bitorquata (d'Orbigny & Lafresnaye, 1837);Melanopareia bitorquata;meia-lua-de-coleira-dupla
+2133;Melanopareia torquata (Wied, 1831);Melanopareia torquata;meia-lua-do-cerrado
+2137;Conopophaga melanogaster Ménétries, 1835;Conopophaga melanogaster;chupa-dente-grande
+2138;Conopophaga melanops (Vieillot, 1818);Conopophaga melanops;cuspidor-de-máscara-preta
+2142;Conopophaga aurita (Gmelin, 1789);Conopophaga aurita;chupa-dente-de-cinta
+2148;Conopophaga peruviana Des Murs, 1856;Conopophaga peruviana;chupa-dente-do-peru
+2149;Conopophaga cearae Cory, 1916;Conopophaga cearae;chupa-dente-do-nordeste
+2150;Conopophaga roberti Hellmayr, 1905;Conopophaga roberti;chupa-dente-de-capuz
+2151;Conopophaga lineata (Wied, 1831);Conopophaga lineata;chupa-dente
+2156;Grallaria varia (Boddaert, 1783);Grallaria varia;tovacuçu
+2162;Grallaria guatimalensis Lafresnaye, 1842;Grallaria guatimalensis;tovacuçu-corujinha
+2164;Grallaria eludens Lowery & O'Neill, 1969;Grallaria eludens;tovacuçu-xodó
+2165;Cryptopezus nattereri (Pinto, 1937);Cryptopezus nattereri;pinto-do-mato
+2166;Grallaricula nana (Lafresnaye, 1842);Grallaricula nana;tovaquinha-de-coroa-cinza
+2168;Hylopezus ochroleucus (Wied, 1831);Hylopezus ochroleucus;pompeu
+2169;Hylopezus macularius (Temminck, 1823);Hylopezus macularius;torom-carijó
+2170;Hylopezus dilutus (Hellmayr, 1910);Hylopezus dilutus;torom-do-imeri
+2171;Hylopezus whittakeri Carneiro, Gonzaga, Rêgo, Sampaio, Schneider & Aleixo, 2012;Hylopezus whittakeri;torom-de-alta-floresta
+2172;Hylopezus paraensis Snethlage, 1910;Hylopezus paraensis;torom-do-pará
+2173;Myrmothera berlepschi (Hellmayr, 1903);Myrmothera berlepschi;torom-torom
+2176;Myrmothera campanisona (Hermann, 1783);Myrmothera campanisona;tovaca-patinho
+2180;Myrmothera simplex (Salvin & Godman, 1884);Myrmothera simplex;torom-de-peito-pardo
+2184;Myrmothera subcanescens Todd, 1927;Myrmothera subcanescens;tovaca-do-tapajós
+2186;Psilorhamphus guttatus (Ménétries, 1835);Psilorhamphus guttatus;tapaculo-pintado
+2187;Liosceles thoracicus (Sclater, 1865);Liosceles thoracicus;corneteiro-da-mata
+2190;Merulaxis ater Lesson, 1830;Merulaxis ater;entufado
+2191;Merulaxis stresemanni Sick, 1960;Merulaxis stresemanni;entufado-baiano
+2192;Eleoscytalopus indigoticus (Wied, 1831);Eleoscytalopus indigoticus;macuquinho
+2193;Eleoscytalopus psychopompus (Teixeira & Carnevalli, 1989);Eleoscytalopus psychopompus;macuquinho-baiano
+2194;Scytalopus iraiensis Bornschein, Reinert & Pichorim, 1998;Scytalopus iraiensis;tapaculo-da-várzea
+2195;Scytalopus diamantinensis Bornschein, Maurício, Belmonte-Lopes, Mata & Bonatto, 2007;Scytalopus diamantinensis;tapaculo-da-chapada-diamantina
+2196;Scytalopus novacapitalis Sick, 1958;Scytalopus novacapitalis;tapaculo-de-brasília
+2197;Scytalopus petrophilus Whitney, Vasconcelos, Silveira & Pacheco, 2010;Scytalopus petrophilus;tapaculo-serrano
+2198;Scytalopus pachecoi Maurício, 2005;Scytalopus pachecoi;tapaculo-ferreirinho
+2199;Scytalopus gonzagai Maurício, Belmonte-Lopes, Pacheco, Silveira, Whitney & Bornschein, 2014;Scytalopus gonzagai;tapaculo-preto-baiano
+2200;Scytalopus speluncae (Ménétries, 1835);Scytalopus speluncae;tapaculo-preto
+2202;Formicarius colma Boddaert, 1783;Formicarius colma;galinha-do-mato
+2207;Formicarius analis (d'Orbigny & Lafresnaye, 1837);Formicarius analis;pinto-do-mato-de-cara-preta
+2212;Formicarius rufifrons Blake, 1957;Formicarius rufifrons;pinto-do-mato-de-fronte-ruiva
+2213;Chamaeza campanisona (Lichtenstein, 1823);Chamaeza campanisona;tovaca-campainha
+2216;Chamaeza nobilis Gould, 1855;Chamaeza nobilis;tovaca-estriada
+2220;Chamaeza meruloides Vigors, 1825;Chamaeza meruloides;tovaca-cantadora
+2221;Chamaeza ruficauda (Cabanis & Heine, 1859);Chamaeza ruficauda;tovaca-de-rabo-vermelho
+2223;Sclerurus peruvianus (Chubb, 1919);Sclerurus peruvianus;vira-folha-peruano
+2224;Sclerurus macconnelli Chubb, 1919;Sclerurus macconnelli;vira-folha-de-peito-vermelho
+2227;Sclerurus rufigularis Pelzeln, 1868;Sclerurus rufigularis;vira-folha-de-bico-curto
+2232;Sclerurus caudacutus (Vieillot, 1816);Sclerurus caudacutus;vira-folha-pardo
+2239;Sclerurus albigularis Sclater & Salvin, 1869;Sclerurus albigularis;vira-folha-de-garganta-cinza
+2242;Sclerurus cearensis Snethlage, 1924;Sclerurus cearensis;vira-folha-cearense
+2243;Sclerurus scansor (Ménétries, 1835);Sclerurus scansor;vira-folha
+2244;Geositta cunicularia (Vieillot, 1816);Geositta cunicularia;curriqueiro
+2246;Geositta poeciloptera (Wied, 1830);Geositta poeciloptera;andarilho
+2248;Certhiasomus stictolaemus (Pelzeln, 1868);Certhiasomus stictolaemus;arapaçu-de-garganta-pintada
+2252;Sittasomus griseicapillus (Vieillot, 1818);Sittasomus griseicapillus;arapaçu-verde
+2260;Deconychura longicauda (Pelzeln, 1868);Deconychura longicauda;arapaçu-rabudo
+2265;Dendrocincla merula (Lichtenstein, 1829);Dendrocincla merula;arapaçu-da-taoca
+2273;Dendrocincla fuliginosa (Vieillot, 1818);Dendrocincla fuliginosa;arapaçu-pardo
+2278;Dendrocincla atrirostris (d'Orbigny & Lafresnaye, 1838);Dendrocincla atrirostris;arapaçu-pardo-de-mato-grosso
+2279;Dendrocincla taunayi Pinto, 1939;Dendrocincla taunayi;arapaçu-pardo-do-nordeste
+2280;Dendrocincla turdina (Lichtenstein, 1820);Dendrocincla turdina;arapaçu-liso
+2281;Glyphorynchus spirurus (Vieillot, 1819);Glyphorynchus spirurus;arapaçu-bico-de-cunha
+2290;Dendrexetastes rufigula (Lesson, 1844);Dendrexetastes rufigula;arapaçu-galinha-da-guiana
+2291;Dendrexetastes devillei (Lafresnaye, 1850);Dendrexetastes devillei;arapaçu-galinha-ocidental
+2292;Dendrexetastes paraensis Lorenz von Liburnau, 1895;Dendrexetastes paraensis;arapaçu-galinha-do-pará
+2295;Nasica longirostris (Vieillot, 1818);Nasica longirostris;arapaçu-de-bico-comprido
+2296;Dendrocolaptes certhia (Boddaert, 1783);Dendrocolaptes certhia;arapaçu-barrado
+2297;Dendrocolaptes radiolatus Sclater & Salvin, 1868;Dendrocolaptes radiolatus;arapaçu-barrado-do-napo
+2298;Dendrocolaptes juruanus Ihering, 1905;Dendrocolaptes juruanus;arapaçu-barrado-do-juruá
+2299;Dendrocolaptes concolor Pelzeln, 1868;Dendrocolaptes concolor;arapaçu-concolor
+2300;Dendrocolaptes ridgwayi Hellmayr, 1905;Dendrocolaptes ridgwayi;arapaçu-barrado-do-tapajós
+2301;Dendrocolaptes retentus Batista, Aleixo, Vallinoto, Azevedo, Rêgo, Silveira, Sampaio & Schneider, 2013;Dendrocolaptes retentus;arapaçu-barrado-do-xingu
+2302;Dendrocolaptes medius Todd, 1920;Dendrocolaptes medius;arapaçu-barrado-do-leste
+2303;Dendrocolaptes picumnus Lichtenstein, 1820;Dendrocolaptes picumnus;arapaçu-meio-barrado
+2307;Dendrocolaptes hoffmannsi Hellmayr, 1909;Dendrocolaptes hoffmannsi;arapaçu-marrom
+2308;Dendrocolaptes transfasciatus Todd, 1925;Dendrocolaptes transfasciatus;arapaçu-meio-barrado-do-xingu
+2309;Dendrocolaptes platyrostris Spix, 1825;Dendrocolaptes platyrostris;arapaçu-grande
+2312;Hylexetastes stresemanni Snethlage, 1925;Hylexetastes stresemanni;arapaçu-de-barriga-pintada
+2316;Hylexetastes perrotii (Lafresnaye, 1844);Hylexetastes perrotii;arapaçu-de-bico-vermelho
+2317;Hylexetastes uniformis Hellmayr, 1909;Hylexetastes uniformis;arapaçu-uniforme
+2320;Xiphocolaptes promeropirhynchus (Lesson, 1840);Xiphocolaptes promeropirhynchus;arapaçu-vermelho
+2324;Xiphocolaptes carajaensis Silva, Novaes & Oren, 2002;Xiphocolaptes carajaensis;arapaçu-do-carajás
+2325;Xiphocolaptes falcirostris (Spix, 1824);Xiphocolaptes falcirostris;arapaçu-do-nordeste
+2328;Xiphocolaptes albicollis (Vieillot, 1818);Xiphocolaptes albicollis;arapaçu-de-garganta-branca
+2332;Xiphocolaptes major (Vieillot, 1818);Xiphocolaptes major;arapaçu-do-campo
+2335;Xiphorhynchus obsoletus (Lichtenstein, 1820);Xiphorhynchus obsoletus;arapaçu-riscado
+2339;Xiphorhynchus fuscus (Vieillot, 1818);Xiphorhynchus fuscus;arapaçu-rajado
+2343;Xiphorhynchus atlanticus (Cory, 1916);Xiphorhynchus atlanticus;arapaçu-rajado-do-nordeste
+2344;Xiphorhynchus pardalotus (Vieillot, 1818);Xiphorhynchus pardalotus;arapaçu-assobiador
+2347;Xiphorhynchus chunchotambo (Tschudi, 1844);Xiphorhynchus chunchotambo;arapaçu-de-tschudi
+2349;Xiphorhynchus beauperthuysii (Pucheran & Lafresnaye, 1850);Xiphorhynchus beauperthuysii;arapaçu-ocelado-do-norte
+2350;Xiphorhynchus ocellatus (Spix, 1824);Xiphorhynchus ocellatus;arapaçu-ocelado
+2353;Xiphorhynchus elegans (Pelzeln, 1868);Xiphorhynchus elegans;arapaçu-elegante
+2357;Xiphorhynchus spixii (Lesson, 1830);Xiphorhynchus spixii;arapaçu-de-spix
+2358;Xiphorhynchus guttatus (Lichtenstein, 1820);Xiphorhynchus guttatus;arapaçu-de-garganta-amarela
+2362;Xiphorhynchus guttatoides (Lafresnaye, 1850);Xiphorhynchus guttatoides;arapaçu-de-lafresnaye
+2368;Dendroplex picus (Gmelin, 1788);Dendroplex picus;arapaçu-de-bico-branco
+2374;Dendroplex kienerii (Des Murs, 1855);Dendroplex kienerii;arapaçu-ferrugem
+2375;Campylorhamphus trochilirostris (Lichtenstein, 1820);Campylorhamphus trochilirostris;arapaçu-beija-flor
+2384;Campylorhamphus falcularius (Vieillot, 1822);Campylorhamphus falcularius;arapaçu-de-bico-torto
+2385;Campylorhamphus multostriatus (Snethlage, 1907);Campylorhamphus multostriatus;arapaçu-de-bico-curvo-do-xingu
+2386;Campylorhamphus probatus Zimmer, 1934;Campylorhamphus probatus;arapaçu-de-bico-curvo-de-rondônia
+2387;Campylorhamphus cardosoi Portes, Aleixo, Zimmer, Whittaker, Weckstein, Gonzaga, Ribas, Bates & Lees, 2013;Campylorhamphus cardosoi;arapaçu-do-tapajós
+2388;Campylorhamphus procurvoides (Lafresnaye, 1850);Campylorhamphus procurvoides;arapaçu-de-bico-curvo
+2389;Campylorhamphus sanus Zimmer, 1934;Campylorhamphus sanus;arapaçu-de-bico-curvo-do-napo
+2390;Campylorhamphus gyldenstolpei Aleixo, Portes, Whittaker, Weckstein, Gonzaga, Zimmer, Ribas & Bates, 2013;Campylorhamphus gyldenstolpei;arapaçu-do-tupana
+2391;Drymornis bridgesii (Eyton, 1849);Drymornis bridgesii;arapaçu-platino
+2392;Lepidocolaptes souleyetii (Des Murs, 1849);Lepidocolaptes souleyetii;arapaçu-listrado
+2394;Lepidocolaptes angustirostris (Vieillot, 1818);Lepidocolaptes angustirostris;arapaçu-de-cerrado
+2395;Lepidocolaptes wagleri (Spix, 1824);Lepidocolaptes wagleri;arapaçu-de-wagler
+2396;Lepidocolaptes squamatus (Lichtenstein, 1822);Lepidocolaptes squamatus;arapaçu-escamoso
+2397;Lepidocolaptes falcinellus (Cabanis & Heine, 1859);Lepidocolaptes falcinellus;arapaçu-escamoso-do-sul
+2398;Lepidocolaptes duidae Zimmer, 1934;Lepidocolaptes duidae;arapaçu-do-duida
+2399;Lepidocolaptes albolineatus (Lafresnaye, 1845);Lepidocolaptes albolineatus;arapaçu-de-listras-brancas
+2400;Lepidocolaptes fatimalimae Rodrigues, Aleixo, Whittaker & Naka, 2013;Lepidocolaptes fatimalimae;arapaçu-do-inambari
+2401;Lepidocolaptes fuscicapillus (Pelzeln, 1868);Lepidocolaptes fuscicapillus;arapaçu-de-rondônia
+2402;Lepidocolaptes layardi (Sclater, 1873);Lepidocolaptes layardi;arapaçu-de-listras-brancas-do-leste
+2404;Xenops tenuirostris Pelzeln, 1859;Xenops tenuirostris;bico-virado-fino
+2408;Xenops minutus (Sparrman, 1788);Xenops minutus;bico-virado-miúdo
+2415;Xenops rutilans Temminck, 1821;Xenops rutilans;bico-virado-carijó
+2420;Berlepschia rikeri (Ridgway, 1886);Berlepschia rikeri;limpa-folha-do-buriti
+2421;Microxenops milleri Chapman, 1914;Microxenops milleri;bico-virado-da-copa
+2422;Tarphonomus certhioides (d'Orbigny & Lafresnaye, 1838);Tarphonomus certhioides;joão-chaquenho
+2424;Furnarius figulus (Lichtenstein, 1823);Furnarius figulus;casaca-de-couro-da-lama
+2427;Furnarius leucopus Swainson, 1838;Furnarius leucopus;casaca-de-couro-amarelo
+2432;Furnarius torridus Sclater & Salvin, 1866;Furnarius torridus;joão-de-bico-pálido
+2433;Furnarius minor Pelzeln, 1858;Furnarius minor;joãozinho
+2434;Furnarius rufus (Gmelin, 1788);Furnarius rufus;joão-de-barro
+2438;Lochmias nematura (Lichtenstein, 1823);Lochmias nematura;joão-porca
+2441;Phleocryptes melanops (Vieillot, 1817);Phleocryptes melanops;bate-bico
+2443;Limnornis curvirostris Gould, 1839;Limnornis curvirostris;joão-da-palha
+2444;Cinclodes espinhacensis Freitas, Chaves, Costa, Santos & Rodrigues, 2012;Cinclodes espinhacensis;pedreiro-do-espinhaço
+2445;Cinclodes pabsti Sick, 1969;Cinclodes pabsti;pedreiro
+2446;Cinclodes fuscus (Vieillot, 1818);Cinclodes fuscus;pedreiro-dos-andes
+2447;Anabazenops dorsalis (Sclater & Salvin, 1880);Anabazenops dorsalis;barranqueiro-de-topete
+2448;Anabazenops fuscus (Vieillot, 1816);Anabazenops fuscus;trepador-coleira
+2449;Megaxenops parnaguae Reiser, 1905;Megaxenops parnaguae;bico-virado-da-caatinga
+2450;Cichlocolaptes mazarbarnetti Barnett & Buzzetti, 2014;Cichlocolaptes mazarbarnetti;trepador-do-nordeste
+2451;Cichlocolaptes leucophrus (Jardine & Selby, 1830);Cichlocolaptes leucophrus;trepador-sobrancelha
+2454;Heliobletus contaminatus Pelzeln, 1859;Heliobletus contaminatus;trepadorzinho
+2457;Philydor erythrocercum (Pelzeln, 1859);Philydor erythrocercum;limpa-folha-de-sobre-ruivo
+2461;Philydor novaesi Teixeira & Gonzaga, 1983;Philydor novaesi;limpa-folha-do-nordeste
+2462;Philydor atricapillus (Wied, 1821);Philydor atricapillus;limpa-folha-coroado
+2463;Philydor pyrrhodes (Cabanis, 1848);Philydor pyrrhodes;limpa-folha-vermelho
+2464;Anabacerthia ruficaudata (d'Orbigny & Lafresnaye, 1838);Anabacerthia ruficaudata;limpa-folha-de-cauda-ruiva
+2467;Anabacerthia amaurotis (Temminck, 1823);Anabacerthia amaurotis;limpa-folha-miúdo
+2468;Anabacerthia lichtensteini (Cabanis & Heine, 1859);Anabacerthia lichtensteini;limpa-folha-ocráceo
+2469;Syndactyla rufosuperciliata (Lafresnaye, 1832);Syndactyla rufosuperciliata;trepador-quiete
+2472;Syndactyla dimidiata (Pelzeln, 1859);Syndactyla dimidiata;limpa-folha-do-brejo
+2473;Syndactyla roraimae (Hellmayr, 1917);Syndactyla roraimae;barranqueiro-de-roraima
+2477;Syndactyla ucayalae (Chapman, 1928);Syndactyla ucayalae;limpa-folha-de-bico-virado
+2478;Ancistrops strigilatus (Spix, 1825);Ancistrops strigilatus;limpa-folha-picanço
+2481;Dendroma rufa (Vieillot, 1818);Dendroma rufa;limpa-folha-de-testa-baia
+2485;Dendroma erythroptera (Sclater, 1856);Dendroma erythroptera;limpa-folha-de-asa-castanha
+2488;Clibanornis rectirostris (Wied, 1831);Clibanornis rectirostris;cisqueiro-do-rio
+2489;Clibanornis dendrocolaptoides (Pelzeln, 1859);Clibanornis dendrocolaptoides;cisqueiro
+2490;Clibanornis obscurus (Pelzeln, 1859);Clibanornis obscurus;barranqueiro-ferrugem
+2493;Clibanornis watkinsorum (Hellmayr, 1912);Clibanornis watkinsorum;barranqueiro-ferrugem-do-acre
+2494;Automolus rufipileatus (Pelzeln, 1859);Automolus rufipileatus;barranqueiro-de-coroa-castanha
+2497;Automolus melanopezus (Sclater, 1858);Automolus melanopezus;barranqueiro-escuro
+2498;Automolus cervicalis Sclater, 1889;Automolus cervicalis;barranqueiro-pardo-do-norte
+2501;Automolus subulatus (Spix, 1824);Automolus subulatus;limpa-folha-riscado
+2503;Automolus ochrolaemus (Tschudi, 1844);Automolus ochrolaemus;barranqueiro-camurça
+2507;Automolus infuscatus (Sclater, 1856);Automolus infuscatus;barranqueiro-pardo
+2510;Automolus paraensis Hartert, 1902;Automolus paraensis;barranqueiro-do-pará
+2511;Automolus lammi Zimmer, 1947;Automolus lammi;barranqueiro-do-nordeste
+2512;Automolus leucophthalmus (Wied, 1821);Automolus leucophthalmus;barranqueiro-de-olho-branco
+2515;Leptasthenura platensis Reichenbach, 1853;Leptasthenura platensis;rabudinho
+2516;Leptasthenura striolata (Pelzeln, 1856);Leptasthenura striolata;grimpeirinho
+2517;Leptasthenura setaria (Temminck, 1824);Leptasthenura setaria;grimpeiro
+2518;Phacellodomus rufifrons (Wied, 1821);Phacellodomus rufifrons;joão-de-pau
+2522;Phacellodomus sibilatrix Sclater, 1879;Phacellodomus sibilatrix;tio-tio-pequeno
+2523;Phacellodomus striaticollis (d'Orbigny & Lafresnaye, 1838);Phacellodomus striaticollis;tio-tio
+2524;Phacellodomus ruber (Vieillot, 1817);Phacellodomus ruber;graveteiro
+2525;Phacellodomus erythrophthalmus (Wied, 1821);Phacellodomus erythrophthalmus;joão-botina-da-mata
+2526;Phacellodomus ferrugineigula (Pelzeln, 1858);Phacellodomus ferrugineigula;joão-botina-do-brejo
+2527;Anumbius annumbi (Vieillot, 1817);Anumbius annumbi;cochicho
+2528;Coryphistera alaudina Burmeister, 1860;Coryphistera alaudina;corredor-crestudo
+2530;Asthenes baeri (Berlepsch, 1906);Asthenes baeri;lenheiro
+2532;Asthenes luizae Vielliard, 1990;Asthenes luizae;lenheiro-da-serra-do-cipó
+2533;Asthenes hudsoni (Sclater, 1874);Asthenes hudsoni;joão-platino
+2534;Asthenes moreirae (Miranda-Ribeiro, 1906);Asthenes moreirae;garrincha-chorona
+2535;Asthenes pyrrholeuca (Vieillot, 1817);Asthenes pyrrholeuca;lenheiro-de-rabo-comprido
+2537;Acrobatornis fonsecai Pacheco, Whitney & Gonzaga, 1996;Acrobatornis fonsecai;acrobata
+2538;Metopothrix aurantiaca Sclater & Salvin, 1866;Metopothrix aurantiaca;joão-folheiro
+2539;Roraimia adusta (Salvin & Godman, 1884);Roraimia adusta;joão-de-roraima
+2542;Thripophaga macroura (Wied, 1821);Thripophaga macroura;rabo-amarelo
+2543;Thripophaga fusciceps Sclater, 1889;Thripophaga fusciceps;joão-liso
+2545;Limnoctites rectirostris (Gould, 1839);Limnoctites rectirostris;arredio-do-gravatá
+2546;Limnoctites sulphuriferus (Burmeister, 1869);Limnoctites sulphuriferus;arredio-de-papo-manchado
+2547;Cranioleuca vulpina (Pelzeln, 1856);Cranioleuca vulpina;arredio-do-rio
+2550;Cranioleuca vulpecula (Sclater & Salvin, 1866);Cranioleuca vulpecula;arredio-de-peito-branco
+2551;Cranioleuca pyrrhophia (Vieillot, 1818);Cranioleuca pyrrhophia;arredio
+2553;Cranioleuca obsoleta (Reichenbach, 1853);Cranioleuca obsoleta;arredio-oliváceo
+2554;Cranioleuca pallida (Wied, 1831);Cranioleuca pallida;arredio-pálido
+2555;Cranioleuca semicinerea (Reichenbach, 1853);Cranioleuca semicinerea;joão-de-cabeça-cinza
+2558;Cranioleuca demissa (Salvin & Godman, 1884);Cranioleuca demissa;joão-do-tepui
+2561;Cranioleuca gutturata (d'Orbigny & Lafresnaye, 1838);Cranioleuca gutturata;joão-pintado
+2562;Cranioleuca muelleri (Hellmayr, 1911);Cranioleuca muelleri;joão-escamoso
+2563;Spartonoica maluroides (d'Orbigny & Lafresnaye, 1837);Spartonoica maluroides;boininha
+2564;Pseudoseisura cristata (Spix, 1824);Pseudoseisura cristata;casaca-de-couro
+2565;Pseudoseisura unirufa (d'Orbigny & Lafresnaye, 1838);Pseudoseisura unirufa;casaca-de-couro-de-crista-cinza
+2566;Pseudoseisura lophotes (Reichenbach, 1853);Pseudoseisura lophotes;coperete
+2568;Certhiaxis cinnamomeus (Gmelin, 1788);Certhiaxis cinnamomeus;curutié
+2573;Certhiaxis mustelinus (Sclater, 1874);Certhiaxis mustelinus;joão-da-canarana
+2574;Mazaria propinqua (Pelzeln, 1859);Mazaria propinqua;joão-de-barriga-branca
+2575;Schoeniophylax phryganophilus (Vieillot, 1817);Schoeniophylax phryganophilus;bichoita
+2578;Synallaxis scutata Sclater, 1859;Synallaxis scutata;estrelinha-preta
+2582;Synallaxis cinerascens Temminck, 1823;Synallaxis cinerascens;pi-puí
+2583;Synallaxis gujanensis (Gmelin, 1789);Synallaxis gujanensis;joão-teneném-becuá
+2586;Synallaxis simoni Hellmayr, 1907;Synallaxis simoni;joão-do-araguaia
+2587;Synallaxis albilora Pelzeln, 1856;Synallaxis albilora;joão-do-pantanal
+2588;Synallaxis hellmayri Reiser, 1905;Synallaxis hellmayri;joão-xique-xique
+2589;Synallaxis sp. [cabanisi sensu Zimmer et al. 1997];Synallaxis sp.;joão-do-norte
+2590;Synallaxis ruficapilla Vieillot, 1819;Synallaxis ruficapilla;pichororé
+2591;Synallaxis cinerea Wied, 1831;Synallaxis cinerea;joão-baiano
+2592;Synallaxis infuscata Pinto, 1950;Synallaxis infuscata;tatac
+2593;Synallaxis macconnelli Chubb, 1919;Synallaxis macconnelli;joão-escuro
+2596;Synallaxis hypospodia Sclater, 1874;Synallaxis hypospodia;joão-grilo
+2597;Synallaxis spixi Sclater, 1856;Synallaxis spixi;joão-teneném
+2598;Synallaxis albigularis Sclater, 1858;Synallaxis albigularis;joão-de-peito-escuro
+2600;Synallaxis albescens Temminck, 1823;Synallaxis albescens;uí-pi
+2605;Synallaxis frontalis Pelzeln, 1859;Synallaxis frontalis;petrim
+2606;Synallaxis kollari Pelzeln, 1856;Synallaxis kollari;joão-de-barba-grisalha
+2607;Synallaxis rutilans Temminck, 1823;Synallaxis rutilans;joão-teneném-castanho
+2614;Synallaxis cherriei Gyldenstolpe, 1930;Synallaxis cherriei;puruchém
+2617;Neopelma pallescens (Lafresnaye, 1853);Neopelma pallescens;fruxu-do-cerradão
+2618;Neopelma chrysocephalum (Pelzeln, 1868);Neopelma chrysocephalum;fruxu-do-carrasco
+2619;Neopelma aurifrons (Wied, 1831);Neopelma aurifrons;fruxu-baiano
+2620;Neopelma chrysolophum Pinto, 1944;Neopelma chrysolophum;fruxu
+2621;Neopelma sulphureiventer (Hellmayr, 1903);Neopelma sulphureiventer;fruxu-de-barriga-amarela
+2622;Tyranneutes stolzmanni (Hellmayr, 1906);Tyranneutes stolzmanni;uirapuruzinho
+2623;Tyranneutes virescens (Pelzeln, 1868);Tyranneutes virescens;uirapuruzinho-do-norte
+2624;Ilicura militaris (Shaw & Nodder, 1809);Ilicura militaris;tangarazinho
+2625;Corapipo gutturalis (Linnaeus, 1766);Corapipo gutturalis;dançarino-de-garganta-branca
+2626;Chiroxiphia pareola (Linnaeus, 1766);Chiroxiphia pareola;tangará-príncipe
+2627;Chiroxiphia regina Sclater, 1856;Chiroxiphia regina;tangará-de-coroa-amarela
+2628;Chiroxiphia caudata (Shaw & Nodder, 1793);Chiroxiphia caudata;tangará
+2629;Antilophia bokermanni Coelho & Silva, 1998;Antilophia bokermanni;soldadinho-do-araripe
+2630;Antilophia galeata (Lichtenstein, 1823);Antilophia galeata;soldadinho
+2631;Xenopipo uniformis (Salvin & Godman, 1884);Xenopipo uniformis;dançarino-oliváceo
+2633;Xenopipo atronitens Cabanis, 1847;Xenopipo atronitens;pretinho
+2634;Lepidothrix coronata (Spix, 1825);Lepidothrix coronata;uirapuru-de-chapéu-azul
+2638;Lepidothrix nattereri (Sclater, 1865);Lepidothrix nattereri;uirapuru-de-chapéu-branco
+2641;Lepidothrix vilasboasi (Sick, 1959);Lepidothrix vilasboasi;dançador-de-coroa-dourada
+2642;Lepidothrix iris (Schinz, 1851);Lepidothrix iris;cabeça-de-prata
+2645;Lepidothrix serena (Linnaeus, 1766);Lepidothrix serena;uirapuru-estrela
+2646;Lepidothrix suavissima (Salvin & Godman, 1882);Lepidothrix suavissima;dançador-do-tepui
+2647;Manacus manacus (Linnaeus, 1766);Manacus manacus;rendeira
+2656;Heterocercus aurantiivertex Sclater & Salvin, 1880;Heterocercus aurantiivertex;dançarino-de-crista-laranja
+2657;Heterocercus flavivertex Pelzeln, 1868;Heterocercus flavivertex;dançarino-de-crista-amarela
+2658;Heterocercus linteatus (Strickland, 1850);Heterocercus linteatus;coroa-de-fogo
+2659;Pipra aureola (Linnaeus, 1758);Pipra aureola;uirapuru-vermelho
+2664;Pipra filicauda Spix, 1825;Pipra filicauda;rabo-de-arame
+2666;Pipra fasciicauda Hellmayr, 1906;Pipra fasciicauda;uirapuru-laranja
+2670;Machaeropterus regulus (Hahn, 1819);Machaeropterus regulus;tangará-rajado
+2671;Machaeropterus striolatus (Bonaparte, 1838);Machaeropterus striolatus;tangará-riscado
+2674;Machaeropterus pyrocephalus (Sclater, 1852);Machaeropterus pyrocephalus;uirapuru-cigarra
+2677;Pseudopipra pipra (Linnaeus, 1758);Pseudopipra pipra;cabeça-branca
+2682;Ceratopipra cornuta (Spix, 1825);Ceratopipra cornuta;dançador-de-crista
+2683;Ceratopipra erythrocephala (Linnaeus, 1758);Ceratopipra erythrocephala;cabeça-de-ouro
+2686;Ceratopipra rubrocapilla (Temminck, 1821);Ceratopipra rubrocapilla;cabeça-encarnada
+2687;Ceratopipra chloromeros (Tschudi, 1844);Ceratopipra chloromeros;dançador-de-cauda-graduada
+2689;Pipreola whitelyi Salvin & Godman, 1884;Pipreola whitelyi;anambé-dos-tepuis
+2691;Carpornis cucullata (Swainson, 1821);Carpornis cucullata;corocoxó
+2692;Carpornis melanocephala (Wied, 1820);Carpornis melanocephala;sabiá-pimenta
+2693;Rupicola rupicola (Linnaeus, 1766);Rupicola rupicola;galo-da-serra
+2694;Phoenicircus carnifex (Linnaeus, 1758);Phoenicircus carnifex;saurá
+2695;Phoenicircus nigricollis Swainson, 1832;Phoenicircus nigricollis;saurá-de-pescoço-preto
+2696;Phytotoma rutila Vieillot, 1818;Phytotoma rutila;corta-ramos
+2698;Phibalura flavirostris Vieillot, 1816;Phibalura flavirostris;tesourinha-da-mata
+2699;Haematoderus militaris (Shaw, 1792);Haematoderus militaris;anambé-militar
+2700;Querula purpurata (Statius Muller, 1776);Querula purpurata;anambé-una
+2701;Pyroderus scutatus (Shaw, 1792);Pyroderus scutatus;pavó
+2703;Perissocephalus tricolor (Statius Muller, 1776);Perissocephalus tricolor;maú
+2704;Cephalopterus ornatus Saint-Hilaire, 1809;Cephalopterus ornatus;anambé-preto
+2705;Lipaugus streptophorus (Salvin & Godman, 1884);Lipaugus streptophorus;cricrió-de-cinta-vermelha
+2706;Lipaugus vociferans (Wied, 1820);Lipaugus vociferans;cricrió
+2707;Lipaugus lanioides (Lesson, 1844);Lipaugus lanioides;tropeiro-da-serra
+2708;Lipaugus ater (Ferrusac, 1829);Lipaugus ater;saudade
+2709;Lipaugus conditus (Snow, 1980);Lipaugus conditus;saudade-de-asa-cinza
+2710;Procnias albus (Hermann, 1783);Procnias albus;araponga-da-amazônia
+2711;Procnias averano (Hermann, 1783);Procnias averano;araponga-do-nordeste
+2714;Procnias nudicollis (Vieillot, 1817);Procnias nudicollis;araponga
+2715;Cotinga maynana (Linnaeus, 1766);Cotinga maynana;anambé-turquesa
+2716;Cotinga cayana (Linnaeus, 1766);Cotinga cayana;anambé-azul
+2717;Cotinga cotinga (Linnaeus, 1766);Cotinga cotinga;anambé-de-peito-roxo
+2718;Cotinga maculata (Statius Muller, 1776);Cotinga maculata;crejoá
+2719;Porphyrolaema porphyrolaema (Deville & Sclater, 1852);Porphyrolaema porphyrolaema;anambé-de-garganta-encarnada
+2720;Gymnoderus foetidus (Linnaeus, 1758);Gymnoderus foetidus;anambé-pombo
+2721;Conioptilon mcilhennyi Lowery & O'Neill, 1966;Conioptilon mcilhennyi;anambé-de-cara-preta
+2722;Xipholena punicea (Pallas, 1764);Xipholena punicea;anambé-roxo
+2723;Xipholena lamellipennis (Lafresnaye, 1839);Xipholena lamellipennis;anambé-de-rabo-branco
+2724;Xipholena atropurpurea (Wied, 1820);Xipholena atropurpurea;anambé-de-asa-branca
+2726;Schiffornis major Des Murs, 1856;Schiffornis major;flautim-ruivo
+2728;Schiffornis virescens (Lafresnaye, 1838);Schiffornis virescens;flautim
+2729;Schiffornis turdina (Wied, 1831);Schiffornis turdina;flautim-marrom
+2733;Schiffornis olivacea (Ridgway, 1906);Schiffornis olivacea;flautim-oliváceo
+2734;Schiffornis amazonum (Sclater, 1860);Schiffornis amazonum;flautim-da-amazônia
+2735;Laniocera hypopyrra (Vieillot, 1817);Laniocera hypopyrra;chorona-cinza
+2736;Laniisoma elegans (Thunberg, 1823);Laniisoma elegans;chibante
+2737;Iodopleura isabellae Parzudaki, 1847;Iodopleura isabellae;anambé-de-coroa
+2740;Iodopleura fusca (Vieillot, 1817);Iodopleura fusca;anambé-fusco
+2741;Iodopleura pipra (Lesson, 1831);Iodopleura pipra;anambezinho
+2744;Tityra inquisitor (Lichtenstein, 1823);Tityra inquisitor;anambé-branco-de-bochecha-parda
+2749;Tityra cayana (Linnaeus, 1766);Tityra cayana;anambé-branco-de-rabo-preto
+2752;Tityra semifasciata (Spix, 1825);Tityra semifasciata;anambé-branco-de-máscara-negra
+2755;Pachyramphus viridis (Vieillot, 1816);Pachyramphus viridis;caneleiro-verde
+2758;Pachyramphus xanthogenys Salvadori & Festa, 1898;Pachyramphus xanthogenys;caneleiro-de-cara-amarela
+2760;Pachyramphus rufus (Boddaert, 1783);Pachyramphus rufus;caneleiro-cinzento
+2763;Pachyramphus castaneus (Jardine & Selby, 1827);Pachyramphus castaneus;caneleiro
+2767;Pachyramphus polychopterus (Vieillot, 1818);Pachyramphus polychopterus;caneleiro-preto
+2772;Pachyramphus marginatus (Lichtenstein, 1823);Pachyramphus marginatus;caneleiro-bordado
+2775;Pachyramphus surinamus (Linnaeus, 1766);Pachyramphus surinamus;caneleiro-da-guiana
+2776;Pachyramphus minor (Lesson, 1830);Pachyramphus minor;caneleiro-pequeno
+2777;Pachyramphus validus (Lichtenstein, 1823);Pachyramphus validus;caneleiro-de-chapéu-preto
+2779;Xenopsaris albinucha (Burmeister, 1869);Xenopsaris albinucha;tijerila
+2783;Oxyruncus cristatus Swainson, 1821;Oxyruncus cristatus;araponga-do-horto
+2789;Onychorhynchus coronatus (Statius Muller, 1776);Onychorhynchus coronatus;maria-leque
+2792;Onychorhynchus swainsoni (Pelzeln, 1858);Onychorhynchus swainsoni;maria-leque-do-sudeste
+2793;Terenotriccus erythrurus (Cabanis, 1847);Terenotriccus erythrurus;papa-moscas-uirapuru
+2801;Myiobius barbatus (Gmelin, 1789);Myiobius barbatus;assanhadinho
+2806;Myiobius atricaudus Lawrence, 1863;Myiobius atricaudus;assanhadinho-de-cauda-preta
+2812;Piprites chloris (Temminck, 1822);Piprites chloris;papinho-amarelo
+2818;Piprites pileata (Temminck, 1822);Piprites pileata;caneleirinho-de-chapéu-preto
+2820;Calyptura cristata (Vieillot, 1818);Calyptura cristata;tietê-de-coroa
+2821;Neopipo cinnamomea (Lawrence, 1869);Neopipo cinnamomea;enferrujadinho
+2824;Platyrinchus saturatus Salvin & Godman, 1882;Platyrinchus saturatus;patinho-escuro
+2827;Platyrinchus mystaceus Vieillot, 1818;Platyrinchus mystaceus;patinho
+2834;Platyrinchus coronatus Sclater, 1858;Platyrinchus coronatus;patinho-de-coroa-dourada
+2837;Platyrinchus platyrhynchos (Gmelin, 1788);Platyrinchus platyrhynchos;patinho-de-coroa-branca
+2842;Platyrinchus leucoryphus Wied, 1831;Platyrinchus leucoryphus;patinho-de-asa-castanha
+2844;Tachuris rubrigastra (Vieillot, 1817);Tachuris rubrigastra;papa-piri
+2847;Mionectes amazonus (Todd, 1921);Mionectes amazonus;abre-asa-do-acre
+2848;Mionectes oleagineus (Lichtenstein, 1823);Mionectes oleagineus;abre-asa
+2850;Mionectes roraimae Chubb, 1919;Mionectes roraimae;abre-asa-do-tepui
+2851;Mionectes macconnelli (Chubb, 1919);Mionectes macconnelli;abre-asa-da-mata
+2853;Mionectes rufiventris Cabanis, 1846;Mionectes rufiventris;abre-asa-de-cabeça-cinza
+2854;Leptopogon amaurocephalus Tschudi, 1846;Leptopogon amaurocephalus;cabeçudo
+2859;Corythopis torquatus Tschudi, 1844;Corythopis torquatus;estalador-do-norte
+2862;Corythopis delalandi (Lesson, 1830);Corythopis delalandi;estalador
+2863;Phylloscartes chapmani Gilliard, 1940;Phylloscartes chapmani;barbudinho-do-tepui
+2866;Phylloscartes eximius (Temminck, 1822);Phylloscartes eximius;barbudinho
+2867;Phylloscartes ventralis (Temminck, 1824);Phylloscartes ventralis;borboletinha-do-mato
+2869;Phylloscartes kronei Willis & Oniki, 1992;Phylloscartes kronei;maria-da-restinga
+2870;Phylloscartes beckeri Gonzaga & Pacheco, 1995;Phylloscartes beckeri;borboletinha-baiana
+2871;Phylloscartes virescens Todd, 1925;Phylloscartes virescens;borboletinha-guianense
+2872;Phylloscartes nigrifrons (Salvin & Godman, 1884);Phylloscartes nigrifrons;maria-de-testa-preta
+2873;Phylloscartes ceciliae Teixeira, 1987;Phylloscartes ceciliae;cara-pintada
+2874;Phylloscartes roquettei Snethlage, 1928;Phylloscartes roquettei;cara-dourada
+2875;Phylloscartes paulista Ihering & Ihering, 1907;Phylloscartes paulista;não-pode-parar
+2876;Phylloscartes oustaleti (Sclater, 1887);Phylloscartes oustaleti;papa-moscas-de-olheiras
+2877;Phylloscartes difficilis (Ihering & Ihering, 1907);Phylloscartes difficilis;estalinho
+2878;Phylloscartes sylviolus (Cabanis & Heine, 1859);Phylloscartes sylviolus;maria-pequena
+2879;Rhynchocyclus olivaceus (Temminck, 1820);Rhynchocyclus olivaceus;bico-chato-grande
+2884;Tolmomyias sulphurescens (Spix, 1825);Tolmomyias sulphurescens;bico-chato-de-orelha-preta
+2891;Tolmomyias assimilis (Pelzeln, 1868);Tolmomyias assimilis;bico-chato-da-copa
+2897;Tolmomyias sucunduri Whitney, Schunck, Rêgo & Silveira, 2013;Tolmomyias sucunduri;bico-chato-do-sucunduri
+2898;Tolmomyias poliocephalus (Taczanowski, 1884);Tolmomyias poliocephalus;bico-chato-de-cabeça-cinza
+2901;Tolmomyias flaviventris (Wied, 1831);Tolmomyias flaviventris;bico-chato-amarelo
+2908;Taeniotriccus andrei (Berlepsch & Hartert, 1902);Taeniotriccus andrei;maria-bonita
+2911;Cnipodectes subbrunneus (Sclater, 1860);Cnipodectes subbrunneus;flautim-pardo
+2913;Cnipodectes superrufus Lane, Servat, Valqui & Lambert, 2007;Cnipodectes superrufus;flautim-rufo
+2914;Todirostrum maculatum (Desmarest, 1806);Todirostrum maculatum;ferreirinho-estriado
+2919;Todirostrum poliocephalum (Wied, 1831);Todirostrum poliocephalum;teque-teque
+2920;Todirostrum cinereum (Linnaeus, 1766);Todirostrum cinereum;ferreirinho-relógio
+2924;Todirostrum pictum Salvin, 1897;Todirostrum pictum;ferreirinho-pintado
+2925;Todirostrum chrysocrotaphum Strickland, 1850;Todirostrum chrysocrotaphum;ferreirinho-de-sobrancelha
+2931;Poecilotriccus albifacies (Blake, 1959);Poecilotriccus albifacies;ferreirinho-de-cara-branca
+2932;Poecilotriccus capitalis (Sclater, 1857);Poecilotriccus capitalis;maria-picaça
+2933;Poecilotriccus senex (Pelzeln, 1868);Poecilotriccus senex;maria-do-madeira
+2934;Poecilotriccus russatus (Salvin & Godman, 1884);Poecilotriccus russatus;ferreirinho-ferrugem
+2935;Poecilotriccus plumbeiceps (Lafresnaye, 1846);Poecilotriccus plumbeiceps;tororó
+2938;Poecilotriccus fumifrons (Hartlaub, 1853);Poecilotriccus fumifrons;ferreirinho-de-testa-parda
+2941;Poecilotriccus latirostris (Pelzeln, 1868);Poecilotriccus latirostris;ferreirinho-de-cara-parda
+2947;Poecilotriccus sylvia (Desmarest, 1806);Poecilotriccus sylvia;ferreirinho-da-capoeira
+2950;Myiornis auricularis (Vieillot, 1818);Myiornis auricularis;miudinho
+2953;Myiornis ecaudatus (d'Orbigny & Lafresnaye, 1837);Myiornis ecaudatus;caçula
+2956;Hemitriccus cohnhafti Zimmer, Whittaker, Sardelli, Guilherme & Aleixo, 2013;Hemitriccus cohnhafti;maria-sebinha-do-acre
+2957;Hemitriccus minor (Snethlage, 1907);Hemitriccus minor;maria-sebinha
+2961;Hemitriccus flammulatus Berlepsch, 1901;Hemitriccus flammulatus;maria-de-peito-marchetado
+2963;Hemitriccus diops (Temminck, 1822);Hemitriccus diops;olho-falso
+2964;Hemitriccus obsoletus (Miranda-Ribeiro, 1906);Hemitriccus obsoletus;catraca
+2967;Hemitriccus josephinae (Chubb, 1914);Hemitriccus josephinae;maria-bicudinha
+2968;Hemitriccus zosterops (Pelzeln, 1868);Hemitriccus zosterops;maria-de-olho-branco
+2970;Hemitriccus griseipectus (Snethlage, 1907);Hemitriccus griseipectus;maria-de-barriga-branca
+2973;Hemitriccus orbitatus (Wied, 1831);Hemitriccus orbitatus;tiririzinho-do-mato
+2974;Hemitriccus iohannis (Snethlage, 1907);Hemitriccus iohannis;maria-peruviana
+2975;Hemitriccus striaticollis (Lafresnaye, 1853);Hemitriccus striaticollis;sebinho-rajado-amarelo
+2978;Hemitriccus nidipendulus (Wied, 1831);Hemitriccus nidipendulus;tachuri-campainha
+2981;Hemitriccus margaritaceiventer (d'Orbigny & Lafresnaye, 1837);Hemitriccus margaritaceiventer;sebinho-de-olho-de-ouro
+2985;Hemitriccus inornatus (Pelzeln, 1868);Hemitriccus inornatus;maria-da-campina
+2986;Hemitriccus minimus (Todd, 1925);Hemitriccus minimus;maria-mirim
+2987;Hemitriccus mirandae (Snethlage, 1925);Hemitriccus mirandae;maria-do-nordeste
+2988;Hemitriccus kaempferi (Zimmer, 1953);Hemitriccus kaempferi;maria-catarinense
+2989;Hemitriccus furcatus (Lafresnaye, 1846);Hemitriccus furcatus;papa-moscas-estrela
+2990;Atalotriccus pilaris (Cabanis, 1847);Atalotriccus pilaris;maria-de-olho-claro
+2992;Lophotriccus vitiosus (Bangs & Penard, 1921);Lophotriccus vitiosus;maria-fiteira
+2996;Lophotriccus eulophotes Todd, 1925;Lophotriccus eulophotes;maria-topetuda
+2997;Lophotriccus galeatus (Boddaert, 1783);Lophotriccus galeatus;sebinho-de-penacho
+2999;Hirundinea ferruginea (Gmelin, 1788);Hirundinea ferruginea;gibão-de-couro
+3002;Zimmerius chicomendesi Whitney, Schunck, Rêgo & Silveira, 2013;Zimmerius chicomendesi;poaieiro-de-chico-mendes
+3003;Zimmerius acer (Salvin & Godman, 1883);Zimmerius acer;poaieiro-da-guiana
+3004;Zimmerius gracilipes (Sclater & Salvin, 1868);Zimmerius gracilipes;poaieiro-de-pata-fina
+3007;Stigmatura napensis Chapman, 1926;Stigmatura napensis;papa-moscas-do-sertão
+3010;Stigmatura budytoides (d'Orbigny & Lafresnaye, 1837);Stigmatura budytoides;alegrinho-balança-rabo
+3012;Inezia inornata (Salvadori, 1897);Inezia inornata;alegrinho-do-chaco
+3013;Inezia subflava (Sclater & Salvin, 1873);Inezia subflava;amarelinho
+3016;Inezia caudata (Salvin, 1897);Inezia caudata;amarelinho-da-amazônia
+3018;Euscarthmus meloryphus Wied, 1831;Euscarthmus meloryphus;barulhento
+3019;Euscarthmus rufomarginatus (Pelzeln, 1868);Euscarthmus rufomarginatus;maria-corruíra
+3022;Tyranniscus burmeisteri (Cabanis & Heine, 1859);Tyranniscus burmeisteri;piolhinho-chiador
+3024;Ornithion inerme Hartlaub, 1853;Ornithion inerme;poaieiro-de-sobrancelha
+3025;Camptostoma obsoletum (Temminck, 1824);Camptostoma obsoletum;risadinha
+3030;Elaenia flavogaster (Thunberg, 1822);Elaenia flavogaster;guaracava-de-barriga-amarela
+3032;Elaenia spectabilis Pelzeln, 1868;Elaenia spectabilis;guaracava-grande
+3033;Elaenia ridleyana Sharpe, 1888;Elaenia ridleyana;cocoruta
+3034;Elaenia chilensis Hellmayr, 1927;Elaenia chilensis;guaracava-de-crista-branca
+3035;Elaenia parvirostris Pelzeln, 1868;Elaenia parvirostris;tuque-pium
+3036;Elaenia mesoleuca (Deppe, 1830);Elaenia mesoleuca;tuque
+3037;Elaenia pelzelni Berlepsch, 1907;Elaenia pelzelni;guaracava-do-rio
+3038;Elaenia cristata Pelzeln, 1868;Elaenia cristata;guaracava-de-topete-uniforme
+3041;Elaenia chiriquensis Lawrence, 1865;Elaenia chiriquensis;chibum
+3043;Elaenia ruficeps Pelzeln, 1868;Elaenia ruficeps;guaracava-de-topete-vermelho
+3044;Elaenia obscura (d'Orbigny & Lafresnaye, 1837);Elaenia obscura;tucão
+3046;Elaenia dayi Chapman, 1929;Elaenia dayi;guaracava-dos-tepuis
+3048;Elaenia olivina Salvin & Godman, 1884;Elaenia olivina;guaracava-serrana
+3051;Suiriri suiriri (Vieillot, 1818);Suiriri suiriri;suiriri-cinzento
+3055;Myiopagis gaimardii (d'Orbigny, 1839);Myiopagis gaimardii;maria-pechim
+3059;Myiopagis caniceps (Swainson, 1835);Myiopagis caniceps;guaracava-cinzenta
+3062;Myiopagis flavivertex (Sclater, 1887);Myiopagis flavivertex;guaracava-de-penacho-amarelo
+3063;Myiopagis viridicata (Vieillot, 1817);Myiopagis viridicata;guaracava-de-crista-alaranjada
+3065;Tyrannulus elatus (Latham, 1790);Tyrannulus elatus;maria-te-viu
+3066;Capsiempis flaveola (Lichtenstein, 1823);Capsiempis flaveola;marianinha-amarela
+3070;Phaeomyias murina (Spix, 1825);Phaeomyias murina;bagageiro
+3074;Phyllomyias virescens (Temminck, 1824);Phyllomyias virescens;piolhinho-verdoso
+3075;Phyllomyias reiseri Hellmayr, 1905;Phyllomyias reiseri;piolhinho-do-grotão
+3076;Phyllomyias fasciatus (Thunberg, 1822);Phyllomyias fasciatus;piolhinho
+3080;Phyllomyias griseiceps (Sclater & Salvin, 1871);Phyllomyias griseiceps;piolhinho-de-cabeça-cinza
+3082;Phyllomyias weedeni Herzog, Kessler & Balderrama, 2008;Phyllomyias weedeni;piolhinho-do-acre
+3083;Phyllomyias griseocapilla Sclater, 1862;Phyllomyias griseocapilla;piolhinho-serrano
+3084;Mecocerculus leucophrys (d'Orbigny & Lafresnaye, 1837);Mecocerculus leucophrys;alegrinho-de-garganta-branca
+3086;Culicivora caudacuta (Vieillot, 1818);Culicivora caudacuta;papa-moscas-do-campo
+3087;Polystictus pectoralis (Vieillot, 1817);Polystictus pectoralis;papa-moscas-canela
+3090;Polystictus superciliaris (Wied, 1831);Polystictus superciliaris;papa-moscas-de-costas-cinzentas
+3091;Pseudocolopteryx sclateri (Oustalet, 1892);Pseudocolopteryx sclateri;tricolino
+3092;Pseudocolopteryx acutipennis (Sclater & Salvin, 1873);Pseudocolopteryx acutipennis;tricolino-oliváceo
+3093;Pseudocolopteryx flaviventris (d'Orbigny & Lafresnaye, 1837);Pseudocolopteryx flaviventris;amarelinho-do-junco
+3094;Serpophaga hypoleuca Sclater & Salvin, 1866;Serpophaga hypoleuca;alegrinho-do-rio
+3097;Serpophaga nigricans (Vieillot, 1817);Serpophaga nigricans;joão-pobre
+3098;Serpophaga subcristata (Vieillot, 1817);Serpophaga subcristata;alegrinho
+3102;Serpophaga griseicapilla Straneck, 2008;Serpophaga griseicapilla;alegrinho-trinador
+3103;Attila phoenicurus Pelzeln, 1868;Attila phoenicurus;capitão-castanho
+3104;Attila cinnamomeus (Gmelin, 1789);Attila cinnamomeus;tinguaçu-ferrugem
+3105;Attila citriniventris Sclater, 1859;Attila citriniventris;tinguaçu-de-barriga-amarela
+3106;Attila bolivianus Lafresnaye, 1848;Attila bolivianus;bate-para
+3109;Attila rufus (Vieillot, 1819);Attila rufus;capitão-de-saíra
+3112;Attila spadiceus (Gmelin, 1789);Attila spadiceus;capitão-de-saíra-amarelo
+3115;Legatus leucophaius (Vieillot, 1818);Legatus leucophaius;bem-te-vi-pirata
+3117;Ramphotrigon megacephalum (Swainson, 1835);Ramphotrigon megacephalum;maria-cabeçuda
+3121;Ramphotrigon ruficauda (Spix, 1825);Ramphotrigon ruficauda;bico-chato-de-rabo-vermelho
+3122;Ramphotrigon fuscicauda Chapman, 1925;Ramphotrigon fuscicauda;maria-de-cauda-escura
+3123;Myiarchus tuberculifer (d'Orbigny & Lafresnaye, 1837);Myiarchus tuberculifer;maria-cavaleira-pequena
+3125;Myiarchus swainsoni Cabanis & Heine, 1859;Myiarchus swainsoni;irré
+3130;Myiarchus ferox (Gmelin, 1789);Myiarchus ferox;maria-cavaleira
+3133;Myiarchus tyrannulus (Statius Muller, 1776);Myiarchus tyrannulus;maria-cavaleira-de-rabo-enferrujado
+3136;Sirystes albocinereus Sclater & Salvin, 1880;Sirystes albocinereus;gritador-de-sobre-branco
+3137;Sirystes subcanescens Todd, 1920;Sirystes subcanescens;gritador-da-guiana
+3138;Sirystes sibilator (Vieillot, 1818);Sirystes sibilator;gritador
+3139;Rhytipterna simplex (Lichtenstein, 1823);Rhytipterna simplex;vissiá
+3142;Rhytipterna immunda (Sclater & Salvin, 1873);Rhytipterna immunda;vissiá-cantor
+3143;Casiornis rufus (Vieillot, 1816);Casiornis rufus;maria-ferrugem
+3144;Casiornis fuscus Sclater & Salvin, 1873;Casiornis fuscus;caneleiro-enxofre
+3145;Pitangus sulphuratus (Linnaeus, 1766);Pitangus sulphuratus;bem-te-vi
+3150;Philohydor lictor (Lichtenstein, 1823);Philohydor lictor;bentevizinho-do-brejo
+3152;Machetornis rixosa (Vieillot, 1819);Machetornis rixosa;suiriri-cavaleiro
+3154;Myiodynastes luteiventris Sclater, 1859;Myiodynastes luteiventris;bem-te-vi-de-barriga-sulfúrea
+3155;Myiodynastes maculatus (Statius Muller, 1776);Myiodynastes maculatus;bem-te-vi-rajado
+3158;Tyrannopsis sulphurea (Spix, 1825);Tyrannopsis sulphurea;suiriri-de-garganta-rajada
+3159;Megarynchus pitangua (Linnaeus, 1766);Megarynchus pitangua;neinei
+3161;Myiozetetes cayanensis (Linnaeus, 1766);Myiozetetes cayanensis;bentevizinho-de-asa-ferrugínea
+3164;Myiozetetes similis (Spix, 1825);Myiozetetes similis;bentevizinho-de-penacho-vermelho
+3167;Myiozetetes granadensis Lawrence, 1862;Myiozetetes granadensis;bem-te-vi-de-cabeça-cinza
+3169;Myiozetetes luteiventris (Sclater, 1858);Myiozetetes luteiventris;bem-te-vi-barulhento
+3172;Tyrannus albogularis Burmeister, 1856;Tyrannus albogularis;suiriri-de-garganta-branca
+3173;Tyrannus melancholicus Vieillot, 1819;Tyrannus melancholicus;suiriri
+3176;Tyrannus monachus Hartlaub, 1844;Tyrannus monachus;tesourinha-do-norte
+3179;Tyrannus savana Daudin, 1802;Tyrannus savana;tesourinha
+3180;Tyrannus tyrannus (Linnaeus, 1758);Tyrannus tyrannus;suiriri-valente
+3181;Tyrannus dominicensis (Gmelin, 1788);Tyrannus dominicensis;suiriri-cinza
+3183;Griseotyrannus aurantioatrocristatus (d'Orbigny & Lafresnaye, 1837);Griseotyrannus aurantioatrocristatus;peitica-de-chapéu-preto
+3186;Empidonomus varius (Vieillot, 1818);Empidonomus varius;peitica
+3189;Conopias trivirgatus (Wied, 1831);Conopias trivirgatus;bem-te-vi-pequeno
+3192;Conopias parvus (Pelzeln, 1868);Conopias parvus;bem-te-vi-da-copa
+3193;Guyramemua affine (Burmeister, 1856);Guyramemua affine;suiriri-da-chapada
+3194;Sublegatus obscurior Todd, 1920;Sublegatus obscurior;sertanejo-escuro
+3195;Sublegatus modestus (Wied, 1831);Sublegatus modestus;guaracava-modesta
+3198;Colonia colonus (Vieillot, 1818);Colonia colonus;viuvinha
+3202;Arundinicola leucocephala (Linnaeus, 1764);Arundinicola leucocephala;freirinha
+3203;Fluvicola pica (Boddaert, 1783);Fluvicola pica;lavadeira-do-norte
+3204;Fluvicola albiventer (Spix, 1825);Fluvicola albiventer;lavadeira-de-cara-branca
+3205;Fluvicola nengeta (Linnaeus, 1766);Fluvicola nengeta;lavadeira-mascarada
+3207;Pyrocephalus rubinus (Boddaert, 1783);Pyrocephalus rubinus;príncipe
+3210;Muscipipra vetula (Lichtenstein, 1823);Muscipipra vetula;tesoura-cinzenta
+3211;Gubernetes yetapa (Vieillot, 1818);Gubernetes yetapa;tesoura-do-brejo
+3212;Heteroxolmis dominicanus (Vieillot, 1823);Heteroxolmis dominicanus;noivinha-de-rabo-preto
+3213;Alectrurus tricolor (Vieillot, 1816);Alectrurus tricolor;galito
+3214;Alectrurus risora (Vieillot, 1824);Alectrurus risora;tesoura-do-campo
+3215;Myiophobus fasciatus (Statius Muller, 1776);Myiophobus fasciatus;filipe
+3219;Scotomyias roraimae (Salvin & Godman, 1883);Scotomyias roraimae;filipe-do-tepui
+3222;Ochthornis littoralis (Pelzeln, 1868);Ochthornis littoralis;maria-da-praia
+3223;Cnemotriccus fuscatus (Wied, 1831);Cnemotriccus fuscatus;guaracavuçu
+3230;Lathrotriccus euleri (Cabanis, 1868);Lathrotriccus euleri;enferrujado
+3234;Empidonax alnorum Brewster, 1895;Empidonax alnorum;papa-moscas-de-alder
+3235;Contopus cooperi (Nuttall, 1831);Contopus cooperi;piuí-boreal
+3236;Contopus fumigatus (d'Orbigny & Lafresnaye, 1837);Contopus fumigatus;piuí-de-topete
+3238;Contopus virens (Linnaeus, 1766);Contopus virens;piuí-verdadeiro-do-leste
+3239;Contopus cinereus (Spix, 1825);Contopus cinereus;papa-moscas-cinzento
+3244;Contopus sordidulus Sclater, 1859;Contopus sordidulus;piuí-verdadeiro-do-oeste
+3246;Contopus albogularis (Berlioz, 1962);Contopus albogularis;piuí-queixado
+3247;Contopus nigrescens (Sclater & Salvin, 1880);Contopus nigrescens;piuí-preto
+3249;Satrapa icterophrys (Vieillot, 1818);Satrapa icterophrys;suiriri-pequeno
+3250;Syrtidicola fluviatilis (Sclater & Salvin, 1866);Syrtidicola fluviatilis;gaúcha-d'água
+3251;Muscisaxicola maculirostris d'Orbigny & Lafresnaye, 1837;Muscisaxicola maculirostris;gaúcha-de-bico-manchado
+3253;Muscisaxicola maclovianus (Garnot, 1826);Muscisaxicola maclovianus;gaúcha-de-cara-suja
+3255;Muscisaxicola capistratus (Garnot, 1826);Muscisaxicola capistratus;gaúcha-de-barriga-alaranjada
+3256;Lessonia rufa (Gmelin, 1789);Lessonia rufa;colegial
+3257;Hymenops perspicillatus (Gmelin, 1789);Hymenops perspicillatus;viuvinha-de-óculos
+3259;Knipolegus orenocensis Berlepsch, 1864;Knipolegus orenocensis;maria-preta-ribeirinha
+3262;Knipolegus poecilurus (Sclater, 1862);Knipolegus poecilurus;maria-preta-de-cauda-ruiva
+3264;Knipolegus poecilocercus (Pelzeln, 1868);Knipolegus poecilocercus;maria-preta-do-igapó
+3265;Knipolegus franciscanus Snethlage, 1928;Knipolegus franciscanus;maria-preta-do-nordeste
+3266;Knipolegus lophotes Boie, 1828;Knipolegus lophotes;maria-preta-de-penacho
+3267;Knipolegus nigerrimus (Vieillot, 1818);Knipolegus nigerrimus;maria-preta-de-garganta-vermelha
+3270;Knipolegus cyanirostris (Vieillot, 1818);Knipolegus cyanirostris;maria-preta-de-bico-azulado
+3271;Knipolegus striaticeps (d'Orbigny & Lafresnaye, 1837);Knipolegus striaticeps;maria-preta-acinzentada
+3272;Knipolegus hudsoni Sclater, 1872;Knipolegus hudsoni;maria-preta-do-sul
+3273;Knipolegus aterrimus Kaup, 1853;Knipolegus aterrimus;maria-preta-bate-rabo
+3275;Xolmis irupero (Vieillot, 1823);Xolmis irupero;noivinha
+3278;Xolmis velatus (Lichtenstein, 1823);Xolmis velatus;noivinha-branca
+3279;Nengetus cinereus (Vieillot, 1816);Nengetus cinereus;primavera
+3282;Nengetus coronatus (Vieillot, 1823);Nengetus coronatus;noivinha-coroada
+3283;Nengetus rubetra (Burmeister, 1860);Nengetus rubetra;noivinha-castanha
+3284;Nengetus rufiventris (Vieillot, 1823);Nengetus rufiventris;gaúcho-chocolate
+3285;Agriornis micropterus Gould, 1839;Agriornis micropterus;gaúcho-de-barriga-cinza
+3287;Agriornis murinus (d'Orbigny & Lafresnaye, 1837);Agriornis murinus;gauchinho
+3289;Cyclarhis gujanensis (Gmelin, 1789);Cyclarhis gujanensis;pitiguari
+3293;Vireolanius leucotis (Swainson, 1838);Vireolanius leucotis;assobiador-do-castanhal
+3296;Hylophilus amaurocephalus (Nordmann, 1835);Hylophilus amaurocephalus;vite-vite-de-olho-cinza
+3297;Hylophilus poicilotis Temminck, 1822;Hylophilus poicilotis;verdinho-coroado
+3298;Hylophilus pectoralis Sclater, 1866;Hylophilus pectoralis;vite-vite-de-cabeça-cinza
+3299;Hylophilus semicinereus Sclater & Salvin, 1867;Hylophilus semicinereus;verdinho-da-várzea
+3303;Hylophilus brunneiceps Sclater, 1866;Hylophilus brunneiceps;vite-vite-de-cabeça-marrom
+3304;Hylophilus thoracicus Temminck, 1822;Hylophilus thoracicus;vite-vite
+3308;Tunchiornis ochraceiceps (Sclater, 1860);Tunchiornis ochraceiceps;vite-vite-uirapuru
+3313;Pachysylvia hypoxantha Pelzeln, 1868;Pachysylvia hypoxantha;vite-vite-de-barriga-amarela
+3318;Pachysylvia muscicapina (Sclater & Salvin, 1873);Pachysylvia muscicapina;vite-vite-camurça
+3321;Vireo sclateri (Salvin & Godman, 1883);Vireo sclateri;vite-vite-do-tepui
+3322;Vireo olivaceus (Linnaeus, 1766);Vireo olivaceus;juruviara-boreal
+3323;Vireo chivi (Vieillot, 1817);Vireo chivi;juruviara
+3329;Vireo gracilirostris Sharpe, 1890;Vireo gracilirostris;juruviara-de-noronha
+3330;Vireo flavoviridis (Cassin, 1851);Vireo flavoviridis;juruviara-verde-amarelada
+3332;Vireo altiloquus (Vieillot, 1808);Vireo altiloquus;juruviara-barbuda
+3336;Cyanocorax violaceus Du Bus, 1847;Cyanocorax violaceus;gralha-violácea
+3338;Cyanocorax cyanomelas (Vieillot, 1818);Cyanocorax cyanomelas;gralha-do-pantanal
+3339;Cyanocorax caeruleus (Vieillot, 1818);Cyanocorax caeruleus;gralha-azul
+3340;Cyanocorax cristatellus (Temminck, 1823);Cyanocorax cristatellus;gralha-do-campo
+3341;Cyanocorax cayanus (Linnaeus, 1766);Cyanocorax cayanus;gralha-da-guiana
+3342;Cyanocorax heilprini Gentry, 1885;Cyanocorax heilprini;gralha-de-nuca-azul
+3343;Cyanocorax hafferi Cohn-Haft, Santos Junior, Fernandes & Ribas, 2013;Cyanocorax hafferi;cancão-da-campina
+3344;Cyanocorax chrysops (Vieillot, 1818);Cyanocorax chrysops;gralha-picaça
+3348;Cyanocorax cyanopogon (Wied, 1821);Cyanocorax cyanopogon;gralha-cancã
+3350;Pygochelidon cyanoleuca (Vieillot, 1817);Pygochelidon cyanoleuca;andorinha-pequena-de-casa
+3353;Pygochelidon melanoleuca (Wied, 1820);Pygochelidon melanoleuca;andorinha-de-coleira
+3354;Alopochelidon fucata (Temminck, 1822);Alopochelidon fucata;andorinha-morena
+3355;Atticora fasciata (Gmelin, 1789);Atticora fasciata;peitoril
+3356;Atticora tibialis (Cassin, 1853);Atticora tibialis;calcinha-branca
+3359;Stelgidopteryx ruficollis (Vieillot, 1817);Stelgidopteryx ruficollis;andorinha-serradora
+3361;Progne tapera (Linnaeus, 1766);Progne tapera;andorinha-do-campo
+3364;Progne subis (Linnaeus, 1758);Progne subis;andorinha-azul
+3367;Progne dominicensis (Gmelin, 1789);Progne dominicensis;andorinha-do-caribe
+3368;Progne cryptoleuca Baird, 1865;Progne cryptoleuca;andorinha-cubana
+3369;Progne chalybea (Gmelin, 1789);Progne chalybea;andorinha-grande
+3372;Progne elegans Baird, 1865;Progne elegans;andorinha-do-sul
+3373;Tachycineta albiventer (Boddaert, 1783);Tachycineta albiventer;andorinha-do-rio
+3374;Tachycineta leucorrhoa (Vieillot, 1817);Tachycineta leucorrhoa;andorinha-de-sobre-branco
+3375;Tachycineta leucopyga (Meyen, 1834);Tachycineta leucopyga;andorinha-chilena
+3376;Riparia riparia (Linnaeus, 1758);Riparia riparia;andorinha-do-barranco
+3378;Hirundo rustica Linnaeus, 1758;Hirundo rustica;andorinha-de-bando
+3380;Petrochelidon pyrrhonota (Vieillot, 1817);Petrochelidon pyrrhonota;andorinha-de-dorso-acanelado
+3384;Microcerculus marginatus (Sclater, 1855);Microcerculus marginatus;uirapuru-veado
+3386;Microcerculus ustulatus Salvin & Godman, 1883;Microcerculus ustulatus;flautista-do-tepui
+3389;Microcerculus bambla (Boddaert, 1783);Microcerculus bambla;uirapuru-de-asa-branca
+3392;Odontorchilus cinereus (Pelzeln, 1868);Odontorchilus cinereus;cambaxirra-cinzenta
+3393;Troglodytes musculus Naumann, 1823;Troglodytes musculus;corruíra
+3397;Troglodytes rufulus Cabanis, 1849;Troglodytes rufulus;corruíra-do-tepui
+3400;Cistothorus platensis (Latham, 1790);Cistothorus platensis;corruíra-do-campo
+3403;Campylorhynchus griseus (Swainson, 1838);Campylorhynchus griseus;garrincha-dos-lhanos
+3405;Campylorhynchus turdinus (Wied, 1831);Campylorhynchus turdinus;catatau
+3409;Pheugopedius genibarbis (Swainson, 1838);Pheugopedius genibarbis;garrinchão-pai-avô
+3413;Pheugopedius coraya (Gmelin, 1789);Pheugopedius coraya;garrinchão-coraia
+3418;Cantorchilus leucotis (Lafresnaye, 1845);Cantorchilus leucotis;garrinchão-de-barriga-vermelha
+3422;Cantorchilus longirostris (Vieillot, 1819);Cantorchilus longirostris;garrinchão-de-bico-grande
+3425;Cantorchilus guarayanus (d'Orbigny & Lafresnaye, 1837);Cantorchilus guarayanus;garrincha-do-oeste
+3426;Cantorchilus griseus (Todd, 1925);Cantorchilus griseus;garrincha-cinza
+3427;Henicorhina leucosticta (Cabanis, 1847);Henicorhina leucosticta;uirapuru-de-peito-branco
+3429;Cyphorhinus arada (Hermann, 1783);Cyphorhinus arada;uirapuru-da-guiana
+3430;Cyphorhinus transfluvialis (Todd, 1932);Cyphorhinus transfluvialis;uirapuru-do-imeri
+3431;Cyphorhinus modulator (d'Orbigny, 1838);Cyphorhinus modulator;uirapuru-ferrugíneo
+3432;Cyphorhinus interpositus (Todd, 1932);Cyphorhinus interpositus;uirapuru-de-orelha-alaranjada
+3433;Cyphorhinus griseolateralis Ridgway, 1888;Cyphorhinus griseolateralis;uirapuru-de-flancos-cinza
+3435;Microbates collaris (Pelzeln, 1868);Microbates collaris;chirito-de-coleira
+3439;Ramphocaenus melanurus Vieillot, 1819;Ramphocaenus melanurus;chirito
+3445;Ramphocaenus sticturus Hellmayr, 1902;Ramphocaenus sticturus;chirito-do-bambu
+3448;Polioptila innotata (Hellmayr, 1901);Polioptila innotata;balança-rabo-de-roraima
+3449;Polioptila dumicola (Vieillot, 1817);Polioptila dumicola;balança-rabo-de-máscara
+3452;Polioptila atricapilla (Swainson, 1831);Polioptila atricapilla;balança-rabo-do-nordeste
+3453;Polioptila plumbea (Gmelin, 1788);Polioptila plumbea;balança-rabo-de-chapéu-preto
+3454;Polioptila parvirostris Sharpe, 1885;Polioptila parvirostris;balança-rabo-do-acre
+3455;Polioptila lactea Sharpe, 1885;Polioptila lactea;balança-rabo-leitoso
+3456;Polioptila guianensis Todd, 1920;Polioptila guianensis;balança-rabo-guianense
+3457;Polioptila paraensis Todd, 1937;Polioptila paraensis;balança-rabo-paraense
+3458;Polioptila attenboroughi Whittaker, Aleixo, Whitney, Smith & Klicka, 2013;Polioptila attenboroughi;balança-rabo-do-inambari
+3459;Polioptila facilis Zimmer, 1942;Polioptila facilis;balança-rabo-do-rio-negro
+3461;Donacobius atricapilla (Linnaeus, 1766);Donacobius atricapilla;japacanim
+3465;Catharus aurantiirostris (Hartlaub, 1850);Catharus aurantiirostris;sabiazinho-de-bico-laranja
+3467;Catharus fuscescens (Stephens, 1817);Catharus fuscescens;sabiazinho-norte-americano
+3472;Catharus minimus (Lafresnaye, 1848);Catharus minimus;sabiazinho-de-cara-cinza
+3475;Catharus swainsoni (Tschudi, 1845);Catharus swainsoni;sabiazinho-de-óculos
+3476;Cichlopsis leucogenys Cabanis, 1851;Cichlopsis leucogenys;sabiá-castanho
+3478;Turdus iliacus Linnaeus, 1766;Turdus iliacus;sabiá-ruivo
+3480;Turdus leucops Taczanowski, 1877;Turdus leucops;sabiá-preto
+3481;Turdus flavipes Vieillot, 1818;Turdus flavipes;sabiá-una
+3484;Turdus leucomelas Vieillot, 1818;Turdus leucomelas;sabiá-barranco
+3487;Turdus fumigatus Lichtenstein, 1823;Turdus fumigatus;sabiá-da-mata
+3489;Turdus hauxwelli Lawrence, 1869;Turdus hauxwelli;sabiá-bicolor
+3490;Turdus rufiventris Vieillot, 1818;Turdus rufiventris;sabiá-laranjeira
+3493;Turdus nudigenis Lafresnaye, 1848;Turdus nudigenis;caraxué
+3496;Turdus sanchezorum O'Neill, Lane & Naka, 2011;Turdus sanchezorum;sabiá-da-várzea
+3497;Turdus lawrencii Coues, 1880;Turdus lawrencii;caraxué-de-bico-amarelo
+3498;Turdus murinus Salvin, 1885;Turdus murinus;caraxué-dos-tepuis
+3499;Turdus amaurochalinus Cabanis, 1850;Turdus amaurochalinus;sabiá-poca
+3500;Turdus arthuri Chubb, 1914;Turdus arthuri;caraxué-da-campina
+3501;Turdus debilis Hellmayr, 1902;Turdus debilis;caraxué-da-várzea
+3502;Turdus olivater (Lafresnaye, 1848);Turdus olivater;sabiá-de-cabeça-preta
+3505;Turdus subalaris (Seebohm, 1887);Turdus subalaris;sabiá-ferreiro
+3506;Turdus albicollis Vieillot, 1818;Turdus albicollis;sabiá-coleira
+3513;Mimus gilvus (Vieillot, 1807);Mimus gilvus;sabiá-da-praia
+3516;Mimus saturninus (Lichtenstein, 1823);Mimus saturninus;sabiá-do-campo
+3521;Mimus triurus (Vieillot, 1818);Mimus triurus;calhandra-de-três-rabos
+3523;Sturnus vulgaris Linnaeus, 1758;Sturnus vulgaris;estorninho
+3526;Estrilda astrild (Linnaeus, 1758);Estrilda astrild;bico-de-lacre
+3529;Passer domesticus (Linnaeus, 1758);Passer domesticus;pardal
+3532;Anthus chii Vieillot, 1818;Anthus chii;caminheiro-zumbidor
+3534;Anthus furcatus d'Orbigny & Lafresnaye, 1837;Anthus furcatus;caminheiro-de-unha-curta
+3536;Anthus correndera Vieillot, 1818;Anthus correndera;caminheiro-de-espora
+3538;Anthus nattereri Sclater, 1878;Anthus nattereri;caminheiro-dourado
+3539;Anthus hellmayri Hartert, 1909;Anthus hellmayri;caminheiro-de-barriga-acanelada
+3542;Carduelis carduelis (Linnaeus, 1758);Carduelis carduelis;pintassilgo-europeu
+3544;Spinus yarrellii (Audubon, 1839);Spinus yarrellii;pintassilgo-do-nordeste
+3545;Spinus magellanicus (Vieillot, 1805);Spinus magellanicus;pintassilgo
+3549;Cyanophonia cyanocephala (Vieillot, 1818);Cyanophonia cyanocephala;gaturamo-rei
+3551;Chlorophonia cyanea (Thunberg, 1822);Chlorophonia cyanea;gaturamo-bandeira
+3554;Euphonia plumbea Du Bus, 1855;Euphonia plumbea;gaturamo-miúdo
+3555;Euphonia chlorotica (Linnaeus, 1766);Euphonia chlorotica;fim-fim
+3560;Euphonia finschi Sclater & Salvin, 1877;Euphonia finschi;gaturamo-capim
+3561;Euphonia chrysopasta Sclater & Salvin, 1869;Euphonia chrysopasta;gaturamo-verde
+3564;Euphonia minuta Cabanis, 1849;Euphonia minuta;gaturamo-de-barriga-branca
+3566;Euphonia chalybea (Mikan, 1825);Euphonia chalybea;cais-cais
+3567;Euphonia violacea (Linnaeus, 1758);Euphonia violacea;gaturamo-verdadeiro
+3570;Euphonia laniirostris d'Orbigny & Lafresnaye, 1837;Euphonia laniirostris;gaturamo-de-bico-grosso
+3573;Euphonia xanthogaster Sundevall, 1834;Euphonia xanthogaster;fim-fim-grande
+3578;Euphonia cayennensis (Gmelin, 1789);Euphonia cayennensis;gaturamo-preto
+3579;Euphonia rufiventris (Vieillot, 1819);Euphonia rufiventris;gaturamo-do-norte
+3582;Euphonia pectoralis (Latham, 1801);Euphonia pectoralis;ferro-velho
+3584;Ammodramus humeralis (Bosc, 1792);Ammodramus humeralis;tico-tico-do-campo
+3587;Ammodramus aurifrons (Spix, 1825);Ammodramus aurifrons;cigarrinha-do-campo
+3590;Arremonops conirostris (Bonaparte, 1850);Arremonops conirostris;tico-tico-cantor
+3592;Arremon taciturnus (Hermann, 1783);Arremon taciturnus;tico-tico-de-bico-preto
+3593;Arremon franciscanus Raposo, 1997;Arremon franciscanus;tico-tico-do-são-francisco
+3594;Arremon semitorquatus Swainson, 1838;Arremon semitorquatus;tico-tico-do-mato
+3595;Arremon flavirostris Swainson, 1838;Arremon flavirostris;tico-tico-de-bico-amarelo
+3596;Arremon polionotus Bonaparte, 1850;Arremon polionotus;tico-tico-de-costas-cinza
+3597;Zonotrichia capensis (Statius Muller, 1776);Zonotrichia capensis;tico-tico
+3606;Atlapetes personatus (Cabanis, 1848);Atlapetes personatus;tico-tico-do-tepui
+3611;Dolichonyx oryzivorus (Linnaeus, 1758);Dolichonyx oryzivorus;triste-pia
+3612;Sturnella magna (Linnaeus, 1758);Sturnella magna;pedro-ceroulo
+3615;Leistes militaris (Linnaeus, 1758);Leistes militaris;polícia-inglesa-do-norte
+3616;Leistes superciliaris (Bonaparte, 1850);Leistes superciliaris;polícia-inglesa-do-sul
+3617;Leistes defilippii (Bonaparte, 1850);Leistes defilippii;peito-vermelho-grande
+3618;Psarocolius angustifrons (Spix, 1824);Psarocolius angustifrons;japu-pardo
+3621;Psarocolius decumanus (Pallas, 1769);Psarocolius decumanus;japu
+3623;Psarocolius viridis (Statius Muller, 1776);Psarocolius viridis;japu-verde
+3624;Psarocolius bifasciatus (Spix, 1824);Psarocolius bifasciatus;japuguaçu
+3628;Cacicus solitarius (Vieillot, 1816);Cacicus solitarius;iraúna-de-bico-branco
+3629;Cacicus chrysopterus (Vigors, 1825);Cacicus chrysopterus;tecelão
+3630;Cacicus koepckeae Lowery & O'Neill, 1965;Cacicus koepckeae;tecelão-do-acre
+3631;Cacicus cela (Linnaeus, 1758);Cacicus cela;xexéu
+3633;Cacicus latirostris (Swainson, 1838);Cacicus latirostris;japu-de-rabo-verde
+3634;Cacicus haemorrhous (Linnaeus, 1766);Cacicus haemorrhous;guaxe
+3638;Cacicus oseryi (Deville, 1849);Cacicus oseryi;japu-de-capacete
+3639;Icterus croconotus (Wagler, 1829);Icterus croconotus;joão-pinto
+3642;Icterus jamacaii (Gmelin, 1788);Icterus jamacaii;corrupião
+3643;Icterus pyrrhopterus (Vieillot, 1819);Icterus pyrrhopterus;encontro
+3648;Icterus chrysocephalus (Linnaeus, 1766);Icterus chrysocephalus;rouxinol-do-rio-negro
+3649;Icterus cayanensis (Linnaeus, 1766);Icterus cayanensis;inhapim
+3650;Icterus galbula (Linnaeus, 1758);Icterus galbula;corrupião-de-baltimore
+3651;Icterus nigrogularis (Hahn, 1819);Icterus nigrogularis;joão-pinto-amarelo
+3653;Molothrus rufoaxillaris Cassin, 1866;Molothrus rufoaxillaris;chupim-azeviche
+3654;Molothrus oryzivorus (Gmelin, 1788);Molothrus oryzivorus;iraúna-grande
+3656;Molothrus bonariensis (Gmelin, 1789);Molothrus bonariensis;chupim
+3660;Quiscalus lugubris Swainson, 1838;Quiscalus lugubris;iraúna-do-norte
+3662;Lampropsar tanagrinus (Spix, 1824);Lampropsar tanagrinus;iraúna-velada
+3667;Gymnomystax mexicanus (Linnaeus, 1766);Gymnomystax mexicanus;iratauá-grande
+3668;Macroagelaius imthurni (Sclater, 1881);Macroagelaius imthurni;iraúna-da-guiana
+3669;Amblyramphus holosericeus (Scopoli, 1786);Amblyramphus holosericeus;cardeal-do-banhado
+3670;Anumara forbesi (Sclater, 1886);Anumara forbesi;anumará
+3671;Gnorimopsar chopi (Vieillot, 1819);Gnorimopsar chopi;pássaro-preto
+3674;Agelaioides badius (Vieillot, 1819);Agelaioides badius;asa-de-telha
+3676;Agelaioides fringillarius (Spix, 1824);Agelaioides fringillarius;asa-de-telha-pálido
+3677;Agelasticus thilius (Molina, 1782);Agelasticus thilius;sargento
+3679;Agelasticus atroolivaceus (Wied-Neuwied, 1831);Agelasticus atroolivaceus;carretão
+3682;Agelasticus cyanopus (Vieillot, 1819);Agelasticus cyanopus;carretão-do-oeste
+3683;Chrysomus ruficapillus (Vieillot, 1819);Chrysomus ruficapillus;garibaldi
+3686;Chrysomus icterocephalus (Linnaeus, 1766);Chrysomus icterocephalus;iratauá-pequeno
+3688;Xanthopsar flavus (Gmelin, 1788);Xanthopsar flavus;veste-amarela
+3689;Pseudoleistes guirahuro (Vieillot, 1819);Pseudoleistes guirahuro;chupim-do-brejo
+3690;Pseudoleistes virescens (Vieillot, 1819);Pseudoleistes virescens;dragão
+3692;Parkesia noveboracensis (Gmelin, 1789);Parkesia noveboracensis;abana-rabo-de-baixada
+3693;Parkesia motacilla (Vieillot, 1809);Parkesia motacilla;abana-rabo-da-serra
+3694;Mniotilta varia (Linnaeus, 1766);Mniotilta varia;mariquita-riscadinha
+3695;Leiothlypis peregrina (Wilson, 1811);Leiothlypis peregrina;mariquita-do-tenessi
+3696;Geothlypis agilis (Wilson, 1812);Geothlypis agilis;mariquita-de-connecticut
+3697;Geothlypis aequinoctialis (Gmelin, 1789);Geothlypis aequinoctialis;pia-cobra
+3700;Setophaga ruticilla (Linnaeus, 1758);Setophaga ruticilla;mariquita-de-rabo-vermelho
+3701;Setophaga cerulea (Wilson, 1810);Setophaga cerulea;mariquita-azul
+3702;Setophaga pitiayumi (Vieillot, 1817);Setophaga pitiayumi;mariquita
+3706;Setophaga fusca (Statius Muller, 1776);Setophaga fusca;mariquita-papo-de-fogo
+3707;Setophaga petechia (Linnaeus, 1766);Setophaga petechia;mariquita-amarela
+3709;Setophaga striata (Forster, 1772);Setophaga striata;mariquita-de-perna-clara
+3710;Setophaga virens (Gmelin, 1789);Setophaga virens;mariquita-de-garganta-preta
+3711;Myiothlypis leucophrys (Pelzeln, 1868);Myiothlypis leucophrys;pula-pula-de-sobrancelha
+3712;Myiothlypis flaveola Baird, 1865;Myiothlypis flaveola;canário-do-mato
+3714;Myiothlypis leucoblephara (Vieillot, 1817);Myiothlypis leucoblephara;pula-pula-assobiador
+3715;Myiothlypis fulvicauda (Spix, 1825);Myiothlypis fulvicauda;pula-pula-de-cauda-avermelhada
+3717;Myiothlypis rivularis (Wied, 1821);Myiothlypis rivularis;pula-pula-ribeirinho
+3718;Myiothlypis bivittata (d'Orbigny & Lafresnaye, 1837);Myiothlypis bivittata;pula-pula-de-duas-fitas
+3720;Myiothlypis mesoleuca (Sclater, 1866);Myiothlypis mesoleuca;pula-pula-da-guiana
+3721;Basileuterus culicivorus (Deppe, 1830);Basileuterus culicivorus;pula-pula
+3726;Myioborus miniatus (Swainson, 1827);Myioborus miniatus;mariquita-cinza
+3728;Myioborus castaneocapilla (Cabanis, 1849);Myioborus castaneocapilla;mariquita-de-cabeça-parda
+3732;Mitrospingus oleagineus (Salvin, 1886);Mitrospingus oleagineus;pipira-olivácea
+3734;Lamprospiza melanoleuca (Vieillot, 1817);Lamprospiza melanoleuca;pipira-de-bico-vermelho
+3735;Orthogonys chloricterus (Vieillot, 1819);Orthogonys chloricterus;catirumbava
+3737;Piranga flava (Vieillot, 1822);Piranga flava;sanhaço-de-fogo
+3740;Piranga lutea (Lesson, 1834);Piranga lutea;sanhaço-montano
+3742;Piranga rubra (Linnaeus, 1758);Piranga rubra;sanhaço-vermelho
+3744;Piranga olivacea (Gmelin, 1789);Piranga olivacea;sanhaço-escarlate
+3745;Piranga leucoptera Trudeau, 1839;Piranga leucoptera;sanhaço-de-asa-branca
+3747;Habia rubra (Vieillot, 1819);Habia rubra;tiê-do-mato-grosso
+3751;Habia rubica (Vieillot, 1817);Habia rubica;tiê-de-bando
+3754;Pheucticus aureoventris (d'Orbigny & Lafresnaye, 1837);Pheucticus aureoventris;rei-do-bosque
+3756;Pheucticus ludovicianus (Linnaeus, 1766);Pheucticus ludovicianus;bico-grosso-de-peito-rosa
+3757;Granatellus pelzelni Sclater, 1865;Granatellus pelzelni;polícia-do-mato
+3760;Caryothraustes canadensis (Linnaeus, 1766);Caryothraustes canadensis;furriel-do-norte
+3762;Caryothraustes brasiliensis Cabanis, 1851;Caryothraustes brasiliensis;furriel
+3763;Periporphyrus erythromelas (Gmelin, 1789);Periporphyrus erythromelas;bicudo-encarnado
+3764;Amaurospiza moesta (Hartlaub, 1853);Amaurospiza moesta;negrinho-do-mato
+3765;Cyanoloxia rothschildii (Bartlett, 1890);Cyanoloxia rothschildii;azulão-da-amazônia
+3766;Cyanoloxia glaucocaerulea (d'Orbigny & Lafresnaye, 1837);Cyanoloxia glaucocaerulea;azulinho
+3767;Cyanoloxia brissonii (Lichtenstein, 1823);Cyanoloxia brissonii;azulão
+3771;Spiza americana (Gmelin, 1789);Spiza americana;papa-capim-americano
+3773;Charitospiza eucosma Oberholser, 1905;Charitospiza eucosma;mineirinho
+3774;Parkerthraustes humeralis (Lawrence, 1867);Parkerthraustes humeralis;furriel-de-encontro
+3775;Orchesticus abeillei (Lesson, 1839);Orchesticus abeillei;sanhaço-pardo
+3776;Nemosia pileata (Boddaert, 1783);Nemosia pileata;saíra-de-chapéu-preto
+3781;Nemosia rourei Cabanis, 1870;Nemosia rourei;saíra-apunhalada
+3782;Cyanicterus cyanicterus (Vieillot, 1819);Cyanicterus cyanicterus;pipira-azul
+3783;Compsothraupis loricata (Lichtenstein, 1819);Compsothraupis loricata;tiê-caburé
+3784;Coryphaspiza melanotis (Temminck, 1822);Coryphaspiza melanotis;tico-tico-de-máscara-negra
+3787;Embernagra platensis (Gmelin, 1789);Embernagra platensis;sabiá-do-banhado
+3789;Embernagra longicauda Strickland, 1844;Embernagra longicauda;rabo-mole-da-serra
+3790;Emberizoides herbicola (Vieillot, 1817);Emberizoides herbicola;canário-do-campo
+3793;Emberizoides ypiranganus Ihering & Ihering, 1907;Emberizoides ypiranganus;canário-do-brejo
+3794;Rhopospina fruticeti (Kittlitz, 1833);Rhopospina fruticeti;canário-andino-negro
+3796;Porphyrospiza caerulescens (Wied, 1830);Porphyrospiza caerulescens;campainha-azul
+3797;Chlorophanes spiza (Linnaeus, 1758);Chlorophanes spiza;saí-verde
+3801;Hemithraupis flavicollis (Vieillot, 1818);Hemithraupis flavicollis;saíra-galega
+3808;Hemithraupis guira (Linnaeus, 1766);Hemithraupis guira;saíra-de-papo-preto
+3815;Hemithraupis ruficapilla (Vieillot, 1818);Hemithraupis ruficapilla;saíra-ferrugem
+3818;Tersina viridis (Illiger, 1811);Tersina viridis;saí-andorinha
+3821;Cyanerpes nitidus (Hartlaub, 1847);Cyanerpes nitidus;saí-de-bico-curto
+3822;Cyanerpes caeruleus (Linnaeus, 1758);Cyanerpes caeruleus;saí-de-perna-amarela
+3825;Cyanerpes cyaneus (Linnaeus, 1766);Cyanerpes cyaneus;saíra-beija-flor
+3831;Dacnis albiventris (Sclater, 1852);Dacnis albiventris;saí-de-barriga-branca
+3832;Dacnis nigripes Pelzeln, 1856;Dacnis nigripes;saí-de-pernas-pretas
+3833;Dacnis flaviventer d'Orbigny & Lafresnaye, 1837;Dacnis flaviventer;saí-amarela
+3836;Dacnis cayana (Linnaeus, 1766);Dacnis cayana;saí-azul
+3839;Dacnis lineata (Gmelin, 1789);Dacnis lineata;saí-de-máscara-preta
+3842;Saltatricula atricollis (Vieillot, 1817);Saltatricula atricollis;batuqueiro
+3843;Saltatricula multicolor (Burmeister, 1860);Saltatricula multicolor;batuqueiro-chaquenho
+3844;Saltator maximus (Statius Muller, 1776);Saltator maximus;tempera-viola
+3846;Saltator coerulescens Vieillot, 1817;Saltator coerulescens;trinca-ferro-gongá
+3852;Saltator similis d'Orbigny & Lafresnaye, 1837;Saltator similis;trinca-ferro
+3855;Saltator maxillosus Cabanis, 1851;Saltator maxillosus;bico-grosso
+3856;Saltator aurantiirostris Vieillot, 1817;Saltator aurantiirostris;bico-duro
+3859;Saltator grossus (Linnaeus, 1766);Saltator grossus;bico-encarnado
+3861;Saltator fuliginosus (Daudin, 1800);Saltator fuliginosus;bico-de-pimenta
+3862;Coereba flaveola (Linnaeus, 1758);Coereba flaveola;cambacica
+3868;Asemospiza obscura (d'Orbigny & Lafresnaye, 1837);Asemospiza obscura;cigarra-parda
+3870;Asemospiza fuliginosa (Wied, 1830);Asemospiza fuliginosa;cigarra-preta
+3872;Volatinia jacarina (Linnaeus, 1766);Volatinia jacarina;tiziu
+3875;Conothraupis speculigera (Gould, 1855);Conothraupis speculigera;tiê-preto-e-branco
+3876;Conothraupis mesoleuca (Berlioz, 1939);Conothraupis mesoleuca;tiê-bicudo
+3877;Eucometis penicillata (Spix, 1825);Eucometis penicillata;pipira-da-taoca
+3880;Trichothraupis melanops (Vieillot, 1818);Trichothraupis melanops;tiê-de-topete
+3881;Loriotus luctuosus (d'Orbigny & Lafresnaye, 1837);Loriotus luctuosus;tem-tem-de-dragona-branca
+3883;Loriotus cristatus (Linnaeus, 1766);Loriotus cristatus;tiê-galo
+3889;Loriotus rufiventer (Spix, 1825);Loriotus rufiventer;tem-tem-de-crista-amarela
+3890;Coryphospingus pileatus (Wied, 1821);Coryphospingus pileatus;tico-tico-rei-cinza
+3892;Coryphospingus cucullatus (Statius Muller, 1776);Coryphospingus cucullatus;tico-tico-rei
+3895;Maschalethraupis surinamus (Linnaeus, 1766);Maschalethraupis surinamus;tem-tem-de-topete-ferrugíneo
+3900;Lanio versicolor (d'Orbigny & Lafresnaye, 1837);Lanio versicolor;pipira-de-asa-branca
+3903;Lanio fulvus (Boddaert, 1783);Lanio fulvus;pipira-parda
+3905;Tachyphonus phoenicius Swainson, 1838;Tachyphonus phoenicius;tem-tem-de-dragona-vermelha
+3906;Tachyphonus rufus (Boddaert, 1783);Tachyphonus rufus;pipira-preta
+3907;Tachyphonus coronatus (Vieillot, 1822);Tachyphonus coronatus;tiê-preto
+3908;Ramphocelus bresilia (Linnaeus, 1766);Ramphocelus bresilia;tiê-sangue
+3911;Ramphocelus nigrogularis (Spix, 1825);Ramphocelus nigrogularis;pipira-de-máscara
+3912;Ramphocelus carbo (Pallas, 1764);Ramphocelus carbo;pipira-vermelha
+3916;Sporophila lineola (Linnaeus, 1758);Sporophila lineola;bigodinho
+3917;Sporophila frontalis (Verreaux, 1869);Sporophila frontalis;pixoxó
+3918;Sporophila falcirostris (Temminck, 1820);Sporophila falcirostris;cigarrinha-do-sul
+3919;Sporophila schistacea (Lawrence, 1862);Sporophila schistacea;cigarrinha-do-norte
+3921;Sporophila intermedia Cabanis, 1851;Sporophila intermedia;papa-capim-cinza
+3923;Sporophila plumbea (Wied, 1830);Sporophila plumbea;patativa
+3926;Sporophila beltoni Repenning & Fontana, 2013;Sporophila beltoni;patativa-tropeira
+3927;Sporophila americana (Gmelin, 1789);Sporophila americana;coleiro-do-norte
+3930;Sporophila murallae Chapman, 1915;Sporophila murallae;papa-capim-de-caquetá
+3931;Sporophila collaris (Boddaert, 1783);Sporophila collaris;coleiro-do-brejo
+3935;Sporophila bouvronides (Lesson, 1831);Sporophila bouvronides;estrela-do-norte
+3937;Sporophila luctuosa (Lafresnaye, 1843);Sporophila luctuosa;papa-capim-preto-e-branco
+3938;Sporophila nigricollis (Vieillot, 1823);Sporophila nigricollis;baiano
+3940;Sporophila ardesiaca (Dubois, 1894);Sporophila ardesiaca;papa-capim-de-costas-cinza
+3941;Sporophila caerulescens (Vieillot, 1823);Sporophila caerulescens;coleirinho
+3944;Sporophila albogularis (Spix, 1825);Sporophila albogularis;golinho
+3945;Sporophila leucoptera (Vieillot, 1817);Sporophila leucoptera;chorão
+3949;Sporophila nigrorufa (d'Orbigny & Lafresnaye, 1837);Sporophila nigrorufa;caboclinho-do-sertão
+3950;Sporophila bouvreuil (Statius Muller, 1776);Sporophila bouvreuil;caboclinho
+3951;Sporophila pileata (Sclater, 1865);Sporophila pileata;caboclinho-coroado
+3952;Sporophila minuta (Linnaeus, 1758);Sporophila minuta;caboclinho-lindo
+3954;Sporophila hypoxantha Cabanis, 1851;Sporophila hypoxantha;caboclinho-de-barriga-vermelha
+3955;Sporophila ruficollis Cabanis, 1851;Sporophila ruficollis;caboclinho-de-papo-escuro
+3956;Sporophila iberaensis Di Giacomo & Kopuchian, 2016;Sporophila iberaensis;caboclinho-do-pantanal
+3957;Sporophila palustris (Barrows, 1883);Sporophila palustris;caboclinho-de-papo-branco
+3958;Sporophila castaneiventris Cabanis, 1849;Sporophila castaneiventris;caboclinho-de-peito-castanho
+3959;Sporophila hypochroma Todd, 1915;Sporophila hypochroma;caboclinho-de-sobre-ferrugem
+3960;Sporophila cinnamomea (Lafresnaye, 1839);Sporophila cinnamomea;caboclinho-de-chapéu-cinzento
+3961;Sporophila melanogaster (Pelzeln, 1870);Sporophila melanogaster;caboclinho-de-barriga-preta
+3962;Sporophila angolensis (Linnaeus, 1766);Sporophila angolensis;curió
+3965;Sporophila crassirostris (Gmelin, 1789);Sporophila crassirostris;bicudinho
+3967;Sporophila maximiliani (Cabanis, 1851);Sporophila maximiliani;bicudo
+3968;Dolospingus fringilloides (Pelzeln, 1870);Dolospingus fringilloides;papa-capim-de-coleira
+3969;Poospiza nigrorufa (d'Orbigny & Lafresnaye, 1837);Poospiza nigrorufa;quem-te-vestiu
+3970;Thlypopsis sordida (d'Orbigny & Lafresnaye, 1837);Thlypopsis sordida;saí-canário
+3973;Thlypopsis pyrrhocoma Burns, Unitt & Mason, 2016;Thlypopsis pyrrhocoma;cabecinha-castanha
+3974;Castanozoster thoracicus (Nordmann, 1835);Castanozoster thoracicus;peito-pinhão
+3975;Cypsnagra hirundinacea (Lesson, 1831);Cypsnagra hirundinacea;bandoleta
+3978;Donacospiza albifrons (Vieillot, 1817);Donacospiza albifrons;tico-tico-do-banhado
+3979;Microspingus lateralis (Nordmann, 1835);Microspingus lateralis;quete-do-sudeste
+3980;Microspingus cabanisi Bonaparte, 1850;Microspingus cabanisi;quete-do-sul
+3981;Microspingus melanoleucus (d'Orbigny & Lafresnaye, 1837);Microspingus melanoleucus;capacetinho
+3982;Microspingus cinereus Bonaparte, 1850;Microspingus cinereus;capacetinho-do-oco-do-pau
+3983;Conirostrum speciosum (Temminck, 1824);Conirostrum speciosum;figuinha-de-rabo-castanho
+3986;Conirostrum bicolor (Vieillot, 1809);Conirostrum bicolor;figuinha-do-mangue
+3989;Conirostrum margaritae (Holt, 1931);Conirostrum margaritae;figuinha-amazônica
+3990;Sicalis citrina Pelzeln, 1870;Sicalis citrina;canário-rasteiro
+3993;Sicalis flaveola (Linnaeus, 1766);Sicalis flaveola;canário-da-terra
+3997;Sicalis columbiana Cabanis, 1851;Sicalis columbiana;canário-do-amazonas
+4000;Sicalis luteola (Sparrman, 1789);Sicalis luteola;tipio
+4005;Haplospiza unicolor Cabanis, 1851;Haplospiza unicolor;cigarra-bambu
+4006;Catamenia homochroa Sclater, 1859;Catamenia homochroa;patativa-da-amazônia
+4008;Diglossa duidae Chapman, 1929;Diglossa duidae;fura-flor-escamoso
+4010;Diglossa major Cabanis, 1849;Diglossa major;fura-flor-grande
+4012;Pipraeidea melanonota (Vieillot, 1819);Pipraeidea melanonota;saíra-viúva
+4015;Rauenia bonariensis (Gmelin, 1789);Rauenia bonariensis;sanhaço-papa-laranja
+4017;Neothraupis fasciata (Lichtenstein, 1823);Neothraupis fasciata;cigarra-do-campo
+4018;Gubernatrix cristata (Vieillot, 1817);Gubernatrix cristata;cardeal-amarelo
+4019;Diuca diuca (Molina, 1782);Diuca diuca;diuca
+4021;Stephanophorus diadematus (Temminck, 1823);Stephanophorus diadematus;sanhaço-frade
+4022;Cissopis leverianus (Gmelin, 1788);Cissopis leverianus;tietinga
+4025;Schistochlamys melanopis (Latham, 1790);Schistochlamys melanopis;sanhaço-de-coleira
+4030;Schistochlamys ruficapillus (Vieillot, 1817);Schistochlamys ruficapillus;bico-de-veludo
+4031;Paroaria coronata (Miller, 1776);Paroaria coronata;cardeal
+4032;Paroaria dominicana (Linnaeus, 1758);Paroaria dominicana;cardeal-do-nordeste
+4033;Paroaria baeri Hellmayr, 1907;Paroaria baeri;cardeal-do-araguaia
+4034;Paroaria xinguensis Sick, 1950;Paroaria xinguensis;cardeal-do-xingu
+4035;Paroaria gularis (Linnaeus, 1766);Paroaria gularis;cardeal-da-amazônia
+4036;Paroaria cervicalis Sclater, 1862;Paroaria cervicalis;cardeal-da-bolívia
+4037;Paroaria capitata (d'Orbigny & Lafresnaye, 1837);Paroaria capitata;cavalaria
+4039;Ixothraupis varia (Statius Muller, 1776);Ixothraupis varia;saíra-carijó
+4040;Ixothraupis punctata (Linnaeus, 1766);Ixothraupis punctata;saíra-negaça
+4042;Ixothraupis guttata (Cabanis, 1850);Ixothraupis guttata;saíra-pintada
+4045;Ixothraupis xanthogastra (Sclater, 1851);Ixothraupis xanthogastra;saíra-de-barriga-amarela
+4048;Thraupis episcopus (Linnaeus, 1766);Thraupis episcopus;sanhaço-da-amazônia
+4053;Thraupis sayaca (Linnaeus, 1766);Thraupis sayaca;sanhaço-cinzento
+4055;Thraupis cyanoptera (Vieillot, 1817);Thraupis cyanoptera;sanhaço-de-encontro-azul
+4056;Thraupis palmarum (Wied, 1821);Thraupis palmarum;sanhaço-do-coqueiro
+4059;Thraupis ornata (Sparrman, 1789);Thraupis ornata;sanhaço-de-encontro-amarelo
+4060;Stilpnia cyanoptera (Swainson, 1834);Stilpnia cyanoptera;saíra-de-cabeça-preta
+4062;Stilpnia nigrocincta (Bonaparte, 1838);Stilpnia nigrocincta;saíra-mascarada
+4063;Stilpnia cyanicollis (d'Orbigny & Lafresnaye, 1837);Stilpnia cyanicollis;saíra-de-cabeça-azul
+4066;Stilpnia peruviana (Desmarest, 1806);Stilpnia peruviana;saíra-sapucaia
+4067;Stilpnia preciosa (Cabanis, 1850);Stilpnia preciosa;saíra-preciosa
+4068;Stilpnia cayana (Linnaeus, 1766);Stilpnia cayana;saíra-amarela
+4075;Tangara gyrola (Linnaeus, 1758);Tangara gyrola;saíra-de-cabeça-castanha
+4080;Tangara schrankii (Spix, 1825);Tangara schrankii;saíra-ouro
+4082;Tangara fastuosa (Lesson, 1831);Tangara fastuosa;saíra-pintor
+4083;Tangara seledon (Statius Muller, 1776);Tangara seledon;saíra-sete-cores
+4084;Tangara cyanocephala (Statius Muller, 1776);Tangara cyanocephala;saíra-militar
+4088;Tangara cyanoventris (Vieillot, 1819);Tangara cyanoventris;saíra-douradinha
+4089;Tangara desmaresti (Vieillot, 1819);Tangara desmaresti;saíra-lagarta
+4090;Tangara mexicana (Linnaeus, 1766);Tangara mexicana;saíra-de-bando
+4094;Tangara brasiliensis (Linnaeus, 1766);Tangara brasiliensis;cambada-de-chaves
+4095;Tangara chilensis (Vigors, 1832);Tangara chilensis;sete-cores-da-amazônia
+4099;Tangara callophrys (Cabanis, 1849);Tangara callophrys;saíra-opala
+4100;Tangara velia (Linnaeus, 1758);Tangara velia;saíra-diamante
+4104;Tangara cyanomelas (Wied, 1830);Tangara cyanomelas;saíra-pérola
