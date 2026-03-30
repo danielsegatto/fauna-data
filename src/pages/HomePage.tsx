@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Bird, Footprints, Squirrel, BarChart2 } from "lucide-react";
 import { Page, Card, Button, Badge } from "@/components/ui";
+import { InstallPrompt } from "@/components/ui/InstallPrompt";
 import { useRecords } from "@/hooks/useRecords";
 import { type FaunaGroup } from "@/lib/types";
 import { theme } from "@/lib/theme";
@@ -52,8 +53,10 @@ export default function HomePage() {
     <Page
       title="Fauna Data"
       subtitle="Monitoramento de fauna silvestre"
+      className="pb-36"
       footer={
-        <div>
+        <div className="flex flex-col gap-3">
+          <InstallPrompt />
           <Button
             variant="primary"
             size="lg"
