@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { Input } from "@/components/ui";
 import { useSpeciesCatalog } from "@/hooks/useSpeciesCatalog";
 import {
+  findMatchSpans,
+  type MatchSpan,
   speciesMatchesQuery,
   type SpeciesCatalogItem,
 } from "@/lib/speciesCatalog";
@@ -16,20 +18,80 @@ interface SpeciesAutocompleteInputProps {
 
 const MAX_SUGGESTIONS = 10;
 
-function SpeciesSuggestion({ item }: { item: SpeciesCatalogItem }) {
+function HighlightedText({
+  text,
+  spans,
+}: {
+  text: string;
+  spans: MatchSpan[];
+}) {
+  if (!spans.length) return <>{text}</>;
+
+  const parts: Array<{ key: string; value: string; isMatch: boolean }> = [];
+  let cursor = 0;
+
+  spans.forEach((span, index) => {
+    if (span.start > cursor) {
+      parts.push({
+        key: `text-${index}-${cursor}`,
+        value: text.slice(cursor, span.start),
+        isMatch: false,
+      });
+    }
+
+    parts.push({
+      key: `match-${index}-${span.start}`,
+      value: text.slice(span.start, span.end),
+      isMatch: true,
+    });
+
+    cursor = span.end;
+  });
+
+  if (cursor < text.length) {
+    parts.push({
+      key: `text-tail-${cursor}`,
+      value: text.slice(cursor),
+      isMatch: false,
+    });
+  }
+
+  return (
+    <>
+      {parts.map((part) => (
+        part.isMatch ? (
+          <mark
+            key={part.key}
+            className="rounded bg-amber-100 px-0.5 text-gray-900"
+          >
+            {part.value}
+          </mark>
+        ) : (
+          <span key={part.key}>{part.value}</span>
+        )
+      ))}
+    </>
+  );
+}
+
+function SpeciesSuggestion({ item, query }: { item: SpeciesCatalogItem; query: string }) {
+  const canonicalSpans = findMatchSpans(item.canonicalName, query);
+  const taxonSpans = findMatchSpans(item.taxonName, query);
+  const portugueseSpans = findMatchSpans(item.portugueseName, query);
+
   return (
     <div className="flex flex-col gap-0.5">
       <p className="text-base leading-tight font-semibold text-gray-900">
-        {item.canonicalName}
+        <HighlightedText text={item.canonicalName} spans={canonicalSpans} />
       </p>
       {item.taxonName && (
         <p className="text-xs leading-tight text-gray-500 italic">
-          {item.taxonName}
+          <HighlightedText text={item.taxonName} spans={taxonSpans} />
         </p>
       )}
       {item.portugueseName && (
         <p className="text-xs leading-tight text-gray-500">
-          {item.portugueseName}
+          <HighlightedText text={item.portugueseName} spans={portugueseSpans} />
         </p>
       )}
     </div>
@@ -83,7 +145,7 @@ export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
                       setIsFocused(false);
                     }}
                   >
-                    <SpeciesSuggestion item={item} />
+                    <SpeciesSuggestion item={item} query={query} />
                   </button>
                 </li>
               );

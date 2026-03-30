@@ -6,6 +6,11 @@ export interface SpeciesCatalogItem {
   portugueseName: string;
 }
 
+export interface MatchSpan {
+  start: number;
+  end: number;
+}
+
 interface HeaderMap {
   canonicalKey?: string;
   taxonKey?: string;
@@ -124,4 +129,72 @@ export function speciesMatchesQuery(item: SpeciesCatalogItem, query: string): bo
   return [item.canonicalName, item.taxonName, item.portugueseName]
     .map(normalizeSpeciesSearch)
     .some((name) => name.includes(normalizedQuery));
+}
+
+interface NormalizedCharMap {
+  originalStart: number;
+  originalEnd: number;
+}
+
+function buildNormalizedIndexMap(value: string): {
+  normalizedValue: string;
+  map: NormalizedCharMap[];
+} {
+  const chars = Array.from(value);
+  const map: NormalizedCharMap[] = [];
+  const normalizedParts: string[] = [];
+
+  let originalOffset = 0;
+  for (const char of chars) {
+    const normalizedChar = normalizeSpeciesSearch(char);
+    const charLength = char.length;
+
+    if (normalizedChar) {
+      normalizedParts.push(normalizedChar);
+      for (let i = 0; i < normalizedChar.length; i += 1) {
+        map.push({
+          originalStart: originalOffset,
+          originalEnd: originalOffset + charLength,
+        });
+      }
+    }
+
+    originalOffset += charLength;
+  }
+
+  return {
+    normalizedValue: normalizedParts.join(""),
+    map,
+  };
+}
+
+export function findMatchSpans(text: string, query: string): MatchSpan[] {
+  const normalizedQuery = normalizeSpeciesSearch(query);
+  if (!text || !normalizedQuery) return [];
+
+  const { normalizedValue, map } = buildNormalizedIndexMap(text);
+  if (!normalizedValue) return [];
+
+  const spans: MatchSpan[] = [];
+  let searchFrom = 0;
+
+  while (searchFrom <= normalizedValue.length - normalizedQuery.length) {
+    const startIndex = normalizedValue.indexOf(normalizedQuery, searchFrom);
+    if (startIndex === -1) break;
+
+    const endIndex = startIndex + normalizedQuery.length - 1;
+    const startMap = map[startIndex];
+    const endMap = map[endIndex];
+
+    if (startMap && endMap) {
+      spans.push({
+        start: startMap.originalStart,
+        end: endMap.originalEnd,
+      });
+    }
+
+    searchFrom = startIndex + normalizedQuery.length;
+  }
+
+  return spans;
 }
