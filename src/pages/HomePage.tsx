@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Bird, Footprints, Squirrel, BarChart2 } from "lucide-react";
+import { BarChart2 } from "lucide-react";
 import { Page, Card, Button, Badge } from "@/components/ui";
 import { InstallPrompt } from "@/components/ui/InstallPrompt";
 import { useRecords } from "@/hooks/useRecords";
@@ -12,25 +12,25 @@ const GROUPS: Array<{
   id: FaunaGroup;
   label: string;
   description: string;
-  Icon: React.FC<{ size: number; color: string }>;
+  icon: string;
 }> = [
   {
     id: "birds",
     label: "Aves",
-    description: "Monitoramento de aves silvestres",
-    Icon: ({ size, color }) => <Bird size={size} color={color} />,
+    description: "Aves silvestres",
+    icon: "🦅",
   },
   {
     id: "mammals",
     label: "Mamíferos",
-    description: "Monitoramento de mamíferos",
-    Icon: ({ size, color }) => <Footprints size={size} color={color} />,
+    description: "Mamíferos",
+    icon: "🦝",
   },
   {
     id: "herpetofauna",
     label: "Herpetofauna",
     description: "Répteis e anfíbios",
-    Icon: ({ size, color }) => <Squirrel size={size} color={color} />,
+    icon: "🦎",
   },
 ];
 
@@ -87,7 +87,7 @@ export default function HomePage() {
 
         {/* Group cards */}
         <div className="flex flex-col gap-3">
-          {GROUPS.map(({ id, label, description, Icon }) => {
+          {GROUPS.map(({ id, label, description, icon }) => {
             const { color, bg } = groupColors[id];
             const count = countByGroup(id);
 
@@ -102,10 +102,10 @@ export default function HomePage() {
                 <div className="flex items-center gap-4 p-4">
                   {/* Icon bubble */}
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-4xl"
                     style={{ backgroundColor: bg }}
                   >
-                    <Icon size={28} color={color} />
+                    {icon}
                   </div>
 
                   {/* Text */}
