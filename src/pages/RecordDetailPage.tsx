@@ -48,8 +48,6 @@ export default function RecordDetailPage() {
   const { recordId } = useParams<{ recordId: string }>();
   const location = useLocation();
 
-  const backTo = (location.state as { backTo?: string } | null)?.backTo ?? "/records";
-
   const { records, updateRecord, hasSpeciesRecordedAtPoint } = useRecords();
   const { collectionPoints } = useCollectionPoints();
 
@@ -57,6 +55,8 @@ export default function RecordDetailPage() {
   const collectionPoint = record
     ? collectionPoints.find((point) => point.id === record.collectionPointId)
     : undefined;
+  const backTo = (location.state as { backTo?: string } | null)?.backTo
+    ?? (collectionPoint ? `/collection-points/${collectionPoint.group}` : "/");
 
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState<RecordFormState | null>(null);

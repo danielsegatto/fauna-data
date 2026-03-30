@@ -198,7 +198,7 @@ export default function CollectionPointDetailPage() {
     <Page
       title="Ponto de Coleta"
       subtitle={point ? point.name : "Detalhes"}
-      back="/collection-points"
+      back={point ? `/collection-points/${point.group}` : "/"}
       actions={
         point && !isEditing ? (
           <button
@@ -251,7 +251,7 @@ export default function CollectionPointDetailPage() {
                   size="md"
                   className="w-full"
                   icon={<PlusCircle size={18} />}
-                  onClick={() => navigate(`/collection-point/${point.group}/${point.methodology}`)}
+                  onClick={() => navigate(`/methodologies/${point.group}`)}
                 >
                   Criar Novo Ponto de Coleta
                 </Button>
@@ -272,8 +272,8 @@ export default function CollectionPointDetailPage() {
             title="Ponto não encontrado"
             description="Este ponto pode ter sido removido."
             action={
-              <Button variant="secondary" size="sm" onClick={() => navigate("/collection-points")}>
-                Voltar para lista
+              <Button variant="secondary" size="sm" onClick={() => navigate("/")}>
+                Voltar ao início
               </Button>
             }
           />
