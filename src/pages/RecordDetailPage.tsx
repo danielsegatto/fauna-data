@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { Pencil, CheckCircle, X } from "lucide-react";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { Pencil, CheckCircle, X, Trash2 } from "lucide-react";
 import {
   Page,
   Card,
@@ -47,8 +47,9 @@ import { theme } from "@/lib/theme";
 export default function RecordDetailPage() {
   const { recordId } = useParams<{ recordId: string }>();
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const { records, updateRecord, hasSpeciesRecordedAtPoint } = useRecords();
+  const { records, updateRecord, deleteRecord, hasSpeciesRecordedAtPoint } = useRecords();
   const { collectionPoints } = useCollectionPoints();
 
   const record = records.find((r) => r.id === recordId);
@@ -63,6 +64,7 @@ export default function RecordDetailPage() {
   const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   // Populate form when entering edit mode
   useEffect(() => {
@@ -163,6 +165,17 @@ export default function RecordDetailPage() {
     setIsEditing(false);
   };
 
+  const handleDeleteRecord = async () => {
+    if (!record) return;
+    try {
+      await deleteRecord(record.id);
+      showToast("success", "Registro removido com sucesso!");
+      navigate(backTo);
+    } catch {
+      showToast("error", "Erro ao remover registro.");
+    }
+  };
+
   // ─── Not found ──────────────────────────────────────────────────────────────
 
   if (!record) {
@@ -187,13 +200,24 @@ export default function RecordDetailPage() {
         back={isEditing ? undefined : backTo}
         actions={
           !isEditing ? (
-            <button
-              onClick={() => setIsEditing(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary/10 text-primary text-sm font-semibold active:scale-95 transition-all"
-            >
-              <Pencil size={15} />
-              Editar
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setDeleteOpen(true)}
+                className="inline-flex items-center justify-center h-8 w-8 rounded-xl bg-red-50 text-red-600 text-sm font-semibold active:scale-95 transition-all hover:bg-red-100"
+                aria-label="Deletar registro"
+                title="Deletar registro"
+              >
+                <Trash2 size={15} />
+              </button>
+              <button
+                onClick={() => setIsEditing(true)}
+                className="inline-flex items-center justify-center h-8 w-8 rounded-xl bg-primary/10 text-primary text-sm font-semibold active:scale-95 transition-all"
+                aria-label="Editar registro"
+                title="Editar registro"
+              >
+                <Pencil size={15} />
+              </button>
+            </div>
           ) : (
             <button
               onClick={handleCancelEdit}
@@ -373,6 +397,18 @@ export default function RecordDetailPage() {
         variant="danger"
         onConfirm={() => { setDiscardOpen(false); setIsEditing(false); }}
         onCancel={() => setDiscardOpen(false)}
+      />
+
+      {/* Delete confirmation */}
+      <ConfirmDialog
+        isOpen={deleteOpen}
+        title="Remover Registro"
+        message={`Você tem certeza que deseja remover o registro de ${record?.data.species}? Esta ação não pode ser desfeita.`}
+        confirmLabel="Remover"
+        cancelLabel="Cancelar"
+        variant="danger"
+        onConfirm={handleDeleteRecord}
+        onCancel={() => setDeleteOpen(false)}
       />
     </>
   );

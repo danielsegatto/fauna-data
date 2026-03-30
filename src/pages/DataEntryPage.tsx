@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { CheckCircle, PlusCircle } from "lucide-react";
+import { CheckCircle, PlusCircle, Trash2 } from "lucide-react";
 import {
   Page,
   Input,
@@ -8,6 +8,7 @@ import {
   Select,
   Button,
   Card,
+  ConfirmDialog,
   showToast,
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
@@ -36,6 +37,7 @@ import {
   type RecordFormState,
 } from "@/lib/recordForm";
 import { theme } from "@/lib/theme";
+import { formatDateTime } from "@/lib/format";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -56,7 +58,7 @@ export default function DataEntryPage() {
   const backToCollectionPoint = pointId ? `/collection-point/${pointId}` : true;
 
   const { collectionPoints, isLoading: isLoadingPoints } = useCollectionPoints();
-  const { saveRecord, hasSpeciesRecordedAtPoint, filterRecords } = useRecords();
+  const { saveRecord, hasSpeciesRecordedAtPoint, filterRecords, deleteRecord } = useRecords();
   const collectionPoint = collectionPoints.find((item) => item.id === pointId);
   const isMackinnonPoint = isMackinnonMethodology(collectionPoint?.methodology ?? methodology);
 
@@ -64,6 +66,8 @@ export default function DataEntryPage() {
   const [errors, setErrors] = useState<RecordFormErrors>({});
   const [isSaving, setIsSaving] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [recordToDelete, setRecordToDelete] = useState<string | null>(null);
 
   // Generic field updater
   const set = <K extends keyof RecordFormState>(field: K, value: RecordFormState[K]) => {
@@ -99,6 +103,26 @@ export default function DataEntryPage() {
       showToast("error", "Erro ao salvar. Tente novamente.");
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const pointRecords = pointId
+    ? filterRecords({ collectionPointId: pointId })
+    : [];
+
+  const selectedRecord = recordToDelete
+    ? pointRecords.find((record) => record.id === recordToDelete)
+    : undefined;
+
+  const handleDeleteRecord = async () => {
+    if (!recordToDelete) return;
+    try {
+      await deleteRecord(recordToDelete);
+      showToast("success", "Registro removido com sucesso!");
+      setDeleteOpen(false);
+      setRecordToDelete(null);
+    } catch {
+      showToast("error", "Erro ao remover registro.");
     }
   };
 
@@ -169,20 +193,6 @@ export default function DataEntryPage() {
             onClick={handleSave}
           >
             Salvar e Novo Registro
-          </Button>
-          <Button
-            variant="secondary"
-            size="md"
-            className="w-full"
-            onClick={() => {
-              if (pointId) {
-                navigate(`/collection-point/${pointId}`);
-                return;
-              }
-              navigate(-1);
-            }}
-          >
-            Voltar ao Ponto de Coleta
           </Button>
         </div>
       }
@@ -303,7 +313,72 @@ export default function DataEntryPage() {
             />
           </div>
         </Card>
+
+        <Card padding="md">
+          <div className="flex items-center justify-between gap-2 mb-3">
+            <div>
+              <p className="text-sm font-semibold text-gray-700">Registros deste ponto</p>
+              <p className="text-xs text-gray-400">Toque em um registro para editar ou remover.</p>
+            </div>
+          </div>
+
+          {pointRecords.length === 0 ? (
+            <p className="text-sm text-gray-400">Nenhum registro vinculado ainda.</p>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {pointRecords.map((record) => (
+                <div
+                  key={record.id}
+                  className="flex items-stretch gap-2 group"
+                >
+                  <button
+                    onClick={() =>
+                      navigate(`/records/${record.id}`, {
+                        state: { backTo: `/collection-point/${record.collectionPointId}` },
+                      })
+                    }
+                    className="flex-1 text-left px-3 py-2 rounded-xl bg-gray-50 border border-gray-100 active:scale-[0.99] transition-all"
+                  >
+                    <p className="text-sm font-semibold text-gray-900 truncate">
+                      {record.data.species}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      {formatDateTime(record.timestamp)} • {record.data.identification}
+                    </p>
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setRecordToDelete(record.id);
+                      setDeleteOpen(true);
+                    }}
+                    className="px-2 py-2 rounded-xl bg-red-50 text-red-600 hover:bg-red-100 active:scale-95 transition-all opacity-0 group-hover:opacity-100 md:opacity-100"
+                    title="Deletar registro"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </Card>
       </div>
+
+      <ConfirmDialog
+        isOpen={deleteOpen}
+        title="Remover Registro"
+        message={selectedRecord
+          ? `Você tem certeza que deseja remover o registro de ${selectedRecord.data.species}? Esta ação não pode ser desfeita.`
+          : "Você tem certeza que deseja remover este registro? Esta ação não pode ser desfeita."}
+        confirmLabel="Remover"
+        cancelLabel="Cancelar"
+        variant="danger"
+        onConfirm={handleDeleteRecord}
+        onCancel={() => {
+          setDeleteOpen(false);
+          setRecordToDelete(null);
+        }}
+      />
     </Page>
   );
 }
