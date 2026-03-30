@@ -32,11 +32,11 @@ export function useInstallPrompt() {
     };
     checkIsInstalled();
 
-    // 3. Intercept the Android/Desktop install prompt
+    // 3. Capture install prompt availability for optional custom UI
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
+      // Stash the event so it can be triggered later via the custom button.
+      // We intentionally do not call preventDefault so the browser can still
+      // show its native install banner when appropriate.
       setInstallPromptEvent(e as BeforeInstallPromptEvent);
     };
 
