@@ -93,8 +93,13 @@ function toItem(
 }
 
 export function parseSpeciesCatalog(csvText: string): SpeciesCatalogItem[] {
+  const firstLine = csvText.split(/\r?\n/, 1)[0] ?? "";
+  const delimiter = firstLine.includes(";") ? ";" : ",";
+
   const parsed = Papa.parse<Record<string, string>>(csvText, {
     header: true,
+    delimiter,
+    delimitersToGuess: [";", ",", "\t", "|"],
     skipEmptyLines: true,
     transformHeader: (header) => header.trim(),
   });

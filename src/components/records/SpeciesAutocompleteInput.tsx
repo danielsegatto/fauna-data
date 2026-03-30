@@ -75,18 +75,21 @@ function HighlightedText({
 }
 
 function SpeciesSuggestion({ item, query }: { item: SpeciesCatalogItem; query: string }) {
+  const primaryName = item.taxonName || item.canonicalName;
+  const secondaryCanonical = item.canonicalName !== primaryName ? item.canonicalName : "";
+
+  const primarySpans = findMatchSpans(primaryName, query);
   const canonicalSpans = findMatchSpans(item.canonicalName, query);
-  const taxonSpans = findMatchSpans(item.taxonName, query);
   const portugueseSpans = findMatchSpans(item.portugueseName, query);
 
   return (
     <div className="flex flex-col gap-0.5">
       <p className="text-base leading-tight font-semibold text-gray-900">
-        <HighlightedText text={item.canonicalName} spans={canonicalSpans} />
+        <HighlightedText text={primaryName} spans={primarySpans} />
       </p>
-      {item.taxonName && (
+      {secondaryCanonical && (
         <p className="text-xs leading-tight text-gray-500 italic">
-          <HighlightedText text={item.taxonName} spans={taxonSpans} />
+          <HighlightedText text={secondaryCanonical} spans={canonicalSpans} />
         </p>
       )}
       {item.portugueseName && (
@@ -113,6 +116,7 @@ export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
 
   const showSuggestions = isFocused && suggestions.length > 0;
   const showEmptyHint = isFocused && query.length > 0 && !isLoading && suggestions.length === 0;
+  const canClear = props.value.length > 0;
 
   return (
     <div className="relative">
@@ -129,6 +133,22 @@ export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
         error={props.error}
       />
 
+      {canClear && (
+        <div className="mt-1 flex justify-end">
+          <button
+            type="button"
+            className="text-xs font-semibold text-gray-500 hover:text-gray-700 transition-colors"
+            onMouseDown={(event) => {
+              event.preventDefault();
+              props.onChange("");
+              setIsFocused(false);
+            }}
+          >
+            Limpar campo
+          </button>
+        </div>
+      )}
+
       {showSuggestions && (
         <div className="absolute z-20 mt-1 w-full rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
           <ul className="max-h-72 overflow-y-auto">
@@ -141,7 +161,7 @@ export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
                     className="w-full px-3 py-2.5 text-left hover:bg-gray-50 transition-colors"
                     onMouseDown={(event) => {
                       event.preventDefault();
-                      props.onChange(item.canonicalName);
+                      props.onChange(item.taxonName || item.canonicalName);
                       setIsFocused(false);
                     }}
                   >

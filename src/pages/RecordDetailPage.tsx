@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Pencil, CheckCircle, X } from "lucide-react";
 import {
   Page,
@@ -46,6 +46,7 @@ import { theme } from "@/lib/theme";
 
 export default function RecordDetailPage() {
   const { recordId } = useParams<{ recordId: string }>();
+  const location = useLocation();
 
   const { records, updateRecord, hasSpeciesRecordedAtPoint } = useRecords();
   const { collectionPoints } = useCollectionPoints();
@@ -54,6 +55,8 @@ export default function RecordDetailPage() {
   const collectionPoint = record
     ? collectionPoints.find((point) => point.id === record.collectionPointId)
     : undefined;
+  const backTo = (location.state as { backTo?: string } | null)?.backTo
+    ?? (collectionPoint ? `/collection-points/${collectionPoint.group}` : "/");
 
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState<RecordFormState | null>(null);
@@ -164,7 +167,7 @@ export default function RecordDetailPage() {
 
   if (!record) {
     return (
-      <Page title="Registro" back="/records">
+      <Page title="Registro" back={backTo}>
         <div className="flex items-center justify-center py-24">
           <p className="text-sm text-gray-400">Registro não encontrado.</p>
         </div>
@@ -181,7 +184,7 @@ export default function RecordDetailPage() {
       <Page
         title={isEditing ? "Editar Registro" : record.data.species}
         subtitle={`${GROUP_LABELS[record.group]} — ${METHODOLOGY_LABELS[record.methodology] ?? record.methodology}`}
-        back={isEditing ? undefined : "/records"}
+        back={isEditing ? undefined : backTo}
         actions={
           !isEditing ? (
             <button

@@ -1,36 +1,31 @@
 import { useState } from "react";
 import { Download, Share, PlusSquare, X } from "lucide-react";
 import { useInstallPrompt } from "@/hooks/useInstallPrompt";
-import { Button } from "@/components/ui/Button"; // Adjust import path if needed
+import { Button } from "@/components/ui/Button";
 
 export function InstallPrompt() {
   const { installPromptEvent, isInstalled, isIOS, promptInstall } = useInstallPrompt();
   const [showIosInstructions, setShowIosInstructions] = useState(false);
 
-  // Hide completely if already installed
   if (isInstalled) {
     return null;
   }
 
-  // Hide if not iOS and the install event hasn't fired (unsupported browser)
   if (!isIOS && !installPromptEvent) {
     return null;
   }
 
   return (
     <>
-      {/* Floating Action Button for Installation */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
-        <Button
-          onClick={isIOS ? () => setShowIosInstructions(true) : promptInstall}
-          className="shadow-xl flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full font-semibold transition-transform active:scale-95"
-        >
-          <Download className="w-5 h-5" />
-          Install App
-        </Button>
-      </div>
+      <Button
+        onClick={isIOS ? () => setShowIosInstructions(true) : promptInstall}
+        size="lg"
+        className="w-full bg-emerald-600 text-white shadow-lg hover:bg-emerald-700"
+        icon={<Download className="w-5 h-5" />}
+      >
+        Instalar aplicativo
+      </Button>
 
-      {/* iOS Manual Installation Instructions Modal */}
       {showIosInstructions && isIOS && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div className="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-3xl p-6 relative animate-in slide-in-from-bottom-8 duration-300">

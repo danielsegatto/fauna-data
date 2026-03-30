@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Bird, Footprints, Squirrel, BarChart2, List, MapPin } from "lucide-react";
+import { Bird, Footprints, Squirrel, BarChart2 } from "lucide-react";
 import { Page, Card, Button, Badge } from "@/components/ui";
+import { InstallPrompt } from "@/components/ui/InstallPrompt";
 import { useRecords } from "@/hooks/useRecords";
 import { type FaunaGroup } from "@/lib/types";
 import { theme } from "@/lib/theme";
@@ -45,15 +46,17 @@ export default function HomePage() {
     records.filter((r) => r.group === group).length;
 
   const handleGroupSelect = (groupId: FaunaGroup) => {
-    navigate(`/methodologies/${groupId}`);
+    navigate(`/collection-points/${groupId}`);
   };
 
   return (
     <Page
       title="Fauna Data"
       subtitle="Monitoramento de fauna silvestre"
+      className="pb-36"
       footer={
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
+          <InstallPrompt />
           <Button
             variant="primary"
             size="lg"
@@ -62,24 +65,6 @@ export default function HomePage() {
             onClick={() => navigate("/dashboard")}
           >
             Painel de Análise
-          </Button>
-          <Button
-            variant="secondary"
-            size="lg"
-            className="w-full"
-            icon={<MapPin size={20} />}
-            onClick={() => navigate("/collection-points")}
-          >
-            Meus Pontos de Coleta
-          </Button>
-          <Button
-            variant="secondary"
-            size="lg"
-            className="w-full"
-            icon={<List size={20} />}
-            onClick={() => navigate("/records")}
-          >
-            Ver Registros Salvos
           </Button>
         </div>
       }
