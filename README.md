@@ -45,6 +45,26 @@ The app currently covers three fauna groups:
 - Mammals
 - Herpetofauna
 
+### Species Catalog Autocomplete
+
+Species suggestions in data entry and record editing are loaded from:
+
+- `public/data/species-catalog.csv`
+
+Expected columns (header row):
+
+- `N`
+- `Nome do táxon (com autoria)` (shown as primary suggestion text)
+- `Nome do táxon`
+- `Nome em Português`
+
+Behavior:
+
+- suggestions are shown while typing in the species field
+- matching is case-insensitive and accent-insensitive
+- matching works by substring in any position of columns B, C, or D
+- selecting a suggestion fills the field with column B (`Nome do táxon (com autoria)`)
+
 The app is intentionally local-first. There is no remote API, no authentication layer, and no cloud synchronization in the current version.
 
 ## 2. Current Status
