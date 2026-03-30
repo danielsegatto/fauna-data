@@ -12,6 +12,7 @@ import {
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
+import { SpeciesAutocompleteInput } from "@/components/records/SpeciesAutocompleteInput";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
@@ -218,11 +219,11 @@ export default function DataEntryPage() {
           <div className="flex flex-col gap-5">
 
             {/* Espécie */}
-            <Input
+            <SpeciesAutocompleteInput
               label="Espécie *"
               placeholder="Ex: Araçari-de-bico-preto"
               value={form.species}
-              onChange={(e) => set("species", e.target.value)}
+              onChange={(value) => set("species", value)}
               error={errors.species}
             />
 

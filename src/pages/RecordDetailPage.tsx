@@ -14,6 +14,7 @@ import {
 } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
+import { SpeciesAutocompleteInput } from "@/components/records/SpeciesAutocompleteInput";
 import {
   isMackinnonMethodology,
   normalizeSpeciesName,
@@ -290,10 +291,10 @@ export default function RecordDetailPage() {
           {isEditing && form && (
             <Card padding="md">
               <div className="flex flex-col gap-5">
-                <Input
+                <SpeciesAutocompleteInput
                   label="Espécie *"
                   value={form.species}
-                  onChange={(e) => set("species", e.target.value)}
+                  onChange={(value) => set("species", value)}
                   error={errors.species}
                 />
                 <Select

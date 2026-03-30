@@ -35,8 +35,10 @@ If you are new to the codebase, read these files in order:
 - `src/hooks/useRecords.ts`
 - `src/hooks/useStatistics.ts`
 - `src/hooks/useExport.ts`
+- `src/hooks/useSpeciesCatalog.ts`
 - `src/lib/recordFilters.ts`
 - `src/lib/recordForm.ts`
+- `src/lib/speciesCatalog.ts`
 - `src/lib/format.ts`
 - `src/lib/id.ts`
 
@@ -52,6 +54,14 @@ Hooks should wrap React state, persistence, or browser APIs. Pure transformation
 - `src/pages/`
 
 `src/components/ui/` is reserved for generic primitives. Domain-aware or workflow-aware pieces should live outside that folder, even if they are reused across pages.
+
+Species autocomplete is domain-aware and lives in:
+
+- `src/components/records/SpeciesAutocompleteInput.tsx`
+
+Its data source is a CSV file served statically from:
+
+- `public/data/species-catalog.csv`
 
 ## Route Responsibilities
 
