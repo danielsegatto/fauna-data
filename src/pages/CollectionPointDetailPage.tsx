@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Edit3, PlusCircle, Save, ClipboardList } from "lucide-react";
+import { Edit3, PlusCircle, Save, ClipboardList, FileDown } from "lucide-react";
 import {
   Page,
   Card,
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
+import { useExport } from "@/hooks/useExport";
 import {
   MACKINNON_LIMIT_OPTIONS,
   isMackinnonMethodology,
@@ -58,7 +59,8 @@ export default function CollectionPointDetailPage() {
   const navigate = useNavigate();
 
   const { collectionPoints, isLoading, updateCollectionPoint } = useCollectionPoints();
-  const { filterRecords } = useRecords();
+  const { records, filterRecords } = useRecords();
+  const { isExporting, exportCSV } = useExport();
 
   const point = useMemo(
     () => collectionPoints.find((item) => item.id === pointId),
@@ -112,6 +114,11 @@ export default function CollectionPointDetailPage() {
   const pointRecords = point
     ? filterRecords({ collectionPointId: point.id })
     : [];
+
+  const pointMap = useMemo(() => {
+    if (!point) return {} as Record<string, string>;
+    return { [point.id]: point.name };
+  }, [point]);
 
   const isAtLimit = !isEditing
     && isMackinnonMethodology(point?.methodology)
@@ -194,6 +201,31 @@ export default function CollectionPointDetailPage() {
     setIsEditing(false);
   };
 
+  const handleExportPointRecords = async () => {
+    if (!point) return;
+
+    const count = await exportCSV(
+      records,
+      {
+        group: "",
+        collectionPointId: point.id,
+        startDate: "",
+        endDate: "",
+      },
+      pointMap
+    );
+
+    if (count === 0) {
+      showToast("warning", "Nenhum registro encontrado para este ponto de coleta.");
+      return;
+    }
+
+    showToast(
+      "success",
+      `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""}!`
+    );
+  };
+
   return (
     <Page
       title="Ponto de Coleta"
@@ -235,6 +267,17 @@ export default function CollectionPointDetailPage() {
             </>
           ) : (
             <>
+              <Button
+                variant="secondary"
+                size="md"
+                className="w-full"
+                icon={<FileDown size={18} />}
+                loading={isExporting}
+                onClick={handleExportPointRecords}
+                disabled={!point || pointRecords.length === 0}
+              >
+                Exportar Registros deste Ponto
+              </Button>
               <Button
                 variant="primary"
                 size="lg"
