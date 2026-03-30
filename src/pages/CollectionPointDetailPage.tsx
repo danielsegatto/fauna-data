@@ -445,7 +445,11 @@ export default function CollectionPointDetailPage() {
                   {pointRecords.map((record) => (
                     <button
                       key={record.id}
-                      onClick={() => navigate(`/records/${record.id}`)}
+                      onClick={() =>
+                        navigate(`/records/${record.id}`, {
+                          state: { backTo: `/collection-point/${point.id}` },
+                        })
+                      }
                       className="w-full text-left px-3 py-2 rounded-xl bg-gray-50 border border-gray-100 active:scale-[0.99] transition-all"
                     >
                       <p className="text-sm font-semibold text-gray-900 truncate">

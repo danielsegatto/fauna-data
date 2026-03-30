@@ -53,6 +53,7 @@ export default function DataEntryPage() {
   const groupLabel = GROUP_LABELS[faunaGroup] ?? group;
   const methodologyLabel = METHODOLOGY_LABELS[methodology ?? ""] ?? methodology;
   const pointName = (location.state as { pointName?: string } | null)?.pointName;
+  const backToCollectionPoint = pointId ? `/collection-point/${pointId}` : true;
 
   const { collectionPoints, isLoading: isLoadingPoints } = useCollectionPoints();
   const { saveRecord, hasSpeciesRecordedAtPoint, filterRecords } = useRecords();
@@ -156,7 +157,7 @@ export default function DataEntryPage() {
     <Page
       title="Entrada de Dados"
       subtitle={`${groupLabel} — ${methodologyLabel}`}
-      back
+      back={backToCollectionPoint}
       footer={
         <div className="flex flex-col gap-2">
           <Button
