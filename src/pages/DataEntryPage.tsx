@@ -5,7 +5,7 @@ import {
   Page,
   Input,
   Textarea,
-  Select,
+  OptionGroup,
   Button,
   Card,
   ConfirmDialog,
@@ -240,7 +240,7 @@ export default function DataEntryPage() {
             />
 
             {/* Identificação */}
-            <Select
+            <OptionGroup
               label="Identificação *"
               options={IDENTIFICATION_OPTIONS}
               value={form.identification}
@@ -249,7 +249,7 @@ export default function DataEntryPage() {
             />
 
             {/* Ambiente */}
-            <Select
+            <OptionGroup
               label="Ambiente *"
               options={ENVIRONMENT_OPTIONS}
               value={form.environment}
@@ -258,21 +258,23 @@ export default function DataEntryPage() {
             />
 
             {/* Estrato */}
-            <Select
+            <OptionGroup
               label="Estrato"
               options={STRATUM_OPTIONS}
               value={form.stratum}
               onChange={(v) => set("stratum", v as StratumType)}
               error={errors.stratum}
+              allowClear
             />
 
             {/* Atividade */}
-            <Select
+            <OptionGroup
               label="Atividade"
               options={ACTIVITY_OPTIONS}
               value={form.activity}
               onChange={(v) => set("activity", v as ActivityType)}
               error={errors.activity}
+              allowClear
             />
 
             {/* Quantidade + Distância side by side */}
@@ -296,12 +298,13 @@ export default function DataEntryPage() {
             </div>
 
             {/* Lado */}
-            <Select
+            <OptionGroup
               label="Lado"
               options={SIDE_OPTIONS}
               value={form.side}
               onChange={(v) => set("side", v as SideType)}
               error={errors.side}
+              allowClear
             />
 
             {/* Observações */}
