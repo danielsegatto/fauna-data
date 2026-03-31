@@ -25,7 +25,7 @@ import {
   SideGrid,
   ObservationsField,
 } from "@/components/records/RecordFormFields";
-import { RecordListItem } from "@/components/records/RecordListItem";
+import { RecordsListCard } from "@/components/records/RecordsListCard";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
@@ -43,7 +43,6 @@ import {
   recordFormToObservationData,
 } from "@/lib/recordForm";
 import { theme } from "@/lib/theme";
-import { formatDateTime } from "@/lib/format";
 const ENVIRONMENT_OPTIONS_WITHOUT_OTHER = ENVIRONMENT_OPTIONS.filter((option) => option.value !== "outro");
 
 
@@ -323,37 +322,20 @@ export default function DataEntryPage() {
           </div>
         </Card>
 
-        <Card padding="md">
-          <div className="flex items-center justify-between gap-2 mb-3">
-            <div>
-              <p className="text-sm font-semibold text-gray-700">Registros deste ponto</p>
-              <p className="text-xs text-gray-400">Toque em um registro para editar ou remover.</p>
-            </div>
-          </div>
-
-          {pointRecords.length === 0 ? (
-            <p className="text-sm text-gray-400">Nenhum registro vinculado ainda.</p>
-          ) : (
-            <div className="flex flex-col gap-2">
-              {pointRecords.map((record) => (
-                <RecordListItem
-                  key={record.id}
-                  record={record}
-                  metaLabel={`${formatDateTime(record.timestamp)} • ${record.data.identification}`}
-                  onOpen={(recordId) => {
-                    navigate(`/records/${recordId}`, {
-                      state: { backTo: `/collection-point/${record.collectionPointId}` },
-                    });
-                  }}
-                  onDelete={(recordId) => {
-                    setRecordToDelete(recordId);
-                    setDeleteOpen(true);
-                  }}
-                />
-              ))}
-            </div>
-          )}
-        </Card>
+        <RecordsListCard
+          records={pointRecords}
+          title="Registros deste ponto"
+          subtitle="Toque em um registro para editar ou remover."
+          onOpenRecord={(recordId) => {
+            navigate(`/records/${recordId}`, {
+              state: { backTo: `/collection-point/${pointId}` },
+            });
+          }}
+          onDeleteRecord={(recordId) => {
+            setRecordToDelete(recordId);
+            setDeleteOpen(true);
+          }}
+        />
       </div>
 
       <ConfirmDialog

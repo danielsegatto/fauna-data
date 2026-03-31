@@ -16,7 +16,7 @@ import {
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
 import { useExport } from "@/hooks/useExport";
-import { RecordListItem } from "@/components/records/RecordListItem";
+import { RecordsListCard } from "@/components/records/RecordsListCard";
 import {
   isMackinnonMethodology,
   parseMackinnonLimit,
@@ -457,40 +457,25 @@ export default function CollectionPointDetailPage() {
               </Card>
             )}
 
-            <Card padding="md">
-              <div className="flex items-center gap-2 mb-3">
-                <ClipboardList size={18} className="text-gray-500" />
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Registros deste ponto</p>
-                  {isMackinnonMethodology(point.methodology) && point.limit !== undefined && (
-                    <p className="text-xs text-gray-400">Progresso atual: {pointRecords.length}/{point.limit}</p>
-                  )}
-                </div>
-              </div>
-
-              {pointRecords.length === 0 ? (
-                <p className="text-sm text-gray-400">Nenhum registro vinculado ainda.</p>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  {pointRecords.map((record) => (
-                    <RecordListItem
-                      key={record.id}
-                      record={record}
-                      metaLabel={`${formatDateTime(record.timestamp)} • ${record.data.identification}`}
-                      onOpen={(recordId) => {
-                        navigate(`/records/${recordId}`, {
-                          state: { backTo: `/collection-point/${point.id}` },
-                        });
-                      }}
-                      onDelete={(recordId) => {
-                        setRecordToDelete(recordId);
-                        setDeleteOpen(true);
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-            </Card>
+            <RecordsListCard
+              records={pointRecords}
+              title="Registros deste ponto"
+              icon={<ClipboardList size={18} className="text-gray-500" />}
+              subtitle={
+                isMackinnonMethodology(point.methodology) && point.limit !== undefined
+                  ? `Progresso atual: ${pointRecords.length}/${point.limit}`
+                  : undefined
+              }
+              onOpenRecord={(recordId) => {
+                navigate(`/records/${recordId}`, {
+                  state: { backTo: `/collection-point/${point.id}` },
+                });
+              }}
+              onDeleteRecord={(recordId) => {
+                setRecordToDelete(recordId);
+                setDeleteOpen(true);
+              }}
+            />
           </>
         )}
       </div>
