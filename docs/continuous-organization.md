@@ -124,6 +124,9 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 ### Near-Term
 - Further decompose pages (DataEntryPage, RecordDetailPage pagination/layout patterns)
 - Extract shared card layout and KPI display patterns
+### Near-Term
+- Further decompose DataEntryPage: extract record form card container pattern (similar to RecordFormCard)
+- Extract KPI card and metadata display patterns (StatCard, section title arrangements)
 
 ### Later
 
