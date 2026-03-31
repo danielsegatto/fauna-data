@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { CheckCircle, PlusCircle, Trash2 } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  CheckCircle,
+  Minus,
+  Plus,
+  PlusCircle,
+  Trash2,
+  Volume2,
+  Eye,
+} from "lucide-react";
 import {
   Page,
-  Input,
   Textarea,
   OptionGroup,
   Button,
@@ -18,11 +29,9 @@ import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mac
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
-  IDENTIFICATION_OPTIONS,
   ENVIRONMENT_OPTIONS,
   STRATUM_OPTIONS,
   ACTIVITY_OPTIONS,
-  SIDE_OPTIONS,
   type FaunaGroup,
   type IdentificationType,
   type EnvironmentType,
@@ -36,8 +45,10 @@ import {
   type RecordFormErrors,
   type RecordFormState,
 } from "@/lib/recordForm";
-import { theme } from "@/lib/theme";
+import { cn, theme } from "@/lib/theme";
 import { formatDateTime } from "@/lib/format";
+
+
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -177,6 +188,37 @@ export default function DataEntryPage() {
     await persistRecord();
   };
 
+  const isAudioSelected = form.identification === "A" || form.identification === "AV";
+  const isVisualSelected = form.identification === "V" || form.identification === "AV";
+
+  const toggleIdentification = (channel: "A" | "V") => {
+    const nextAudio = channel === "A" ? !isAudioSelected : isAudioSelected;
+    const nextVisual = channel === "V" ? !isVisualSelected : isVisualSelected;
+
+    let nextValue = "";
+    if (nextAudio && nextVisual) nextValue = "AV";
+    else if (nextAudio) nextValue = "A";
+    else if (nextVisual) nextValue = "V";
+
+    set("identification", nextValue);
+  };
+
+  const adjustQuantity = (delta: number) => {
+    const current = Number(form.quantity);
+    const safeCurrent = Number.isFinite(current) && current > 0 ? current : 0;
+    const nextValue = Math.max(1, safeCurrent + delta);
+    set("quantity", String(nextValue));
+  };
+
+  const DISTANCE_PRESETS = [1, 5, 10, 20, 50];
+
+  const adjustDistance = (delta: number) => {
+    const current = Number(form.distance);
+    const safeCurrent = Number.isFinite(current) && current >= 0 ? current : 0;
+    const next = Math.max(0, safeCurrent + delta);
+    set("distance", String(next));
+  };
+
   return (
     <Page
       title="Entrada de Dados"
@@ -240,13 +282,51 @@ export default function DataEntryPage() {
             />
 
             {/* Identificação */}
-            <OptionGroup
-              label="Identificação *"
-              options={IDENTIFICATION_OPTIONS}
-              value={form.identification}
-              onChange={(v) => set("identification", v as IdentificationType)}
-              error={errors.identification}
-            />
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-semibold text-gray-700">Identificação *</label>
+              <div className="grid grid-cols-2 gap-2" role="group" aria-label="Identificação">
+                <button
+                  type="button"
+                  onClick={() => toggleIdentification("A")}
+                  aria-pressed={isAudioSelected}
+                  className={cn(
+                    "w-full min-h-[44px] px-4 py-2.5 rounded-xl border text-sm font-medium",
+                    "focus:outline-none focus:ring-2 focus:ring-primary/40",
+                    "active:scale-95 transition-all duration-150 select-none",
+                    "flex items-center justify-center gap-2",
+                    isAudioSelected
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-gray-200 bg-gray-50 text-gray-700 active:bg-gray-100",
+                    errors.identification && !isAudioSelected && "border-red-200"
+                  )}
+                >
+                  <Volume2 size={16} aria-hidden="true" />
+                  <span>Auditivo (A)</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => toggleIdentification("V")}
+                  aria-pressed={isVisualSelected}
+                  className={cn(
+                    "w-full min-h-[44px] px-4 py-2.5 rounded-xl border text-sm font-medium",
+                    "focus:outline-none focus:ring-2 focus:ring-primary/40",
+                    "active:scale-95 transition-all duration-150 select-none",
+                    "flex items-center justify-center gap-2",
+                    isVisualSelected
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-gray-200 bg-gray-50 text-gray-700 active:bg-gray-100",
+                    errors.identification && !isVisualSelected && "border-red-200"
+                  )}
+                >
+                  <Eye size={16} aria-hidden="true" />
+                  <span>Visual (V)</span>
+                </button>
+              </div>
+              {errors.identification && (
+                <p className="text-xs font-medium text-red-500">{errors.identification}</p>
+              )}
+            </div>
 
             {/* Ambiente */}
             <OptionGroup
@@ -279,33 +359,217 @@ export default function DataEntryPage() {
 
             {/* Quantidade + Distância side by side */}
             <div className="grid grid-cols-2 gap-3">
-              <Input
-                label="Quantidade *"
-                placeholder="Ex: 1"
-                value={form.quantity}
-                onChange={(e) => set("quantity", e.target.value)}
-                inputMode="numeric"
-                error={errors.quantity}
-              />
-              <Input
-                label="Distância (m)"
-                placeholder="Ex: 15"
-                value={form.distance}
-                onChange={(e) => set("distance", e.target.value)}
-                inputMode="numeric"
-                error={errors.distance}
-              />
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="quantidade" className="text-sm font-semibold text-gray-700">Quantidade *</label>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => adjustQuantity(-1)}
+                    className="min-h-[44px] min-w-[44px] rounded-xl border border-gray-200 bg-gray-50 text-gray-700 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/40 active:scale-95 transition-all duration-150"
+                    aria-label="Diminuir quantidade"
+                  >
+                    <Minus size={16} className="shrink-0" aria-hidden="true" />
+                  </button>
+
+                  <input
+                    id="quantidade"
+                    className={cn(
+                      "w-full px-4 py-3 rounded-xl border bg-white text-gray-900 text-base placeholder-gray-400 text-center",
+                      "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-150",
+                      errors.quantity ? "border-red-400 focus:ring-red-200 focus:border-red-400" : "border-gray-200"
+                    )}
+                    placeholder="Ex: 1"
+                    value={form.quantity}
+                    onChange={(e) => set("quantity", e.target.value)}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => adjustQuantity(1)}
+                    className="min-h-[44px] min-w-[44px] rounded-xl border border-gray-200 bg-gray-50 text-gray-700 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/40 active:scale-95 transition-all duration-150"
+                    aria-label="Aumentar quantidade"
+                  >
+                    <Plus size={16} className="shrink-0" aria-hidden="true" />
+                  </button>
+                </div>
+                {errors.quantity && <p className="text-xs font-medium text-red-500">{errors.quantity}</p>}
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <label htmlFor="distancia" className="text-sm font-semibold text-gray-700">Distância (m)</label>
+                  {form.distance && (
+                    <button
+                      type="button"
+                      onClick={() => set("distance", "")}
+                      className="text-xs font-semibold text-gray-500 active:text-gray-700"
+                    >
+                      Limpar
+                    </button>
+                  )}
+                </div>
+
+                {/* Presets */}
+                <div className="flex gap-1.5">
+                  {DISTANCE_PRESETS.map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => set("distance", String(preset))}
+                      className={cn(
+                        "flex-1 min-h-[36px] rounded-xl border text-xs font-semibold",
+                        "focus:outline-none focus:ring-2 focus:ring-primary/40",
+                        "active:scale-95 transition-all duration-150 select-none",
+                        form.distance === String(preset)
+                          ? "border-primary bg-primary/10 text-primary"
+                          : "border-gray-200 bg-gray-50 text-gray-600 active:bg-gray-100"
+                      )}
+                    >
+                      {preset}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Stepper + typed input */}
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => adjustDistance(-1)}
+                    className="min-h-[44px] min-w-[44px] rounded-xl border border-gray-200 bg-gray-50 text-gray-700 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/40 active:scale-95 transition-all duration-150"
+                    aria-label="Diminuir distância"
+                  >
+                    <Minus size={16} className="shrink-0" aria-hidden="true" />
+                  </button>
+
+                  <input
+                    id="distancia"
+                    className={cn(
+                      "w-full px-4 py-3 rounded-xl border bg-white text-gray-900 text-base placeholder-gray-400 text-center",
+                      "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-150",
+                      errors.distance ? "border-red-400 focus:ring-red-200 focus:border-red-400" : "border-gray-200"
+                    )}
+                    placeholder="m"
+                    value={form.distance}
+                    onChange={(e) => set("distance", e.target.value)}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => adjustDistance(1)}
+                    className="min-h-[44px] min-w-[44px] rounded-xl border border-gray-200 bg-gray-50 text-gray-700 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/40 active:scale-95 transition-all duration-150"
+                    aria-label="Aumentar distância"
+                  >
+                    <Plus size={16} className="shrink-0" aria-hidden="true" />
+                  </button>
+                </div>
+
+                {errors.distance && <p className="text-xs font-medium text-red-500">{errors.distance}</p>}
+              </div>
             </div>
 
             {/* Lado */}
-            <OptionGroup
-              label="Lado"
-              options={SIDE_OPTIONS}
-              value={form.side}
-              onChange={(v) => set("side", v as SideType)}
-              error={errors.side}
-              allowClear
-            />
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between gap-2">
+                <label className="text-sm font-semibold text-gray-700">Lado</label>
+                {form.side && (
+                  <button
+                    type="button"
+                    onClick={() => set("side", "")}
+                    className="text-xs font-semibold text-gray-500 active:text-gray-700"
+                  >
+                    Limpar
+                  </button>
+                )}
+              </div>
+
+              <div className="grid grid-cols-3 grid-rows-3 gap-2" role="radiogroup" aria-label="Lado">
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={form.side === "frente"}
+                  onClick={() => set("side", "frente" as SideType)}
+                  className={cn(
+                    "col-start-2 row-start-1 w-full min-h-[44px] px-4 py-2.5 rounded-xl border text-sm font-medium",
+                    "focus:outline-none focus:ring-2 focus:ring-primary/40",
+                    "active:scale-95 transition-all duration-150 select-none",
+                    "flex items-center justify-center gap-2",
+                    form.side === "frente"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-gray-200 bg-gray-50 text-gray-700 active:bg-gray-100",
+                    errors.side && form.side !== "frente" && "border-red-200"
+                  )}
+                >
+                  <ArrowUp size={16} className="shrink-0" aria-hidden="true" />
+                  <span>Frente</span>
+                </button>
+
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={form.side === "esquerda"}
+                  onClick={() => set("side", "esquerda" as SideType)}
+                  className={cn(
+                    "col-start-1 row-start-2 w-full min-h-[44px] px-4 py-2.5 rounded-xl border text-sm font-medium",
+                    "focus:outline-none focus:ring-2 focus:ring-primary/40",
+                    "active:scale-95 transition-all duration-150 select-none",
+                    "flex items-center justify-center gap-2",
+                    form.side === "esquerda"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-gray-200 bg-gray-50 text-gray-700 active:bg-gray-100",
+                    errors.side && form.side !== "esquerda" && "border-red-200"
+                  )}
+                >
+                  <ArrowLeft size={16} className="shrink-0" aria-hidden="true" />
+                  <span>Esquerda</span>
+                </button>
+
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={form.side === "direita"}
+                  onClick={() => set("side", "direita" as SideType)}
+                  className={cn(
+                    "col-start-3 row-start-2 w-full min-h-[44px] px-4 py-2.5 rounded-xl border text-sm font-medium",
+                    "focus:outline-none focus:ring-2 focus:ring-primary/40",
+                    "active:scale-95 transition-all duration-150 select-none",
+                    "flex items-center justify-center gap-2",
+                    form.side === "direita"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-gray-200 bg-gray-50 text-gray-700 active:bg-gray-100",
+                    errors.side && form.side !== "direita" && "border-red-200"
+                  )}
+                >
+                  <ArrowRight size={16} className="shrink-0" aria-hidden="true" />
+                  <span>Direita</span>
+                </button>
+
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={form.side === "tras"}
+                  onClick={() => set("side", "tras" as SideType)}
+                  className={cn(
+                    "col-start-2 row-start-3 w-full min-h-[44px] px-4 py-2.5 rounded-xl border text-sm font-medium",
+                    "focus:outline-none focus:ring-2 focus:ring-primary/40",
+                    "active:scale-95 transition-all duration-150 select-none",
+                    "flex items-center justify-center gap-2",
+                    form.side === "tras"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-gray-200 bg-gray-50 text-gray-700 active:bg-gray-100",
+                    errors.side && form.side !== "tras" && "border-red-200"
+                  )}
+                >
+                  <ArrowDown size={16} className="shrink-0" aria-hidden="true" />
+                  <span>Trás</span>
+                </button>
+              </div>
+
+              {errors.side && <p className="text-xs font-medium text-red-500">{errors.side}</p>}
+            </div>
 
             {/* Observações */}
             <Textarea
