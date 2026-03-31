@@ -115,12 +115,13 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Extracted `MackinnonLimitField` into `src/components/collection-points/MackinnonLimitField.tsx` — eliminates duplicated quick-select buttons + Input block shared by CollectionPointPage and CollectionPointDetailPage.
 - ✓ Extracted `ViewField` read-only field display component into `src/components/records/RecordFormFields.tsx` — eliminates duplicated local helper in RecordDetailPage and provides canonical representation for displaying observation field-value pairs in grid layouts.
 - ✓ Extracted `RecordsListCard` into `src/components/records/RecordsListCard.tsx` — eliminates duplicated record list card structure (title, metadata, empty state, listing) shared by DataEntryPage and CollectionPointDetailPage; supports flexible icon and subtitle for page-specific context.
+- ✓ Decomposed `CollectionPointDetailPage` into domain components: `CollectionPointMetadataCard` (view-mode display), `CollectionPointEditForm` (edit-mode form) — reduces page complexity from ~500 to 359 lines; maintains state orchestration and routing in page layer per architecture pattern.
 
 ### Immediate
 
 ### Near-Term
-
-- Extract shared record-form UI presentation fragments (meta cards, view field grouping). ✓ RecordsListCard extracted; record metadata cards and field grouping patterns remain.
+dashboard composition boundaries and chart section patterns.
+- Further decompose pages (DataEntryPage, RecordDetailPage pagination/layout patterns)ing). ✓ RecordsListCard extracted; record metadata cards and field grouping patterns remain.
 - Decompose `src/pages/CollectionPointDetailPage.tsx` into smaller domain components.
 
 ### Later
