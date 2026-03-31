@@ -23,6 +23,7 @@ For a fast architectural read, start here:
 3. `src/lib/db.ts` for persistence shape
 4. `src/hooks/useCollectionPoints.ts` and `src/hooks/useRecords.ts` for reactive data access
 5. `docs/architecture.md` for the current module map and refactor boundaries
+6. `docs/mobile-first.md` for non-negotiable smartphone UX constraints
 
 ## 1. Project Purpose
 
@@ -153,6 +154,10 @@ The UI is built primarily for mobile usage:
 - large tap targets
 - compact but structured cards for field review
 - horizontally scrollable filter tabs
+
+Smartphone-first is a hard requirement, not a preference. Any new screen or refactor should satisfy the checklist in:
+
+- `docs/mobile-first.md`
 
 ### 4.3 PWA Installation
 

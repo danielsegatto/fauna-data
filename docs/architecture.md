@@ -11,6 +11,7 @@ If you are new to the codebase, read these files in order:
 3. `src/lib/db.ts` for persistence shape.
 4. `src/hooks/useCollectionPoints.ts` and `src/hooks/useRecords.ts` for reactive CRUD access.
 5. `src/pages/` for feature flow.
+6. `docs/mobile-first.md` for non-negotiable smartphone UX and layout constraints.
 
 ## Project Layers
 
@@ -91,3 +92,9 @@ Its data source is a CSV file served statically from:
 3. Repeated JSX blocks should move into named components.
 4. Duplicated filtering, validation, formatting, and ID logic should live in shared modules.
 5. Generic UI primitives should not absorb domain-specific rules unless wrapped intentionally.
+
+## Non-Functional Constraint
+
+This project is smartphone-first by definition. New features must comply with:
+
+- `docs/mobile-first.md`
