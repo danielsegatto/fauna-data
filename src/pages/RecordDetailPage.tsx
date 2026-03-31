@@ -1,20 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Pencil, CheckCircle, X, Trash2 } from "lucide-react";
 import {
   Page,
   Card,
   Badge,
-  Input,
-  Textarea,
-  Select,
   Button,
   ConfirmDialog,
   showToast,
 } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
-import { SpeciesAutocompleteInput } from "@/components/records/SpeciesAutocompleteInput";
+import {
+  SpeciesField,
+  IdentificationSelect,
+  EnvironmentField,
+  StratumField,
+  ActivityField,
+  QuantityInput,
+  DistanceInput,
+  SideSelect,
+  ObservationsField,
+} from "@/components/records/RecordFormFields";
 import {
   isMackinnonMethodology,
   normalizeSpeciesName,
@@ -27,19 +34,13 @@ import {
   STRATUM_OPTIONS,
   ACTIVITY_OPTIONS,
   SIDE_OPTIONS,
-  type IdentificationType,
-  type EnvironmentType,
-  type StratumType,
-  type ActivityType,
-  type SideType,
 } from "@/lib/types";
 import { formatDateTime } from "@/lib/format";
 import {
-  hasRecordFormChanges,
-  validateRecordForm,
-  type RecordFormErrors,
-  type RecordFormState,
+  hasRecordFormChangesFromObservation,
+  recordFormToObservationData,
 } from "@/lib/recordForm";
+import { useRecordForm } from "@/hooks/useRecordForm";
 import { theme } from "@/lib/theme";
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -60,52 +61,18 @@ export default function RecordDetailPage() {
     ?? (collectionPoint ? `/collection-points/${collectionPoint.group}` : "/");
 
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState<RecordFormState | null>(null);
-  const [errors, setErrors] = useState<RecordFormErrors>({});
+  const { form, errors, setField, loadObservationData, validate } = useRecordForm();
   const [isSaving, setIsSaving] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
-  // Populate form when entering edit mode
-  useEffect(() => {
-    if (isEditing && record) {
-      setForm({
-        species: record.data.species,
-        identification: record.data.identification,
-        environment: record.data.environment,
-        stratum: record.data.stratum,
-        activity: record.data.activity,
-        quantity: String(record.data.quantity),
-        distance: String(record.data.distance),
-        side: record.data.side,
-        observations: record.data.observations,
-      });
-      setErrors({});
-    }
-  }, [isEditing, record]);
-
-  const set = <K extends keyof RecordFormState>(field: K, value: string) => {
-    setForm((prev) => prev ? { ...prev, [field]: value } : prev);
-    setErrors((prev) => ({ ...prev, [field]: undefined }));
-  };
-
   const persistRecordUpdate = async () => {
-    if (!form || !record) return;
+    if (!record) return;
 
     setIsSaving(true);
     try {
       await updateRecord(record.id, {
-        data: {
-          species: form.species.trim(),
-          identification: form.identification as IdentificationType,
-          environment: form.environment as EnvironmentType,
-          stratum: form.stratum as StratumType,
-          activity: form.activity as ActivityType,
-          quantity: Number(form.quantity),
-          distance: Number(form.distance),
-          side: form.side as SideType,
-          observations: form.observations.trim(),
-        },
+        data: recordFormToObservationData(form),
       });
       showToast("success", "Registro atualizado com sucesso!");
       setIsEditing(false);
@@ -117,11 +84,10 @@ export default function RecordDetailPage() {
   };
 
   const handleSave = async () => {
-    if (!form || !record) return;
+    if (!record) return;
 
-    const errs = validateRecordForm(form);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
+    const { isValid } = validate();
+    if (!isValid) {
       showToast("error", "Preencha todos os campos obrigatórios");
       return;
     }
@@ -148,21 +114,17 @@ export default function RecordDetailPage() {
 
   const handleCancelEdit = () => {
     // If form was touched, ask for confirmation
-    if (form && record) {
-      const dirty = hasRecordFormChanges(form, {
-        species: record.data.species,
-        identification: record.data.identification,
-        environment: record.data.environment,
-        stratum: record.data.stratum,
-        activity: record.data.activity,
-        quantity: String(record.data.quantity),
-        distance: String(record.data.distance),
-        side: record.data.side,
-        observations: record.data.observations,
-      });
+    if (record) {
+      const dirty = hasRecordFormChangesFromObservation(form, record.data);
       if (dirty) { setDiscardOpen(true); return; }
     }
     setIsEditing(false);
+  };
+
+  const handleStartEdit = () => {
+    if (!record) return;
+    loadObservationData(record.data);
+    setIsEditing(true);
   };
 
   const handleDeleteRecord = async () => {
@@ -210,7 +172,7 @@ export default function RecordDetailPage() {
                 <Trash2 size={15} />
               </button>
               <button
-                onClick={() => setIsEditing(true)}
+                onClick={handleStartEdit}
                 className="inline-flex items-center justify-center h-8 w-8 rounded-xl bg-primary/10 text-primary text-sm font-semibold active:scale-95 transition-all"
                 aria-label="Editar registro"
                 title="Editar registro"
@@ -315,74 +277,60 @@ export default function RecordDetailPage() {
           )}
 
           {/* Edit mode */}
-          {isEditing && form && (
+          {isEditing && (
             <Card padding="md">
               <div className="flex flex-col gap-5">
-                <SpeciesAutocompleteInput
+                <SpeciesField
                   group={record.group}
-                  label="Espécie *"
                   value={form.species}
-                  onChange={(value) => set("species", value)}
+                  onChange={(value) => setField("species", value)}
                   error={errors.species}
                 />
-                <Select
-                  label="Identificação *"
-                  options={IDENTIFICATION_OPTIONS}
+                <IdentificationSelect
                   value={form.identification}
-                  onChange={(v) => set("identification", v)}
+                  onChange={(v) => setField("identification", v)}
+                  options={IDENTIFICATION_OPTIONS}
                   error={errors.identification}
                 />
-                <Select
-                  label="Ambiente *"
-                  options={ENVIRONMENT_OPTIONS}
+                <EnvironmentField
                   value={form.environment}
-                  onChange={(v) => set("environment", v)}
+                  onChange={(v) => setField("environment", v)}
+                  options={ENVIRONMENT_OPTIONS}
                   error={errors.environment}
-                  searchable
-                  allowCustomValue
                 />
-                <Select
-                  label="Estrato"
-                  options={STRATUM_OPTIONS}
+                <StratumField
                   value={form.stratum}
-                  onChange={(v) => set("stratum", v)}
+                  onChange={(v) => setField("stratum", v as any)}
+                  options={STRATUM_OPTIONS}
                   error={errors.stratum}
                 />
-                <Select
-                  label="Atividade"
-                  options={ACTIVITY_OPTIONS}
+                <ActivityField
                   value={form.activity}
-                  onChange={(v) => set("activity", v)}
+                  onChange={(v) => setField("activity", v as any)}
+                  options={ACTIVITY_OPTIONS}
                   error={errors.activity}
                 />
                 <div className="grid grid-cols-2 gap-3">
-                  <Input
-                    label="Quantidade *"
+                  <QuantityInput
                     value={form.quantity}
-                    onChange={(e) => set("quantity", e.target.value)}
-                    inputMode="numeric"
+                    onChange={(v) => setField("quantity", v)}
                     error={errors.quantity}
                   />
-                  <Input
-                    label="Distância (m)"
+                  <DistanceInput
                     value={form.distance}
-                    onChange={(e) => set("distance", e.target.value)}
-                    inputMode="numeric"
+                    onChange={(v) => setField("distance", v)}
                     error={errors.distance}
                   />
                 </div>
-                <Select
-                  label="Lado"
-                  options={SIDE_OPTIONS}
+                <SideSelect
                   value={form.side}
-                  onChange={(v) => set("side", v)}
+                  onChange={(v) => setField("side", v)}
+                  options={SIDE_OPTIONS}
                   error={errors.side}
                 />
-                <Textarea
-                  label="Observações (opcional)"
+                <ObservationsField
                   value={form.observations}
-                  onChange={(e) => set("observations", e.target.value)}
-                  rows={3}
+                  onChange={(v) => setField("observations", v)}
                 />
               </div>
             </Card>

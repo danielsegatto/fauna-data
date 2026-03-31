@@ -37,6 +37,7 @@ If you are new to the codebase, read these files in order:
 - `src/hooks/useStatistics.ts`
 - `src/hooks/useExport.ts`
 - `src/hooks/useSpeciesCatalog.ts`
+- `src/hooks/useRecordForm.ts`
 - `src/lib/recordFilters.ts`
 - `src/lib/recordForm.ts`
 - `src/lib/speciesCatalog.ts`
@@ -44,6 +45,8 @@ If you are new to the codebase, read these files in order:
 - `src/lib/id.ts`
 
 Hooks should wrap React state, persistence, or browser APIs. Pure transformations should live in `src/lib` so they are easier to reuse and test.
+
+`src/hooks/useRecordForm.ts` owns reusable record-form state coordination, while `src/lib/recordForm.ts` remains the pure source of truth for validation and observation-data mapping.
 
 ### 5. Presentation
 
@@ -59,6 +62,12 @@ Hooks should wrap React state, persistence, or browser APIs. Pure transformation
 Species autocomplete is domain-aware and lives in:
 
 - `src/components/records/SpeciesAutocompleteInput.tsx`
+
+Record form fields (species, identification, environment, stratum, activity, quantity, distance, side, observations) are provided as reusable field components in:
+
+- `src/components/records/RecordFormFields.tsx`
+
+Each field component accepts form value, error state, and onChange handlers, allowing pages to use different input styles (e.g., toggle buttons vs dropdowns) while sharing label, error display, and validation presentation. Both `DataEntryPage` and `RecordDetailPage` compose these fields into their respective forms.
 
 Its data source is a CSV file served statically from:
 
@@ -98,3 +107,9 @@ Its data source is a CSV file served statically from:
 This project is smartphone-first by definition. New features must comply with:
 
 - `docs/mobile-first.md`
+
+## Continuous Organization Workflow
+
+Structural improvements are continuous and should be executed when an organization cycle is explicitly triggered using:
+
+- `docs/continuous-organization.md`

@@ -1,3 +1,12 @@
+import type {
+  ActivityType,
+  EnvironmentType,
+  IdentificationType,
+  ObservationData,
+  SideType,
+  StratumType,
+} from "@/lib/types";
+
 export interface RecordFormState {
   species: string;
   identification: string;
@@ -59,4 +68,39 @@ export function hasRecordFormChanges(
     form.side !== original.side ||
     form.observations !== original.observations
   );
+}
+
+export function recordFormToObservationData(form: RecordFormState): ObservationData {
+  return {
+    species: form.species.trim(),
+    identification: form.identification as IdentificationType,
+    environment: form.environment as EnvironmentType,
+    stratum: form.stratum as StratumType,
+    activity: form.activity as ActivityType,
+    quantity: Number(form.quantity),
+    distance: Number(form.distance),
+    side: form.side as SideType,
+    observations: form.observations.trim(),
+  };
+}
+
+export function observationDataToRecordForm(data: ObservationData): RecordFormState {
+  return {
+    species: data.species,
+    identification: data.identification,
+    environment: data.environment,
+    stratum: data.stratum,
+    activity: data.activity,
+    quantity: String(data.quantity),
+    distance: String(data.distance),
+    side: data.side,
+    observations: data.observations,
+  };
+}
+
+export function hasRecordFormChangesFromObservation(
+  form: RecordFormState,
+  originalData: ObservationData
+): boolean {
+  return hasRecordFormChanges(form, observationDataToRecordForm(originalData));
 }
