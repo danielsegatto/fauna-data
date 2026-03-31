@@ -4,8 +4,8 @@ import { useSpeciesCatalog } from "@/hooks/useSpeciesCatalog";
 import type { FaunaGroup } from "@/lib/types";
 import {
   findMatchSpans,
+  getOrderedSpeciesAutocompleteMatches,
   type MatchSpan,
-  speciesMatchesQuery,
   type SpeciesCatalogItem,
 } from "@/lib/speciesCatalog";
 
@@ -110,10 +110,7 @@ export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
   const query = props.value.trim();
 
   const suggestions = useMemo(() => {
-    if (!query) return [];
-    return species
-      .filter((item) => speciesMatchesQuery(item, query))
-      .slice(0, MAX_SUGGESTIONS);
+    return getOrderedSpeciesAutocompleteMatches(species, query, MAX_SUGGESTIONS);
   }, [query, species]);
 
   const showSuggestions = isFocused && suggestions.length > 0;
