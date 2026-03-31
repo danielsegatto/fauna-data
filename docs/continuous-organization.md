@@ -118,8 +118,9 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Decomposed `CollectionPointDetailPage` into domain components: `CollectionPointMetadataCard` (view-mode display), `CollectionPointEditForm` (edit-mode form) — reduces page complexity from ~500 to 359 lines; maintains state orchestration and routing in page layer per architecture pattern.
 - ✓ Extracted dashboard chart section components: `BarChartSection` (time series), `PieChartWithLegend` (pie with legend), `HBarChartSection` (horizontal bar listings) — reduces DashboardPage from 302 to 133 lines (56% reduction); consolidates 4 HBar patterns and 2 Pie patterns into reusable sections.
 
-### Immediate
+- ✓ Decomposed `RecordDetailPage` into display components: `RecordViewCard` (view-mode record display with species, data grid, observations, group accent bar), `RecordFormCard` (edit-mode form fields) — reduces page complexity from ~390 to ~220 lines (44% reduction); eliminates inline card markup duplication; maintains edit/view mode toggling at page level.
 
+### Immediate
 ### Near-Term
 - Further decompose pages (DataEntryPage, RecordDetailPage pagination/layout patterns)
 - Extract shared card layout and KPI display patterns

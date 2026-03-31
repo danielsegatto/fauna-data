@@ -11,18 +11,8 @@ import {
 } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
-import {
-  SpeciesField,
-  IdentificationSelect,
-  EnvironmentField,
-  StratumField,
-  ActivityField,
-  QuantityInput,
-  DistanceInput,
-  SideSelect,
-  ObservationsField,
-  ViewField,
-} from "@/components/records/RecordFormFields";
+import { RecordViewCard } from "@/components/records/RecordViewCard";
+import { RecordFormCard } from "@/components/records/RecordFormCard";
 import {
   isMackinnonMethodology,
   normalizeSpeciesName,
@@ -30,11 +20,6 @@ import {
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
-  IDENTIFICATION_OPTIONS,
-  ENVIRONMENT_OPTIONS,
-  STRATUM_OPTIONS,
-  ACTIVITY_OPTIONS,
-  SIDE_OPTIONS,
 } from "@/lib/types";
 import { formatDateTime } from "@/lib/format";
 import {
@@ -42,7 +27,6 @@ import {
   recordFormToObservationData,
 } from "@/lib/recordForm";
 import { useRecordForm } from "@/hooks/useRecordForm";
-import { theme } from "@/lib/theme";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -151,8 +135,6 @@ export default function RecordDetailPage() {
     );
   }
 
-  const { color } = theme.groups[record.group] ?? theme.groups.birds;
-
   // ─── Render ─────────────────────────────────────────────────────────────────
 
   return (
@@ -234,107 +216,17 @@ export default function RecordDetailPage() {
 
           {/* View mode */}
           {!isEditing && (
-            <Card padding="md">
-              <div className="flex flex-col gap-4">
-                {/* Species */}
-                <div>
-                  <p className="text-xs text-gray-400 font-medium uppercase tracking-wide mb-1">
-                    Espécie
-                  </p>
-                  <p className="text-xl font-bold text-gray-900">
-                    {record.data.species}
-                  </p>
-                </div>
-
-                {/* Data grid */}
-                <div className="grid grid-cols-2 gap-3">
-                  <ViewField label="Ambiente" value={record.data.environment} />
-                  <ViewField label="Estrato" value={record.data.stratum} />
-                  <ViewField label="Atividade" value={record.data.activity} />
-                  <ViewField label="Lado" value={record.data.side} />
-                  <ViewField label="Quantidade" value={String(record.data.quantity)} />
-                  <ViewField label="Distância" value={`${record.data.distance} m`} />
-                </div>
-
-                {/* Observations */}
-                {record.data.observations && (
-                  <div>
-                    <p className="text-xs text-gray-400 font-medium uppercase tracking-wide mb-1">
-                      Observações
-                    </p>
-                    <p className="text-sm text-gray-700 leading-relaxed">
-                      {record.data.observations}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Group accent */}
-              <div
-                className="h-1 w-full rounded-b-2xl mt-4 opacity-40"
-                style={{ backgroundColor: color }}
-              />
-            </Card>
+            <RecordViewCard record={record} />
           )}
 
           {/* Edit mode */}
           {isEditing && (
-            <Card padding="md">
-              <div className="flex flex-col gap-5">
-                <SpeciesField
-                  group={record.group}
-                  value={form.species}
-                  onChange={(value) => setField("species", value)}
-                  error={errors.species}
-                />
-                <IdentificationSelect
-                  value={form.identification}
-                  onChange={(v) => setField("identification", v)}
-                  options={IDENTIFICATION_OPTIONS}
-                  error={errors.identification}
-                />
-                <EnvironmentField
-                  value={form.environment}
-                  onChange={(v) => setField("environment", v)}
-                  options={ENVIRONMENT_OPTIONS}
-                  error={errors.environment}
-                />
-                <StratumField
-                  value={form.stratum}
-                  onChange={(v) => setField("stratum", v as any)}
-                  options={STRATUM_OPTIONS}
-                  error={errors.stratum}
-                />
-                <ActivityField
-                  value={form.activity}
-                  onChange={(v) => setField("activity", v as any)}
-                  options={ACTIVITY_OPTIONS}
-                  error={errors.activity}
-                />
-                <div className="grid grid-cols-2 gap-3">
-                  <QuantityInput
-                    value={form.quantity}
-                    onChange={(v) => setField("quantity", v)}
-                    error={errors.quantity}
-                  />
-                  <DistanceInput
-                    value={form.distance}
-                    onChange={(v) => setField("distance", v)}
-                    error={errors.distance}
-                  />
-                </div>
-                <SideSelect
-                  value={form.side}
-                  onChange={(v) => setField("side", v)}
-                  options={SIDE_OPTIONS}
-                  error={errors.side}
-                />
-                <ObservationsField
-                  value={form.observations}
-                  onChange={(v) => setField("observations", v)}
-                />
-              </div>
-            </Card>
+            <RecordFormCard
+              form={form}
+              errors={errors}
+              group={record.group}
+              onFieldChange={setField}
+            />
           )}
         </div>
       </Page>
