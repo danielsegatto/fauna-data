@@ -5,10 +5,10 @@ import { Page, Input, Textarea, Button, Card, showToast } from "@/components/ui"
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import {
-  MACKINNON_LIMIT_OPTIONS,
   isMackinnonMethodology,
   parseMackinnonLimit,
 } from "@/lib/mackinnon";
+import { MackinnonLimitField } from "@/components/collection-points/MackinnonLimitField";
 import { GROUP_LABELS, METHODOLOGY_LABELS, type FaunaGroup } from "@/lib/types";
 import { formatDateTime } from "@/lib/format";
 import { theme } from "@/lib/theme";
@@ -145,44 +145,14 @@ export default function CollectionPointPage() {
             />
 
             {isMackinnon && (
-              <div className="flex flex-col gap-3">
-                <div className="flex flex-wrap gap-2">
-                  {MACKINNON_LIMIT_OPTIONS.map((option) => {
-                    const isSelected = limit.trim() === String(option);
-                    return (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => {
-                          setLimit(String(option));
-                          setLimitError("");
-                        }}
-                        className={[
-                          "px-3 py-2 rounded-xl text-sm font-semibold border transition-all active:scale-95",
-                          isSelected
-                            ? "border-primary bg-primary/10 text-primary"
-                            : "border-gray-200 bg-gray-50 text-gray-600",
-                        ].join(" ")}
-                      >
-                        {option}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <Input
-                  label="Limite da Lista de Mackinnon *"
-                  placeholder="Ex: 10"
-                  value={limit}
-                  onChange={(e) => {
-                    setLimit(e.target.value);
-                    setLimitError("");
-                  }}
-                  inputMode="numeric"
-                  hint="Sugestões rápidas: 10, 15 ou 20. Você também pode informar outro número inteiro."
-                  error={limitError}
-                />
-              </div>
+              <MackinnonLimitField
+                value={limit}
+                onChange={(v) => {
+                  setLimit(v);
+                  setLimitError("");
+                }}
+                error={limitError}
+              />
             )}
           </div>
         </Card>

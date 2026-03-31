@@ -112,10 +112,9 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 
 - ✓ Consolidated record form coordination via shared `useRecordForm` hook in DataEntryPage and RecordDetailPage.
 - ✓ Extracted reusable form field components into `src/components/records/RecordFormFields.tsx` (SpeciesField, IdentificationToggle/Select, EnvironmentField, StratumField, ActivityField, QuantityStepper, DistanceStepper, SideGrid/Select, ObservationsField) to eliminate duplicated field JSX between pages.
+- ✓ Extracted `MackinnonLimitField` into `src/components/collection-points/MackinnonLimitField.tsx` — eliminates duplicated quick-select buttons + Input block shared by CollectionPointPage and CollectionPointDetailPage.
 
 ### Immediate
-
-- Centralize Mackinnon point-limit orchestration where it appears in multiple pages.
 
 ### Near-Term
 

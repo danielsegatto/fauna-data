@@ -18,11 +18,11 @@ import { useRecords } from "@/hooks/useRecords";
 import { useExport } from "@/hooks/useExport";
 import { RecordListItem } from "@/components/records/RecordListItem";
 import {
-  MACKINNON_LIMIT_OPTIONS,
   isMackinnonMethodology,
   parseMackinnonLimit,
   hasMackinnonPointReachedLimit,
 } from "@/lib/mackinnon";
+import { MackinnonLimitField } from "@/components/collection-points/MackinnonLimitField";
 import {
   GROUP_LABELS,
   METHODOLOGIES,
@@ -393,41 +393,11 @@ export default function CollectionPointDetailPage() {
                   />
 
                   {isMackinnonMethodology(form.methodology) && (
-                    <div className="flex flex-col gap-3">
-                      <div className="flex flex-wrap gap-2">
-                        {MACKINNON_LIMIT_OPTIONS.map((option) => {
-                          const isSelected = form.limit.trim() === String(option);
-                          return (
-                            <button
-                              key={option}
-                              type="button"
-                              onClick={() => {
-                                set("limit", String(option));
-                                setLimitError("");
-                              }}
-                              className={[
-                                "px-3 py-2 rounded-xl text-sm font-semibold border transition-all active:scale-95",
-                                isSelected
-                                  ? "border-primary bg-primary/10 text-primary"
-                                  : "border-gray-200 bg-gray-50 text-gray-600",
-                              ].join(" ")}
-                            >
-                              {option}
-                            </button>
-                          );
-                        })}
-                      </div>
-
-                      <Input
-                        label="Limite da Lista de Mackinnon *"
-                        value={form.limit}
-                        onChange={(e) => set("limit", e.target.value)}
-                        inputMode="numeric"
-                        placeholder="Ex: 10"
-                        hint="Sugestões rápidas: 10, 15 ou 20. Você também pode informar outro número inteiro."
-                        error={limitError}
-                      />
-                    </div>
+                    <MackinnonLimitField
+                      value={form.limit}
+                      onChange={(v) => set("limit", v)}
+                      error={limitError}
+                    />
                   )}
 
                   <div className="grid grid-cols-2 gap-3">
