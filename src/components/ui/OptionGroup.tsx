@@ -1,9 +1,14 @@
+import { type ReactNode } from "react";
 import { cn } from "@/lib/theme";
 import type { SelectOption } from "@/lib/types";
 
+interface OptionGroupOption extends SelectOption {
+  icon?: ReactNode;
+}
+
 interface OptionGroupProps {
   label: string;
-  options: SelectOption[];
+  options: OptionGroupOption[];
   value: string;
   onChange: (value: string) => void;
   error?: string;
@@ -61,7 +66,10 @@ export function OptionGroup({
                 error && !isSelected && "border-red-200"
               )}
             >
-              {option.label}
+              <span className="flex items-center justify-center gap-2">
+                {option.icon && <span className="shrink-0">{option.icon}</span>}
+                <span>{option.label}</span>
+              </span>
             </button>
           );
         })}
