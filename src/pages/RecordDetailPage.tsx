@@ -338,6 +338,8 @@ export default function RecordDetailPage() {
                   value={form.environment}
                   onChange={(v) => set("environment", v)}
                   error={errors.environment}
+                  searchable
+                  allowCustomValue
                 />
                 <Select
                   label="Estrato"
