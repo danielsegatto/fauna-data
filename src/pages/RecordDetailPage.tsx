@@ -319,6 +319,7 @@ export default function RecordDetailPage() {
             <Card padding="md">
               <div className="flex flex-col gap-5">
                 <SpeciesAutocompleteInput
+                  group={record.group}
                   label="Espécie *"
                   value={form.species}
                   onChange={(value) => set("species", value)}

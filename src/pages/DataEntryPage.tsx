@@ -231,6 +231,7 @@ export default function DataEntryPage() {
 
             {/* Espécie */}
             <SpeciesAutocompleteInput
+              group={faunaGroup}
               label="Espécie *"
               placeholder="Ex: Araçari-de-bico-preto"
               value={form.species}

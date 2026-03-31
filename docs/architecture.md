@@ -62,7 +62,7 @@ Species autocomplete is domain-aware and lives in:
 
 Its data source is a CSV file served statically from:
 
-- `public/data/species-catalog.csv`
+- `public/data/species-catalog-birds.csv`
 
 ## Route Responsibilities
 

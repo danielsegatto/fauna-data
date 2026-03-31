@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui";
 import { useSpeciesCatalog } from "@/hooks/useSpeciesCatalog";
+import type { FaunaGroup } from "@/lib/types";
 import {
   findMatchSpans,
   type MatchSpan,
@@ -9,6 +10,7 @@ import {
 } from "@/lib/speciesCatalog";
 
 interface SpeciesAutocompleteInputProps {
+  group: FaunaGroup;
   label: string;
   placeholder?: string;
   value: string;
@@ -102,7 +104,7 @@ function SpeciesSuggestion({ item, query }: { item: SpeciesCatalogItem; query: s
 }
 
 export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
-  const { species, isLoading } = useSpeciesCatalog();
+  const { species, isLoading } = useSpeciesCatalog(props.group);
   const [isFocused, setIsFocused] = useState(false);
 
   const query = props.value.trim();
