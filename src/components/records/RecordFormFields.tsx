@@ -617,3 +617,21 @@ export function ObservationsField({
     />
   );
 }
+
+// ─── View Field (Read-only display) ────────────────────────────────────────
+
+export interface ViewFieldProps {
+  label: string;
+  value: string;
+}
+
+export function ViewField({ label, value }: ViewFieldProps) {
+  return (
+    <div className="bg-gray-50 rounded-xl px-3 py-2.5">
+      <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wide mb-0.5">
+        {label}
+      </p>
+      <p className="text-sm font-semibold text-gray-800 capitalize">{value}</p>
+    </div>
+  );
+}

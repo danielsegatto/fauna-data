@@ -21,6 +21,7 @@ import {
   DistanceInput,
   SideSelect,
   ObservationsField,
+  ViewField,
 } from "@/components/records/RecordFormFields";
 import {
   isMackinnonMethodology,
@@ -362,18 +363,5 @@ export default function RecordDetailPage() {
         onCancel={() => setDeleteOpen(false)}
       />
     </>
-  );
-}
-
-// ─── Small helper ─────────────────────────────────────────────────────────────
-
-function ViewField({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="bg-gray-50 rounded-xl px-3 py-2.5">
-      <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wide mb-0.5">
-        {label}
-      </p>
-      <p className="text-sm font-semibold text-gray-800 capitalize">{value}</p>
-    </div>
   );
 }
