@@ -3,12 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Edit3, PlusCircle, Save, ClipboardList, FileDown } from "lucide-react";
 import {
   Page,
-  Card,
-  Input,
-  Textarea,
-  Select,
   Button,
-  Badge,
   EmptyState,
   ConfirmDialog,
   showToast,
@@ -17,20 +12,14 @@ import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
 import { useExport } from "@/hooks/useExport";
 import { RecordsListCard } from "@/components/records/RecordsListCard";
+import { CollectionPointMetadataCard } from "@/components/collection-points/CollectionPointMetadataCard";
+import { CollectionPointEditForm } from "@/components/collection-points/CollectionPointEditForm";
 import {
   isMackinnonMethodology,
   parseMackinnonLimit,
   hasMackinnonPointReachedLimit,
 } from "@/lib/mackinnon";
-import { MackinnonLimitField } from "@/components/collection-points/MackinnonLimitField";
-import {
-  GROUP_LABELS,
-  METHODOLOGIES,
-  METHODOLOGY_LABELS,
-  type FaunaGroup,
-  type SelectOption,
-} from "@/lib/types";
-import { formatDateTime } from "@/lib/format";
+import { type FaunaGroup } from "@/lib/types";
 
 type FormState = {
   name: string;
@@ -42,12 +31,6 @@ type FormState = {
   group: FaunaGroup;
   methodology: string;
 };
-
-const GROUP_OPTIONS: SelectOption[] = [
-  { label: GROUP_LABELS.birds, value: "birds" },
-  { label: GROUP_LABELS.mammals, value: "mammals" },
-  { label: GROUP_LABELS.herpetofauna, value: "herpetofauna" },
-];
 
 function parseOptionalNumber(value: string): number | undefined {
   const trimmed = value.trim();
@@ -97,23 +80,7 @@ export default function CollectionPointDetailPage() {
     setLimitError("");
   }, [point]);
 
-  const methodologyOptions = useMemo(() => {
-    if (!form) return [] as SelectOption[];
 
-    const baseOptions = (METHODOLOGIES[form.group] ?? []).map((methodology) => ({
-      label: methodology.title,
-      value: methodology.id,
-    }));
-
-    if (!baseOptions.some((item) => item.value === form.methodology) && form.methodology) {
-      baseOptions.unshift({
-        label: METHODOLOGY_LABELS[form.methodology] ?? form.methodology,
-        value: form.methodology,
-      });
-    }
-
-    return baseOptions;
-  }, [form]);
 
   const pointRecords = point
     ? filterRecords({ collectionPointId: point.id })
@@ -339,122 +306,14 @@ export default function CollectionPointDetailPage() {
           />
         ) : (
           <>
-            <Card padding="md">
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <p className="text-xs text-gray-400 font-medium">Criado em</p>
-                  <p className="text-sm font-semibold text-gray-900">
-                    {formatDateTime(point.createdAt)}
-                  </p>
-                </div>
-                <Badge variant="group" group={point.group}>
-                  {GROUP_LABELS[point.group]}
-                </Badge>
-              </div>
-            </Card>
+            <CollectionPointMetadataCard point={point} recordCount={pointRecords.length} />
 
-            {isEditing ? (
-              <Card padding="md">
-                <div className="flex flex-col gap-5">
-                  <Input
-                    label="Nome do Ponto *"
-                    value={form.name}
-                    onChange={(e) => set("name", e.target.value)}
-                    error={nameError}
-                  />
-
-                  <Textarea
-                    label="Observações"
-                    value={form.notes}
-                    onChange={(e) => set("notes", e.target.value)}
-                    rows={3}
-                  />
-
-                  <Select
-                    label="Grupo"
-                    options={GROUP_OPTIONS}
-                    value={form.group}
-                    onChange={(value) => {
-                      const newGroup = value as FaunaGroup;
-                      const nextMethodology = METHODOLOGIES[newGroup]?.[0]?.id ?? "";
-                      set("group", newGroup);
-                      if (!METHODOLOGIES[newGroup]?.some((m) => m.id === form.methodology)) {
-                        set("methodology", nextMethodology);
-                      }
-                    }}
-                  />
-
-                  <Select
-                    label="Metodologia *"
-                    options={methodologyOptions}
-                    value={form.methodology}
-                    onChange={(value) => set("methodology", value)}
-                    error={methodologyError}
-                  />
-
-                  {isMackinnonMethodology(form.methodology) && (
-                    <MackinnonLimitField
-                      value={form.limit}
-                      onChange={(v) => set("limit", v)}
-                      error={limitError}
-                    />
-                  )}
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <Input
-                      label="Latitude"
-                      value={form.latitude}
-                      onChange={(e) => set("latitude", e.target.value)}
-                      inputMode="decimal"
-                      placeholder="Ex: -10.123456"
-                    />
-                    <Input
-                      label="Longitude"
-                      value={form.longitude}
-                      onChange={(e) => set("longitude", e.target.value)}
-                      inputMode="decimal"
-                      placeholder="Ex: -48.654321"
-                    />
-                  </div>
-
-                  <Input
-                    label="Precisão (m)"
-                    value={form.accuracy}
-                    onChange={(e) => set("accuracy", e.target.value)}
-                    inputMode="decimal"
-                    placeholder="Ex: 8"
-                  />
-                </div>
-              </Card>
-            ) : (
-              <Card padding="md">
-                <div className="flex flex-col gap-2">
-                  <div>
-                    <p className="text-xs text-gray-400 font-medium">Nome</p>
-                    <p className="text-sm font-semibold text-gray-900">{point.name}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-400 font-medium">Metodologia</p>
-                    <p className="text-sm text-gray-700">
-                      {METHODOLOGY_LABELS[point.methodology] ?? point.methodology}
-                    </p>
-                  </div>
-                  {isMackinnonMethodology(point.methodology) && (
-                    <div>
-                      <p className="text-xs text-gray-400 font-medium">Limite Mackinnon</p>
-                      <p className="text-sm text-gray-700">
-                        {point.limit !== undefined ? `${pointRecords.length}/${point.limit} registros` : "Não definido"}
-                      </p>
-                    </div>
-                  )}
-                  {point.notes && (
-                    <div>
-                      <p className="text-xs text-gray-400 font-medium">Observações</p>
-                      <p className="text-sm text-gray-700 whitespace-pre-line">{point.notes}</p>
-                    </div>
-                  )}
-                </div>
-              </Card>
+            {isEditing && (
+              <CollectionPointEditForm
+                form={form}
+                errors={{ name: nameError, methodology: methodologyError, limit: limitError }}
+                onChange={set}
+              />
             )}
 
             <RecordsListCard
