@@ -20,6 +20,7 @@ import {
   Button,
   Card,
   ConfirmDialog,
+  Select,
   showToast,
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
@@ -47,21 +48,7 @@ import {
 } from "@/lib/recordForm";
 import { cn, theme } from "@/lib/theme";
 import { formatDateTime } from "@/lib/format";
-
-const normalizeText = (value: string) => value
-  .normalize("NFD")
-  .replace(/[\u0300-\u036f]/g, "")
-  .toLowerCase()
-  .trim();
-
 const ENVIRONMENT_OPTIONS_WITHOUT_OTHER = ENVIRONMENT_OPTIONS.filter((option) => option.value !== "outro");
-
-const environmentValueByKey = ENVIRONMENT_OPTIONS_WITHOUT_OTHER.reduce<Record<string, string>>((acc, option) => {
-  acc[normalizeText(option.label)] = option.value;
-  acc[normalizeText(option.value)] = option.value;
-  return acc;
-}, {});
-
 
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -233,13 +220,7 @@ export default function DataEntryPage() {
     set("distance", String(next));
   };
 
-  const environmentDisplayValue = ENVIRONMENT_OPTIONS_WITHOUT_OTHER.find((option) => option.value === form.environment)?.label
-    ?? form.environment;
 
-  const setEnvironmentFromInput = (rawValue: string) => {
-    const mappedValue = environmentValueByKey[normalizeText(rawValue)];
-    set("environment", mappedValue ?? rawValue);
-  };
 
   return (
     <Page
@@ -351,27 +332,16 @@ export default function DataEntryPage() {
             </div>
 
             {/* Ambiente */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="ambiente" className="text-sm font-semibold text-gray-700">Ambiente *</label>
-              <input
-                id="ambiente"
-                list="ambiente-suggestions"
-                placeholder="Ex: Floresta"
-                value={environmentDisplayValue}
-                onChange={(e) => setEnvironmentFromInput(e.target.value)}
-                className={cn(
-                  "w-full px-4 py-3 rounded-xl border bg-white text-gray-900 text-base placeholder-gray-400",
-                  "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors duration-150",
-                  errors.environment ? "border-red-400 focus:ring-red-200 focus:border-red-400" : "border-gray-200"
-                )}
-              />
-              <datalist id="ambiente-suggestions">
-                {ENVIRONMENT_OPTIONS_WITHOUT_OTHER.map((option) => (
-                  <option key={option.value} value={option.label} />
-                ))}
-              </datalist>
-              {errors.environment && <p className="text-xs font-medium text-red-500">{errors.environment}</p>}
-            </div>
+            <Select
+              label="Ambiente *"
+              options={ENVIRONMENT_OPTIONS_WITHOUT_OTHER}
+              value={form.environment}
+              onChange={(value) => set("environment", value)}
+              placeholder="Ex: Floresta"
+              error={errors.environment}
+              searchable
+              allowCustomValue
+            />
 
             {/* Estrato */}
             <OptionGroup

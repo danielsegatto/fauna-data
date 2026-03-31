@@ -6,7 +6,8 @@
 
 export type FaunaGroup = "birds" | "mammals" | "herpetofauna";
 export type IdentificationType = "A" | "V" | "AV";
-export type EnvironmentType = "floresta" | "cerrado" | "campo" | "agua" | "urbano" | "outro";
+export type EnvironmentPreset = "floresta" | "cerrado" | "campo" | "agua" | "urbano" | "outro";
+export type EnvironmentType = EnvironmentPreset | (string & {});
 export type StratumType = "solo" | "sub-bosque" | "dossel" | "aereo";
 export type ActivityType = "repouso" | "alimentacao" | "voo" | "canto" | "ninhacao" | "outro";
 export type SideType = "esquerda" | "direita" | "frente" | "tras";
