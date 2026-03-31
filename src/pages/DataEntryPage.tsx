@@ -3,7 +3,6 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   CheckCircle,
   PlusCircle,
-  Trash2,
 } from "lucide-react";
 import {
   Page,
@@ -26,6 +25,7 @@ import {
   SideGrid,
   ObservationsField,
 } from "@/components/records/RecordFormFields";
+import { RecordListItem } from "@/components/records/RecordListItem";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
@@ -336,37 +336,20 @@ export default function DataEntryPage() {
           ) : (
             <div className="flex flex-col gap-2">
               {pointRecords.map((record) => (
-                <div
+                <RecordListItem
                   key={record.id}
-                  className="flex items-stretch gap-2 group"
-                >
-                  <button
-                    onClick={() =>
-                      navigate(`/records/${record.id}`, {
-                        state: { backTo: `/collection-point/${record.collectionPointId}` },
-                      })
-                    }
-                    className="flex-1 text-left px-3 py-2 rounded-xl bg-gray-50 border border-gray-100 active:scale-[0.99] transition-all"
-                  >
-                    <p className="text-sm font-semibold text-gray-900 truncate">
-                      {record.data.species}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      {formatDateTime(record.timestamp)} • {record.data.identification}
-                    </p>
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setRecordToDelete(record.id);
-                      setDeleteOpen(true);
-                    }}
-                    className="px-2 py-2 rounded-xl bg-red-50 text-red-600 hover:bg-red-100 active:scale-95 transition-all opacity-0 group-hover:opacity-100 md:opacity-100"
-                    title="Deletar registro"
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
+                  record={record}
+                  metaLabel={`${formatDateTime(record.timestamp)} • ${record.data.identification}`}
+                  onOpen={(recordId) => {
+                    navigate(`/records/${recordId}`, {
+                      state: { backTo: `/collection-point/${record.collectionPointId}` },
+                    });
+                  }}
+                  onDelete={(recordId) => {
+                    setRecordToDelete(recordId);
+                    setDeleteOpen(true);
+                  }}
+                />
               ))}
             </div>
           )}

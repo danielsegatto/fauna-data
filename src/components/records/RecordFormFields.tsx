@@ -548,8 +548,8 @@ export function SideGrid({
               error && value !== sideValue && "border-red-200"
             )}
           >
-            {icon}
-            <span>{sideLabel}</span>
+            <span className="shrink-0" aria-hidden="true">{icon}</span>
+            <span className="whitespace-nowrap">{sideLabel}</span>
           </button>
         ))}
       </div>
