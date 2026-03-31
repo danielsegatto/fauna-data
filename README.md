@@ -24,6 +24,17 @@ For a fast architectural read, start here:
 4. `src/hooks/useCollectionPoints.ts` and `src/hooks/useRecords.ts` for reactive data access
 5. `docs/architecture.md` for the current module map and refactor boundaries
 6. `docs/mobile-first.md` for non-negotiable smartphone UX constraints
+7. `docs/continuous-organization.md` for the trigger-based organization workflow
+
+## Continuous Organization
+
+Project organization is continuous and trigger-driven.
+
+When you explicitly decide it is time to organize/refactor, run the playbook in:
+
+- `docs/continuous-organization.md`
+
+This keeps refactor and modularization work incremental, documented, and repeatable.
 
 ## 1. Project Purpose
 
