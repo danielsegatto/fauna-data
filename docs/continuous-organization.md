@@ -116,13 +116,13 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Extracted `ViewField` read-only field display component into `src/components/records/RecordFormFields.tsx` — eliminates duplicated local helper in RecordDetailPage and provides canonical representation for displaying observation field-value pairs in grid layouts.
 - ✓ Extracted `RecordsListCard` into `src/components/records/RecordsListCard.tsx` — eliminates duplicated record list card structure (title, metadata, empty state, listing) shared by DataEntryPage and CollectionPointDetailPage; supports flexible icon and subtitle for page-specific context.
 - ✓ Decomposed `CollectionPointDetailPage` into domain components: `CollectionPointMetadataCard` (view-mode display), `CollectionPointEditForm` (edit-mode form) — reduces page complexity from ~500 to 359 lines; maintains state orchestration and routing in page layer per architecture pattern.
+- ✓ Extracted dashboard chart section components: `BarChartSection` (time series), `PieChartWithLegend` (pie with legend), `HBarChartSection` (horizontal bar listings) — reduces DashboardPage from 302 to 133 lines (56% reduction); consolidates 4 HBar patterns and 2 Pie patterns into reusable sections.
 
 ### Immediate
 
 ### Near-Term
-dashboard composition boundaries and chart section patterns.
-- Further decompose pages (DataEntryPage, RecordDetailPage pagination/layout patterns)ing). ✓ RecordsListCard extracted; record metadata cards and field grouping patterns remain.
-- Decompose `src/pages/CollectionPointDetailPage.tsx` into smaller domain components.
+- Further decompose pages (DataEntryPage, RecordDetailPage pagination/layout patterns)
+- Extract shared card layout and KPI display patterns
 
 ### Later
 
