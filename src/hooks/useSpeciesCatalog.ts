@@ -1,39 +1,78 @@
 import { useEffect, useState } from "react";
-import { parseSpeciesCatalog, type SpeciesCatalogItem } from "@/lib/speciesCatalog";
+import {
+  parseSpeciesCatalog,
+  type SpeciesCatalogItem,
+} from "@/lib/speciesCatalog";
+import type { FaunaGroup } from "@/lib/types";
 
-const SPECIES_CSV_PATH = "/data/species-catalog.csv";
+const GROUP_SPECIES_CSV_PATH: Record<FaunaGroup, string> = {
+  birds: "/data/species-catalog-birds.csv",
+  mammals: "/data/species-catalog-mammals.csv",
+  herpetofauna: "/data/species-catalog-herpetofauna.csv",
+};
 
-let catalogCache: SpeciesCatalogItem[] | null = null;
-let catalogPromise: Promise<SpeciesCatalogItem[]> | null = null;
+const catalogCache = new Map<string, SpeciesCatalogItem[]>();
+const catalogPromise = new Map<string, Promise<SpeciesCatalogItem[]>>();
 
-async function loadSpeciesCatalog(): Promise<SpeciesCatalogItem[]> {
-  if (catalogCache) return catalogCache;
-  if (catalogPromise) return catalogPromise;
+async function loadCatalogFromPath(path: string): Promise<SpeciesCatalogItem[]> {
+  const cacheKey = `path:${path}`;
+  const cached = catalogCache.get(cacheKey);
+  if (cached) return cached;
 
-  catalogPromise = fetch(SPECIES_CSV_PATH)
+  const pending = catalogPromise.get(cacheKey);
+  if (pending) return pending;
+
+  const loadPromise = fetch(path)
     .then(async (response) => {
-      if (!response.ok) return [];
-      const csv = await response.text();
-      const parsed = parseSpeciesCatalog(csv);
-      catalogCache = parsed;
+      const parsed = response.ok
+        ? parseSpeciesCatalog(await response.text())
+        : [];
+      catalogCache.set(cacheKey, parsed);
       return parsed;
     })
-    .catch(() => [])
+    .catch(() => {
+      catalogCache.set(cacheKey, []);
+      return [];
+    })
     .finally(() => {
-      catalogPromise = null;
+      catalogPromise.delete(cacheKey);
     });
 
-  return catalogPromise;
+  catalogPromise.set(cacheKey, loadPromise);
+  return loadPromise;
 }
 
-export function useSpeciesCatalog() {
-  const [species, setSpecies] = useState<SpeciesCatalogItem[]>(catalogCache ?? []);
-  const [isLoading, setIsLoading] = useState(!catalogCache);
+async function loadSpeciesCatalog(group: FaunaGroup): Promise<SpeciesCatalogItem[]> {
+  const variant = `group:${group}`;
+
+  const cached = catalogCache.get(variant);
+  if (cached) return cached;
+
+  const pending = catalogPromise.get(variant);
+  if (pending) return pending;
+
+  const loadPromise = (async () => {
+    const path = GROUP_SPECIES_CSV_PATH[group];
+    const catalog = await loadCatalogFromPath(path);
+    catalogCache.set(variant, catalog);
+    return catalog;
+  })().finally(() => {
+    catalogPromise.delete(variant);
+  });
+
+  catalogPromise.set(variant, loadPromise);
+  return loadPromise;
+}
+
+export function useSpeciesCatalog(group: FaunaGroup) {
+  const variant = `group:${group}`;
+  const [species, setSpecies] = useState<SpeciesCatalogItem[]>(catalogCache.get(variant) ?? []);
+  const [isLoading, setIsLoading] = useState(!catalogCache.get(variant));
 
   useEffect(() => {
     let cancelled = false;
 
-    loadSpeciesCatalog().then((items) => {
+    loadSpeciesCatalog(group).then((items) => {
       if (cancelled) return;
       setSpecies(items);
       setIsLoading(false);
@@ -42,7 +81,7 @@ export function useSpeciesCatalog() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [group]);
 
   return { species, isLoading };
 }

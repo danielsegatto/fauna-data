@@ -12,7 +12,7 @@ import {
 } from "@/lib/speciesCatalog";
 import { GROUP_LABELS, METHODOLOGY_LABELS, type FaunaRecord } from "@/lib/types";
 
-const SPECIES_CSV_PATH = "/data/species-catalog.csv";
+const SPECIES_CSV_PATH = "/data/species-catalog-birds.csv";
 
 let speciesCatalogCache: SpeciesCatalogItem[] | null = null;
 let speciesCatalogPromise: Promise<SpeciesCatalogItem[]> | null = null;

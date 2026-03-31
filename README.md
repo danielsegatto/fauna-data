@@ -23,6 +23,7 @@ For a fast architectural read, start here:
 3. `src/lib/db.ts` for persistence shape
 4. `src/hooks/useCollectionPoints.ts` and `src/hooks/useRecords.ts` for reactive data access
 5. `docs/architecture.md` for the current module map and refactor boundaries
+6. `docs/mobile-first.md` for non-negotiable smartphone UX constraints
 
 ## 1. Project Purpose
 
@@ -49,7 +50,9 @@ The app currently covers three fauna groups:
 
 Species suggestions in data entry and record editing are loaded from:
 
-- `public/data/species-catalog.csv`
+- `public/data/species-catalog-birds.csv` (birds)
+- `public/data/species-catalog-mammals.csv` (mammals)
+- `public/data/species-catalog-herpetofauna.csv` (herpetofauna, optional for now)
 
 Expected columns (header row):
 
@@ -62,8 +65,10 @@ Behavior:
 
 - suggestions are shown while typing in the species field
 - matching is case-insensitive and accent-insensitive
-- matching works by substring in any position of columns B, C, or D
-- selecting a suggestion fills the field with column C (`Nome do táxon`)
+- matching works by substring in any position of the parsed species fields
+- selecting a suggestion fills the field with the taxon name column when available
+- each fauna group uses only its own CSV file
+- if a group CSV is not available yet, no suggestions are shown for that group
 
 The app is intentionally local-first. There is no remote API, no authentication layer, and no cloud synchronization in the current version.
 
@@ -153,6 +158,10 @@ The UI is built primarily for mobile usage:
 - large tap targets
 - compact but structured cards for field review
 - horizontally scrollable filter tabs
+
+Smartphone-first is a hard requirement, not a preference. Any new screen or refactor should satisfy the checklist in:
+
+- `docs/mobile-first.md`
 
 ### 4.3 PWA Installation
 

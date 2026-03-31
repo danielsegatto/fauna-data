@@ -43,16 +43,24 @@ function detectHeaders(fields: string[]): HeaderMap {
   const canonical = withNormalized.find(({ normalized }) => (
     normalized.includes("autoria")
     || normalized.includes("taxon com autoria")
+    || normalized.includes("nome cientifico com autoria")
   ));
 
   const portuguese = withNormalized.find(({ normalized }) => (
     normalized.includes("nome em portugues")
     || normalized.includes("nome portugues")
+    || normalized.includes("nome comum")
     || normalized === "portugues"
+    || normalized === "comum"
   ));
 
   const taxon = withNormalized.find(({ normalized }) => (
-    (normalized.includes("nome do taxon") || normalized === "taxon")
+    (
+      normalized.includes("nome do taxon")
+      || normalized === "taxon"
+      || normalized === "nome cientifico"
+      || normalized === "scientific name"
+    )
     && !normalized.includes("autoria")
     && normalized !== (canonical?.normalized ?? "")
   ));
@@ -69,17 +77,20 @@ function toItem(
   headers: HeaderMap,
   fallbackFields: string[]
 ): SpeciesCatalogItem | null {
-  const canonicalName = (headers.canonicalKey
+  const canonicalValue = (headers.canonicalKey
     ? row[headers.canonicalKey]
     : row[fallbackFields[1] ?? ""])?.trim() ?? "";
 
-  const taxonName = (headers.taxonKey
+  const taxonValue = (headers.taxonKey
     ? row[headers.taxonKey]
     : row[fallbackFields[2] ?? ""])?.trim() ?? "";
 
   const portugueseName = (headers.portugueseKey
     ? row[headers.portugueseKey]
     : row[fallbackFields[3] ?? ""])?.trim() ?? "";
+
+  const canonicalName = canonicalValue || taxonValue;
+  const taxonName = taxonValue || canonicalValue;
 
   if (!canonicalName && !taxonName && !portugueseName) {
     return null;

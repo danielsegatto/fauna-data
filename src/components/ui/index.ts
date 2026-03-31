@@ -2,6 +2,7 @@ export { Button } from "./Button";
 export { Card } from "./Card";
 export { Input, Textarea } from "./Input";
 export { Select } from "./Select";
+export { OptionGroup } from "./OptionGroup";
 export { Badge } from "./Badge";
 export { EmptyState } from "./EmptyState";
 export { Page } from "./Page";
