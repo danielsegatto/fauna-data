@@ -129,6 +129,7 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Created `useFormErrors` hook in `src/hooks/useFormErrors.ts` for centralized validation error state management — eliminates repeated individual error state setters (nameError, limitError, methodologyError) across pages.
 - ✓ Migrated `CollectionPointPage` to use `useFormErrors` hook — reduces error state boilerplate from 2 useState calls to 1 hook call, consolidates error clearing logic.
 - ✓ Migrated `CollectionPointDetailPage` to use `useFormErrors` hook — reduces error state boilerplate from 3 useState calls to 1 hook call, consolidates error clearing in useEffect and after validation.
+- ✓ Centralized Home group visuals in `src/lib/groupVisuals.ts` and replaced emoji rendering in `HomePage` with fixed SVG icons from a typed registry — removes phone-dependent emoji variance and creates a scalable path for future icon/shape expansion with fallback behavior.
 
 ### Immediate
 ### Near-Term

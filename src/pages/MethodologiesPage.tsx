@@ -2,41 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Page, Card, EmptyState } from "@/components/ui";
 import { METHODOLOGIES, GROUP_LABELS, type FaunaGroup } from "@/lib/types";
 import { theme } from "@/lib/theme";
-import {
-  Ear,
-  ArrowLeftRight,
-  Grid2x2,
-  List,
-  Binoculars,
-  Camera,
-  Footprints,
-  MapPin,
-  Rat,
-  Search,
-  Container,
-  
-  Volume2,
-} from "lucide-react";
-
-// ─── Icon map per methodology ID ─────────────────────────────────────────────
-
-const METHODOLOGY_ICONS: Record<string, React.FC<{ size: number; color: string }>> = {
-  "point-count":      ({ size, color }) => <Ear size={size} color={color} />,
-  "transect":         ({ size, color }) => <ArrowLeftRight size={size} color={color} />,
-  "mist-net":         ({ size, color }) => <Grid2x2 size={size} color={color} />,
-  "mackinnon":        ({ size, color }) => <List size={size} color={color} />,
-  "free-observation": ({ size, color }) => <Binoculars size={size} color={color} />,
-  "camera-trap":      ({ size, color }) => <Camera size={size} color={color} />,
-  "track-station":    ({ size, color }) => <Footprints size={size} color={color} />,
-  "live-trap":        ({ size, color }) => <Rat size={size} color={color} />,
-  "visual-search":    ({ size, color }) => <Search size={size} color={color} />,
-  "pitfall":          ({ size, color }) => <Container size={size} color={color} />,
-  "acoustic":         ({ size, color }) => <Volume2 size={size} color={color} />,
-};
-
-const FallbackIcon = ({ size, color }: { size: number; color: string }) => (
-  <MapPin size={size} color={color} />
-);
+import { FaLocationDot } from "react-icons/fa6";
+import { getMethodologyIcon } from "@/lib/methodologyIcons";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -68,14 +35,14 @@ export default function MethodologiesPage() {
         {/* Methodology cards */}
         {methodologies.length === 0 ? (
           <EmptyState
-            icon={<MapPin size={48} />}
+            icon={<FaLocationDot size={48} />}
             title="Nenhuma metodologia disponível"
             description="Este grupo ainda não possui metodologias cadastradas."
           />
         ) : (
           <div className="flex flex-col gap-3">
             {methodologies.map((methodology) => {
-              const Icon = METHODOLOGY_ICONS[methodology.id] ?? FallbackIcon;
+              const Icon = getMethodologyIcon(methodology.id);
 
               return (
                 <Card
