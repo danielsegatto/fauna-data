@@ -8,6 +8,7 @@ import {
   showToast,
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
+import { useDeleteDialog } from "@/hooks/useDeleteDialog";
 import { useRecords } from "@/hooks/useRecords";
 import { useExport } from "@/hooks/useExport";
 import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
@@ -20,18 +21,7 @@ import {
   parseMackinnonLimit,
   hasMackinnonPointReachedLimit,
 } from "@/lib/mackinnon";
-import { type FaunaGroup } from "@/lib/types";
-
-type FormState = {
-  name: string;
-  notes: string;
-  latitude: string;
-  longitude: string;
-  accuracy: string;
-  limit: string;
-  group: FaunaGroup;
-  methodology: string;
-};
+import { type CollectionPointFormState } from "@/lib/types";
 
 function parseOptionalNumber(value: string): number | undefined {
   const trimmed = value.trim();
@@ -53,16 +43,15 @@ export default function CollectionPointDetailPage() {
     [collectionPoints, pointId]
   );
 
-  const [form, setForm] = useState<FormState | null>(null);
+  const [form, setForm] = useState<CollectionPointFormState | null>(null);
   const [nameError, setNameError] = useState("");
   const [methodologyError, setMethodologyError] = useState("");
   const [limitError, setLimitError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const [recordToDelete, setRecordToDelete] = useState<string | null>(null);
+  const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
 
-  const buildFormFromPoint = (targetPoint: NonNullable<typeof point>): FormState => ({
+    const buildFormFromPoint = (targetPoint: NonNullable<typeof point>): CollectionPointFormState => ({
     name: targetPoint.name,
     notes: targetPoint.notes ?? "",
     latitude: targetPoint.latitude !== undefined ? String(targetPoint.latitude) : "",
@@ -100,7 +89,7 @@ export default function CollectionPointDetailPage() {
     && isMackinnonMethodology(point?.methodology)
     && hasMackinnonPointReachedLimit(pointRecords.length, point?.limit);
 
-  const set = <K extends keyof FormState>(field: K, value: FormState[K]) => {
+  const set = <K extends keyof CollectionPointFormState>(field: K, value: CollectionPointFormState[K]) => {
     setForm((prev) => (prev ? { ...prev, [field]: value } : prev));
     if (field === "name") setNameError("");
     if (field === "methodology") setMethodologyError("");
@@ -207,8 +196,7 @@ export default function CollectionPointDetailPage() {
     try {
       await deleteRecord(recordToDelete);
       showToast("success", "Registro removido com sucesso!");
-      setDeleteOpen(false);
-      setRecordToDelete(null);
+      closeDelete();
     } catch {
       showToast("error", "Erro ao remover registro.");
     }
@@ -336,8 +324,7 @@ export default function CollectionPointDetailPage() {
                 });
               }}
               onDeleteRecord={(recordId) => {
-                setRecordToDelete(recordId);
-                setDeleteOpen(true);
+                openDelete(recordId);
               }}
             />
           </>
@@ -349,10 +336,7 @@ export default function CollectionPointDetailPage() {
       isOpen={deleteOpen}
       species={selectedRecord?.data.species}
       onConfirm={handleDeleteRecord}
-      onCancel={() => {
-        setDeleteOpen(false);
-        setRecordToDelete(null);
-      }}
+      onCancel={closeDelete}
     />
     </>
   );

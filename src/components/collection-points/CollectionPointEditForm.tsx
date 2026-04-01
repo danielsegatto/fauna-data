@@ -7,6 +7,7 @@ import {
   METHODOLOGY_LABELS,
   type FaunaGroup,
   type SelectOption,
+  type CollectionPointFormState,
 } from "@/lib/types";
 import { isMackinnonMethodology } from "@/lib/mackinnon";
 
@@ -16,21 +17,10 @@ const GROUP_OPTIONS: SelectOption[] = [
   { label: GROUP_LABELS.herpetofauna, value: "herpetofauna" },
 ];
 
-type FormState = {
-  name: string;
-  notes: string;
-  latitude: string;
-  longitude: string;
-  accuracy: string;
-  limit: string;
-  group: FaunaGroup;
-  methodology: string;
-};
-
 type Props = {
-  form: FormState;
+  form: CollectionPointFormState;
   errors: { name: string; methodology: string; limit: string };
-  onChange: <K extends keyof FormState>(field: K, value: FormState[K]) => void;
+  onChange: <K extends keyof CollectionPointFormState>(field: K, value: CollectionPointFormState[K]) => void;
 };
 
 export function CollectionPointEditForm({ form, errors, onChange }: Props) {

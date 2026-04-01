@@ -8,6 +8,7 @@ import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
 import { RecordsListCard } from "@/components/records/RecordsListCard";
 import { PageContent } from "@/components/shared/PageContent";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
+import { useDeleteDialog } from "@/hooks/useDeleteDialog";
 import { useRecordForm } from "@/hooks/useRecordForm";
 import { useRecords } from "@/hooks/useRecords";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
@@ -44,8 +45,7 @@ export default function DataEntryPage() {
   const { form, errors, setField, resetForm, validate } = useRecordForm();
   const [isSaving, setIsSaving] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const [recordToDelete, setRecordToDelete] = useState<string | null>(null);
+  const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
 
   const persistRecord = async () => {
     setIsSaving(true);
@@ -81,8 +81,7 @@ export default function DataEntryPage() {
     try {
       await deleteRecord(recordToDelete);
       showToast("success", "Registro removido com sucesso!");
-      setDeleteOpen(false);
-      setRecordToDelete(null);
+      closeDelete();
     } catch {
       showToast("error", "Erro ao remover registro.");
     }
@@ -183,8 +182,7 @@ export default function DataEntryPage() {
             });
           }}
           onDeleteRecord={(recordId) => {
-            setRecordToDelete(recordId);
-            setDeleteOpen(true);
+            openDelete(recordId);
           }}
         />
       </PageContent>
@@ -193,10 +191,7 @@ export default function DataEntryPage() {
         isOpen={deleteOpen}
         species={selectedRecord?.data.species}
         onConfirm={handleDeleteRecord}
-        onCancel={() => {
-          setDeleteOpen(false);
-          setRecordToDelete(null);
-        }}
+        onCancel={closeDelete}
       />
     </Page>
   );
