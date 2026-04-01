@@ -9,6 +9,7 @@ import {
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useDeleteDialog } from "@/hooks/useDeleteDialog";
+import { useFormErrors } from "@/hooks/useFormErrors";
 import { useRecords } from "@/hooks/useRecords";
 import { useExport } from "@/hooks/useExport";
 import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
@@ -44,9 +45,7 @@ export default function CollectionPointDetailPage() {
   );
 
   const [form, setForm] = useState<CollectionPointFormState | null>(null);
-  const [nameError, setNameError] = useState("");
-  const [methodologyError, setMethodologyError] = useState("");
-  const [limitError, setLimitError] = useState("");
+  const { errors, setError, clearError, clearAllErrors } = useFormErrors<{ name: string; methodology: string; limit: string }>();
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
@@ -65,10 +64,8 @@ export default function CollectionPointDetailPage() {
   useEffect(() => {
     if (!point) return;
     setForm(buildFormFromPoint(point));
-    setNameError("");
-    setMethodologyError("");
-    setLimitError("");
-  }, [point]);
+    clearAllErrors();
+  }, [point, clearAllErrors]);
 
 
 
@@ -91,27 +88,27 @@ export default function CollectionPointDetailPage() {
 
   const set = <K extends keyof CollectionPointFormState>(field: K, value: CollectionPointFormState[K]) => {
     setForm((prev) => (prev ? { ...prev, [field]: value } : prev));
-    if (field === "name") setNameError("");
-    if (field === "methodology") setMethodologyError("");
-    if (field === "limit") setLimitError("");
+    if (field === "name") clearError("name");
+    if (field === "methodology") clearError("methodology");
+    if (field === "limit") clearError("limit");
   };
 
   const handleSave = async () => {
     if (!point || !form) return;
 
     if (!form.name.trim()) {
-      setNameError("Nome do ponto é obrigatório");
+      setError("name", "Nome do ponto é obrigatório");
       return;
     }
 
     if (!form.methodology.trim()) {
-      setMethodologyError("Metodologia é obrigatória");
+      setError("methodology", "Metodologia é obrigatória");
       return;
     }
 
     const parsedLimit = parseMackinnonLimit(form.limit);
     if (isMackinnonMethodology(form.methodology) && parsedLimit === undefined) {
-      setLimitError("Informe um limite inteiro maior que zero");
+      setError("limit", "Informe um limite inteiro maior que zero");
       return;
     }
 
@@ -142,7 +139,7 @@ export default function CollectionPointDetailPage() {
     if (isMackinnonMethodology(point.methodology) && point.limit === undefined) {
       showToast("error", "Defina o limite da Lista de Mackinnon antes de adicionar registros.");
       setForm(buildFormFromPoint(point));
-      setLimitError("Defina um limite antes de continuar");
+      setError("limit", "Defina um limite antes de continuar");
       setIsEditing(true);
       return;
     }
@@ -160,9 +157,7 @@ export default function CollectionPointDetailPage() {
   const handleCancelEdit = () => {
     if (!point) return;
     setForm(buildFormFromPoint(point));
-    setNameError("");
-    setMethodologyError("");
-    setLimitError("");
+    clearAllErrors();
     setIsEditing(false);
   };
 
@@ -304,7 +299,7 @@ export default function CollectionPointDetailPage() {
             {isEditing && (
               <CollectionPointEditForm
                 form={form}
-                errors={{ name: nameError, methodology: methodologyError, limit: limitError }}
+                errors={{ name: errors.name ?? "", methodology: errors.methodology ?? "", limit: errors.limit ?? "" }}
                 onChange={set}
               />
             )}

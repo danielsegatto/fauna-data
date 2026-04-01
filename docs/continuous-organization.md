@@ -126,8 +126,15 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Extracted dashboard shell components: `DashboardSection` and `StatsOverviewSection`, and aligned `StatCard` with shared `Card` styling — removes repeated title-plus-card wrappers from chart sections, moves KPI composition out of `DashboardPage`, and centralizes dashboard card layout rules.
 - ✓ Adopted shared `RecordDeleteDialog` in `CollectionPointDetailPage` and replaced inline species lookup in the confirmation modal — completes record delete copy reuse across point and record flows while keeping delete state and persistence orchestration in the page.
 
+- ✓ Created `useFormErrors` hook in `src/hooks/useFormErrors.ts` for centralized validation error state management — eliminates repeated individual error state setters (nameError, limitError, methodologyError) across pages.
+- ✓ Migrated `CollectionPointPage` to use `useFormErrors` hook — reduces error state boilerplate from 2 useState calls to 1 hook call, consolidates error clearing logic.
+- ✓ Migrated `CollectionPointDetailPage` to use `useFormErrors` hook — reduces error state boilerplate from 3 useState calls to 1 hook call, consolidates error clearing in useEffect and after validation.
+
 ### Immediate
 ### Near-Term
+
+- Extract form entity conversion pattern (buildFormFromPoint) as reusable helper.
+- Consolidate validation + save flow pattern between DataEntryPage and RecordDetailPage.
 
 ### Later
 
