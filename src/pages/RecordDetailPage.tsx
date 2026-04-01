@@ -13,6 +13,7 @@ import { useRecords } from "@/hooks/useRecords";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { RecordViewCard } from "@/components/records/RecordViewCard";
 import { RecordFormCard } from "@/components/records/RecordFormCard";
+import { MetadataField } from "@/components/shared/MetadataField";
 import {
   isMackinnonMethodology,
   normalizeSpeciesName,
@@ -193,24 +194,25 @@ export default function RecordDetailPage() {
           {/* Meta card */}
           <Card padding="md">
             <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <p className="text-xs text-gray-400 font-medium">Data e hora</p>
-                <p className="text-xs font-semibold text-gray-700">
-                  {formatDateTime(record.timestamp)}
-                </p>
-              </div>
+              <MetadataField
+                label="Data e hora"
+                value={formatDateTime(record.timestamp)}
+                layout="inline"
+                valueClassName="text-xs font-semibold text-gray-700"
+              />
               {collectionPoint?.name && (
-                <div className="flex items-center justify-between">
-                  <p className="text-xs text-gray-400 font-medium">Ponto de Coleta</p>
-                  <p className="text-xs font-semibold text-gray-700 truncate max-w-[60%] text-right">
-                    {collectionPoint.name}
-                  </p>
-                </div>
+                <MetadataField
+                  label="Ponto de Coleta"
+                  value={collectionPoint.name}
+                  layout="inline"
+                  valueClassName="text-xs font-semibold text-gray-700 truncate max-w-[60%] text-right"
+                />
               )}
-              <div className="flex items-center justify-between">
-                <p className="text-xs text-gray-400 font-medium">Identificação</p>
-                <Badge variant="primary">{record.data.identification}</Badge>
-              </div>
+              <MetadataField
+                label="Identificação"
+                value={<Badge variant="primary">{record.data.identification}</Badge>}
+                layout="inline"
+              />
             </div>
           </Card>
 
