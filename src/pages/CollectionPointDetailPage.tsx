@@ -5,12 +5,12 @@ import {
   Page,
   Button,
   EmptyState,
-  ConfirmDialog,
   showToast,
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
 import { useExport } from "@/hooks/useExport";
+import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
 import { RecordsListCard } from "@/components/records/RecordsListCard";
 import { CollectionPointMetadataCard } from "@/components/collection-points/CollectionPointMetadataCard";
 import { CollectionPointEditForm } from "@/components/collection-points/CollectionPointEditForm";
@@ -86,6 +86,10 @@ export default function CollectionPointDetailPage() {
   const pointRecords = point
     ? filterRecords({ collectionPointId: point.id })
     : [];
+
+  const selectedRecord = recordToDelete
+    ? pointRecords.find((record) => record.id === recordToDelete)
+    : undefined;
 
   const pointMap = useMemo(() => {
     if (!point) return {} as Record<string, string>;
@@ -341,14 +345,9 @@ export default function CollectionPointDetailPage() {
       </PageContent>
     </Page>
 
-    {/* Delete confirmation */}
-    <ConfirmDialog
+    <RecordDeleteDialog
       isOpen={deleteOpen}
-      title="Remover Registro"
-      message={recordToDelete && pointRecords.find(r => r.id === recordToDelete) ? `Você tem certeza que deseja remover o registro de ${pointRecords.find(r => r.id === recordToDelete)?.data.species}? Esta ação não pode ser desfeita.` : "Você tem certeza que deseja remover este registro? Esta ação não pode ser desfeita."}
-      confirmLabel="Remover"
-      cancelLabel="Cancelar"
-      variant="danger"
+      species={selectedRecord?.data.species}
       onConfirm={handleDeleteRecord}
       onCancel={() => {
         setDeleteOpen(false);
