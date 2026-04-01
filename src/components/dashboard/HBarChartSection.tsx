@@ -1,6 +1,5 @@
 import { HBar } from "./HBar";
-import { SectionTitle } from "./SectionTitle";
-import { Card } from "@/components/ui";
+import { DashboardSection } from "./DashboardSection";
 
 interface BarData {
   label: string;
@@ -26,9 +25,7 @@ export function HBarChartSection({
   const maxValue = data.length > 0 ? data[0].value : 0;
 
   return (
-    <>
-      <SectionTitle>{title}</SectionTitle>
-      <Card padding="md">
+    <DashboardSection title={title}>
         <div className="flex flex-col gap-3">
           {data.map((item, i) => (
             <HBar
@@ -41,7 +38,6 @@ export function HBarChartSection({
             />
           ))}
         </div>
-      </Card>
-    </>
+    </DashboardSection>
   );
 }

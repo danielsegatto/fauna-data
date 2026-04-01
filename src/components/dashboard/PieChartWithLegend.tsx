@@ -5,8 +5,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { SectionTitle } from "./SectionTitle";
-import { Card } from "@/components/ui";
+import { DashboardSection } from "./DashboardSection";
 
 interface DataItem {
   label: string;
@@ -21,9 +20,7 @@ interface PieChartWithLegendProps {
 
 export function PieChartWithLegend({ title, data, colors }: PieChartWithLegendProps) {
   return (
-    <>
-      <SectionTitle>{title}</SectionTitle>
-      <Card padding="md">
+    <DashboardSection title={title}>
         <ResponsiveContainer width="100%" height={200}>
           <PieChart>
             <Pie
@@ -64,7 +61,6 @@ export function PieChartWithLegend({ title, data, colors }: PieChartWithLegendPr
             </div>
           ))}
         </div>
-      </Card>
-    </>
+    </DashboardSection>
   );
 }

@@ -6,8 +6,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { SectionTitle } from "./SectionTitle";
-import { Card } from "@/components/ui";
+import { DashboardSection } from "./DashboardSection";
 import { theme } from "@/lib/theme";
 
 interface DataPoint {
@@ -22,9 +21,7 @@ interface BarChartSectionProps {
 
 export function BarChartSection({ title, data }: BarChartSectionProps) {
   return (
-    <>
-      <SectionTitle>{title}</SectionTitle>
-      <Card padding="md">
+    <DashboardSection title={title}>
         <ResponsiveContainer width="100%" height={160}>
           <BarChart
             data={data}
@@ -59,7 +56,6 @@ export function BarChartSection({ title, data }: BarChartSectionProps) {
             />
           </BarChart>
         </ResponsiveContainer>
-      </Card>
-    </>
+    </DashboardSection>
   );
 }

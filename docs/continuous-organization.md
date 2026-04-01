@@ -123,11 +123,10 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Extracted shared `MetadataField` in `src/components/shared/MetadataField.tsx` and adopted it in `RecordDetailPage` and `CollectionPointMetadataCard` — deduplicates label/value metadata rendering patterns while preserving card-specific styling and behavior.
 - ✓ Extracted shared `PageContent` wrapper in `src/components/shared/PageContent.tsx` and adopted it in `DataEntryPage`, `RecordDetailPage`, `CollectionPointPage`, `CollectionPointDetailPage`, `CollectionPointsListPage`, `ExportPage`, `HomePage`, and `DashboardPage` — deduplicates repeated page body spacing/layout container markup while preserving per-page top spacing (`pt-4` or `pt-5`) and custom bottom spacing where needed.
 - ✓ Decomposed record-flow page shell concerns into `src/components/records/DataEntryContextCard.tsx`, `RecordMetadataCard.tsx`, `RecordPageActions.tsx`, and shared `RecordDeleteDialog.tsx` — removes inline context/meta/action/delete UI from `DataEntryPage` and `RecordDetailPage`, keeps routing/persistence/validation in pages, and centralizes record delete copy.
+- ✓ Extracted dashboard shell components: `DashboardSection` and `StatsOverviewSection`, and aligned `StatCard` with shared `Card` styling — removes repeated title-plus-card wrappers from chart sections, moves KPI composition out of `DashboardPage`, and centralizes dashboard card layout rules.
 
 ### Immediate
 ### Near-Term
-- Extract shared card layout and KPI display patterns
-- Extract KPI card and metadata display patterns (StatCard, section title arrangements)
 
 ### Later
 

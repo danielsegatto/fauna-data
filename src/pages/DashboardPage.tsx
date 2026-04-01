@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { StatCard } from "@/components/dashboard/StatCard";
 import { BarChartSection } from "@/components/dashboard/BarChartSection";
 import { PieChartWithLegend } from "@/components/dashboard/PieChartWithLegend";
 import { HBarChartSection } from "@/components/dashboard/HBarChartSection";
+import { StatsOverviewSection } from "@/components/dashboard/StatsOverviewSection";
 import { FilterTabs } from "@/components/shared/FilterTabs";
 import { PageContent } from "@/components/shared/PageContent";
 
@@ -49,19 +49,12 @@ export default function DashboardPage() {
           />
         ) : (
           <>
-            {/* ── KPI row ── */}
-            <div className="flex gap-3">
-              <StatCard
-                label="Total de Registros"
-                value={stats.totalRecords}
-                sub={`${stats.uniqueSpecies} espécie${stats.uniqueSpecies !== 1 ? "s" : ""}`}
-              />
-              <StatCard
-                label="Qtd Média"
-                value={stats.avgQuantity}
-                sub={`Máx: ${stats.maxQuantity}`}
-              />
-            </div>
+            <StatsOverviewSection
+              totalRecords={stats.totalRecords}
+              uniqueSpecies={stats.uniqueSpecies}
+              avgQuantity={stats.avgQuantity}
+              maxQuantity={stats.maxQuantity}
+            />
 
             {/* ── Records over time ── */}
             {stats.byDate.length > 1 && (
