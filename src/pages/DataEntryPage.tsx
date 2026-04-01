@@ -1,36 +1,25 @@
 import { useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import {
-  CheckCircle,
-  PlusCircle,
-} from "lucide-react";
-import {
-  Page,
-  Button,
-  Card,
-  ConfirmDialog,
-  showToast,
-} from "@/components/ui";
+import { PlusCircle } from "lucide-react";
+import { Page, Button, showToast } from "@/components/ui";
+import { DataEntryContextCard } from "@/components/records/DataEntryContextCard";
+import { DataEntryFormCard } from "@/components/records/DataEntryFormCard";
+import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
+import { RecordsListCard } from "@/components/records/RecordsListCard";
+import { PageContent } from "@/components/shared/PageContent";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecordForm } from "@/hooks/useRecordForm";
 import { useRecords } from "@/hooks/useRecords";
-import { DataEntryFormCard } from "@/components/records/DataEntryFormCard";
-import { RecordsListCard } from "@/components/records/RecordsListCard";
-import { PageContent } from "@/components/shared/PageContent";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
+import {
+  emptyRecordForm,
+  recordFormToObservationData,
+} from "@/lib/recordForm";
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
   type FaunaGroup,
 } from "@/lib/types";
-import {
-  emptyRecordForm,
-  recordFormToObservationData,
-} from "@/lib/recordForm";
-import { theme } from "@/lib/theme";
-
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function DataEntryPage() {
   const { group, methodology, pointId } = useParams<{
@@ -42,7 +31,6 @@ export default function DataEntryPage() {
   const location = useLocation();
 
   const faunaGroup = group as FaunaGroup;
-  const { color, bg } = theme.groups[faunaGroup] ?? theme.groups.birds;
   const groupLabel = GROUP_LABELS[faunaGroup] ?? group;
   const methodologyLabel = METHODOLOGY_LABELS[methodology ?? ""] ?? methodology;
   const pointName = (location.state as { pointName?: string } | null)?.pointName;
@@ -69,7 +57,7 @@ export default function DataEntryPage() {
         data: recordFormToObservationData(form),
       });
 
-      setSavedCount((n) => n + 1);
+      setSavedCount((count) => count + 1);
       resetForm(emptyRecordForm);
       showToast("success", "Registro salvo! Pronto para novo registro.");
     } catch {
@@ -89,6 +77,7 @@ export default function DataEntryPage() {
 
   const handleDeleteRecord = async () => {
     if (!recordToDelete) return;
+
     try {
       await deleteRecord(recordToDelete);
       showToast("success", "Registro removido com sucesso!");
@@ -128,8 +117,8 @@ export default function DataEntryPage() {
     }
 
     if (isMackinnonPoint) {
-      const pointRecords = filterRecords({ collectionPointId: collectionPoint.id });
-      if (hasMackinnonPointReachedLimit(pointRecords.length, collectionPoint.limit)) {
+      const pointRecordCount = filterRecords({ collectionPointId: collectionPoint.id }).length;
+      if (hasMackinnonPointReachedLimit(pointRecordCount, collectionPoint.limit)) {
         showToast("warning", `Limite de ${collectionPoint.limit} espécies atingido. Crie um novo ponto de coleta para continuar.`);
         return;
       }
@@ -170,32 +159,12 @@ export default function DataEntryPage() {
       }
     >
       <PageContent>
-
-        {/* Context card */}
-        <Card padding="md">
-          <div className="flex items-center gap-3">
-            <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-              style={{ backgroundColor: bg }}
-            >
-              <CheckCircle size={18} color={color} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-gray-400 font-medium">Ponto de Coleta</p>
-              <p className="text-sm font-semibold text-gray-900 truncate">
-                {pointName ?? collectionPoint?.name ?? pointId}
-              </p>
-            </div>
-            {savedCount > 0 && (
-              <div
-                className="px-2.5 py-1 rounded-full text-xs font-bold text-white"
-                style={{ backgroundColor: color }}
-              >
-                {savedCount} salvo{savedCount !== 1 ? "s" : ""}
-              </div>
-            )}
-          </div>
-        </Card>
+        <DataEntryContextCard
+          group={faunaGroup}
+          pointId={pointId}
+          pointName={pointName ?? collectionPoint?.name}
+          savedCount={savedCount}
+        />
 
         <DataEntryFormCard
           form={form}
@@ -220,15 +189,9 @@ export default function DataEntryPage() {
         />
       </PageContent>
 
-      <ConfirmDialog
+      <RecordDeleteDialog
         isOpen={deleteOpen}
-        title="Remover Registro"
-        message={selectedRecord
-          ? `Você tem certeza que deseja remover o registro de ${selectedRecord.data.species}? Esta ação não pode ser desfeita.`
-          : "Você tem certeza que deseja remover este registro? Esta ação não pode ser desfeita."}
-        confirmLabel="Remover"
-        cancelLabel="Cancelar"
-        variant="danger"
+        species={selectedRecord?.data.species}
         onConfirm={handleDeleteRecord}
         onCancel={() => {
           setDeleteOpen(false);

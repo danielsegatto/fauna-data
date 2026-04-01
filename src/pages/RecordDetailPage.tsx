@@ -1,36 +1,33 @@
 import { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { Pencil, CheckCircle, X, Trash2 } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import {
   Page,
-  Card,
-  Badge,
   Button,
   ConfirmDialog,
   showToast,
 } from "@/components/ui";
-import { useRecords } from "@/hooks/useRecords";
-import { useCollectionPoints } from "@/hooks/useCollectionPoints";
-import { RecordViewCard } from "@/components/records/RecordViewCard";
+import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
 import { RecordFormCard } from "@/components/records/RecordFormCard";
-import { MetadataField } from "@/components/shared/MetadataField";
+import { RecordMetadataCard } from "@/components/records/RecordMetadataCard";
+import { RecordPageActions } from "@/components/records/RecordPageActions";
+import { RecordViewCard } from "@/components/records/RecordViewCard";
 import { PageContent } from "@/components/shared/PageContent";
+import { useCollectionPoints } from "@/hooks/useCollectionPoints";
+import { useRecordForm } from "@/hooks/useRecordForm";
+import { useRecords } from "@/hooks/useRecords";
 import {
   isMackinnonMethodology,
   normalizeSpeciesName,
 } from "@/lib/mackinnon";
 import {
-  GROUP_LABELS,
-  METHODOLOGY_LABELS,
-} from "@/lib/types";
-import { formatDateTime } from "@/lib/format";
-import {
   hasRecordFormChangesFromObservation,
   recordFormToObservationData,
 } from "@/lib/recordForm";
-import { useRecordForm } from "@/hooks/useRecordForm";
-
-// ─── Component ────────────────────────────────────────────────────────────────
+import {
+  GROUP_LABELS,
+  METHODOLOGY_LABELS,
+} from "@/lib/types";
 
 export default function RecordDetailPage() {
   const { recordId } = useParams<{ recordId: string }>();
@@ -40,7 +37,7 @@ export default function RecordDetailPage() {
   const { records, updateRecord, deleteRecord, hasSpeciesRecordedAtPoint } = useRecords();
   const { collectionPoints } = useCollectionPoints();
 
-  const record = records.find((r) => r.id === recordId);
+  const record = records.find((item) => item.id === recordId);
   const collectionPoint = record
     ? collectionPoints.find((point) => point.id === record.collectionPointId)
     : undefined;
@@ -100,22 +97,27 @@ export default function RecordDetailPage() {
   };
 
   const handleCancelEdit = () => {
-    // If form was touched, ask for confirmation
     if (record) {
       const dirty = hasRecordFormChangesFromObservation(form, record.data);
-      if (dirty) { setDiscardOpen(true); return; }
+      if (dirty) {
+        setDiscardOpen(true);
+        return;
+      }
     }
+
     setIsEditing(false);
   };
 
   const handleStartEdit = () => {
     if (!record) return;
+
     loadObservationData(record.data);
     setIsEditing(true);
   };
 
   const handleDeleteRecord = async () => {
     if (!record) return;
+
     try {
       await deleteRecord(record.id);
       showToast("success", "Registro removido com sucesso!");
@@ -124,8 +126,6 @@ export default function RecordDetailPage() {
       showToast("error", "Erro ao remover registro.");
     }
   };
-
-  // ─── Not found ──────────────────────────────────────────────────────────────
 
   if (!record) {
     return (
@@ -137,8 +137,6 @@ export default function RecordDetailPage() {
     );
   }
 
-  // ─── Render ─────────────────────────────────────────────────────────────────
-
   return (
     <>
       <Page
@@ -146,34 +144,12 @@ export default function RecordDetailPage() {
         subtitle={`${GROUP_LABELS[record.group]} — ${METHODOLOGY_LABELS[record.methodology] ?? record.methodology}`}
         back={isEditing ? undefined : backTo}
         actions={
-          !isEditing ? (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setDeleteOpen(true)}
-                className="inline-flex items-center justify-center h-8 w-8 rounded-xl bg-red-50 text-red-600 text-sm font-semibold active:scale-95 transition-all hover:bg-red-100"
-                aria-label="Deletar registro"
-                title="Deletar registro"
-              >
-                <Trash2 size={15} />
-              </button>
-              <button
-                onClick={handleStartEdit}
-                className="inline-flex items-center justify-center h-8 w-8 rounded-xl bg-primary/10 text-primary text-sm font-semibold active:scale-95 transition-all"
-                aria-label="Editar registro"
-                title="Editar registro"
-              >
-                <Pencil size={15} />
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={handleCancelEdit}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-100 text-gray-600 text-sm font-semibold active:scale-95 transition-all"
-            >
-              <X size={15} />
-              Cancelar
-            </button>
-          )
+          <RecordPageActions
+            isEditing={isEditing}
+            onStartEdit={handleStartEdit}
+            onDelete={() => setDeleteOpen(true)}
+            onCancelEdit={handleCancelEdit}
+          />
         }
         footer={
           isEditing ? (
@@ -191,38 +167,13 @@ export default function RecordDetailPage() {
         }
       >
         <PageContent topPadding="md">
+          <RecordMetadataCard
+            record={record}
+            collectionPointName={collectionPoint?.name}
+          />
 
-          {/* Meta card */}
-          <Card padding="md">
-            <div className="flex flex-col gap-2">
-              <MetadataField
-                label="Data e hora"
-                value={formatDateTime(record.timestamp)}
-                layout="inline"
-                valueClassName="text-xs font-semibold text-gray-700"
-              />
-              {collectionPoint?.name && (
-                <MetadataField
-                  label="Ponto de Coleta"
-                  value={collectionPoint.name}
-                  layout="inline"
-                  valueClassName="text-xs font-semibold text-gray-700 truncate max-w-[60%] text-right"
-                />
-              )}
-              <MetadataField
-                label="Identificação"
-                value={<Badge variant="primary">{record.data.identification}</Badge>}
-                layout="inline"
-              />
-            </div>
-          </Card>
+          {!isEditing && <RecordViewCard record={record} />}
 
-          {/* View mode */}
-          {!isEditing && (
-            <RecordViewCard record={record} />
-          )}
-
-          {/* Edit mode */}
           {isEditing && (
             <RecordFormCard
               form={form}
@@ -234,7 +185,6 @@ export default function RecordDetailPage() {
         </PageContent>
       </Page>
 
-      {/* Discard changes confirmation */}
       <ConfirmDialog
         isOpen={discardOpen}
         title="Descartar alterações"
@@ -242,18 +192,16 @@ export default function RecordDetailPage() {
         confirmLabel="Descartar"
         cancelLabel="Continuar editando"
         variant="danger"
-        onConfirm={() => { setDiscardOpen(false); setIsEditing(false); }}
+        onConfirm={() => {
+          setDiscardOpen(false);
+          setIsEditing(false);
+        }}
         onCancel={() => setDiscardOpen(false)}
       />
 
-      {/* Delete confirmation */}
-      <ConfirmDialog
+      <RecordDeleteDialog
         isOpen={deleteOpen}
-        title="Remover Registro"
-        message={`Você tem certeza que deseja remover o registro de ${record?.data.species}? Esta ação não pode ser desfeita.`}
-        confirmLabel="Remover"
-        cancelLabel="Cancelar"
-        variant="danger"
+        species={record.data.species}
         onConfirm={handleDeleteRecord}
         onCancel={() => setDeleteOpen(false)}
       />

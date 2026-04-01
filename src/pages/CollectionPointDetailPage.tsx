@@ -14,6 +14,7 @@ import { useExport } from "@/hooks/useExport";
 import { RecordsListCard } from "@/components/records/RecordsListCard";
 import { CollectionPointMetadataCard } from "@/components/collection-points/CollectionPointMetadataCard";
 import { CollectionPointEditForm } from "@/components/collection-points/CollectionPointEditForm";
+import { PageContent } from "@/components/shared/PageContent";
 import {
   isMackinnonMethodology,
   parseMackinnonLimit,
@@ -288,7 +289,7 @@ export default function CollectionPointDetailPage() {
         </div>
       }
     >
-      <div className="px-4 pt-5 pb-4 flex flex-col gap-4">
+      <PageContent>
         {isLoading || !form ? (
           <div className="flex items-center justify-center py-16">
             <p className="text-sm text-gray-400">Carregando ponto...</p>
@@ -337,7 +338,7 @@ export default function CollectionPointDetailPage() {
             />
           </>
         )}
-      </div>
+      </PageContent>
     </Page>
 
     {/* Delete confirmation */}
