@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { MapPin, Navigation, CheckCircle, Clock } from "lucide-react";
 import { Page, Input, Textarea, Button, Card, showToast } from "@/components/ui";
 import { useGeolocation } from "@/hooks/useGeolocation";
+import { useFormErrors } from "@/hooks/useFormErrors";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import {
   isMackinnonMethodology,
@@ -30,8 +31,7 @@ export default function CollectionPointPage() {
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
   const [limit, setLimit] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [limitError, setLimitError] = useState("");
+  const { errors, setError, clearError, clearAllErrors } = useFormErrors<{ name: string; limit: string }>();
   const [isSaving, setIsSaving] = useState(false);
   const [createdAt] = useState(() => Date.now());
   const isMackinnon = isMackinnonMethodology(methodology);
@@ -48,18 +48,17 @@ export default function CollectionPointPage() {
   const handleContinue = async () => {
     // Validate
     if (!name.trim()) {
-      setNameError("Nome do ponto é obrigatório");
+      setError("name", "Nome do ponto é obrigatório");
       return;
     }
 
     const parsedLimit = parseMackinnonLimit(limit);
     if (isMackinnon && parsedLimit === undefined) {
-      setLimitError("Informe um limite inteiro maior que zero");
+      setError("limit", "Informe um limite inteiro maior que zero");
       return;
     }
 
-    setNameError("");
-    setLimitError("");
+    clearAllErrors();
     setIsSaving(true);
 
     try {
@@ -132,9 +131,9 @@ export default function CollectionPointPage() {
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
-                if (e.target.value.trim()) setNameError("");
+                if (e.target.value.trim()) clearError("name");
               }}
-              error={nameError}
+              error={errors.name}
             />
 
             <Textarea
@@ -150,9 +149,9 @@ export default function CollectionPointPage() {
                 value={limit}
                 onChange={(v) => {
                   setLimit(v);
-                  setLimitError("");
+                  clearError("limit");
                 }}
-                error={limitError}
+                error={errors.limit}
               />
             )}
           </div>

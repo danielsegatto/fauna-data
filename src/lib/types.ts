@@ -48,6 +48,19 @@ export interface FaunaRecord {
   data: ObservationData;
 }
 
+// ─── Form States ──────────────────────────────────────────────────────────────
+
+export interface CollectionPointFormState {
+  name: string;
+  notes: string;
+  latitude: string;
+  longitude: string;
+  accuracy: string;
+  limit: string;
+  group: FaunaGroup;
+  methodology: string;
+}
+
 // ─── Dropdown Options ─────────────────────────────────────────────────────────
 
 export interface SelectOption {

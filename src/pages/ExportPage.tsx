@@ -7,6 +7,7 @@ import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useExport } from "@/hooks/useExport";
 import { PageContent } from "@/components/shared/PageContent";
 import { type ExportFilters } from "@/lib/recordFilters";
+import { buildCollectionPointMap } from "@/lib/collectionPointHelpers";
 import { GROUP_LABELS } from "@/lib/types";
 
 // ─── Date input component (native HTML) ──────────────────────────────────────
@@ -82,10 +83,7 @@ export default function ExportPage() {
 
   // Live filtered count
   const pointMap = useMemo(() => {
-    return collectionPoints.reduce<Record<string, string>>((acc, p) => {
-      acc[p.id] = p.name;
-      return acc;
-    }, {});
+    return buildCollectionPointMap(collectionPoints);
   }, [collectionPoints]);
 
   const filteredCount = useMemo(
