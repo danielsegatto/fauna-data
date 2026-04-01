@@ -16,6 +16,7 @@ import { useRecordForm } from "@/hooks/useRecordForm";
 import { useRecords } from "@/hooks/useRecords";
 import { DataEntryFormCard } from "@/components/records/DataEntryFormCard";
 import { RecordsListCard } from "@/components/records/RecordsListCard";
+import { PageContent } from "@/components/shared/PageContent";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
@@ -168,7 +169,7 @@ export default function DataEntryPage() {
         </div>
       }
     >
-      <div className="px-4 pt-5 pb-4 flex flex-col gap-4">
+      <PageContent>
 
         {/* Context card */}
         <Card padding="md">
@@ -217,7 +218,7 @@ export default function DataEntryPage() {
             setDeleteOpen(true);
           }}
         />
-      </div>
+      </PageContent>
 
       <ConfirmDialog
         isOpen={deleteOpen}

@@ -9,6 +9,7 @@ import {
   parseMackinnonLimit,
 } from "@/lib/mackinnon";
 import { MackinnonLimitField } from "@/components/collection-points/MackinnonLimitField";
+import { PageContent } from "@/components/shared/PageContent";
 import { GROUP_LABELS, METHODOLOGY_LABELS, type FaunaGroup } from "@/lib/types";
 import { formatDateTime } from "@/lib/format";
 import { theme } from "@/lib/theme";
@@ -100,7 +101,7 @@ export default function CollectionPointPage() {
         </Button>
       }
     >
-      <div className="px-4 pt-5 pb-4 flex flex-col gap-4">
+      <PageContent>
 
         {/* Creation timestamp */}
         <Card padding="md">
@@ -224,7 +225,7 @@ export default function CollectionPointPage() {
             </Button>
           </div>
         </Card>
-      </div>
+      </PageContent>
     </Page>
   );
 }

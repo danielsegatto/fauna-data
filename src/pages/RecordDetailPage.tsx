@@ -14,6 +14,7 @@ import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { RecordViewCard } from "@/components/records/RecordViewCard";
 import { RecordFormCard } from "@/components/records/RecordFormCard";
 import { MetadataField } from "@/components/shared/MetadataField";
+import { PageContent } from "@/components/shared/PageContent";
 import {
   isMackinnonMethodology,
   normalizeSpeciesName,
@@ -189,7 +190,7 @@ export default function RecordDetailPage() {
           ) : undefined
         }
       >
-        <div className="px-4 pt-4 pb-4 flex flex-col gap-4">
+        <PageContent topPadding="md">
 
           {/* Meta card */}
           <Card padding="md">
@@ -230,7 +231,7 @@ export default function RecordDetailPage() {
               onFieldChange={setField}
             />
           )}
-        </div>
+        </PageContent>
       </Page>
 
       {/* Discard changes confirmation */}
