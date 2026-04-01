@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { MapPin, PlusCircle } from "lucide-react";
 import { CollectionPointCard } from "@/components/collection-points/CollectionPointCard";
 import { Page, EmptyState, Button } from "@/components/ui";
+import { PageContent } from "@/components/shared/PageContent";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
 import { GROUP_LABELS, type FaunaGroup } from "@/lib/types";
@@ -51,7 +52,7 @@ export default function CollectionPointsListPage() {
         ) : undefined
       }
     >
-      <div className="px-4 pt-4 pb-4 flex flex-col gap-4">
+      <PageContent topPadding="md">
         {!groupLabel ? (
           <EmptyState
             icon={<MapPin size={48} />}
@@ -90,7 +91,7 @@ export default function CollectionPointsListPage() {
             ))}
           </div>
         )}
-      </div>
+      </PageContent>
     </Page>
   );
 }

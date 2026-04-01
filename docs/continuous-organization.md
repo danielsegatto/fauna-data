@@ -112,20 +112,27 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 
 - ✓ Consolidated record form coordination via shared `useRecordForm` hook in DataEntryPage and RecordDetailPage.
 - ✓ Extracted reusable form field components into `src/components/records/RecordFormFields.tsx` (SpeciesField, IdentificationToggle/Select, EnvironmentField, StratumField, ActivityField, QuantityStepper, DistanceStepper, SideGrid/Select, ObservationsField) to eliminate duplicated field JSX between pages.
+- ✓ Extracted `MackinnonLimitField` into `src/components/collection-points/MackinnonLimitField.tsx` — eliminates duplicated quick-select buttons + Input block shared by CollectionPointPage and CollectionPointDetailPage.
+- ✓ Extracted `ViewField` read-only field display component into `src/components/records/RecordFormFields.tsx` — eliminates duplicated local helper in RecordDetailPage and provides canonical representation for displaying observation field-value pairs in grid layouts.
+- ✓ Extracted `RecordsListCard` into `src/components/records/RecordsListCard.tsx` — eliminates duplicated record list card structure (title, metadata, empty state, listing) shared by DataEntryPage and CollectionPointDetailPage; supports flexible icon and subtitle for page-specific context.
+- ✓ Decomposed `CollectionPointDetailPage` into domain components: `CollectionPointMetadataCard` (view-mode display), `CollectionPointEditForm` (edit-mode form) — reduces page complexity from ~500 to 359 lines; maintains state orchestration and routing in page layer per architecture pattern.
+- ✓ Extracted dashboard chart section components: `BarChartSection` (time series), `PieChartWithLegend` (pie with legend), `HBarChartSection` (horizontal bar listings) — reduces DashboardPage from 302 to 133 lines (56% reduction); consolidates 4 HBar patterns and 2 Pie patterns into reusable sections.
+
+- ✓ Decomposed `RecordDetailPage` into display components: `RecordViewCard` (view-mode record display with species, data grid, observations, group accent bar), `RecordFormCard` (edit-mode form fields) — reduces page complexity from ~390 to ~220 lines (44% reduction); eliminates inline card markup duplication; maintains edit/view mode toggling at page level.
+- ✓ Decomposed `DataEntryPage` form card container into `src/components/records/DataEntryFormCard.tsx` — extracts identification toggle, quantity/distance steppers, and field composition into a domain component; preserves page-level save validation and navigation orchestration.
+- ✓ Extracted shared `MetadataField` in `src/components/shared/MetadataField.tsx` and adopted it in `RecordDetailPage` and `CollectionPointMetadataCard` — deduplicates label/value metadata rendering patterns while preserving card-specific styling and behavior.
+- ✓ Extracted shared `PageContent` wrapper in `src/components/shared/PageContent.tsx` and adopted it in `DataEntryPage`, `RecordDetailPage`, `CollectionPointPage`, `CollectionPointDetailPage`, `CollectionPointsListPage`, `ExportPage`, `HomePage`, and `DashboardPage` — deduplicates repeated page body spacing/layout container markup while preserving per-page top spacing (`pt-4` or `pt-5`) and custom bottom spacing where needed.
+- ✓ Decomposed record-flow page shell concerns into `src/components/records/DataEntryContextCard.tsx`, `RecordMetadataCard.tsx`, `RecordPageActions.tsx`, and shared `RecordDeleteDialog.tsx` — removes inline context/meta/action/delete UI from `DataEntryPage` and `RecordDetailPage`, keeps routing/persistence/validation in pages, and centralizes record delete copy.
+- ✓ Extracted dashboard shell components: `DashboardSection` and `StatsOverviewSection`, and aligned `StatCard` with shared `Card` styling — removes repeated title-plus-card wrappers from chart sections, moves KPI composition out of `DashboardPage`, and centralizes dashboard card layout rules.
+- ✓ Adopted shared `RecordDeleteDialog` in `CollectionPointDetailPage` and replaced inline species lookup in the confirmation modal — completes record delete copy reuse across point and record flows while keeping delete state and persistence orchestration in the page.
 
 ### Immediate
-
-- Centralize Mackinnon point-limit orchestration where it appears in multiple pages.
-
 ### Near-Term
-
-- Extract shared record-form UI presentation fragments (card layouts, view field grouping). State and coordination logic is now unified; page-specific UI is intentionally kept separate for mobile-first flexibility.
-- Decompose `src/pages/CollectionPointDetailPage.tsx` into smaller domain components.
 
 ### Later
 
 - Extract dashboard/chart section composition boundaries.
-- Reduce repeated card/list view fragments into domain-level shared components.
+- Reduce repeated record/list action fragments beyond shared cards and delete dialogs.
 
 ## Verification Protocol (Every Triggered Cycle)
 

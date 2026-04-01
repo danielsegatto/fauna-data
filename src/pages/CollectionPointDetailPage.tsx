@@ -3,34 +3,24 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Edit3, PlusCircle, Save, ClipboardList, FileDown } from "lucide-react";
 import {
   Page,
-  Card,
-  Input,
-  Textarea,
-  Select,
   Button,
-  Badge,
   EmptyState,
-  ConfirmDialog,
   showToast,
 } from "@/components/ui";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecords } from "@/hooks/useRecords";
 import { useExport } from "@/hooks/useExport";
-import { RecordListItem } from "@/components/records/RecordListItem";
+import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
+import { RecordsListCard } from "@/components/records/RecordsListCard";
+import { CollectionPointMetadataCard } from "@/components/collection-points/CollectionPointMetadataCard";
+import { CollectionPointEditForm } from "@/components/collection-points/CollectionPointEditForm";
+import { PageContent } from "@/components/shared/PageContent";
 import {
-  MACKINNON_LIMIT_OPTIONS,
   isMackinnonMethodology,
   parseMackinnonLimit,
   hasMackinnonPointReachedLimit,
 } from "@/lib/mackinnon";
-import {
-  GROUP_LABELS,
-  METHODOLOGIES,
-  METHODOLOGY_LABELS,
-  type FaunaGroup,
-  type SelectOption,
-} from "@/lib/types";
-import { formatDateTime } from "@/lib/format";
+import { type FaunaGroup } from "@/lib/types";
 
 type FormState = {
   name: string;
@@ -42,12 +32,6 @@ type FormState = {
   group: FaunaGroup;
   methodology: string;
 };
-
-const GROUP_OPTIONS: SelectOption[] = [
-  { label: GROUP_LABELS.birds, value: "birds" },
-  { label: GROUP_LABELS.mammals, value: "mammals" },
-  { label: GROUP_LABELS.herpetofauna, value: "herpetofauna" },
-];
 
 function parseOptionalNumber(value: string): number | undefined {
   const trimmed = value.trim();
@@ -97,27 +81,15 @@ export default function CollectionPointDetailPage() {
     setLimitError("");
   }, [point]);
 
-  const methodologyOptions = useMemo(() => {
-    if (!form) return [] as SelectOption[];
 
-    const baseOptions = (METHODOLOGIES[form.group] ?? []).map((methodology) => ({
-      label: methodology.title,
-      value: methodology.id,
-    }));
-
-    if (!baseOptions.some((item) => item.value === form.methodology) && form.methodology) {
-      baseOptions.unshift({
-        label: METHODOLOGY_LABELS[form.methodology] ?? form.methodology,
-        value: form.methodology,
-      });
-    }
-
-    return baseOptions;
-  }, [form]);
 
   const pointRecords = point
     ? filterRecords({ collectionPointId: point.id })
     : [];
+
+  const selectedRecord = recordToDelete
+    ? pointRecords.find((record) => record.id === recordToDelete)
+    : undefined;
 
   const pointMap = useMemo(() => {
     if (!point) return {} as Record<string, string>;
@@ -321,7 +293,7 @@ export default function CollectionPointDetailPage() {
         </div>
       }
     >
-      <div className="px-4 pt-5 pb-4 flex flex-col gap-4">
+      <PageContent>
         {isLoading || !form ? (
           <div className="flex items-center justify-center py-16">
             <p className="text-sm text-gray-400">Carregando ponto...</p>
@@ -339,201 +311,43 @@ export default function CollectionPointDetailPage() {
           />
         ) : (
           <>
-            <Card padding="md">
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <p className="text-xs text-gray-400 font-medium">Criado em</p>
-                  <p className="text-sm font-semibold text-gray-900">
-                    {formatDateTime(point.createdAt)}
-                  </p>
-                </div>
-                <Badge variant="group" group={point.group}>
-                  {GROUP_LABELS[point.group]}
-                </Badge>
-              </div>
-            </Card>
+            <CollectionPointMetadataCard point={point} recordCount={pointRecords.length} />
 
-            {isEditing ? (
-              <Card padding="md">
-                <div className="flex flex-col gap-5">
-                  <Input
-                    label="Nome do Ponto *"
-                    value={form.name}
-                    onChange={(e) => set("name", e.target.value)}
-                    error={nameError}
-                  />
-
-                  <Textarea
-                    label="Observações"
-                    value={form.notes}
-                    onChange={(e) => set("notes", e.target.value)}
-                    rows={3}
-                  />
-
-                  <Select
-                    label="Grupo"
-                    options={GROUP_OPTIONS}
-                    value={form.group}
-                    onChange={(value) => {
-                      const newGroup = value as FaunaGroup;
-                      const nextMethodology = METHODOLOGIES[newGroup]?.[0]?.id ?? "";
-                      set("group", newGroup);
-                      if (!METHODOLOGIES[newGroup]?.some((m) => m.id === form.methodology)) {
-                        set("methodology", nextMethodology);
-                      }
-                    }}
-                  />
-
-                  <Select
-                    label="Metodologia *"
-                    options={methodologyOptions}
-                    value={form.methodology}
-                    onChange={(value) => set("methodology", value)}
-                    error={methodologyError}
-                  />
-
-                  {isMackinnonMethodology(form.methodology) && (
-                    <div className="flex flex-col gap-3">
-                      <div className="flex flex-wrap gap-2">
-                        {MACKINNON_LIMIT_OPTIONS.map((option) => {
-                          const isSelected = form.limit.trim() === String(option);
-                          return (
-                            <button
-                              key={option}
-                              type="button"
-                              onClick={() => {
-                                set("limit", String(option));
-                                setLimitError("");
-                              }}
-                              className={[
-                                "px-3 py-2 rounded-xl text-sm font-semibold border transition-all active:scale-95",
-                                isSelected
-                                  ? "border-primary bg-primary/10 text-primary"
-                                  : "border-gray-200 bg-gray-50 text-gray-600",
-                              ].join(" ")}
-                            >
-                              {option}
-                            </button>
-                          );
-                        })}
-                      </div>
-
-                      <Input
-                        label="Limite da Lista de Mackinnon *"
-                        value={form.limit}
-                        onChange={(e) => set("limit", e.target.value)}
-                        inputMode="numeric"
-                        placeholder="Ex: 10"
-                        hint="Sugestões rápidas: 10, 15 ou 20. Você também pode informar outro número inteiro."
-                        error={limitError}
-                      />
-                    </div>
-                  )}
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <Input
-                      label="Latitude"
-                      value={form.latitude}
-                      onChange={(e) => set("latitude", e.target.value)}
-                      inputMode="decimal"
-                      placeholder="Ex: -10.123456"
-                    />
-                    <Input
-                      label="Longitude"
-                      value={form.longitude}
-                      onChange={(e) => set("longitude", e.target.value)}
-                      inputMode="decimal"
-                      placeholder="Ex: -48.654321"
-                    />
-                  </div>
-
-                  <Input
-                    label="Precisão (m)"
-                    value={form.accuracy}
-                    onChange={(e) => set("accuracy", e.target.value)}
-                    inputMode="decimal"
-                    placeholder="Ex: 8"
-                  />
-                </div>
-              </Card>
-            ) : (
-              <Card padding="md">
-                <div className="flex flex-col gap-2">
-                  <div>
-                    <p className="text-xs text-gray-400 font-medium">Nome</p>
-                    <p className="text-sm font-semibold text-gray-900">{point.name}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-400 font-medium">Metodologia</p>
-                    <p className="text-sm text-gray-700">
-                      {METHODOLOGY_LABELS[point.methodology] ?? point.methodology}
-                    </p>
-                  </div>
-                  {isMackinnonMethodology(point.methodology) && (
-                    <div>
-                      <p className="text-xs text-gray-400 font-medium">Limite Mackinnon</p>
-                      <p className="text-sm text-gray-700">
-                        {point.limit !== undefined ? `${pointRecords.length}/${point.limit} registros` : "Não definido"}
-                      </p>
-                    </div>
-                  )}
-                  {point.notes && (
-                    <div>
-                      <p className="text-xs text-gray-400 font-medium">Observações</p>
-                      <p className="text-sm text-gray-700 whitespace-pre-line">{point.notes}</p>
-                    </div>
-                  )}
-                </div>
-              </Card>
+            {isEditing && (
+              <CollectionPointEditForm
+                form={form}
+                errors={{ name: nameError, methodology: methodologyError, limit: limitError }}
+                onChange={set}
+              />
             )}
 
-            <Card padding="md">
-              <div className="flex items-center gap-2 mb-3">
-                <ClipboardList size={18} className="text-gray-500" />
-                <div>
-                  <p className="text-sm font-semibold text-gray-700">Registros deste ponto</p>
-                  {isMackinnonMethodology(point.methodology) && point.limit !== undefined && (
-                    <p className="text-xs text-gray-400">Progresso atual: {pointRecords.length}/{point.limit}</p>
-                  )}
-                </div>
-              </div>
-
-              {pointRecords.length === 0 ? (
-                <p className="text-sm text-gray-400">Nenhum registro vinculado ainda.</p>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  {pointRecords.map((record) => (
-                    <RecordListItem
-                      key={record.id}
-                      record={record}
-                      metaLabel={`${formatDateTime(record.timestamp)} • ${record.data.identification}`}
-                      onOpen={(recordId) => {
-                        navigate(`/records/${recordId}`, {
-                          state: { backTo: `/collection-point/${point.id}` },
-                        });
-                      }}
-                      onDelete={(recordId) => {
-                        setRecordToDelete(recordId);
-                        setDeleteOpen(true);
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-            </Card>
+            <RecordsListCard
+              records={pointRecords}
+              title="Registros deste ponto"
+              icon={<ClipboardList size={18} className="text-gray-500" />}
+              subtitle={
+                isMackinnonMethodology(point.methodology) && point.limit !== undefined
+                  ? `Progresso atual: ${pointRecords.length}/${point.limit}`
+                  : undefined
+              }
+              onOpenRecord={(recordId) => {
+                navigate(`/records/${recordId}`, {
+                  state: { backTo: `/collection-point/${point.id}` },
+                });
+              }}
+              onDeleteRecord={(recordId) => {
+                setRecordToDelete(recordId);
+                setDeleteOpen(true);
+              }}
+            />
           </>
         )}
-      </div>
+      </PageContent>
     </Page>
 
-    {/* Delete confirmation */}
-    <ConfirmDialog
+    <RecordDeleteDialog
       isOpen={deleteOpen}
-      title="Remover Registro"
-      message={recordToDelete && pointRecords.find(r => r.id === recordToDelete) ? `Você tem certeza que deseja remover o registro de ${pointRecords.find(r => r.id === recordToDelete)?.data.species}? Esta ação não pode ser desfeita.` : "Você tem certeza que deseja remover este registro? Esta ação não pode ser desfeita."}
-      confirmLabel="Remover"
-      cancelLabel="Cancelar"
-      variant="danger"
+      species={selectedRecord?.data.species}
       onConfirm={handleDeleteRecord}
       onCancel={() => {
         setDeleteOpen(false);

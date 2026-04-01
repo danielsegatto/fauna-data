@@ -5,6 +5,7 @@ import { Page, Card, Button, Select, showToast } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useExport } from "@/hooks/useExport";
+import { PageContent } from "@/components/shared/PageContent";
 import { type ExportFilters } from "@/lib/recordFilters";
 import { GROUP_LABELS } from "@/lib/types";
 
@@ -130,7 +131,7 @@ export default function ExportPage() {
         </Button>
       }
     >
-      <div className="px-4 pt-4 pb-4 flex flex-col gap-4">
+      <PageContent topPadding="md">
 
         {/* Filter card */}
         <Card padding="md">
@@ -249,7 +250,7 @@ export default function ExportPage() {
             ))}
           </div>
         </Card>
-      </div>
+      </PageContent>
     </Page>
   );
 }
