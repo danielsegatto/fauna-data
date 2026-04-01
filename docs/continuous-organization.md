@@ -121,7 +121,7 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Decomposed `RecordDetailPage` into display components: `RecordViewCard` (view-mode record display with species, data grid, observations, group accent bar), `RecordFormCard` (edit-mode form fields) — reduces page complexity from ~390 to ~220 lines (44% reduction); eliminates inline card markup duplication; maintains edit/view mode toggling at page level.
 - ✓ Decomposed `DataEntryPage` form card container into `src/components/records/DataEntryFormCard.tsx` — extracts identification toggle, quantity/distance steppers, and field composition into a domain component; preserves page-level save validation and navigation orchestration.
 - ✓ Extracted shared `MetadataField` in `src/components/shared/MetadataField.tsx` and adopted it in `RecordDetailPage` and `CollectionPointMetadataCard` — deduplicates label/value metadata rendering patterns while preserving card-specific styling and behavior.
-- ✓ Extracted shared `PageContent` wrapper in `src/components/shared/PageContent.tsx` and adopted it in `DataEntryPage`, `RecordDetailPage`, `CollectionPointPage`, and `ExportPage` — deduplicates repeated page body spacing/layout container markup while preserving per-page top spacing (`pt-4` or `pt-5`).
+- ✓ Extracted shared `PageContent` wrapper in `src/components/shared/PageContent.tsx` and adopted it in `DataEntryPage`, `RecordDetailPage`, `CollectionPointPage`, `ExportPage`, `HomePage`, and `DashboardPage` — deduplicates repeated page body spacing/layout container markup while preserving per-page top spacing (`pt-4` or `pt-5`) and custom bottom spacing where needed.
 
 ### Immediate
 ### Near-Term

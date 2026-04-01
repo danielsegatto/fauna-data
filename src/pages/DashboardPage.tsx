@@ -4,6 +4,7 @@ import { BarChartSection } from "@/components/dashboard/BarChartSection";
 import { PieChartWithLegend } from "@/components/dashboard/PieChartWithLegend";
 import { HBarChartSection } from "@/components/dashboard/HBarChartSection";
 import { FilterTabs } from "@/components/shared/FilterTabs";
+import { PageContent } from "@/components/shared/PageContent";
 
 import { BarChart2 } from "lucide-react";
 import { Page, EmptyState } from "@/components/ui";
@@ -28,7 +29,7 @@ export default function DashboardPage() {
 
   return (
     <Page title="Painel de Análise" subtitle="Estatísticas dos dados coletados" back="/">
-      <div className="px-4 pt-4 pb-6 flex flex-col gap-4">
+      <PageContent topPadding="md" className="pb-6">
 
         {/* Time range filter */}
         <FilterTabs
@@ -127,7 +128,7 @@ export default function DashboardPage() {
             )}
           </>
         )}
-      </div>
+      </PageContent>
     </Page>
   );
 }

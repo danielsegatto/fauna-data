@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { BarChart2 } from "lucide-react";
 import { Page, Card, Button, Badge } from "@/components/ui";
 import { InstallPrompt } from "@/components/ui/InstallPrompt";
+import { PageContent } from "@/components/shared/PageContent";
 import { useRecords } from "@/hooks/useRecords";
 import { type FaunaGroup } from "@/lib/types";
 import { theme } from "@/lib/theme";
@@ -69,7 +70,7 @@ export default function HomePage() {
         </div>
       }
     >
-      <div className="px-4 pt-5 pb-4 flex flex-col gap-4">
+      <PageContent>
         {/* Total counter */}
         {records.length > 0 && (
           <div className="bg-primary/8 rounded-2xl px-4 py-3 flex items-center justify-between">
@@ -144,7 +145,7 @@ export default function HomePage() {
             );
           })}
         </div>
-      </div>
+      </PageContent>
     </Page>
   );
 }
