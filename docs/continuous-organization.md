@@ -119,13 +119,12 @@ Target size: 30 to 180 minutes per cycle, based on the selected scope.
 - ✓ Extracted dashboard chart section components: `BarChartSection` (time series), `PieChartWithLegend` (pie with legend), `HBarChartSection` (horizontal bar listings) — reduces DashboardPage from 302 to 133 lines (56% reduction); consolidates 4 HBar patterns and 2 Pie patterns into reusable sections.
 
 - ✓ Decomposed `RecordDetailPage` into display components: `RecordViewCard` (view-mode record display with species, data grid, observations, group accent bar), `RecordFormCard` (edit-mode form fields) — reduces page complexity from ~390 to ~220 lines (44% reduction); eliminates inline card markup duplication; maintains edit/view mode toggling at page level.
+- ✓ Decomposed `DataEntryPage` form card container into `src/components/records/DataEntryFormCard.tsx` — extracts identification toggle, quantity/distance steppers, and field composition into a domain component; preserves page-level save validation and navigation orchestration.
 
 ### Immediate
 ### Near-Term
 - Further decompose pages (DataEntryPage, RecordDetailPage pagination/layout patterns)
 - Extract shared card layout and KPI display patterns
-### Near-Term
-- Further decompose DataEntryPage: extract record form card container pattern (similar to RecordFormCard)
 - Extract KPI card and metadata display patterns (StatCard, section title arrangements)
 
 ### Later

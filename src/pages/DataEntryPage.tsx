@@ -14,36 +14,19 @@ import {
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useRecordForm } from "@/hooks/useRecordForm";
 import { useRecords } from "@/hooks/useRecords";
-import {
-  SpeciesField,
-  IdentificationToggle,
-  EnvironmentField,
-  StratumField,
-  ActivityField,
-  QuantityStepper,
-  DistanceStepper,
-  SideGrid,
-  ObservationsField,
-} from "@/components/records/RecordFormFields";
+import { DataEntryFormCard } from "@/components/records/DataEntryFormCard";
 import { RecordsListCard } from "@/components/records/RecordsListCard";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
-  ENVIRONMENT_OPTIONS,
-  STRATUM_OPTIONS,
-  ACTIVITY_OPTIONS,
   type FaunaGroup,
-  type StratumType,
-  type ActivityType,
-  type SideType,
 } from "@/lib/types";
 import {
   emptyRecordForm,
   recordFormToObservationData,
 } from "@/lib/recordForm";
 import { theme } from "@/lib/theme";
-const ENVIRONMENT_OPTIONS_WITHOUT_OTHER = ENVIRONMENT_OPTIONS.filter((option) => option.value !== "outro");
 
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -165,39 +148,6 @@ export default function DataEntryPage() {
     await persistRecord();
   };
 
-  const isAudioSelected = form.identification === "A" || form.identification === "AV";
-  const isVisualSelected = form.identification === "V" || form.identification === "AV";
-
-  const toggleIdentification = (channel: "A" | "V") => {
-    const nextAudio = channel === "A" ? !isAudioSelected : isAudioSelected;
-    const nextVisual = channel === "V" ? !isVisualSelected : isVisualSelected;
-
-    let nextValue = "";
-    if (nextAudio && nextVisual) nextValue = "AV";
-    else if (nextAudio) nextValue = "A";
-    else if (nextVisual) nextValue = "V";
-
-    setField("identification", nextValue);
-  };
-
-  const adjustQuantity = (delta: number) => {
-    const current = Number(form.quantity);
-    const safeCurrent = Number.isFinite(current) && current > 0 ? current : 0;
-    const nextValue = Math.max(1, safeCurrent + delta);
-    setField("quantity", String(nextValue));
-  };
-
-  const DISTANCE_PRESETS = [1, 5, 10, 20, 50];
-
-  const adjustDistance = (delta: number) => {
-    const current = Number(form.distance);
-    const safeCurrent = Number.isFinite(current) && current >= 0 ? current : 0;
-    const next = Math.max(0, safeCurrent + delta);
-    setField("distance", String(next));
-  };
-
-
-
   return (
     <Page
       title="Entrada de Dados"
@@ -246,81 +196,12 @@ export default function DataEntryPage() {
           </div>
         </Card>
 
-        {/* Form */}
-        <Card padding="md">
-          <div className="flex flex-col gap-5">
-            <SpeciesField
-              group={faunaGroup}
-              value={form.species}
-              onChange={(value) => setField("species", value)}
-              error={errors.species}
-              placeholder="Ex: Araçari-de-bico-preto"
-            />
-
-            <IdentificationToggle
-              value={form.identification}
-              isAudioSelected={isAudioSelected}
-              isVisualSelected={isVisualSelected}
-              onAudioChange={() => toggleIdentification("A")}
-              onVisualChange={() => toggleIdentification("V")}
-              error={errors.identification}
-            />
-
-            <EnvironmentField
-              value={form.environment}
-              onChange={(value) => setField("environment", value)}
-              options={ENVIRONMENT_OPTIONS_WITHOUT_OTHER}
-              error={errors.environment}
-            />
-
-            <StratumField
-              value={form.stratum}
-              onChange={(v) => setField("stratum", v as StratumType)}
-              options={STRATUM_OPTIONS}
-              error={errors.stratum}
-            />
-
-            <ActivityField
-              value={form.activity}
-              onChange={(v) => setField("activity", v as ActivityType)}
-              options={ACTIVITY_OPTIONS}
-              error={errors.activity}
-            />
-
-            {/* Quantidade + Distância side by side */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <QuantityStepper
-                value={form.quantity}
-                onChange={(value) => setField("quantity", value)}
-                onDecrease={() => adjustQuantity(-1)}
-                onIncrease={() => adjustQuantity(1)}
-                error={errors.quantity}
-              />
-
-              <DistanceStepper
-                value={form.distance}
-                onChange={(value) => setField("distance", value)}
-                onDecrease={() => adjustDistance(-1)}
-                onIncrease={() => adjustDistance(1)}
-                onClear={() => setField("distance", "")}
-                presets={DISTANCE_PRESETS}
-                error={errors.distance}
-              />
-            </div>
-
-            <SideGrid
-              value={form.side}
-              onChange={(value) => setField("side", value as SideType)}
-              onClear={() => setField("side", "")}
-              error={errors.side}
-            />
-
-            <ObservationsField
-              value={form.observations}
-              onChange={(value) => setField("observations", value)}
-            />
-          </div>
-        </Card>
+        <DataEntryFormCard
+          form={form}
+          errors={errors}
+          group={faunaGroup}
+          onFieldChange={setField}
+        />
 
         <RecordsListCard
           records={pointRecords}
