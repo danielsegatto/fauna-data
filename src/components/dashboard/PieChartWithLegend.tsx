@@ -19,20 +19,20 @@ interface PieChartWithLegendProps {
 }
 
 export function PieChartWithLegend({ title, data, colors }: PieChartWithLegendProps) {
+  const total = data.reduce((sum, item) => sum + item.value, 0);
+
   return (
     <DashboardSection title={title}>
-        <ResponsiveContainer width="100%" height={200}>
-          <PieChart>
+        <ResponsiveContainer width="100%" height={280}>
+          <PieChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
             <Pie
               data={data}
               dataKey="value"
               nameKey="label"
               cx="50%"
-              cy="45%"
+              cy="50%"
               outerRadius={70}
-              label={({ label, percent }) =>
-                `${label} (${(percent * 100).toFixed(0)}%)`
-              }
+              label={false}
               labelLine={false}
             >
               {data.map((_, i) => (
@@ -57,6 +57,9 @@ export function PieChartWithLegend({ title, data, colors }: PieChartWithLegendPr
               />
               <span className="text-xs text-gray-600">
                 {item.label}: <strong>{item.value}</strong>
+                {total > 0 && (
+                  <span className="text-gray-500"> ({Math.round((item.value / total) * 100)}%)</span>
+                )}
               </span>
             </div>
           ))}

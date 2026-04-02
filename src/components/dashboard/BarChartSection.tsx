@@ -22,10 +22,10 @@ interface BarChartSectionProps {
 export function BarChartSection({ title, data }: BarChartSectionProps) {
   return (
     <DashboardSection title={title}>
-        <ResponsiveContainer width="100%" height={160}>
+        <ResponsiveContainer width="100%" height={200}>
           <BarChart
             data={data}
-            margin={{ top: 4, right: 4, left: -24, bottom: 0 }}
+            margin={{ top: 8, right: 8, left: -20, bottom: 16 }}
           >
             <XAxis
               dataKey="label"
