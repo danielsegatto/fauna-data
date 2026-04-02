@@ -3,6 +3,8 @@ import { useRecords } from "./useRecords";
 import {
   GROUP_LABELS,
   METHODOLOGY_LABELS,
+  ENVIRONMENT_OPTIONS,
+  ACTIVITY_OPTIONS,
   type FaunaRecord,
 } from "@/lib/types";
 
@@ -39,6 +41,20 @@ const ID_LABELS: Record<string, string> = {
   AV: "Aud. + Visual",
 };
 
+const ENVIRONMENT_LABELS = new Map(
+  ENVIRONMENT_OPTIONS.map((option) => [option.value.toLocaleLowerCase("pt-BR"), option.label])
+);
+
+const ACTIVITY_LABELS = new Map(
+  ACTIVITY_OPTIONS.map((option) => [option.value.toLocaleLowerCase("pt-BR"), option.label])
+);
+
+function capitalizeFirst(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return trimmed;
+  return `${trimmed.charAt(0).toLocaleUpperCase("pt-BR")}${trimmed.slice(1)}`;
+}
+
 function applyTimeRange(records: FaunaRecord[], range: TimeRange): FaunaRecord[] {
   if (range === "all") return records;
   const now = Date.now();
@@ -56,6 +72,34 @@ function countBy(records: FaunaRecord[], key: (r: FaunaRecord) => string): Label
   return Object.entries(map)
     .map(([label, value]) => ({ label, value }))
     .sort((a, b) => b.value - a.value);
+}
+
+function countByNormalized(
+  records: FaunaRecord[],
+  key: (r: FaunaRecord) => string,
+  resolveLabel: (trimmed: string, normalized: string) => string
+): LabelValue[] {
+  const map = new Map<string, LabelValue>();
+
+  records.forEach((r) => {
+    const trimmed = key(r).trim();
+    if (!trimmed) return;
+
+    const normalized = trimmed.toLocaleLowerCase("pt-BR");
+    const existing = map.get(normalized);
+
+    if (existing) {
+      existing.value += 1;
+      return;
+    }
+
+    map.set(normalized, {
+      label: resolveLabel(trimmed, normalized),
+      value: 1,
+    });
+  });
+
+  return Array.from(map.values()).sort((a, b) => b.value - a.value);
 }
 
 export function useStatistics(range: TimeRange = "all"): Statistics {
@@ -104,10 +148,18 @@ export function useStatistics(range: TimeRange = "all"): Statistics {
     );
 
     // By environment
-    const byEnvironment = countBy(filtered, (r) => r.data.environment);
+    const byEnvironment = countByNormalized(
+      filtered,
+      (r) => r.data.environment,
+      (trimmed, normalized) => ENVIRONMENT_LABELS.get(normalized) ?? capitalizeFirst(trimmed)
+    );
 
     // By activity
-    const byActivity = countBy(filtered, (r) => r.data.activity);
+    const byActivity = countByNormalized(
+      filtered,
+      (r) => r.data.activity,
+      (trimmed, normalized) => ACTIVITY_LABELS.get(normalized) ?? capitalizeFirst(trimmed)
+    );
 
     // Top 10 species
     const speciesMap = new Map<string, { count: number; totalQty: number }>();

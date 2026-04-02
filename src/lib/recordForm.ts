@@ -38,7 +38,7 @@ export function validateRecordForm(form: RecordFormState): RecordFormErrors {
 
   if (!form.species.trim()) errors.species = "Espécie é obrigatória";
   if (!form.identification) errors.identification = "Identificação é obrigatória";
-  if (!form.environment) errors.environment = "Ambiente é obrigatório";
+  if (!form.environment.trim()) errors.environment = "Ambiente é obrigatório";
 
   if (!form.quantity) {
     errors.quantity = "Quantidade é obrigatória";
@@ -74,9 +74,9 @@ export function recordFormToObservationData(form: RecordFormState): ObservationD
   return {
     species: form.species.trim(),
     identification: form.identification as IdentificationType,
-    environment: form.environment as EnvironmentType,
+    environment: form.environment.trim() as EnvironmentType,
     stratum: form.stratum as StratumType,
-    activity: form.activity as ActivityType,
+    activity: form.activity.trim() as ActivityType,
     quantity: Number(form.quantity),
     distance: Number(form.distance),
     side: form.side as SideType,
