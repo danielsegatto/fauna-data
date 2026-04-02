@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "@/components/ui/Toast";
+import { UpdatePrompt } from "@/components/ui/UpdatePrompt";
+import { useServiceWorkerUpdate } from "@/hooks/useServiceWorkerUpdate";
 import HomePage from "@/pages/HomePage";
 import MethodologiesPage from "@/pages/MethodologiesPage";
 import CollectionPointPage from "@/pages/CollectionPointPage";
@@ -12,9 +14,12 @@ import ExportPage from "@/pages/ExportPage";
 import RecordsMapPage from "@/pages/RecordsMapPage";
 
 export default function App() {
+  const { isUpdateAvailable, dismissUpdate, reloadToUpdate } = useServiceWorkerUpdate();
+
   return (
     <div className="min-h-dvh bg-white flex flex-col">
       <ToastContainer />
+      <UpdatePrompt isOpen={isUpdateAvailable} onReload={reloadToUpdate} onLater={dismissUpdate} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/methodologies/:group" element={<MethodologiesPage />} />
