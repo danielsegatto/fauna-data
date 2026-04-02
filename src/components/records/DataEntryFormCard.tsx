@@ -11,10 +11,10 @@ import {
   ObservationsField,
 } from "@/components/records/RecordFormFields";
 import {
-  ENVIRONMENT_OPTIONS,
   STRATUM_OPTIONS,
   ACTIVITY_OPTIONS,
   type FaunaGroup,
+  type SelectOption,
 } from "@/lib/types";
 import {
   type RecordFormErrors,
@@ -22,12 +22,12 @@ import {
 } from "@/lib/recordForm";
 
 const DISTANCE_PRESETS = [1, 5, 10, 20, 50];
-const ENVIRONMENT_OPTIONS_WITHOUT_OTHER = ENVIRONMENT_OPTIONS.filter((option) => option.value !== "outro");
 
 export interface DataEntryFormCardProps {
   form: RecordFormState;
   errors: RecordFormErrors;
   group: FaunaGroup;
+  environmentOptions: SelectOption[];
   onFieldChange: <K extends keyof RecordFormState>(field: K, value: RecordFormState[K]) => void;
   collectionPointId?: string;
   enableSpeciesDuplicateCheck?: boolean;
@@ -37,6 +37,7 @@ export function DataEntryFormCard({
   form,
   errors,
   group,
+  environmentOptions,
   onFieldChange,
   collectionPointId,
   enableSpeciesDuplicateCheck,
@@ -95,7 +96,7 @@ export function DataEntryFormCard({
         <EnvironmentField
           value={form.environment}
           onChange={(value) => onFieldChange("environment", value)}
-          options={ENVIRONMENT_OPTIONS_WITHOUT_OTHER}
+          options={environmentOptions.filter((o) => o.value !== "outro")}
           error={errors.environment}
         />
 

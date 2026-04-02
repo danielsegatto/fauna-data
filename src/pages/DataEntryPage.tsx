@@ -9,6 +9,7 @@ import { RecordsListCard } from "@/components/records/RecordsListCard";
 import { PageContent } from "@/components/shared/PageContent";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useDeleteDialog } from "@/hooks/useDeleteDialog";
+import { useEnvironmentOptions } from "@/hooks/useEnvironmentOptions";
 import { useRecordForm } from "@/hooks/useRecordForm";
 import { useRecords } from "@/hooks/useRecords";
 import { isMackinnonMethodology, hasMackinnonPointReachedLimit } from "@/lib/mackinnon";
@@ -43,6 +44,7 @@ export default function DataEntryPage() {
   const isMackinnonPoint = isMackinnonMethodology(collectionPoint?.methodology ?? methodology);
 
   const { form, errors, setField, resetForm, validate } = useRecordForm();
+  const environmentOptions = useEnvironmentOptions();
   const [isSaving, setIsSaving] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
   const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
@@ -169,6 +171,7 @@ export default function DataEntryPage() {
           form={form}
           errors={errors}
           group={faunaGroup}
+          environmentOptions={environmentOptions}
           onFieldChange={setField}
           collectionPointId={collectionPoint?.id}
           enableSpeciesDuplicateCheck={isMackinnonPoint}

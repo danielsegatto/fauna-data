@@ -14,6 +14,7 @@ import { RecordPageActions } from "@/components/records/RecordPageActions";
 import { RecordViewCard } from "@/components/records/RecordViewCard";
 import { PageContent } from "@/components/shared/PageContent";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
+import { useEnvironmentOptions } from "@/hooks/useEnvironmentOptions";
 import { useRecordForm } from "@/hooks/useRecordForm";
 import { useRecords } from "@/hooks/useRecords";
 import {
@@ -46,6 +47,7 @@ export default function RecordDetailPage() {
 
   const [isEditing, setIsEditing] = useState(false);
   const { form, errors, setField, loadObservationData, validate } = useRecordForm();
+  const environmentOptions = useEnvironmentOptions();
   const [isSaving, setIsSaving] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -179,6 +181,7 @@ export default function RecordDetailPage() {
               form={form}
               errors={errors}
               group={record.group}
+              environmentOptions={environmentOptions}
               onFieldChange={setField}
               collectionPointId={collectionPoint?.id}
               enableSpeciesDuplicateCheck={Boolean(
