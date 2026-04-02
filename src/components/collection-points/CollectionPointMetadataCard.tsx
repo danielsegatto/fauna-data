@@ -10,6 +10,8 @@ type Props = {
 };
 
 export function CollectionPointMetadataCard({ point, recordCount }: Props) {
+  const hasCoordinates = point.latitude !== undefined && point.longitude !== undefined;
+
   return (
     <>
       <Card padding="md">
@@ -35,6 +37,15 @@ export function CollectionPointMetadataCard({ point, recordCount }: Props) {
           <MetadataField
             label="Metodologia"
             value={METHODOLOGY_LABELS[point.methodology] ?? point.methodology}
+          />
+          <MetadataField
+            label="Coordenadas"
+            value={
+              hasCoordinates
+                ? `${point.latitude?.toFixed(6)}, ${point.longitude?.toFixed(6)}`
+                : "Não informadas"
+            }
+            valueClassName={hasCoordinates ? "font-mono text-gray-900" : "text-amber-700"}
           />
           {isMackinnonMethodology(point.methodology) && (
             <MetadataField

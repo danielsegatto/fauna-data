@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Card } from "@/components/ui";
 import {
   SpeciesField,
@@ -31,6 +32,7 @@ export interface DataEntryFormCardProps {
   onFieldChange: <K extends keyof RecordFormState>(field: K, value: RecordFormState[K]) => void;
   collectionPointId?: string;
   enableSpeciesDuplicateCheck?: boolean;
+  locationSection?: ReactNode;
 }
 
 export function DataEntryFormCard({
@@ -41,6 +43,7 @@ export function DataEntryFormCard({
   onFieldChange,
   collectionPointId,
   enableSpeciesDuplicateCheck,
+  locationSection,
 }: DataEntryFormCardProps) {
   const isAudioSelected = form.identification === "A" || form.identification === "AV";
   const isVisualSelected = form.identification === "V" || form.identification === "AV";
@@ -140,6 +143,8 @@ export function DataEntryFormCard({
           onClear={() => onFieldChange("side", "")}
           error={errors.side}
         />
+
+        {locationSection}
 
         <ObservationsField
           value={form.observations}

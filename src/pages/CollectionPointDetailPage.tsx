@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Edit3, PlusCircle, Save, ClipboardList, FileDown, Trash2 } from "lucide-react";
+import { Edit3, PlusCircle, Save, ClipboardList, FileDown, Trash2, MapPinned } from "lucide-react";
 import {
   Page,
   Button,
@@ -17,12 +17,15 @@ import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
 import { RecordsListCard } from "@/components/records/RecordsListCard";
 import { CollectionPointMetadataCard } from "@/components/collection-points/CollectionPointMetadataCard";
 import { CollectionPointEditForm } from "@/components/collection-points/CollectionPointEditForm";
+import { FilterTabs } from "@/components/shared/FilterTabs";
 import { PageContent } from "@/components/shared/PageContent";
+import { RecordsMap } from "@/components/shared/RecordsMap";
 import {
   isMackinnonMethodology,
   parseMackinnonLimit,
   hasMackinnonPointReachedLimit,
 } from "@/lib/mackinnon";
+import { buildRecordMapPins } from "@/lib/recordMap";
 import { type CollectionPointFormState } from "@/lib/types";
 
 function parseOptionalNumber(value: string): number | undefined {
@@ -49,6 +52,7 @@ export default function CollectionPointDetailPage() {
   const { errors, setError, clearError, clearAllErrors } = useFormErrors<{ name: string; methodology: string; limit: string }>();
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [activeView, setActiveView] = useState<"records" | "map">("records");
   const [isDeletingPoint, setIsDeletingPoint] = useState(false);
   const [deletePointOpen, setDeletePointOpen] = useState(false);
   const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
@@ -75,6 +79,18 @@ export default function CollectionPointDetailPage() {
   const pointRecords = point
     ? filterRecords({ collectionPointId: point.id })
     : [];
+
+  const pointMapData = useMemo(() => {
+    if (!point) return { totalRecords: 0, mappableRecords: 0, unmappableRecords: 0, pins: [], collectionPointPins: [] };
+
+    return buildRecordMapPins(pointRecords, [point], {
+      collectionPointId: point.id,
+    });
+  }, [point, pointRecords]);
+
+  const hasPointCoordinates = point
+    ? Number.isFinite(point.latitude) && Number.isFinite(point.longitude)
+    : false;
 
   const selectedRecord = recordToDelete
     ? pointRecords.find((record) => record.id === recordToDelete)
@@ -375,6 +391,19 @@ export default function CollectionPointDetailPage() {
           <>
             <CollectionPointMetadataCard point={point} recordCount={pointRecords.length} />
 
+            {!isEditing && (
+              <FilterTabs
+                tabs={[
+                  { id: "records", label: "Registros" },
+                  { id: "map", label: "Mapa" },
+                ]}
+                activeTab={activeView}
+                onChange={setActiveView}
+                getCount={(tabId) => (tabId === "records" ? pointRecords.length : pointMapData.mappableRecords)}
+                fullWidth
+              />
+            )}
+
             {isEditing && (
               <CollectionPointEditForm
                 form={form}
@@ -383,24 +412,52 @@ export default function CollectionPointDetailPage() {
               />
             )}
 
-            <RecordsListCard
-              records={pointRecords}
-              title="Registros deste ponto"
-              icon={<ClipboardList size={18} className="text-gray-500" />}
-              subtitle={
-                isMackinnonMethodology(point.methodology) && point.limit !== undefined
-                  ? `Progresso atual: ${pointRecords.length}/${point.limit}`
-                  : undefined
-              }
-              onOpenRecord={(recordId) => {
-                navigate(`/records/${recordId}`, {
-                  state: { backTo: `/collection-point/${point.id}` },
-                });
-              }}
-              onDeleteRecord={(recordId) => {
-                openDelete(recordId);
-              }}
-            />
+            {(isEditing || activeView === "records") && (
+              <RecordsListCard
+                records={pointRecords}
+                title="Registros deste ponto"
+                icon={<ClipboardList size={18} className="text-gray-500" />}
+                subtitle={
+                  isMackinnonMethodology(point.methodology) && point.limit !== undefined
+                    ? `Progresso atual: ${pointRecords.length}/${point.limit}`
+                    : undefined
+                }
+                onOpenRecord={(recordId) => {
+                  navigate(`/records/${recordId}`, {
+                    state: { backTo: `/collection-point/${point.id}` },
+                  });
+                }}
+                onDeleteRecord={(recordId) => {
+                  openDelete(recordId);
+                }}
+              />
+            )}
+
+            {!isEditing && activeView === "map" && (
+              pointMapData.mappableRecords === 0 && pointMapData.collectionPointPins.length === 0 ? (
+                <EmptyState
+                  icon={<MapPinned size={48} />}
+                  title={pointMapData.totalRecords === 0 ? "Nenhum registro neste ponto" : "Sem coordenadas para mapear"}
+                  description={
+                    pointMapData.totalRecords === 0
+                      ? "Adicione registros para visualizar este ponto no mapa."
+                      : hasPointCoordinates
+                      ? "Os registros deste ponto ainda não possuem coordenadas válidas para visualização no mapa."
+                      : "Este ponto ainda não tem latitude e longitude. Edite o ponto para habilitar a visualização geográfica."
+                  }
+                />
+              ) : (
+                <RecordsMap
+                  pins={pointMapData.pins}
+                  collectionPointPins={pointMapData.collectionPointPins}
+                  onOpenRecord={(recordId) => {
+                    navigate(`/records/${recordId}`, {
+                      state: { backTo: `/collection-point/${point.id}` },
+                    });
+                  }}
+                />
+              )
+            )}
           </>
         )}
       </PageContent>

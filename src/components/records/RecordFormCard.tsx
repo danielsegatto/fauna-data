@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Card } from "@/components/ui";
 import {
   SpeciesField,
@@ -22,6 +23,7 @@ export interface RecordFormCardProps {
   collectionPointId?: string;
   enableSpeciesDuplicateCheck?: boolean;
   excludeRecordId?: string;
+  locationSection?: ReactNode;
 }
 
 export function RecordFormCard({
@@ -33,6 +35,7 @@ export function RecordFormCard({
   collectionPointId,
   enableSpeciesDuplicateCheck,
   excludeRecordId,
+  locationSection,
 }: RecordFormCardProps) {
   return (
     <Card padding="md">
@@ -88,6 +91,7 @@ export function RecordFormCard({
           options={SIDE_OPTIONS}
           error={errors.side}
         />
+        {locationSection}
         <ObservationsField
           value={form.observations}
           onChange={(v) => onFieldChange("observations", v)}
