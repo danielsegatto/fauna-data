@@ -54,7 +54,7 @@ export default function ExportPage() {
   const [searchParams] = useSearchParams();
   const { records } = useRecords();
   const { collectionPoints } = useCollectionPoints();
-  const { isExporting, exportCSV, filterRecords } = useExport();
+  const { isExporting, exportCSV, exportXLS, filterRecords } = useExport();
 
   const groupFromQuery = searchParams.get("group");
   const initialGroup = groupFromQuery && groupFromQuery in GROUP_LABELS
@@ -103,7 +103,19 @@ export default function ExportPage() {
     }
     const count = await exportCSV(records, filters, pointMap);
     if (count > 0) {
-      showToast("success", `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""}!`);
+      showToast("success", `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""} em CSV!`);
+      navigate(-1);
+    }
+  };
+
+  const handleExportXLS = async () => {
+    if (filteredCount === 0) {
+      showToast("warning", "Nenhum registro encontrado com esses filtros.");
+      return;
+    }
+    const count = await exportXLS(records, filters, pointMap);
+    if (count > 0) {
+      showToast("success", `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""} em XLSX!`);
       navigate(-1);
     }
   };
@@ -146,17 +158,30 @@ export default function ExportPage() {
       subtitle={`${filteredCount} registro${filteredCount !== 1 ? "s" : ""} selecionado${filteredCount !== 1 ? "s" : ""}`}
       back
       footer={
-        <Button
-          variant="primary"
-          size="lg"
-          className="w-full"
-          icon={<FileDown size={20} />}
-          loading={isExporting}
-          disabled={filteredCount === 0}
-          onClick={handleExport}
-        >
-          {isExporting ? "Exportando..." : `Exportar CSV (${filteredCount})`}
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            variant="primary"
+            size="lg"
+            className="flex-1"
+            icon={<FileDown size={20} />}
+            loading={isExporting}
+            disabled={filteredCount === 0}
+            onClick={handleExport}
+          >
+            {isExporting ? "Exportando..." : `CSV (${filteredCount})`}
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            className="flex-1"
+            icon={<FileDown size={20} />}
+            loading={isExporting}
+            disabled={filteredCount === 0}
+            onClick={handleExportXLS}
+          >
+            {isExporting ? "Exportando..." : `XLSX (${filteredCount})`}
+          </Button>
+        </div>
       }
     >
       <PageContent topPadding="md">
@@ -259,7 +284,7 @@ export default function ExportPage() {
               label="Registros selecionados"
               value={String(filteredCount)}
             />
-            <SummaryRow label="Formato" value="CSV (UTF-8)" />
+            <SummaryRow label="Formatos disponíveis" value="CSV ou XLSX" />
             <SummaryRow
               label="Grupo"
               value={
@@ -293,7 +318,7 @@ export default function ExportPage() {
 
         {/* CSV column info */}
         <Card padding="md">
-          <p className="text-sm font-bold text-gray-700 mb-3">Colunas no arquivo CSV</p>
+          <p className="text-sm font-bold text-gray-700 mb-3">Colunas em ambos os formatos</p>
           <div className="flex flex-wrap gap-1.5">
             {[
               "ID", "Grupo", "Metodologia", "Data", "Hora",
