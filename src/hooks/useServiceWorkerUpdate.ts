@@ -78,15 +78,17 @@ export function useServiceWorkerUpdate() {
   }, []);
 
   const reloadToUpdate = useCallback(async () => {
+    markUpdateDismissed();
+
     try {
       if (updateServiceWorker) {
         await updateServiceWorker(true);
-        return;
       }
     } catch {
       // Fall back to a hard reload when update activation fails.
     }
 
+    // Always force a refresh after an activation attempt so users are not stuck.
     window.location.reload();
   }, []);
 

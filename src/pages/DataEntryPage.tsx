@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Navigation, PlusCircle, X } from "lucide-react";
 import { Page, Button, Input, showToast } from "@/components/ui";
@@ -50,6 +50,31 @@ export default function DataEntryPage() {
   const [savedCount, setSavedCount] = useState(0);
   const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
 
+  const scrollToTop = () => {
+    const mainContainer = document.querySelector("main");
+    if (mainContainer instanceof HTMLElement) {
+      mainContainer.scrollTop = 0;
+      mainContainer.scrollTo({ top: 0, behavior: "auto" });
+    }
+
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: "auto" });
+
+    window.requestAnimationFrame(() => {
+      if (mainContainer instanceof HTMLElement) {
+        mainContainer.scrollTop = 0;
+      }
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, behavior: "auto" });
+    });
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, [group, methodology, pointId]);
+
   const { position: gpsPosition, isLoading: isCapturing, error: gpsError, capture: captureGps, clear: clearGps } = useGeolocation();
   const [manualLat, setManualLat] = useState("");
   const [manualLng, setManualLng] = useState("");
@@ -79,6 +104,11 @@ export default function DataEntryPage() {
       resetForm(emptyRecordForm);
       // Keep location state so consecutive records can share the same coords
       showToast("success", "Registro salvo! Pronto para novo registro.");
+
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+      scrollToTop();
     } catch {
       showToast("error", "Erro ao salvar. Tente novamente.");
     } finally {
