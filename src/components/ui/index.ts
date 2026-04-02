@@ -8,3 +8,4 @@ export { EmptyState } from "./EmptyState";
 export { Page } from "./Page";
 export { ConfirmDialog } from "./ConfirmDialog";
 export { ToastContainer, showToast } from "./Toast";
+export { UpdatePrompt } from "./UpdatePrompt";
