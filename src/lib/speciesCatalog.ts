@@ -147,18 +147,31 @@ export function speciesMatchesQuery(item: SpeciesCatalogItem, query: string): bo
 }
 
 export type SpeciesQueryMatchKind = "primary" | "alternate" | "none";
+type SpeciesQueryMatchStrength = "prefix" | "contains" | "none";
+
+interface SpeciesQueryMatchResult {
+  kind: SpeciesQueryMatchKind;
+  strength: SpeciesQueryMatchStrength;
+}
 
 function normalizeQueryForMatching(value: string): string {
   return normalizeSpeciesSearch(value).replace(/\s+/g, " ").trim();
 }
 
-function candidateMatchesQuery(candidate: string, normalizedQuery: string): boolean {
+function getCandidateQueryMatchStrength(
+  candidate: string,
+  normalizedQuery: string
+): SpeciesQueryMatchStrength {
   const normalizedCandidate = normalizeQueryForMatching(candidate);
-  if (!normalizedCandidate || !normalizedQuery) return false;
+  if (!normalizedCandidate || !normalizedQuery) return "none";
 
   const queryWords = normalizedQuery.split(" ").filter(Boolean);
   if (queryWords.length <= 1) {
-    return normalizedCandidate.includes(normalizedQuery);
+    if (normalizedCandidate.startsWith(normalizedQuery)) {
+      return "prefix";
+    }
+
+    return normalizedCandidate.includes(normalizedQuery) ? "contains" : "none";
   }
 
   const candidateWords = normalizedCandidate.split(" ").filter(Boolean);
@@ -177,34 +190,73 @@ function candidateMatchesQuery(candidate: string, normalizedQuery: string): bool
       }
     }
 
-    if (isMatch) return true;
+    if (isMatch) {
+      return start === 0 ? "prefix" : "contains";
+    }
   }
 
-  return false;
+  return "none";
+}
+
+function candidateMatchesQuery(candidate: string, normalizedQuery: string): boolean {
+  return getCandidateQueryMatchStrength(candidate, normalizedQuery) !== "none";
 }
 
 function getPrimarySpeciesName(item: SpeciesCatalogItem): string {
   return item.taxonName || item.canonicalName;
 }
 
+function getSpeciesQueryMatchResult(
+  item: SpeciesCatalogItem,
+  query: string
+): SpeciesQueryMatchResult {
+  const normalizedQuery = normalizeQueryForMatching(query);
+  if (!normalizedQuery) {
+    return {
+      kind: "primary",
+      strength: "prefix",
+    };
+  }
+
+  const primaryStrength = getCandidateQueryMatchStrength(
+    getPrimarySpeciesName(item),
+    normalizedQuery
+  );
+  if (primaryStrength !== "none") {
+    return {
+      kind: "primary",
+      strength: primaryStrength,
+    };
+  }
+
+  const alternateStrengths = [item.canonicalName, item.portugueseName]
+    .map((name) => getCandidateQueryMatchStrength(name, normalizedQuery));
+
+  if (alternateStrengths.includes("prefix")) {
+    return {
+      kind: "alternate",
+      strength: "prefix",
+    };
+  }
+
+  if (alternateStrengths.includes("contains")) {
+    return {
+      kind: "alternate",
+      strength: "contains",
+    };
+  }
+
+  return {
+    kind: "none",
+    strength: "none",
+  };
+}
+
 export function getSpeciesQueryMatchKind(
   item: SpeciesCatalogItem,
   query: string
 ): SpeciesQueryMatchKind {
-  const normalizedQuery = normalizeQueryForMatching(query);
-  if (!normalizedQuery) return "primary";
-
-  if (candidateMatchesQuery(getPrimarySpeciesName(item), normalizedQuery)) {
-    return "primary";
-  }
-
-  const alternateNames = [item.canonicalName, item.portugueseName];
-
-  if (alternateNames.some((name) => candidateMatchesQuery(name, normalizedQuery))) {
-    return "alternate";
-  }
-
-  return "none";
+  return getSpeciesQueryMatchResult(item, query).kind;
 }
 
 export function getOrderedSpeciesAutocompleteMatches(
@@ -214,19 +266,30 @@ export function getOrderedSpeciesAutocompleteMatches(
 ): SpeciesCatalogItem[] {
   if (!query.trim()) return [];
 
-  const primaryMatches: SpeciesCatalogItem[] = [];
-  const alternateMatches: SpeciesCatalogItem[] = [];
+  const primaryPrefixMatches: SpeciesCatalogItem[] = [];
+  const alternatePrefixMatches: SpeciesCatalogItem[] = [];
+  const primaryContainsMatches: SpeciesCatalogItem[] = [];
+  const alternateContainsMatches: SpeciesCatalogItem[] = [];
 
   for (const item of species) {
-    const kind = getSpeciesQueryMatchKind(item, query);
-    if (kind === "primary") {
-      primaryMatches.push(item);
-    } else if (kind === "alternate") {
-      alternateMatches.push(item);
+    const match = getSpeciesQueryMatchResult(item, query);
+    if (match.kind === "primary" && match.strength === "prefix") {
+      primaryPrefixMatches.push(item);
+    } else if (match.kind === "alternate" && match.strength === "prefix") {
+      alternatePrefixMatches.push(item);
+    } else if (match.kind === "primary" && match.strength === "contains") {
+      primaryContainsMatches.push(item);
+    } else if (match.kind === "alternate" && match.strength === "contains") {
+      alternateContainsMatches.push(item);
     }
   }
 
-  const ordered = [...primaryMatches, ...alternateMatches];
+  const ordered = [
+    ...primaryPrefixMatches,
+    ...alternatePrefixMatches,
+    ...primaryContainsMatches,
+    ...alternateContainsMatches,
+  ];
   if (typeof maxSuggestions === "number") {
     return ordered.slice(0, maxSuggestions);
   }
