@@ -10,13 +10,14 @@ import {
   SideSelect,
   ObservationsField,
 } from "@/components/records/RecordFormFields";
-import { type FaunaGroup, IDENTIFICATION_OPTIONS, ENVIRONMENT_OPTIONS, STRATUM_OPTIONS, ACTIVITY_OPTIONS, SIDE_OPTIONS } from "@/lib/types";
+import { type FaunaGroup, IDENTIFICATION_OPTIONS, STRATUM_OPTIONS, ACTIVITY_OPTIONS, SIDE_OPTIONS, type SelectOption } from "@/lib/types";
 import { type RecordFormState } from "@/lib/recordForm";
 
 export interface RecordFormCardProps {
   form: RecordFormState;
   errors: Partial<Record<keyof RecordFormState, string>>;
   group: FaunaGroup;
+  environmentOptions: SelectOption[];
   onFieldChange: (field: keyof RecordFormState, value: any) => void;
   collectionPointId?: string;
   enableSpeciesDuplicateCheck?: boolean;
@@ -27,6 +28,7 @@ export function RecordFormCard({
   form,
   errors,
   group,
+  environmentOptions,
   onFieldChange,
   collectionPointId,
   enableSpeciesDuplicateCheck,
@@ -53,7 +55,7 @@ export function RecordFormCard({
         <EnvironmentField
           value={form.environment}
           onChange={(v) => onFieldChange("environment", v)}
-          options={ENVIRONMENT_OPTIONS}
+          options={environmentOptions}
           error={errors.environment}
         />
         <StratumField
