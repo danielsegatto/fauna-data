@@ -3,6 +3,7 @@ import type { FaunaGroup, FaunaRecord } from "@/lib/types";
 export interface RecordFilterOptions {
   group?: FaunaGroup | "all" | "";
   collectionPointId?: string;
+  collectionPointIds?: string[];
   startDate?: number;
   endDate?: number;
 }
@@ -10,6 +11,7 @@ export interface RecordFilterOptions {
 export interface ExportFilters {
   group: string;
   collectionPointId: string;
+  collectionPointIds: string[];
   startDate: string;
   endDate: string;
 }
@@ -21,6 +23,11 @@ export function filterRecordsByOptions(
   return records.filter((record) => {
     if (options.group && options.group !== "all" && record.group !== options.group) {
       return false;
+    }
+    if (options.collectionPointIds && options.collectionPointIds.length > 0) {
+      if (!options.collectionPointIds.includes(record.collectionPointId)) {
+        return false;
+      }
     }
     if (options.collectionPointId && record.collectionPointId !== options.collectionPointId) {
       return false;
@@ -41,6 +48,7 @@ export function exportFiltersToRecordFilters(
   const options: RecordFilterOptions = {
     group: filters.group as RecordFilterOptions["group"],
     collectionPointId: filters.collectionPointId,
+    collectionPointIds: filters.collectionPointIds,
   };
 
   if (filters.startDate) {

@@ -169,6 +169,7 @@ export default function CollectionPointDetailPage() {
       {
         group: "",
         collectionPointId: point.id,
+        collectionPointIds: [],
         startDate: "",
         endDate: "",
       },
@@ -200,8 +201,7 @@ export default function CollectionPointDetailPage() {
   return (
     <>
       <Page
-      title="Ponto de Coleta"
-      subtitle={point ? point.name : "Detalhes"}
+      title={point ? point.name : "Ponto de Coleta"}
       back={point ? `/collection-points/${point.group}` : "/"}
       actions={
         point && !isEditing ? (

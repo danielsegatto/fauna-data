@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { MapPin, PlusCircle } from "lucide-react";
+import { FileDown, MapPin, PlusCircle } from "lucide-react";
 import { CollectionPointCard } from "@/components/collection-points/CollectionPointCard";
 import { Page, EmptyState, Button } from "@/components/ui";
 import { PageContent } from "@/components/shared/PageContent";
@@ -40,15 +40,27 @@ export default function CollectionPointsListPage() {
       back="/"
       footer={
         groupLabel ? (
-          <Button
-            variant="primary"
-            size="lg"
-            className="w-full"
-            icon={<PlusCircle size={20} />}
-            onClick={handleCreatePoint}
-          >
-            Novo Ponto de Coleta
-          </Button>
+          <div className="flex flex-col gap-2">
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-full"
+              icon={<PlusCircle size={20} />}
+              onClick={handleCreatePoint}
+            >
+              Novo Ponto de Coleta
+            </Button>
+            <Button
+              variant="secondary"
+              size="md"
+              className="w-full"
+              icon={<FileDown size={18} />}
+              onClick={() => navigate(`/export?group=${faunaGroup}`)}
+              disabled={filteredPoints.length === 0}
+            >
+              Exportar {groupLabel}
+            </Button>
+          </div>
         ) : undefined
       }
     >

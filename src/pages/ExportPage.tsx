@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { FileDown, Filter } from "lucide-react";
 import { Page, Card, Button, Select, showToast } from "@/components/ui";
 import { useRecords } from "@/hooks/useRecords";
@@ -51,34 +51,39 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
 
 export default function ExportPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { records } = useRecords();
   const { collectionPoints } = useCollectionPoints();
   const { isExporting, exportCSV, filterRecords } = useExport();
 
+  const groupFromQuery = searchParams.get("group");
+  const initialGroup = groupFromQuery && groupFromQuery in GROUP_LABELS
+    ? groupFromQuery
+    : "";
+
   const [filters, setFilters] = useState<ExportFilters>({
-    group: "",
+    group: initialGroup,
     collectionPointId: "",
+    collectionPointIds: [],
     startDate: "",
     endDate: "",
   });
 
-  const set = <K extends keyof ExportFilters>(key: K, value: string) =>
+  const setField = <K extends keyof ExportFilters>(key: K, value: ExportFilters[K]) =>
     setFilters((prev) => ({ ...prev, [key]: value }));
 
   // Dropdown options
   const groupOptions = [
     { label: "Todos os grupos", value: "" },
-    ...Object.entries(GROUP_LABELS).map(([value, label]) => ({ label, value })),
+    { label: "Ave", value: "birds" },
+    { label: "Mamífero", value: "mammals" },
+    { label: "Herpetofauna", value: "herpetofauna" },
   ];
 
-  const pointOptions = useMemo(() => {
-    const points = filters.group
+  const pointsByGroup = useMemo(() => {
+    return filters.group
       ? collectionPoints.filter((p) => p.group === filters.group)
       : collectionPoints;
-    return [
-      { label: "Todos os pontos", value: "" },
-      ...points.map((p) => ({ label: p.name, value: p.id })),
-    ];
   }, [collectionPoints, filters.group]);
 
   // Live filtered count
@@ -104,11 +109,36 @@ export default function ExportPage() {
   };
 
   const handleClearFilters = () => {
-    setFilters({ group: "", collectionPointId: "", startDate: "", endDate: "" });
+    setFilters({ group: "", collectionPointId: "", collectionPointIds: [], startDate: "", endDate: "" });
   };
 
   const hasFilters =
-    filters.group || filters.collectionPointId || filters.startDate || filters.endDate;
+    filters.group || filters.collectionPointIds.length > 0 || filters.startDate || filters.endDate;
+
+  const areAllVisiblePointsSelected =
+    pointsByGroup.length > 0
+    && pointsByGroup.every((point) => filters.collectionPointIds.includes(point.id));
+
+  const toggleCollectionPoint = (pointId: string) => {
+    setFilters((prev) => {
+      const alreadySelected = prev.collectionPointIds.includes(pointId);
+      return {
+        ...prev,
+        collectionPointId: "",
+        collectionPointIds: alreadySelected
+          ? prev.collectionPointIds.filter((id) => id !== pointId)
+          : [...prev.collectionPointIds, pointId],
+      };
+    });
+  };
+
+  const toggleAllVisiblePoints = () => {
+    setFilters((prev) => ({
+      ...prev,
+      collectionPointId: "",
+      collectionPointIds: areAllVisiblePointsSelected ? [] : pointsByGroup.map((point) => point.id),
+    }));
+  };
 
   return (
     <Page
@@ -155,34 +185,66 @@ export default function ExportPage() {
               options={groupOptions}
               value={filters.group}
               onChange={(v) => {
-                set("group", v);
-                set("collectionPointId", ""); // reset point when group changes
+                setField("group", v);
+                setField("collectionPointId", "");
+                setField("collectionPointIds", []);
               }}
             />
 
-            {/* Collection point */}
-            {pointOptions.length > 1 && (
-              <Select
-                label="Ponto de Coleta"
-                options={pointOptions}
-                value={filters.collectionPointId}
-                onChange={(v) => set("collectionPointId", v)}
-              />
+            {/* Collection points */}
+            {filters.group && pointsByGroup.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-semibold text-gray-700">Pontos de Coleta</p>
+                  <button
+                    type="button"
+                    onClick={toggleAllVisiblePoints}
+                    className="text-xs text-primary font-semibold active:opacity-70"
+                  >
+                    {areAllVisiblePointsSelected ? "Desmarcar todos" : "Selecionar todos"}
+                  </button>
+                </div>
+                <div className="flex flex-col gap-2 max-h-52 overflow-y-auto rounded-xl border border-gray-200 bg-gray-50 p-2">
+                  {pointsByGroup.map((point) => {
+                    const isSelected = filters.collectionPointIds.includes(point.id);
+                    return (
+                      <label
+                        key={point.id}
+                        className="flex items-center gap-3 rounded-lg bg-white px-3 py-2 border border-gray-100"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => toggleCollectionPoint(point.id)}
+                          className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/40"
+                        />
+                        <span className="text-sm text-gray-700">{point.name}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {filters.group && pointsByGroup.length === 0 && (
+              <p className="text-sm text-gray-500">
+                Nenhum ponto de coleta cadastrado para este grupo.
+              </p>
             )}
 
             {/* Date range */}
             <div>
               <p className="text-sm font-semibold text-gray-700 mb-2">Período</p>
-              <div className="flex gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <DateInput
                   label="De"
                   value={filters.startDate}
-                  onChange={(v) => set("startDate", v)}
+                  onChange={(v) => setField("startDate", v)}
                 />
                 <DateInput
                   label="Até"
                   value={filters.endDate}
-                  onChange={(v) => set("endDate", v)}
+                  onChange={(v) => setField("endDate", v)}
                 />
               </div>
             </div>
@@ -207,10 +269,10 @@ export default function ExportPage() {
               }
             />
             <SummaryRow
-              label="Ponto de Coleta"
+              label="Pontos de Coleta"
               value={
-                filters.collectionPointId
-                  ? (pointMap[filters.collectionPointId] ?? "—")
+                filters.collectionPointIds.length > 0
+                  ? `${filters.collectionPointIds.length} selecionado${filters.collectionPointIds.length !== 1 ? "s" : ""}`
                   : "Todos"
               }
             />
