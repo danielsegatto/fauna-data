@@ -32,8 +32,8 @@ export function ToastContainer() {
       setToasts((prev) => [...prev, toast]);
       setTimeout(() => setToasts((prev) =>
         prev.map((t) => t.id === toast.id ? { ...t, exiting: true } : t)
-      ), 2700);
-      setTimeout(() => setToasts((prev) => prev.filter((t) => t.id !== toast.id)), 3000);
+      ), 700);
+      setTimeout(() => setToasts((prev) => prev.filter((t) => t.id !== toast.id)), 1000);
     };
     listeners.push(handler);
     return () => {
