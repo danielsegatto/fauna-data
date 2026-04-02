@@ -38,7 +38,7 @@ export default function CollectionPointDetailPage() {
 
   const { collectionPoints, isLoading, updateCollectionPoint, deleteCollectionPoint } = useCollectionPoints();
   const { records, filterRecords, deleteRecord } = useRecords();
-  const { isExporting, exportCSV } = useExport();
+  const { isExporting, exportCSV, exportXLS } = useExport();
 
   const point = useMemo(
     () => collectionPoints.find((item) => item.id === pointId),
@@ -186,7 +186,33 @@ export default function CollectionPointDetailPage() {
 
     showToast(
       "success",
-      `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""}!`
+      `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""} em CSV!`
+    );
+  };
+
+  const handleExportPointRecordsXLS = async () => {
+    if (!point) return;
+
+    const count = await exportXLS(
+      records,
+      {
+        group: "",
+        collectionPointId: point.id,
+        collectionPointIds: [],
+        startDate: "",
+        endDate: "",
+      },
+      pointMap
+    );
+
+    if (count === 0) {
+      showToast("warning", "Nenhum registro encontrado para este ponto de coleta.");
+      return;
+    }
+
+    showToast(
+      "success",
+      `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""} em XLSX!`
     );
   };
 
@@ -278,17 +304,7 @@ export default function CollectionPointDetailPage() {
             </>
           ) : (
             <>
-              <Button
-                variant="secondary"
-                size="md"
-                className="w-full"
-                icon={<FileDown size={18} />}
-                loading={isExporting}
-                onClick={handleExportPointRecords}
-                disabled={!point || pointRecords.length === 0}
-              >
-                Exportar Registros deste Ponto
-              </Button>
+
               <Button
                 variant="primary"
                 size="lg"
@@ -299,6 +315,30 @@ export default function CollectionPointDetailPage() {
               >
                 Adicionar Registro
               </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="flex-1"
+                  icon={<FileDown size={18} />}
+                  loading={isExporting}
+                  onClick={handleExportPointRecords}
+                  disabled={!point || pointRecords.length === 0}
+                >
+                  CSV
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="flex-1"
+                  icon={<FileDown size={18} />}
+                  loading={isExporting}
+                  onClick={handleExportPointRecordsXLS}
+                  disabled={!point || pointRecords.length === 0}
+                >
+                  XLSX
+                </Button>
+              </div>
               {isAtLimit && point && (
                 <Button
                   variant="secondary"
