@@ -32,6 +32,9 @@ export interface SpeciesFieldProps {
   error?: string;
   placeholder?: string;
   label?: string;
+  collectionPointId?: string;
+  enableDuplicateCheck?: boolean;
+  excludeRecordId?: string;
 }
 
 export function SpeciesField({
@@ -41,6 +44,9 @@ export function SpeciesField({
   error,
   placeholder = "Ex: Araçari-de-bico-preto",
   label = "Espécie *",
+  collectionPointId,
+  enableDuplicateCheck,
+  excludeRecordId,
 }: SpeciesFieldProps) {
   return (
     <SpeciesAutocompleteInput
@@ -50,6 +56,9 @@ export function SpeciesField({
       value={value}
       onChange={onChange}
       error={error}
+      collectionPointId={collectionPointId}
+      enableDuplicateCheck={enableDuplicateCheck}
+      excludeRecordId={excludeRecordId}
     />
   );
 }

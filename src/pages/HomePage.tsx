@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { BarChart2 } from "lucide-react";
+import { FaChartColumn } from "react-icons/fa6";
 import { Page, Card, Button, Badge } from "@/components/ui";
 import { InstallPrompt } from "@/components/ui/InstallPrompt";
 import { PageContent } from "@/components/shared/PageContent";
 import { useRecords } from "@/hooks/useRecords";
 import { type FaunaGroup } from "@/lib/types";
 import { theme } from "@/lib/theme";
+import { getGroupVisual } from "@/lib/groupVisuals";
 
 // ─── Group card data ──────────────────────────────────────────────────────────
 
@@ -13,25 +14,21 @@ const GROUPS: Array<{
   id: FaunaGroup;
   label: string;
   description: string;
-  icon: string;
 }> = [
   {
     id: "birds",
     label: "Aves",
     description: "Aves silvestres",
-    icon: "🦅",
   },
   {
     id: "mammals",
     label: "Mamíferos",
     description: "Mamíferos",
-    icon: "🦝",
   },
   {
     id: "herpetofauna",
     label: "Herpetofauna",
     description: "Répteis e anfíbios",
-    icon: "🦎",
   },
 ];
 
@@ -62,7 +59,7 @@ export default function HomePage() {
             variant="primary"
             size="lg"
             className="w-full"
-            icon={<BarChart2 size={20} />}
+            icon={<FaChartColumn size={20} />}
             onClick={() => navigate("/dashboard")}
           >
             Painel de Análise
@@ -88,9 +85,10 @@ export default function HomePage() {
 
         {/* Group cards */}
         <div className="flex flex-col gap-3">
-          {GROUPS.map(({ id, label, description, icon }) => {
+          {GROUPS.map(({ id, label, description }) => {
             const { color, bg } = groupColors[id];
             const count = countByGroup(id);
+            const { icon: Icon } = getGroupVisual(id);
 
             return (
               <Card
@@ -103,10 +101,11 @@ export default function HomePage() {
                 <div className="flex items-center gap-4 p-4">
                   {/* Icon bubble */}
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-4xl"
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
                     style={{ backgroundColor: bg }}
+                    aria-hidden="true"
                   >
-                    {icon}
+                    <Icon size={30} color={color} />
                   </div>
 
                   {/* Text */}

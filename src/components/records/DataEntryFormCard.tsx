@@ -29,6 +29,8 @@ export interface DataEntryFormCardProps {
   errors: RecordFormErrors;
   group: FaunaGroup;
   onFieldChange: <K extends keyof RecordFormState>(field: K, value: RecordFormState[K]) => void;
+  collectionPointId?: string;
+  enableSpeciesDuplicateCheck?: boolean;
 }
 
 export function DataEntryFormCard({
@@ -36,6 +38,8 @@ export function DataEntryFormCard({
   errors,
   group,
   onFieldChange,
+  collectionPointId,
+  enableSpeciesDuplicateCheck,
 }: DataEntryFormCardProps) {
   const isAudioSelected = form.identification === "A" || form.identification === "AV";
   const isVisualSelected = form.identification === "V" || form.identification === "AV";
@@ -75,6 +79,8 @@ export function DataEntryFormCard({
           onChange={(value) => onFieldChange("species", value)}
           error={errors.species}
           placeholder="Ex: Araçari-de-bico-preto"
+          collectionPointId={collectionPointId}
+          enableDuplicateCheck={enableSpeciesDuplicateCheck}
         />
 
         <IdentificationToggle

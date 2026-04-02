@@ -180,6 +180,11 @@ export default function RecordDetailPage() {
               errors={errors}
               group={record.group}
               onFieldChange={setField}
+              collectionPointId={collectionPoint?.id}
+              enableSpeciesDuplicateCheck={Boolean(
+                collectionPoint && isMackinnonMethodology(collectionPoint.methodology)
+              )}
+              excludeRecordId={record.id}
             />
           )}
         </PageContent>

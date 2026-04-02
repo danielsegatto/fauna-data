@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Edit3, PlusCircle, Save, ClipboardList, FileDown } from "lucide-react";
+import { Edit3, PlusCircle, Save, ClipboardList, FileDown, Trash2 } from "lucide-react";
 import {
   Page,
   Button,
   EmptyState,
   showToast,
 } from "@/components/ui";
+import { CollectionPointDeleteDialog } from "@/components/collection-points/CollectionPointDeleteDialog";
 import { useCollectionPoints } from "@/hooks/useCollectionPoints";
 import { useDeleteDialog } from "@/hooks/useDeleteDialog";
 import { useFormErrors } from "@/hooks/useFormErrors";
@@ -35,9 +36,9 @@ export default function CollectionPointDetailPage() {
   const { pointId } = useParams<{ pointId: string }>();
   const navigate = useNavigate();
 
-  const { collectionPoints, isLoading, updateCollectionPoint } = useCollectionPoints();
+  const { collectionPoints, isLoading, updateCollectionPoint, deleteCollectionPoint } = useCollectionPoints();
   const { records, filterRecords, deleteRecord } = useRecords();
-  const { isExporting, exportCSV } = useExport();
+  const { isExporting, exportCSV, exportXLS } = useExport();
 
   const point = useMemo(
     () => collectionPoints.find((item) => item.id === pointId),
@@ -48,6 +49,8 @@ export default function CollectionPointDetailPage() {
   const { errors, setError, clearError, clearAllErrors } = useFormErrors<{ name: string; methodology: string; limit: string }>();
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [isDeletingPoint, setIsDeletingPoint] = useState(false);
+  const [deletePointOpen, setDeletePointOpen] = useState(false);
   const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
 
     const buildFormFromPoint = (targetPoint: NonNullable<typeof point>): CollectionPointFormState => ({
@@ -169,6 +172,7 @@ export default function CollectionPointDetailPage() {
       {
         group: "",
         collectionPointId: point.id,
+        collectionPointIds: [],
         startDate: "",
         endDate: "",
       },
@@ -182,7 +186,33 @@ export default function CollectionPointDetailPage() {
 
     showToast(
       "success",
-      `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""}!`
+      `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""} em CSV!`
+    );
+  };
+
+  const handleExportPointRecordsXLS = async () => {
+    if (!point) return;
+
+    const count = await exportXLS(
+      records,
+      {
+        group: "",
+        collectionPointId: point.id,
+        collectionPointIds: [],
+        startDate: "",
+        endDate: "",
+      },
+      pointMap
+    );
+
+    if (count === 0) {
+      showToast("warning", "Nenhum registro encontrado para este ponto de coleta.");
+      return;
+    }
+
+    showToast(
+      "success",
+      `${count} registro${count !== 1 ? "s" : ""} exportado${count !== 1 ? "s" : ""} em XLSX!`
     );
   };
 
@@ -197,21 +227,56 @@ export default function CollectionPointDetailPage() {
     }
   };
 
+  const handleDeletePoint = async () => {
+    if (!point || isDeletingPoint) return;
+
+    setIsDeletingPoint(true);
+    try {
+      const pointGroup = point.group;
+      const removedRecordsCount = pointRecords.length;
+
+      await deleteCollectionPoint(point.id);
+
+      setDeletePointOpen(false);
+      showToast(
+        "success",
+        removedRecordsCount > 0
+          ? `Ponto de coleta removido com ${removedRecordsCount} registro${removedRecordsCount !== 1 ? "s vinculados" : " vinculado"}.`
+          : "Ponto de coleta removido com sucesso."
+      );
+      navigate(`/collection-points/${pointGroup}`);
+    } catch {
+      showToast("error", "Não foi possível remover o ponto de coleta.");
+    } finally {
+      setIsDeletingPoint(false);
+    }
+  };
+
   return (
     <>
       <Page
-      title="Ponto de Coleta"
-      subtitle={point ? point.name : "Detalhes"}
+      title={point ? point.name : "Ponto de Coleta"}
       back={point ? `/collection-points/${point.group}` : "/"}
       actions={
         point && !isEditing ? (
-          <button
-            onClick={() => setIsEditing(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary/10 text-primary text-sm font-semibold active:scale-95 transition-all"
-          >
-            <Edit3 size={16} />
-            Editar
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setDeletePointOpen(true)}
+              className="inline-flex items-center justify-center h-8 w-8 rounded-xl bg-red-50 text-red-600 text-sm font-semibold active:scale-95 transition-all hover:bg-red-100"
+              aria-label="Remover ponto de coleta"
+              title="Remover ponto de coleta"
+            >
+              <Trash2 size={15} />
+            </button>
+            <button
+              onClick={() => setIsEditing(true)}
+              className="inline-flex items-center justify-center h-8 w-8 rounded-xl bg-primary/10 text-primary text-sm font-semibold active:scale-95 transition-all"
+              aria-label="Editar ponto de coleta"
+              title="Editar ponto de coleta"
+            >
+              <Edit3 size={15} />
+            </button>
+          </div>
         ) : undefined
       }
       footer={
@@ -239,17 +304,7 @@ export default function CollectionPointDetailPage() {
             </>
           ) : (
             <>
-              <Button
-                variant="secondary"
-                size="md"
-                className="w-full"
-                icon={<FileDown size={18} />}
-                loading={isExporting}
-                onClick={handleExportPointRecords}
-                disabled={!point || pointRecords.length === 0}
-              >
-                Exportar Registros deste Ponto
-              </Button>
+
               <Button
                 variant="primary"
                 size="lg"
@@ -260,6 +315,30 @@ export default function CollectionPointDetailPage() {
               >
                 Adicionar Registro
               </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="flex-1"
+                  icon={<FileDown size={18} />}
+                  loading={isExporting}
+                  onClick={handleExportPointRecords}
+                  disabled={!point || pointRecords.length === 0}
+                >
+                  CSV
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="flex-1"
+                  icon={<FileDown size={18} />}
+                  loading={isExporting}
+                  onClick={handleExportPointRecordsXLS}
+                  disabled={!point || pointRecords.length === 0}
+                >
+                  XLSX
+                </Button>
+              </div>
               {isAtLimit && point && (
                 <Button
                   variant="secondary"
@@ -332,6 +411,16 @@ export default function CollectionPointDetailPage() {
       species={selectedRecord?.data.species}
       onConfirm={handleDeleteRecord}
       onCancel={closeDelete}
+    />
+
+    <CollectionPointDeleteDialog
+      isOpen={deletePointOpen}
+      pointName={point?.name}
+      recordsCount={pointRecords.length}
+      onConfirm={handleDeletePoint}
+      onCancel={() => {
+        if (!isDeletingPoint) setDeletePointOpen(false);
+      }}
     />
     </>
   );

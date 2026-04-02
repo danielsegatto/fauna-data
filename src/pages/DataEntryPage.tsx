@@ -170,6 +170,8 @@ export default function DataEntryPage() {
           errors={errors}
           group={faunaGroup}
           onFieldChange={setField}
+          collectionPointId={collectionPoint?.id}
+          enableSpeciesDuplicateCheck={isMackinnonPoint}
         />
 
         <RecordsListCard

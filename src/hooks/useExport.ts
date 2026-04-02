@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Workbook } from "exceljs";
 import { formatDate, formatTime } from "@/lib/format";
 import {
   exportFiltersToRecordFilters,
@@ -154,6 +155,121 @@ function downloadFile(content: string, filename: string, mimeType: string) {
   URL.revokeObjectURL(url);
 }
 
+function buildXLSX(
+  records: FaunaRecord[],
+  pointMap: Record<string, string>,
+  speciesLookup: Map<string, SpeciesCatalogItem>
+): Workbook {
+  const workbook = new Workbook();
+  const worksheet = workbook.addWorksheet("Registros");
+
+  const headers = [
+    "ID",
+    "Grupo",
+    "Metodologia",
+    "Data",
+    "Hora",
+    "Nome do táxon (com autoria)",
+    "Nome do táxon",
+    "Nome em Português",
+    "Espécie (registro)",
+    "Identificação",
+    "Ambiente",
+    "Estrato",
+    "Atividade",
+    "Quantidade",
+    "Distância (m)",
+    "Lado",
+    "Ponto de Coleta",
+    "Observações",
+  ];
+
+  // Add headers with formatting
+  const headerRow = worksheet.addRow(headers);
+  headerRow.font = { bold: true, color: { argb: "FFFFFFFF" } };
+  headerRow.fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FF0066CC" }, // Blue background
+  };
+  headerRow.alignment = { horizontal: "center", vertical: "middle" };
+  headerRow.height = 20;
+
+  // Add borders to header row
+  headerRow.eachCell((cell) => {
+    cell.border = {
+      top: { style: "thin", color: { argb: "FF000000" } },
+      bottom: { style: "thin", color: { argb: "FF000000" } },
+      left: { style: "thin", color: { argb: "FF000000" } },
+      right: { style: "thin", color: { argb: "FF000000" } },
+    };
+  });
+
+  // Add data rows
+  records.forEach((r) => {
+    const date = formatDate(r.timestamp);
+    const time = formatTime(r.timestamp, { includeSeconds: true });
+    const speciesColumns = resolveSpeciesColumns(r.data.species, speciesLookup);
+
+    const row = worksheet.addRow([
+      r.id,
+      GROUP_LABELS[r.group] ?? r.group,
+      METHODOLOGY_LABELS[r.methodology] ?? r.methodology,
+      date,
+      time,
+      speciesColumns.colB,
+      speciesColumns.colC,
+      speciesColumns.colD,
+      r.data.species,
+      r.data.identification,
+      r.data.environment,
+      r.data.stratum,
+      r.data.activity,
+      r.data.quantity,
+      r.data.distance,
+      r.data.side,
+      pointMap[r.collectionPointId] ?? r.collectionPointId,
+      r.data.observations,
+    ]);
+
+    // Add borders to data rows
+    row.eachCell((cell) => {
+      cell.border = {
+        top: { style: "thin", color: { argb: "FFD3D3D3" } },
+        bottom: { style: "thin", color: { argb: "FFD3D3D3" } },
+        left: { style: "thin", color: { argb: "FFD3D3D3" } },
+        right: { style: "thin", color: { argb: "FFD3D3D3" } },
+      };
+    });
+  });
+
+  // Auto-size columns
+  worksheet.columns = headers.map((header, index) => ({
+    header,
+    key: String(index),
+    width: Math.max(header.length + 2, 12),
+    alignment: { horizontal: "left", vertical: "middle", wrapText: true },
+  }));
+
+  // Freeze header row
+  worksheet.views = [{ state: "frozen", ySplit: 1 }];
+
+  return workbook;
+}
+
+async function downloadXLSX(workbook: Workbook, filename: string) {
+  const buffer = await workbook.xlsx.writeBuffer();
+  const blob = new Blob([buffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 export function useExport() {
   const [isExporting, setIsExporting] = useState(false);
 
@@ -192,5 +308,33 @@ export function useExport() {
     [filterRecords]
   );
 
-  return { isExporting, exportCSV, filterRecords };
+  const exportXLS = useCallback(
+    async (
+      records: FaunaRecord[],
+      filters: ExportFilters,
+      pointMap: Record<string, string>
+    ): Promise<number> => {
+      setIsExporting(true);
+      try {
+        const filtered = filterRecords(records, filters);
+        if (filtered.length === 0) return 0;
+
+        const speciesCatalog = await loadSpeciesCatalog();
+        const speciesLookup = buildSpeciesLookup(speciesCatalog);
+        const workbook = buildXLSX(filtered, pointMap, speciesLookup);
+        const timestamp = new Date()
+          .toISOString()
+          .slice(0, 16)
+          .replace("T", "_")
+          .replace(":", "-");
+        await downloadXLSX(workbook, `fauna-data_${timestamp}.xlsx`);
+        return filtered.length;
+      } finally {
+        setIsExporting(false);
+      }
+    },
+    [filterRecords]
+  );
+
+  return { isExporting, exportCSV, exportXLS, filterRecords };
 }
