@@ -52,11 +52,13 @@ export function useCollectionPoints() {
 
   /**
    * Delete a collection point by ID.
-   * Note: associated records are NOT deleted — they keep the collectionPointId
-   * as a historical reference.
+   * Also removes all records linked to the collection point.
    */
   async function deleteCollectionPoint(id: string): Promise<void> {
-    await db.collectionPoints.delete(id);
+    await db.transaction("rw", db.collectionPoints, db.records, async () => {
+      await db.records.where("collectionPointId").equals(id).delete();
+      await db.collectionPoints.delete(id);
+    });
   }
 
   // ─── Read helpers ──────────────────────────────────────────────────────────
