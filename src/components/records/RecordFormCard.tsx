@@ -18,9 +18,20 @@ export interface RecordFormCardProps {
   errors: Partial<Record<keyof RecordFormState, string>>;
   group: FaunaGroup;
   onFieldChange: (field: keyof RecordFormState, value: any) => void;
+  collectionPointId?: string;
+  enableSpeciesDuplicateCheck?: boolean;
+  excludeRecordId?: string;
 }
 
-export function RecordFormCard({ form, errors, group, onFieldChange }: RecordFormCardProps) {
+export function RecordFormCard({
+  form,
+  errors,
+  group,
+  onFieldChange,
+  collectionPointId,
+  enableSpeciesDuplicateCheck,
+  excludeRecordId,
+}: RecordFormCardProps) {
   return (
     <Card padding="md">
       <div className="flex flex-col gap-5">
@@ -29,6 +40,9 @@ export function RecordFormCard({ form, errors, group, onFieldChange }: RecordFor
           value={form.species}
           onChange={(value) => onFieldChange("species", value)}
           error={errors.species}
+          collectionPointId={collectionPointId}
+          enableDuplicateCheck={enableSpeciesDuplicateCheck}
+          excludeRecordId={excludeRecordId}
         />
         <IdentificationSelect
           value={form.identification}

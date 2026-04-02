@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui";
+import { useRecords } from "@/hooks/useRecords";
 import { useSpeciesCatalog } from "@/hooks/useSpeciesCatalog";
+import { normalizeSpeciesName } from "@/lib/mackinnon";
 import type { FaunaGroup } from "@/lib/types";
 import {
   findMatchSpans,
@@ -16,6 +18,9 @@ interface SpeciesAutocompleteInputProps {
   value: string;
   onChange: (value: string) => void;
   error?: string;
+  collectionPointId?: string;
+  enableDuplicateCheck?: boolean;
+  excludeRecordId?: string;
 }
 
 const MAX_SUGGESTIONS = 10;
@@ -105,16 +110,43 @@ function SpeciesSuggestion({ item, query }: { item: SpeciesCatalogItem; query: s
 
 export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
   const { species, isLoading } = useSpeciesCatalog(props.group);
+  const { hasSpeciesRecordedAtPoint } = useRecords();
   const [isFocused, setIsFocused] = useState(false);
 
   const query = props.value.trim();
+  const normalizedValue = useMemo(() => normalizeSpeciesName(props.value), [props.value]);
 
   const suggestions = useMemo(() => {
     return getOrderedSpeciesAutocompleteMatches(species, query, MAX_SUGGESTIONS);
   }, [query, species]);
 
+  const duplicateError = useMemo(() => {
+    if (!props.enableDuplicateCheck || !props.collectionPointId || !normalizedValue) {
+      return undefined;
+    }
+
+    const isDuplicate = hasSpeciesRecordedAtPoint({
+      collectionPointId: props.collectionPointId,
+      species: props.value,
+      excludeRecordId: props.excludeRecordId,
+    });
+
+    return isDuplicate
+      ? "Espécie já registrada. Não é possível repetir na Lista de Mackinnon."
+      : undefined;
+  }, [
+    hasSpeciesRecordedAtPoint,
+    normalizedValue,
+    props.collectionPointId,
+    props.enableDuplicateCheck,
+    props.excludeRecordId,
+    props.value,
+  ]);
+
+  const effectiveError = props.error ?? duplicateError;
+
   const showSuggestions = isFocused && suggestions.length > 0;
-  const showEmptyHint = isFocused && query.length > 0 && !isLoading && suggestions.length === 0;
+  const showEmptyHint = isFocused && query.length > 0 && !isLoading && suggestions.length === 0 && !effectiveError;
   const canClear = props.value.length > 0;
 
   return (
@@ -129,7 +161,7 @@ export function SpeciesAutocompleteInput(props: SpeciesAutocompleteInputProps) {
           window.setTimeout(() => setIsFocused(false), 120);
         }}
         autoComplete="off"
-        error={props.error}
+        error={effectiveError}
       />
 
       {canClear && (
