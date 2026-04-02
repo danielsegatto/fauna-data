@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Navigation, X } from "lucide-react";
 import {
   Page,
   Button,
   ConfirmDialog,
   showToast,
 } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { useGeolocation } from "@/hooks/useGeolocation";
 import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
 import { RecordFormCard } from "@/components/records/RecordFormCard";
 import { RecordMetadataCard } from "@/components/records/RecordMetadataCard";
@@ -52,6 +54,18 @@ export default function RecordDetailPage() {
   const [discardOpen, setDiscardOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
+  const { position: gpsPosition, isLoading: isCapturing, error: gpsError, capture: captureGps, clear: clearGps } = useGeolocation();
+  const [editLat, setEditLat] = useState("");
+  const [editLng, setEditLng] = useState("");
+  const [locationSource, setLocationSource] = useState<"gps" | "manual" | "none">("none");
+
+  const hasEditLocation = locationSource === "gps"
+    ? gpsPosition !== null
+    : locationSource === "manual" && editLat.trim() !== "" && editLng.trim() !== "";
+  const resolvedEditLat = locationSource === "gps" ? gpsPosition?.latitude : (editLat ? Number(editLat) : undefined);
+  const resolvedEditLng = locationSource === "gps" ? gpsPosition?.longitude : (editLng ? Number(editLng) : undefined);
+  const resolvedEditAccuracy = locationSource === "gps" ? (gpsPosition?.accuracy ?? undefined) : undefined;
+
   const persistRecordUpdate = async () => {
     if (!record) return;
 
@@ -59,6 +73,9 @@ export default function RecordDetailPage() {
     try {
       await updateRecord(record.id, {
         data: recordFormToObservationData(form),
+        latitude: hasEditLocation && Number.isFinite(resolvedEditLat) ? resolvedEditLat : undefined,
+        longitude: hasEditLocation && Number.isFinite(resolvedEditLng) ? resolvedEditLng : undefined,
+        accuracy: hasEditLocation ? resolvedEditAccuracy : undefined,
       });
       showToast("success", "Registro atualizado com sucesso!");
       setIsEditing(false);
@@ -114,6 +131,17 @@ export default function RecordDetailPage() {
     if (!record) return;
 
     loadObservationData(record.data);
+    // Pre-populate location from the record's existing coords
+    if (Number.isFinite(record.latitude) && Number.isFinite(record.longitude)) {
+      setEditLat(String(record.latitude));
+      setEditLng(String(record.longitude));
+      setLocationSource("manual");
+    } else {
+      setEditLat("");
+      setEditLng("");
+      setLocationSource("none");
+    }
+    clearGps();
     setIsEditing(true);
   };
 
@@ -188,6 +216,88 @@ export default function RecordDetailPage() {
                 collectionPoint && isMackinnonMethodology(collectionPoint.methodology)
               )}
               excludeRecordId={record.id}
+              locationSection={
+                <div className="flex flex-col gap-3 rounded-2xl border border-gray-100 bg-surface/40 p-4">
+                  <p className="text-sm font-semibold text-gray-700">Localização do Registro</p>
+                  {locationSource !== "manual" && (
+                    <Button
+                      variant="secondary"
+                      size="md"
+                      icon={<Navigation size={16} />}
+                      loading={isCapturing}
+                      onClick={async () => {
+                        const pos = await captureGps();
+                        if (pos) {
+                          setLocationSource("gps");
+                          setEditLat("");
+                          setEditLng("");
+                          showToast("success", `GPS capturado! Precisão: ±${pos.accuracy?.toFixed(0) ?? "?"}m`);
+                        } else if (gpsError) {
+                          showToast("error", gpsError);
+                        }
+                      }}
+                    >
+                      {locationSource === "gps" && gpsPosition
+                        ? `GPS ativo — ±${gpsPosition.accuracy?.toFixed(0) ?? "?"}m`
+                        : "Capturar GPS"}
+                    </Button>
+                  )}
+
+                  {locationSource === "gps" && gpsPosition && (
+                    <p className="text-xs font-mono text-gray-500 text-center">
+                      {gpsPosition.latitude.toFixed(6)}, {gpsPosition.longitude.toFixed(6)}
+                    </p>
+                  )}
+
+                  {locationSource !== "gps" && (
+                    <button
+                      type="button"
+                      className="text-xs text-primary font-semibold text-center"
+                      onClick={() => {
+                        setLocationSource("manual");
+                        clearGps();
+                      }}
+                    >
+                      {locationSource === "manual" ? "Editar coordenadas manuais" : "Inserir coordenadas manualmente"}
+                    </button>
+                  )}
+
+                  {locationSource === "manual" && (
+                    <div className="grid grid-cols-2 gap-3">
+                      <Input
+                        label="Latitude"
+                        value={editLat}
+                        onChange={(e) => setEditLat(e.target.value)}
+                        inputMode="decimal"
+                        placeholder="-10.123456"
+                      />
+                      <Input
+                        label="Longitude"
+                        value={editLng}
+                        onChange={(e) => setEditLng(e.target.value)}
+                        inputMode="decimal"
+                        placeholder="-48.456789"
+                      />
+                    </div>
+                  )}
+
+                  {locationSource !== "none" && (
+                    <button
+                      type="button"
+                      className="flex items-center justify-center gap-1 text-xs text-gray-400 font-medium"
+                      onClick={() => {
+                        setLocationSource("none");
+                        clearGps();
+                        setEditLat("");
+                        setEditLng("");
+                      }}
+                    >
+                      <X size={12} />
+                      Limpar localização
+                    </button>
+                  )}
+                </div>
+              }
             />
           )}
         </PageContent>

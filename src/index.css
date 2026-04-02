@@ -92,3 +92,98 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Custom divIcon marker for records map */
+.records-map-pin {
+  background: transparent;
+  border: 0;
+}
+
+.records-map-pin__ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: rgba(220, 38, 38, 0.34);
+  animation: records-map-pin-pulse 1.8s ease-out infinite;
+}
+
+.records-map-pin__dot {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #dc2626;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.5), 0 6px 16px rgba(15, 23, 42, 0.55);
+}
+
+.records-map-pin__pointer {
+  position: absolute;
+  left: 10px;
+  top: 21px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 13px solid #dc2626;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 2px 4px rgba(15, 23, 42, 0.45));
+}
+
+@keyframes records-map-pin-pulse {
+  0% {
+    transform: scale(0.78);
+    opacity: 0.75;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1.22);
+    opacity: 0;
+  }
+}
+
+/* Collection point diamond marker */
+.map-cp-pin {
+  background: transparent;
+  border: 0;
+}
+
+.map-cp-pin__diamond {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #0f766e;
+  border: 3px solid #ffffff;
+  border-radius: 3px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.45), 0 4px 12px rgba(15, 23, 42, 0.5);
+}
+
+/* Keep map layers below fixed app footer actions */
+.records-map-scope .leaflet-container {
+  z-index: 0;
+}
+
+.records-map-scope .leaflet-pane {
+  z-index: 1;
+}
+
+.records-map-scope .leaflet-control,
+.records-map-scope .leaflet-top,
+.records-map-scope .leaflet-bottom {
+  z-index: 2;
+}
+
+.records-map-scope .leaflet-popup-pane,
+.records-map-scope .leaflet-tooltip-pane {
+  z-index: 3;
+}

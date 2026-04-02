@@ -9,6 +9,7 @@ import DataEntryPage from "@/pages/DataEntryPage";
 import RecordDetailPage from "@/pages/RecordDetailPage";
 import DashboardPage from "@/pages/DashboardPage";
 import ExportPage from "@/pages/ExportPage";
+import RecordsMapPage from "@/pages/RecordsMapPage";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/collection-point/:pointId" element={<CollectionPointDetailPage />} />
         <Route path="/data-entry/:group/:methodology/:pointId" element={<DataEntryPage />} />
         <Route path="/records/:recordId" element={<RecordDetailPage />} />
+        <Route path="/map" element={<RecordsMapPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/export" element={<ExportPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

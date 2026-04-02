@@ -203,9 +203,14 @@ export default function CollectionPointPage() {
                 </a>
               </div>
             ) : (
-              <p className="text-sm text-gray-400 text-center py-2">
-                {gpsError ?? "Nenhuma localização capturada"}
-              </p>
+              <div className="bg-amber-50 rounded-xl p-3 text-center">
+                <p className="text-sm text-amber-800 font-medium">
+                  {gpsError ?? "Nenhuma localização capturada neste dispositivo."}
+                </p>
+                <p className="text-xs text-amber-700 mt-1">
+                  Você pode continuar sem GPS e adicionar as coordenadas depois em Editar ponto de coleta.
+                </p>
+              </div>
             )}
 
             <Button

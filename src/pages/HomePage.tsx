@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { MapPinned } from "lucide-react";
 import { FaChartColumn } from "react-icons/fa6";
 import { Page, Card, Button, Badge } from "@/components/ui";
 import { InstallPrompt } from "@/components/ui/InstallPrompt";
@@ -55,6 +56,15 @@ export default function HomePage() {
       footer={
         <div className="flex flex-col gap-3">
           <InstallPrompt />
+          <Button
+            variant="secondary"
+            size="lg"
+            className="w-full"
+            icon={<MapPinned size={20} />}
+            onClick={() => navigate("/map")}
+          >
+            Mapa de Registros
+          </Button>
           <Button
             variant="primary"
             size="lg"

@@ -46,6 +46,9 @@ export interface FaunaRecord {
   methodology: string;
   timestamp: number;
   data: ObservationData;
+  latitude?: number;
+  longitude?: number;
+  accuracy?: number;
 }
 
 // ─── Form States ──────────────────────────────────────────────────────────────

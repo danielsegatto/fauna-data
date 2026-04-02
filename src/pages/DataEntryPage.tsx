@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { PlusCircle } from "lucide-react";
-import { Page, Button, showToast } from "@/components/ui";
+import { Navigation, PlusCircle, X } from "lucide-react";
+import { Page, Button, Input, showToast } from "@/components/ui";
+import { useGeolocation } from "@/hooks/useGeolocation";
 import { DataEntryContextCard } from "@/components/records/DataEntryContextCard";
 import { DataEntryFormCard } from "@/components/records/DataEntryFormCard";
 import { RecordDeleteDialog } from "@/components/records/RecordDeleteDialog";
@@ -49,6 +50,18 @@ export default function DataEntryPage() {
   const [savedCount, setSavedCount] = useState(0);
   const { isOpen: deleteOpen, itemId: recordToDelete, open: openDelete, close: closeDelete } = useDeleteDialog<string>();
 
+  const { position: gpsPosition, isLoading: isCapturing, error: gpsError, capture: captureGps, clear: clearGps } = useGeolocation();
+  const [manualLat, setManualLat] = useState("");
+  const [manualLng, setManualLng] = useState("");
+  const [locationSource, setLocationSource] = useState<"gps" | "manual" | null>(null);
+
+  const resolvedLat = locationSource === "gps" ? gpsPosition?.latitude : (manualLat ? Number(manualLat) : undefined);
+  const resolvedLng = locationSource === "gps" ? gpsPosition?.longitude : (manualLng ? Number(manualLng) : undefined);
+  const resolvedAccuracy = locationSource === "gps" ? (gpsPosition?.accuracy ?? undefined) : undefined;
+  const hasLocation = locationSource === "gps"
+    ? gpsPosition !== null
+    : locationSource === "manual" && manualLat.trim() !== "" && manualLng.trim() !== "";
+
   const persistRecord = async () => {
     setIsSaving(true);
     try {
@@ -57,10 +70,14 @@ export default function DataEntryPage() {
         group: faunaGroup,
         methodology: methodology ?? "",
         data: recordFormToObservationData(form),
+        latitude: (hasLocation && Number.isFinite(resolvedLat)) ? resolvedLat : undefined,
+        longitude: (hasLocation && Number.isFinite(resolvedLng)) ? resolvedLng : undefined,
+        accuracy: resolvedAccuracy,
       });
 
       setSavedCount((count) => count + 1);
       resetForm(emptyRecordForm);
+      // Keep location state so consecutive records can share the same coords
       showToast("success", "Registro salvo! Pronto para novo registro.");
     } catch {
       showToast("error", "Erro ao salvar. Tente novamente.");
@@ -175,6 +192,88 @@ export default function DataEntryPage() {
           onFieldChange={setField}
           collectionPointId={collectionPoint?.id}
           enableSpeciesDuplicateCheck={isMackinnonPoint}
+          locationSection={
+            <div className="flex flex-col gap-3 rounded-2xl border border-gray-100 bg-surface/40 p-4">
+              <p className="text-sm font-semibold text-gray-700">Localização do Registro</p>
+              {locationSource !== "manual" && (
+                <Button
+                  variant="secondary"
+                  size="md"
+                  icon={<Navigation size={16} />}
+                  loading={isCapturing}
+                  onClick={async () => {
+                    const pos = await captureGps();
+                    if (pos) {
+                      setLocationSource("gps");
+                      setManualLat("");
+                      setManualLng("");
+                      showToast("success", `GPS capturado! Precisão: ±${pos.accuracy?.toFixed(0) ?? "?"}m`);
+                    } else if (gpsError) {
+                      showToast("error", gpsError);
+                    }
+                  }}
+                >
+                  {locationSource === "gps" && gpsPosition
+                    ? `GPS ativo — ±${gpsPosition.accuracy?.toFixed(0) ?? "?"}m`
+                    : "Capturar GPS"}
+                </Button>
+              )}
+
+              {locationSource === "gps" && gpsPosition && (
+                <p className="text-xs font-mono text-gray-500 text-center">
+                  {gpsPosition.latitude.toFixed(6)}, {gpsPosition.longitude.toFixed(6)}
+                </p>
+              )}
+
+              {locationSource !== "gps" && (
+                <button
+                  type="button"
+                  className="text-xs text-primary font-semibold text-center"
+                  onClick={() => {
+                    setLocationSource("manual");
+                    clearGps();
+                  }}
+                >
+                  {locationSource === "manual" ? "Editar coordenadas manuais" : "Inserir coordenadas manualmente"}
+                </button>
+              )}
+
+              {locationSource === "manual" && (
+                <div className="grid grid-cols-2 gap-3">
+                  <Input
+                    label="Latitude"
+                    value={manualLat}
+                    onChange={(e) => setManualLat(e.target.value)}
+                    inputMode="decimal"
+                    placeholder="-10.123456"
+                  />
+                  <Input
+                    label="Longitude"
+                    value={manualLng}
+                    onChange={(e) => setManualLng(e.target.value)}
+                    inputMode="decimal"
+                    placeholder="-48.456789"
+                  />
+                </div>
+              )}
+
+              {locationSource !== null && (
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-1 text-xs text-gray-400 font-medium"
+                  onClick={() => {
+                    setLocationSource(null);
+                    clearGps();
+                    setManualLat("");
+                    setManualLng("");
+                  }}
+                >
+                  <X size={12} />
+                  Limpar localização
+                </button>
+              )}
+            </div>
+          }
         />
 
         <RecordsListCard
