@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "@/components/ui/Toast";
 import { UpdatePrompt } from "@/components/ui/UpdatePrompt";
 import { useServiceWorkerUpdate } from "@/hooks/useServiceWorkerUpdate";
@@ -14,12 +14,18 @@ import ExportPage from "@/pages/ExportPage";
 import RecordsMapPage from "@/pages/RecordsMapPage";
 
 export default function App() {
+  const location = useLocation();
   const { isUpdateAvailable, dismissUpdate, reloadToUpdate } = useServiceWorkerUpdate();
+  const isHomeRoute = location.pathname === "/";
 
   return (
     <div className="min-h-dvh bg-white flex flex-col">
       <ToastContainer />
-      <UpdatePrompt isOpen={isUpdateAvailable} onReload={reloadToUpdate} onLater={dismissUpdate} />
+      <UpdatePrompt
+        isOpen={isUpdateAvailable && isHomeRoute}
+        onReload={reloadToUpdate}
+        onLater={dismissUpdate}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/methodologies/:group" element={<MethodologiesPage />} />
